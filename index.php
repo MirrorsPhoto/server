@@ -42,6 +42,8 @@ try {
 			'response' => $dispatcher->getReturnedValue()
 		];
 	} catch (Exception $e) {
+		$response->setStatusCode($e->getCode());
+
 		$result = [
 			'status' => 'ERROR',
 			'message' => $e->getMessage()
