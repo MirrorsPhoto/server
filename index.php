@@ -3,6 +3,8 @@ use Phalcon\Loader;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 
+$di = new FactoryDefault();
+
 $debug = (new \Phalcon\Debug())->listen();
 
 $loader = new Loader();
@@ -14,8 +16,6 @@ $loader->registerDirs(
 		'Helpers/'
 	]
 )->register();
-
-$di = new FactoryDefault();
 
 $application = new Application($di);
 
