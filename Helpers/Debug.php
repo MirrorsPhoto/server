@@ -13,9 +13,8 @@ class Debug
 
 	public static function dumpDie($var)
 	{
-		$objDump = new \Phalcon\Debug\Dump();
-
-		echo $objDump->variable($var);
+		echo "<pre>";
+		var_dump($var);
 		die();
 	}
 
