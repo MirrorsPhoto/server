@@ -3,11 +3,10 @@
 class Debug
 {
 
-	public static function dumpDie($var)
+	public static function dumpMethodDie($var)
 	{
 		$objDump = new \Phalcon\Debug\Dump();
 
-		echo "<pre>";
 		echo $objDump->variable($var);
 		die();
 	}
