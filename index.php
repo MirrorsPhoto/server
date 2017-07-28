@@ -19,9 +19,9 @@ $debug = (new \Phalcon\Debug())->listen();
 $application = new Application($di);
 
 try {
-	$response = $application->handle();
-
-	$response->send();
+	$response = $application->useImplicitView(false);
+	
+	$response->handle();
 } catch (\Exception $e) {
 	echo $e->getMessage();
 }
