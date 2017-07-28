@@ -8,9 +8,7 @@ $di = new FactoryDefault();
 $di->set('config', new Ini('api/config/config.ini'));
 $debug = (new \Phalcon\Debug())->listen();
 
-$loader = new Loader();
-
-$loader->registerDirs(
+(new Loader())->registerDirs(
 	[
 		'../api/controllers/',
 		'../api/models/',
