@@ -3,6 +3,7 @@ use Phalcon\Loader;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
+use Phalcon\Db\Adapter\Pdo\Factory;
 
 (new Loader())->registerDirs(
 	[
@@ -16,6 +17,13 @@ $debug = (new \Phalcon\Debug())->listen();
 
 $di = new FactoryDefault();
 $di->set('config', new Ini('api/config/config.ini'));
+
+$di->set(
+	'db',
+	function () {
+		return Factory::load($this->get('config')->database);
+	}
+);
 
 $application = new Application($di);
 
