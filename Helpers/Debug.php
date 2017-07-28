@@ -9,7 +9,7 @@ class Debug
 
 		echo "<pre>";
 		echo $objDump->variable($var);
-//		die();
+		die();
 	}
 
 }
