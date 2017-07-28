@@ -3,11 +3,12 @@ use Phalcon\Loader;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
+use Phalcon\Http\ResponseInterface;
 
 (new Loader())->registerDirs(
 	[
-		'../api/controllers/',
-		'../api/models/',
+		'api/controllers/',
+		'api/models/',
 		'Helpers/'
 	]
 )->register();
@@ -20,9 +21,39 @@ $di->set('config', new Ini('api/config/config.ini'));
 $application = new Application($di);
 
 try {
-	$response = $application->useImplicitView(false);
+	$router = $di->get('router');
 
-	$response->handle();
+	$router->handle();
+
+	$dispatcher = $di->get('dispatcher');
+
+	$dispatcher->setControllerName($router->getControllerName());
+
+	$dispatcher->setActionName($router->getActionName());
+
+	$dispatcher->setParams($router->getParams());
+
+	$response = $di->get('response');
+
+	try {
+		$dispatcher->dispatch();
+
+		$result = [
+			'status' => 'OK',
+			'response' => $dispatcher->getReturnedValue()
+		];
+	} catch (Exception $e) {
+		$result = [
+			'status' => 'ERROR',
+			'message' => $e->getMessage()
+		];
+	}
+
+	$response->setJsonContent($result);
+
+	$response->sendHeaders();
+
+	echo $response->getContent();
 } catch (\Exception $e) {
 	echo $e->getMessage();
 }
