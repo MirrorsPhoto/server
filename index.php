@@ -3,7 +3,6 @@ use Phalcon\Loader;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
-use Phalcon\Http\ResponseInterface;
 
 (new Loader())->registerDirs(
 	[
