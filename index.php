@@ -5,6 +5,8 @@ use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Db\Adapter\Pdo\Factory;
 
+require 'vendor/autoload.php';
+
 (new Loader())->registerDirs(
 	[
 		'api/controllers/',
