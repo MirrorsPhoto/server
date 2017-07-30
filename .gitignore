@@ -8,3 +8,5 @@ api/config/config\.ini
 vendor/
 
 composer\.lock
+
+\.phalcon/
