@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 	[
 		'api/controllers/',
 		'api/models/',
-		'Helpers/'
+		'core/helpers'
 	]
 )->register();
 
