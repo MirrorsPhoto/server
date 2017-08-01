@@ -53,7 +53,9 @@ try {
 			'response' => $dispatcher->getReturnedValue()
 		];
 	} catch (Exception $e) {
-		$response->setStatusCode($e->getCode());
+		$statusCode = $e->getCode() ? $e->getCode() : 500;
+
+		$response->setStatusCode($statusCode);
 
 		$result = [
 			'status' => 'ERROR',
