@@ -22,6 +22,21 @@ $di = new FactoryDefault();
 $di->set('config', new Ini('api/config/config.ini'));
 
 $di->set(
+	'dispatcher',
+	function () {
+		$eventsManager = $this->get('eventsManager');
+
+		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\UserCenter\Security());
+
+		$dispatcher = new Phalcon\Mvc\Dispatcher();
+
+		$dispatcher->setEventsManager($eventsManager);
+
+		return $dispatcher;
+	}
+);
+
+$di->set(
 	'db',
 	function () {
 		return Factory::load($this->get('config')->database);
