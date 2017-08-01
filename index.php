@@ -4,17 +4,21 @@ use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Db\Adapter\Pdo\Factory;
+use Phalcon\Events\Manager as EventsManager;
 
 require 'vendor/autoload.php';
 
-(new Loader())->registerDirs(
-	[
+(new Loader())
+	->registerDirs([
 		'api/controllers/',
 		'api/models/',
 		'Core/helpers',
+		'Core/UserCenter',
 		'Core/'
-	]
-)->register();
+	])
+	->registerNamespaces([
+		'Core\UserCenter' => 'Core/UserCenter'
+	])->register();
 
 $debug = (new \Phalcon\Debug())->listen();
 
