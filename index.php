@@ -17,7 +17,9 @@ require 'vendor/autoload.php';
 		'Core/'
 	])
 	->registerNamespaces([
-		'Core\UserCenter' => 'Core/UserCenter'
+		'Core\UserCenter' => 'Core/UserCenter',
+		'Core\Enum' => 'Core/Enum',
+		'Core' => 'Core'
 	])->register();
 
 $debug = (new \Phalcon\Debug())->listen();
