@@ -14,6 +14,17 @@ use Phalcon\Acl\Adapter\Memory as AclList;
 class Security extends Plugin
 {
 
+	protected static $_user;
+
+	public static function getUser()
+	{
+		if (is_null(self::$_user))
+		{
+			throw new Unauthorized();
+		}
+		return self::$_user;
+	}
+
 	private function _getAcl()
 	{
 		$userEnum = Enum::getInstance();
@@ -97,7 +108,11 @@ class Security extends Plugin
 		$allowed = $acl->isAllowed($userEnum->getName($decoded->role), $controller, $action);
 		if ($allowed != Acl::ALLOW || $decoded->role != $user->role || $decoded->id != $user->id)
 		{
-			throw new AccessDenied($controller, $action, $role);
+			throw new AccessDenied($controller, $action, $user->role);
 		}
+
+		self::$_user = $user;
+
+		return true;
 	}
 }
