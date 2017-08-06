@@ -1,10 +1,8 @@
 <?php
 use Phalcon\Loader;
-use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Db\Adapter\Pdo\Factory;
-use Phalcon\Events\Manager as EventsManager;
 
 require 'vendor/autoload.php';
 
@@ -25,7 +23,7 @@ require 'vendor/autoload.php';
 $debug = (new \Phalcon\Debug())->listen();
 
 $di = new FactoryDefault();
-$di->set('config', new Ini('api/config/config.ini'));
+$di->set('config', Config::getInstance());
 
 $di->set(
 	'dispatcher',

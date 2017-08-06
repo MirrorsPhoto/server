@@ -9,7 +9,7 @@ class JWT extends \Firebase\JWT\JWT
 
 	public function __construct()
 	{
-		$config = new \Phalcon\Config\Adapter\Ini('api/config/config.ini');
+		$config = Config::getInstance();
 		self::$key = $config->jwt->key;
 	}
 
