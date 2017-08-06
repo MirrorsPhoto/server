@@ -85,15 +85,17 @@ class Security extends Plugin
 			throw new Unauthorized();
 		}
 
+		$user = \Users::findFirst([
+			"token = '$token'"
+		]);
+
 		$jwt = \JWT::getInstance();
 
 		$decoded = $jwt::decode($token);
 
-		$role = $decoded->type;
-
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
-		$allowed = $acl->isAllowed($userEnum->getName($role), $controller, $action);
-		if ($allowed != Acl::ALLOW)
+		$allowed = $acl->isAllowed($userEnum->getName($decoded->role), $controller, $action);
+		if ($allowed != Acl::ALLOW || $decoded->role != $user->role || $decoded->id != $user->id)
 		{
 			throw new AccessDenied($controller, $action, $role);
 		}
