@@ -78,8 +78,8 @@ class Security extends Plugin
 			throw new Unauthorized();
 		}
 
-		$token = explode(' ', $header)[1];
-
+		list($token) = sscanf($header, 'Bearer %s');
+		
 		if (!$token) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
 			throw new Unauthorized();
