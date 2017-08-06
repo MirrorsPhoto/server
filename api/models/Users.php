@@ -36,6 +36,13 @@ class Users extends Model
      */
     public $middle_name;
 
+	/**
+	 *
+	 * @var integer
+	 * @Column(type="integer", nullable=false)
+	 */
+    public $role;
+
     /**
      *
      * @var string

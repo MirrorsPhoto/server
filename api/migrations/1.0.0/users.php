@@ -53,6 +53,15 @@ class UsersMigration_100 extends Migration
                             'type' => Column::TYPE_TEXT,
                         ]
                     ),
+	                new Column(
+		                'role',
+		                [
+			                'type' => Column::TYPE_INTEGER,
+			                'notNull' => true,
+			                'default' => 2
+		                ]
+	                ),
+
                     new Column(
                         'password',
                         [
@@ -91,6 +100,7 @@ class UsersMigration_100 extends Migration
 			    'first_name',
 			    'last_name',
 			    'middle_name',
+			    'role',
 			    'password',
 			    'email',
 			    'datetime_create'
