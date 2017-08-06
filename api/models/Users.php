@@ -64,6 +64,13 @@ class Users extends Model
      */
     public $datetime_create;
 
+	/**
+	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $token;
+
     /**
      * Validations and business logic
      *
