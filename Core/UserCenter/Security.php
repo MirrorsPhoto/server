@@ -74,14 +74,14 @@ class Security extends Plugin
 		$request = $dispatcher->getDI()->get('request');
 
 		if (!$header = $request->getHeader('Authorization')) {
-			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Basic realm="Unauthorized"');
+			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
 		}
 
 		$token = explode(' ', $header)[1];
 
 		if (!$token) {
-			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Basic realm="Bad Unauthorized"');
+			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
 			throw new Unauthorized();
 		}
 
