@@ -85,7 +85,9 @@ class Security extends Plugin
 			throw new Unauthorized();
 		}
 
-		$decoded = \JWT::decode($token);
+		$jwt = \JWT::getInstance();
+
+		$decoded = $jwt::decode($token);
 
 		$role = $decoded->type;
 

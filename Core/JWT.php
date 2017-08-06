@@ -3,7 +3,15 @@
 class JWT extends \Firebase\JWT\JWT
 {
 
-	private static $key = 'devkey';
+	use \Core\Singleton;
+
+	private static $key;
+
+	public function __construct()
+	{
+		$config = new \Phalcon\Config\Adapter\Ini('api/config/config.ini');
+		self::$key = $config->jwt->key;
+	}
 
 	public static function encode($payload, $key = null, $alg = 'HS256', $keyId = null, $head = null)
 	{
