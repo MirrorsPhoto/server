@@ -1,6 +1,6 @@
 <?php
 
-class Config extends \Phalcon\Config\Adapter\Ini
+class ConfigIni extends \Phalcon\Config\Adapter\Ini
 {
 
 	use \Core\Singleton;

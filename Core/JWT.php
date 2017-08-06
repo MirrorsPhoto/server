@@ -9,7 +9,7 @@ class JWT extends \Firebase\JWT\JWT
 
 	public function __construct()
 	{
-		$config = Config::getInstance();
+		$config = ConfigIni::getInstance();
 		self::$key = $config->jwt->key;
 	}
 

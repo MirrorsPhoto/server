@@ -23,7 +23,7 @@ require 'vendor/autoload.php';
 $debug = (new \Phalcon\Debug())->listen();
 
 $di = new FactoryDefault();
-$di->set('config', Config::getInstance());
+$di->set('config', ConfigIni::getInstance());
 
 $di->set(
 	'dispatcher',
