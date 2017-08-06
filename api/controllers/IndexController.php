@@ -1,12 +1,15 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: jonkofee
- * Date: 28/07/2017
- * Time: 16:24
- */
-class IndexController
+use Phalcon\Mvc\Controller;
+
+class IndexController extends Controller
 {
+
+	public function indexAction()
+	{
+		$a = Users::findFirst();
+//Debug::dumpMethodDie($a);
+		return $a;
+	}
 
 }
