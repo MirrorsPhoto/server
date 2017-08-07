@@ -10,7 +10,7 @@ class IndexController extends Controller
 		return 1;
 	}
 
-	public function route404Action()
+	public function notFoundAction()
 	{
 		throw new \Core\Exception\NotFound();
 	}

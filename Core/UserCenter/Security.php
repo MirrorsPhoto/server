@@ -43,7 +43,7 @@ class Security extends Plugin
 			'index' =>
 				[
 					'index',
-					'route404'
+					'notFound'
 				],
 			'auth' =>
 				[

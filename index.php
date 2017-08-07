@@ -52,7 +52,7 @@ $di->set('router',
 		$router->notFound(
 			[
 				'controller' => 'index',
-				'action'     => 'route404',
+				'action'     => 'notFound',
 			]
 		);
 
