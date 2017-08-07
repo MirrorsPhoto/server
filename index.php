@@ -40,6 +40,28 @@ $di->set(
 	}
 );
 
+$di->set('router',
+	function () {
+		$router = new \Phalcon\Mvc\Router\Annotations(false);
+
+		$router->addPost('/login', [
+			'controller' => 'auth',
+			'action'     => 'login',
+		]);
+
+		$router->notFound(
+			[
+				'controller' => 'index',
+				'action'     => 'route404',
+			]
+		);
+
+		$router->addResource('Auth', '/auth');
+
+		return $router;
+	}
+);
+
 $di->set(
 	'db',
 	function () {

@@ -7,9 +7,12 @@ class IndexController extends Controller
 
 	public function indexAction()
 	{
-		$a = Users::findFirst();
-//Debug::dumpMethodDie($a);
-		return $a;
+		return 1;
+	}
+
+	public function route404Action()
+	{
+		throw new \Core\Exception\NotFound();
 	}
 
 }

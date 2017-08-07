@@ -42,7 +42,8 @@ class Security extends Plugin
 		$publicResources = [
 			'index' =>
 				[
-					'index'
+					'index',
+					'route404'
 				],
 			'auth' =>
 				[
