@@ -29,10 +29,17 @@ class Router extends \Phalcon\Mvc\Router\Annotations
 
 	private function _setRoutes()
 	{
-		$this->addPost('/login', [
-			'controller' => 'auth',
-			'action'     => 'login',
-		]);
+		$routes = new \Phalcon\Config\Adapter\Ini(__DIR__ . '/../api/config/route.ini');
+
+		foreach ($routes->toArray() as $pattern => $paths) {
+			$pattern = "/$pattern";
+
+			$method = $paths['method'] ?? 'Get';
+
+			$methodName = "add{$method}";
+
+			$this->{$methodName}($pattern, $paths);
+		}
 
 		$this->notFound(
 			[
