@@ -5,10 +5,10 @@ class Router extends \Phalcon\Mvc\Router\Annotations
 
 	public function __construct($defaultRoutes = null)
 	{
+		parent::__construct($defaultRoutes);
+
 		$this->_setRoutes();
 		$this->_setResources();
-
-		parent::__construct($defaultRoutes);
 	}
 
 	private function _setResources()
