@@ -40,13 +40,7 @@ $di->set(
 	}
 );
 
-$di->set('router',
-	function () {
-		$router = new Router(false);
-		
-		return $router;
-	}
-);
+$di->set('router', new Router(false));
 
 $di->set(
 	'db',
