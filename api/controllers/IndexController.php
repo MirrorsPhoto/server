@@ -2,9 +2,15 @@
 
 use Phalcon\Mvc\Controller;
 
+/**
+ * @RoutePrefix('/index')
+ */
 class IndexController extends Controller
 {
 
+	/**
+	 * @Get('/index')
+	 */
 	public function indexAction()
 	{
 		return 1;
