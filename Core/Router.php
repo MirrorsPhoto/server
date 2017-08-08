@@ -9,6 +9,8 @@ class Router extends \Phalcon\Mvc\Router\Annotations
 
 		$this->_setRoutes();
 		$this->_setResources();
+
+		$this->removeExtraSlashes(true);
 	}
 
 	private function _setResources()
