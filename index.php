@@ -10,6 +10,7 @@ require 'vendor/autoload.php';
 	->registerDirs([
 		'api/controllers/',
 		'api/models/',
+		'api/validations',
 		'Core/helpers',
 		'Core/UserCenter',
 		'Core/'
