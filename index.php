@@ -18,7 +18,8 @@ require 'vendor/autoload.php';
 	->registerNamespaces([
 		'Core\UserCenter' => 'Core/UserCenter',
 		'Core\Enum' => 'Core/Enum',
-		'Core' => 'Core'
+		'Core' => 'Core',
+		'Validator' => 'api/validations'
 	])->register();
 
 $debug = (new \Phalcon\Debug())->listen();

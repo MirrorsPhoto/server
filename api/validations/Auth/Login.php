@@ -1,8 +1,10 @@
 <?php
 
+namespace Validator\Auth;
+
 use \Phalcon\Validation\Validator\PresenceOf;
 
-class AuthValidation extends Validation
+class Login extends \Validation
 {
 
 	public function initialize()
