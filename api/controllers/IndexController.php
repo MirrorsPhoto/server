@@ -1,7 +1,5 @@
 <?php
 
-use Phalcon\Mvc\Controller;
-
 /**
  * @RoutePrefix('/index')
  */
