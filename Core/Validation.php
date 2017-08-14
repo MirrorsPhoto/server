@@ -1,6 +1,6 @@
 <?php
 
-class Validation extends \Phalcon\Validation
+abstract class Validation extends \Phalcon\Validation
 {
 
 	public function afterValidation($data, $entity, $messages)
