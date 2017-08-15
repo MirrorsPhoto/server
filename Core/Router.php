@@ -48,6 +48,13 @@ class Router extends \Phalcon\Mvc\Router\Annotations
 			]
 		);
 
+		$this->add(
+			'/',
+			[
+				'controller' => 'index',
+				'action'     => 'index',
+			]
+		);
 	}
 
 }
