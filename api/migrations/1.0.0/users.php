@@ -33,6 +33,7 @@ class UsersMigration_100 extends Migration
                         'username',
                         [
                             'type' => Column::TYPE_TEXT,
+	                        'notNull' => true,
                         ]
                     ),
                     new Column(
@@ -80,15 +81,15 @@ class UsersMigration_100 extends Migration
                         'datetime_create',
                         [
                             'type' => Column::TYPE_TIMESTAMP,
-                            'default' => "now()",
+                            'default' => "CURRENT_TIMESTAMP",
                             'notNull' => true,
                         ]
                     )
                 ],
                 'indexes' => [
-                    new Index('users_email_key', ['email'], null),
+                    new Index('users_email_key', ['email'], 'unique'),
                     new Index('users_pkey', ['id'], 'PRIMARY KEY'),
-                    new Index('users_username_key', ['username'], null)
+                    new Index('users_username_key', ['username'], 'unique')
                 ],
             ]
         );

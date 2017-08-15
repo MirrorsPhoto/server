@@ -11,7 +11,7 @@ class Users extends Model
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
+     * @Column(type="string", nullable=false)
      */
     public $username;
 
