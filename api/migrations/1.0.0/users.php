@@ -97,9 +97,6 @@ class UsersMigration_100 extends Migration
 	    $this->batchInsert('users', [
 			    'id',
 			    'username',
-			    'first_name',
-			    'last_name',
-			    'middle_name',
 			    'role',
 			    'password',
 			    'email',
