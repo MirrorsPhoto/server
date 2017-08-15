@@ -48,13 +48,13 @@
               "formdata": [
                 {
                   "key": "login",
-                  "value": "admin",
+                  "value": "{{login}}",
                   "description": ">38=",
                   "type": "text"
                 },
                 {
                   "key": "password",
-                  "value": "devpass",
+                  "value": "{{password}}",
                   "description": "0@>;L",
                   "type": "text"
                 }
