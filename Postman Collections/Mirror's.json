@@ -67,7 +67,7 @@
               "id": "0bd7d940-986b-5446-1aee-9c9cfb9eb310",
               "name": "@8<5@ 02B>@870F88",
               "originalRequest": {
-                "url": "http://mirrors.local/login",
+                "url": "{{url}}/login",
                 "method": "POST",
                 "header": [],
                 "body": {
@@ -75,13 +75,13 @@
                   "formdata": [
                     {
                       "key": "login",
-                      "value": "admin",
+                      "value": "{{login}}",
                       "description": ">38=",
                       "type": "text"
                     },
                     {
                       "key": "password",
-                      "value": "devpass",
+                      "value": "{{password}}",
                       "description": "0@>;L",
                       "type": "text"
                     }
@@ -162,7 +162,7 @@
               ],
               "cookie": [],
               "responseTime": "5063",
-              "body": "{\"status\":\"OK\",\"response\":{\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6MX0.t0RMfBlUy2mBruWxtnZf1OL-SPSELN038Ff70QPDjmM\"}}"
+              "body": "{\"status\":\"OK\",\"response\":{\"token\":\"{{token}}\"}}"
             }
           ]
         }
