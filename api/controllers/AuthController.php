@@ -6,14 +6,31 @@
 class AuthController extends Controller
 {
 
-	/**
-	 * @Get('/login')
-	 */
 	public function loginAction()
 	{
-//		$a = Users::findFirst();
-//Debug::dumpMethodDie($a);
-		return 'Страница авторизации';
+		(new \Validator\Auth\Login())->validate();
+
+		$login = $this->getPost('login');
+		$password = $this->getPost('password');
+
+		$user = Users::findFirstByUsername($login);
+
+		if (!$user || ($user->password != $password)) throw new \Core\Exception\BadRequest('Не верный логин или пароль');
+
+		$jwt = JWT::getInstance();
+
+		$token = $jwt->encode([
+			'id' => $user->id,
+			'role' => $user->role
+		]);
+
+		$user->token = $token;
+
+		if ($user->update()) {
+			return [
+				'token' => $token
+			];
+		}
 	}
 
 }
