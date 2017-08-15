@@ -8,61 +8,39 @@
   },
   "item": [
     {
-      "_postman_id": "a912d7ad-a3d1-2caa-6964-5bc9f20de581",
-      "name": "2B>@870F8O",
-      "event": [
+      "_postman_id": "4a8c195f-0238-3569-cd32-cffccb671adc",
+      "name": "Auth",
+      "description": "",
+      "item": [
         {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "exec": [
-              "if (responseCode.code === 200) {",
-              "    tests['Status code is 200'] = true;",
-              "    ",
-              "    var jsonData = JSON.parse(responseBody);",
-              "    ",
-              "    var token = jsonData.response.token;",
-              "    ",
-              "    tests['Token is exist'] = !!token;",
-              "    ",
-              "    postman.setEnvironmentVariable(\"token\", token); ",
-              "} else {",
-              "    tests['Status code is 200'] = false;",
-              "    postman.setNextRequest(null);",
-              "}"
-            ]
-          }
-        }
-      ],
-      "request": {
-        "url": "{{url}}/login",
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
+          "_postman_id": "a912d7ad-a3d1-2caa-6964-5bc9f20de581",
+          "name": "2B>@870F8O",
+          "event": [
             {
-              "key": "login",
-              "value": "admin",
-              "description": ">38=",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "devpass",
-              "description": "0@>;L",
-              "type": "text"
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    var token = jsonData.response.token;",
+                  "    ",
+                  "    tests['Token is exist'] = !!token;",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"token\", token); ",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
             }
-          ]
-        },
-        "description": "> ;>38=C 8 ?0@>;N.\n >B25B 25@=5BAO JWT =5>1E>48<K9 4;O 4>ABC?0 : ?@820B=K< <5B>40<"
-      },
-      "response": [
-        {
-          "id": "0bd7d940-986b-5446-1aee-9c9cfb9eb310",
-          "name": "@8<5@ 02B>@870F88",
-          "originalRequest": {
-            "url": "http://mirrors.local/login",
+          ],
+          "request": {
+            "url": "{{url}}/login",
             "method": "POST",
             "header": [],
             "body": {
@@ -81,83 +59,112 @@
                   "type": "text"
                 }
               ]
-            }
+            },
+            "description": "> ;>38=C 8 ?0@>;N.\n >B25B 25@=5BAO JWT =5>1E>48<K9 4;O 4>ABC?0 : ?@820B=K< <5B>40<"
           },
-          "status": "OK",
-          "code": 200,
-          "_postman_previewlanguage": "json",
-          "_postman_previewtype": "text",
-          "header": [
+          "response": [
             {
-              "key": "Access-Control-Allow-Methods",
-              "value": "GET, POST",
-              "name": "Access-Control-Allow-Methods",
-              "description": ""
-            },
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*",
-              "name": "Access-Control-Allow-Origin",
-              "description": ""
-            },
-            {
-              "key": "Connection",
-              "value": "Keep-Alive",
-              "name": "Connection",
-              "description": ""
-            },
-            {
-              "key": "Content-Length",
-              "value": "143",
-              "name": "Content-Length",
-              "description": ""
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json; charset=UTF-8",
-              "name": "Content-Type",
-              "description": ""
-            },
-            {
-              "key": "Date",
-              "value": "Tue, 15 Aug 2017 11:25:47 GMT",
-              "name": "Date",
-              "description": ""
-            },
-            {
-              "key": "Keep-Alive",
-              "value": "timeout=5, max=100",
-              "name": "Keep-Alive",
-              "description": ""
-            },
-            {
-              "key": "Server",
-              "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
-              "name": "Server",
-              "description": ""
-            },
-            {
-              "key": "X-Content-Type-Options",
-              "value": "nosniff",
-              "name": "X-Content-Type-Options",
-              "description": ""
-            },
-            {
-              "key": "X-Frame-Options",
-              "value": "DENY",
-              "name": "X-Frame-Options",
-              "description": ""
-            },
-            {
-              "key": "X-Powered-By",
-              "value": "PHP/7.1.7",
-              "name": "X-Powered-By",
-              "description": ""
+              "id": "0bd7d940-986b-5446-1aee-9c9cfb9eb310",
+              "name": "@8<5@ 02B>@870F88",
+              "originalRequest": {
+                "url": "http://mirrors.local/login",
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "login",
+                      "value": "admin",
+                      "description": ">38=",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "devpass",
+                      "description": "0@>;L",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST",
+                  "name": "Access-Control-Allow-Methods",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*",
+                  "name": "Access-Control-Allow-Origin",
+                  "description": ""
+                },
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "143",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 15 Aug 2017 11:25:47 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5063",
+              "body": "{\"status\":\"OK\",\"response\":{\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6MX0.t0RMfBlUy2mBruWxtnZf1OL-SPSELN038Ff70QPDjmM\"}}"
             }
-          ],
-          "cookie": [],
-          "responseTime": "5063",
-          "body": "{\"status\":\"OK\",\"response\":{\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwicm9sZSI6MX0.t0RMfBlUy2mBruWxtnZf1OL-SPSELN038Ff70QPDjmM\"}}"
+          ]
         }
       ]
     }
