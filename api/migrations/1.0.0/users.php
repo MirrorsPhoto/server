@@ -87,7 +87,7 @@ class UsersMigration_100 extends Migration
                 ],
                 'indexes' => [
                     new Index('users_email_key', ['email'], null),
-                    new Index('users_pkey', ['id'], null),
+                    new Index('users_pkey', ['id'], 'PRIMARY KEY'),
                     new Index('users_username_key', ['username'], null)
                 ],
             ]
