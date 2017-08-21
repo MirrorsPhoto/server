@@ -19,10 +19,16 @@ class AuthController extends Controller
 
 		$jwt = JWT::getInstance();
 
-		$token = $jwt->encode([
-			'id' => $user->id,
-			'role' => $user->role
-		]);
+		$token = $jwt->encode($user->toArray([
+			'id',
+			'username',
+			'first_name',
+			'middle_name',
+			'last_name',
+			'email',
+			'role',
+
+		]));
 
 		$user->token = $token;
 
