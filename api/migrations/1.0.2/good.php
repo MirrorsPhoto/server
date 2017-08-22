@@ -51,7 +51,7 @@ class GoodMigration_102 extends Migration
 				'indexes' => [
 					new Index('good_bar_code', ['bar_code'], 'unique'),
 					new Index('good_pkey', ['id'], 'PRIMARY KEY'),
-					new Index('good_name', ['name'])
+					new Index('good_name', ['name'], 'unique')
 				],
 			]
 		);
