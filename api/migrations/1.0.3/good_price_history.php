@@ -51,6 +51,7 @@ class GoodPriceHistoryMigration_103 extends Migration
 						'datetime_from',
 						[
 							'type' => Column::TYPE_TIMESTAMP,
+							'default' => "CURRENT_TIMESTAMP",
 							'notNull' => true,
 						]
 					),

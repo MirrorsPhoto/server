@@ -44,6 +44,7 @@ class SaleMigration_105 extends Migration
 						'datetime',
 						[
 							'type' => Column::TYPE_TIMESTAMP,
+							'default' => "CURRENT_TIMESTAMP",
 							'notNull' => true,
 						]
 					),
