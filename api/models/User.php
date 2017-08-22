@@ -85,7 +85,7 @@ class User extends Model
             new EmailValidator(
                 [
                     'model'   => $this,
-                    'message' => 'Please enter a correct email address',
+                    'message' => 'Введите корректный адрес',
                 ]
             )
         );
