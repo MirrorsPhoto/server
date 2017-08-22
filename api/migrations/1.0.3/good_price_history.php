@@ -43,7 +43,7 @@ class GoodPriceHistoryMigration_103 extends Migration
 					new Column(
 						'price',
 						[
-							'type' => 'money',
+							'type' => Column::TYPE_FLOAT,
 							'notNull' => true,
 						]
 					),

@@ -43,7 +43,7 @@ class ReceiptMigration_104 extends Migration
 					new Column(
 						'price',
 						[
-							'type' => 'money',
+							'type' => Column::TYPE_FLOAT,
 							'notNull' => true,
 						]
 					),
