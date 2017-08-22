@@ -82,4 +82,11 @@ class Good extends Model
 		return $this->validate($validator);
 	}
 
+	public function getPrice()
+	{
+		return $this->goodPriceHistory->filter(function ($price) {
+			if ($price->good_id == 1 && !$price->datetime_to) return $price;
+		})[0]->price;
+	}
+
 }
