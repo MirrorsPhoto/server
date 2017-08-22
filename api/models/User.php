@@ -3,10 +3,10 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Email as EmailValidator;
 
-class Users extends Model
+class User extends Model
 {
 
-	protected $_tableName = 'users';
+	protected $_tableName = 'user';
 
     /**
      *

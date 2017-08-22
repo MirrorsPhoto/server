@@ -97,7 +97,7 @@ class Security extends Plugin
 			throw new Unauthorized();
 		}
 
-		$user = \Users::findFirst([
+		$user = \User::findFirst([
 			"token = '$token'"
 		]);
 

@@ -5,11 +5,11 @@ use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class UsersMigration_100
+ * Class UserMigration_100
  */
-class UsersMigration_100 extends Migration
+class UserMigration_100 extends Migration
 {
-	private $_tableName = 'users';
+	private $_tableName = 'user';
 
     /**
      * Define the table structure
@@ -87,15 +87,15 @@ class UsersMigration_100 extends Migration
                     )
                 ],
                 'indexes' => [
-                    new Index('users_email_key', ['email'], 'unique'),
-                    new Index('users_pkey', ['id'], 'PRIMARY KEY'),
-                    new Index('users_username_key', ['username'], 'unique')
+                    new Index('user_email_key', ['email'], 'unique'),
+                    new Index('user_pkey', ['id'], 'PRIMARY KEY'),
+                    new Index('user_username_key', ['username'], 'unique')
                 ],
             ]
         );
 
 
-	    $this->batchInsert('users', [
+	    $this->batchInsert('user', [
 			    'id',
 			    'username',
 			    'role',

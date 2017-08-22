@@ -13,7 +13,7 @@ class AuthController extends Controller
 		$login = $this->getPost('login');
 		$password = $this->getPost('password');
 
-		$user = Users::findFirstByUsername($login);
+		$user = User::findFirstByUsername($login);
 
 		if (!$user || ($user->password != $password)) throw new \Core\Exception\BadRequest('Не верный логин или пароль');
 

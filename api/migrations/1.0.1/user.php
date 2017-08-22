@@ -5,11 +5,11 @@ use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class UsersMigration_101
+ * Class UserMigration_101
  */
-class UsersMigration_101 extends Migration
+class UserMigration_101 extends Migration
 {
-	private $_tableName = 'users';
+	private $_tableName = 'user';
 
 	public function up()
 	{
@@ -26,7 +26,7 @@ class UsersMigration_101 extends Migration
 		self::$_connection->addIndex(
 			$this->_tableName,
 			'public',
-			new Index('users_token_key', ['token'], null)
+			new Index('user_token_key', ['token'], null)
 		);
 	}
 
