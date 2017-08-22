@@ -85,7 +85,7 @@ class Good extends Model
 	public function getPrice()
 	{
 		return $this->goodPriceHistory->filter(function ($price) {
-			if ($price->good_id == 1 && !$price->datetime_to) return $price;
+			if ($price->good_id == $this->id && !$price->datetime_to) return $price;
 		})[0]->price;
 	}
 
