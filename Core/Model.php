@@ -31,6 +31,8 @@ abstract class Model extends \Phalcon\Mvc\Model
 
 	public function save($data = null, $whiteList = null)
 	{
+		$this->beforeSave();
+
 		if (parent::save($data, $whiteList)) return true;
 
 		$messages = [];
