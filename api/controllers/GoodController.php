@@ -5,6 +5,28 @@
  */
 class GoodController extends Controller
 {
+	/**
+	 * @Post('/add')
+	 */
+	public function addAction()
+	{
+		(new \Validator\Good\Add())->validate();
+
+		$name = $this->getPost('name');
+		$description = $this->getPost('description');
+		$bar_code = $this->getPost('bar_code');
+
+		$newGood = new Good([
+			'name' => $name,
+			'description' => $description,
+			'bar_code' => $bar_code
+		]);
+
+		$newGood->save();
+
+		return 'Товар успешно добавлен';
+	}
+
 
 	/**
 	 * @Post('/sale')
