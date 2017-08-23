@@ -49,13 +49,13 @@
                 {
                   "key": "login",
                   "value": "{{login}}",
-                  "description": ">38=. 1O70B5;L=>5 ?>;5",
+                  "description": ">38=*",
                   "type": "text"
                 },
                 {
                   "key": "password",
                   "value": "{{password}}",
-                  "description": "0@>;L. 1O70B5;L=>5 ?>;5",
+                  "description": "0@>;L*",
                   "type": "text"
                 }
               ]
