@@ -49,7 +49,7 @@
                 {
                   "key": "login",
                   "value": "{{login}}",
-                  "description": "**>38=",
+                  "description": ">38=*",
                   "type": "text"
                 },
                 {
