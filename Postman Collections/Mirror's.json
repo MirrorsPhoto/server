@@ -187,7 +187,7 @@
                   "    ",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    console.log(jsonData)",
-                  "    tests['Is sales'] = jsonData.status == \"OK\";",
+                  "    tests['Is sales'] = jsonData.response.status == \"OK\";",
                   "} else {",
                   "    tests['Status code is 200'] = false;",
                   "    postman.setNextRequest(null);",
