@@ -89,4 +89,13 @@ class Good extends Model
 		})[0]->price;
 	}
 
+	public function sale()
+	{
+		$rowSale = new Sale();
+
+		$rowSale->good_id = $this->id;
+
+		return $rowSale->save();
+	}
+
 }
