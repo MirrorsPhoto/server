@@ -216,7 +216,8 @@
                   "key": "bar_code",
                   "value": "1234567890123",
                   "description": "(B@8E-:>4*",
-                  "type": "text"
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             },
