@@ -220,6 +220,40 @@
             "description": "5B>4 4;O ?@>4068 B>20@0 ?> HB@8E-:>4C\n\n A;CG05 >BACBAB28O :>40 8;8 C =53> =5 25@=K9 D>@<0B - 25@=QBAO B5:AB >H81:8 A :>4>< `400`\n\nA;8 B>20@ A B0:8 :>4>< >BACBAB2C5B 2 1075 (=5 2 =0;8G88, =C6=> ?>B>< 4>45;0BL) - >B25B A :>4>< `400`\n\n>340 2AQ >B;8G=> - B>20@ 70?8H5BAO :0: \"?@>40=\" 8 >B25B `200`"
           },
           "response": []
+        },
+        {
+          "_postman_id": "07561dab-0724-7e57-203a-4c8809979374",
+          "name": ">102;5=85",
+          "request": {
+            "url": "{{url}}/good/add",
+            "method": "POST",
+            "header": [
+              {
+                "key": "AuthorizationS",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImZpcnN0X25hbWUiOm51bGwsImxhc3RfbmFtZSI6bnVsbCwibWlkZGxlX25hbWUiOm51bGwsInJvbGUiOjEsImVtYWlsIjoiYWRtaW5AbWlycm9ycy1waG90by5ydSJ9.EFu_bMUCmFhVvkBKoSj6433ttuHx1X72ZEUHP8jEz4E",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "1;>6:0",
+                  "description": "",
+                  "type": "text"
+                },
+                {
+                  "key": "bar_code",
+                  "value": "21341234",
+                  "description": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
         }
       ]
     }
