@@ -3,6 +3,7 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Uniqueness;
 use Phalcon\Validation\Validator\Numericality;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Good extends Model
 {
@@ -87,6 +88,29 @@ class Good extends Model
 		return $this->goodPriceHistory->filter(function ($price) {
 			if ($price->good_id == $this->id && !$price->datetime_to) return $price;
 		})[0]->price;
+	}
+
+	/**
+	 * Возвращает товары в наличии
+	 *
+	 * @return Resultset
+	 */
+	public static function getAvaible()
+	{
+		$query = "select good.*, r.count - COALESCE(s.count, 0) as total from good
+				join (select good_id, count(*) from receipt group by good_id) r on good.id = r.good_id
+				left join (select good_id, count(*) from sale group by good_id) s on good.id = s.good_id
+				WHERE r.count > COALESCE(s.count, 0);
+		";
+
+		$selfObj = new self();
+
+		return new Resultset(
+			null,
+			$selfObj,
+			$selfObj->getReadConnection()->query($query)
+		);
+
 	}
 
 	public function sale()
