@@ -29,4 +29,17 @@ abstract class Model extends \Phalcon\Mvc\Model
 		return $this->_tableName;
 	}
 
+	public function save($data = null, $whiteList = null)
+	{
+		if (parent::save($data, $whiteList)) return true;
+
+		$messages = [];
+
+		foreach ($this->getMessages() as $message) {
+			$messages[] = $message->getMessage();
+		}
+
+		throw new \Core\Exception\ServerError($messages);
+	}
+
 }
