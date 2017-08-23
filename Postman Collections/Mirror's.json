@@ -172,7 +172,59 @@
       "_postman_id": "bcd73bb1-c934-f54e-8f7c-ce7a088eff95",
       "name": "Good",
       "description": "">20@K",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "8d9fcea3-46f1-9b25-878d-fd06875baa1e",
+          "name": "@>4060",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    ",
+                  "    tests['Is sales'] = jsonData.response.status == \"OK\";",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"token\", token); ",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/good/sale",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bar_code",
+                  "value": "1234567890123",
+                  "description": "",
+                  "type": "text"
+                }
+              ]
+            },
+            "description": "5B>4 4;O ?@>4068 B>20@0 ?> HB@8E-:>4C"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
