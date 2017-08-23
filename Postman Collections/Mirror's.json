@@ -186,11 +186,8 @@
                   "    tests['Status code is 200'] = true;",
                   "    ",
                   "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
-                  "    ",
-                  "    tests['Is sales'] = jsonData.response.status == \"OK\";",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"token\", token); ",
+                  "    console.log(jsonData)",
+                  "    tests['Is sales'] = jsonData.status == \"OK\";",
                   "} else {",
                   "    tests['Status code is 200'] = false;",
                   "    postman.setNextRequest(null);",
@@ -204,7 +201,7 @@
             "method": "POST",
             "header": [
               {
-                "key": "Authorization",
+                "key": "AuthorizationS",
                 "value": "Bearer {{token}}",
                 "description": ""
               }
@@ -216,8 +213,7 @@
                   "key": "bar_code",
                   "value": "1234567890123",
                   "description": "(B@8E-:>4*",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 }
               ]
             },
