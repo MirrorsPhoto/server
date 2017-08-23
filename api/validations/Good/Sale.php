@@ -1,6 +1,6 @@
 <?php
 
-namespace Validator\Auth;
+namespace Validator\Good;
 
 use \Phalcon\Validation\Validator\PresenceOf;
 use \Phalcon\Validation\Validator\Numericality;
