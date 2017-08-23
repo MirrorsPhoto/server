@@ -5,7 +5,7 @@ namespace Validator\Good;
 use \Phalcon\Validation\Validator\PresenceOf;
 use \Phalcon\Validation\Validator\Numericality;
 
-class Login extends \Validation
+class Sale extends \Validation
 {
 
 	public function initialize()
