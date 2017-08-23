@@ -49,13 +49,13 @@
                 {
                   "key": "login",
                   "value": "{{login}}",
-                  "description": ">38=",
+                  "description": ">38=. 1O70B5;L=>5 ?>;5",
                   "type": "text"
                 },
                 {
                   "key": "password",
                   "value": "{{password}}",
-                  "description": "0@>;L",
+                  "description": "0@>;L. 1O70B5;L=>5 ?>;5",
                   "type": "text"
                 }
               ]
@@ -176,12 +176,35 @@
         {
           "_postman_id": "8d9fcea3-46f1-9b25-878d-fd06875baa1e",
           "name": "@>4060",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    ",
+                  "    tests['Is sales'] = jsonData.response.status == \"OK\";",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"token\", token); ",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
           "request": {
             "url": "{{url}}/good/sale",
             "method": "POST",
             "header": [
               {
-                "key": "AuthorizationS",
+                "key": "Authorization",
                 "value": "Bearer {{token}}",
                 "description": ""
               }
@@ -192,7 +215,7 @@
                 {
                   "key": "bar_code",
                   "value": "1234567890123",
-                  "description": "",
+                  "description": "(B@8E-:>4. 107OB5;L=>5 ?>;5",
                   "type": "text"
                 }
               ]
