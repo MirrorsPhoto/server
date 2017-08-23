@@ -15,6 +15,7 @@ class Sale extends \Validation
 			new PresenceOf(
 				[
 					'message' => 'Код товара обязателен',
+					'cancelOnFail' => true
 				]
 			)
 		);
