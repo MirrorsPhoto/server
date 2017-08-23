@@ -19,6 +19,8 @@ class GoodController extends Controller
 
 		if (!$good) throw new \Core\Exception\BadRequest('Товар с таким кодом отсутствует');
 
+		if (!$good->isAvailable()) throw new \Core\Exception\BadRequest('Такого товара нет в наличии');
+
 		$good->sale();
 
 		return 'Товар успешно продан';
