@@ -90,24 +90,6 @@ class GoodPriceHistory extends Model
 			)
 		);
 
-		$validator->add(
-			'datetime_from',
-			new Date(
-				[
-					'message' => 'Не верный формат даты',
-				]
-			)
-		);
-
-		$validator->add(
-			'datetime_to',
-			new Date(
-				[
-					'message' => 'Не верный формат даты',
-				]
-			)
-		);
-
 		return $this->validate($validator);
 	}
 

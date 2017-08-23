@@ -2,7 +2,7 @@
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
-use Phalcon\Validation\Validator\Date;
+use \Phalcon\Validation\Validator\PresenceOf;
 
 class Sale extends Model
 {
@@ -51,6 +51,16 @@ class Sale extends Model
 
 		$validator->add(
 			'good_id',
+			new PresenceOf(
+				[
+					'message' => 'Id товара обязателен',
+					'cancelOnFail' => true
+				]
+			)
+		);
+
+		$validator->add(
+			'good_id',
 			new Numericality(
 				[
 					'message' => 'Id товара должно быть числом',
@@ -60,18 +70,19 @@ class Sale extends Model
 
 		$validator->add(
 			'user_id',
-			new Numericality(
+			new PresenceOf(
 				[
-					'message' => 'Id пользователя должно быть числом',
+					'message' => 'Id пользователя обязателен',
+					'cancelOnFail' => true
 				]
 			)
 		);
 
 		$validator->add(
-			'datetime',
-			new Date(
+			'user_id',
+			new Numericality(
 				[
-					'message' => 'Не верный формат даты',
+					'message' => 'Id пользователя должно быть числом',
 				]
 			)
 		);

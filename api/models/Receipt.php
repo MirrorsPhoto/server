@@ -83,15 +83,6 @@ class Receipt extends Model
 			)
 		);
 
-		$validator->add(
-			'datetime',
-			new Date(
-				[
-					'message' => 'Не верный формат даты',
-				]
-			)
-		);
-
 		return $this->validate($validator);
 	}
 
