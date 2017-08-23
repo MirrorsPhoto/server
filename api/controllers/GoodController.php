@@ -13,7 +13,7 @@ class GoodController extends Controller
 	{
 		(new \Validator\Good\Sale())->validate();
 
-		$barCode = $login = $this->getPost('bar_code');
+		$barCode = $this->getPost('bar_code');
 
 		$good = Good::findFirstByBarCode($barCode);
 
