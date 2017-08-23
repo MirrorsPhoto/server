@@ -10,12 +10,14 @@ abstract class Validation extends \Phalcon\Validation
 
 	public function afterValidation($data, $entity, $messages)
 	{
-		if (!$messages->count()) return;
+		$totalCountMessages = $messages->count();
 
-		$errorMessage = '';
+		if (!$totalCountMessages) return;
+
+		$errorMessage = [];
 
 		foreach ($messages as $message) {
-			$errorMessage .= $message->getMessage() . '. ';
+			$errorMessage[] = $message->getMessage();
 		}
 
 		throw new \Core\Exception\BadRequest($errorMessage);
