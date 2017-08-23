@@ -14,7 +14,7 @@ class Add extends \Validation
 			'name',
 			new PresenceOf(
 				[
-					'message' => 'Имя товара обязателен'
+					'message' => 'Имя товара обязателено'
 				]
 			)
 		);
