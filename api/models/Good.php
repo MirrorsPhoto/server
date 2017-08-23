@@ -113,6 +113,20 @@ class Good extends Model
 
 	}
 
+	/**
+	 * Функция проверки наличия товара
+	 * @return bool
+	 */
+	public function isAvailable()
+	{
+		$available = self::getAvaible();
+
+		return !!$available->filter(function ($good) {
+			if ($good->id == $this->id) return $good;
+		});
+
+	}
+
 	public function sale()
 	{
 		$rowSale = new Sale();
