@@ -49,13 +49,13 @@
                 {
                   "key": "login",
                   "value": "{{login}}",
-                  "description": ">38=",
+                  "description": "**>38=",
                   "type": "text"
                 },
                 {
                   "key": "password",
                   "value": "{{password}}",
-                  "description": "0@>;L",
+                  "description": "0@>;L*",
                   "type": "text"
                 }
               ]
@@ -215,7 +215,7 @@
                 {
                   "key": "bar_code",
                   "value": "1234567890123",
-                  "description": "(B@8E-:>4. 107OB5;L=>5 ?>;5",
+                  "description": "(B@8E-:>4*",
                   "type": "text"
                 }
               ]
