@@ -176,29 +176,6 @@
         {
           "_postman_id": "8d9fcea3-46f1-9b25-878d-fd06875baa1e",
           "name": "@>4060",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code === 200) {",
-                  "    tests['Status code is 200'] = true;",
-                  "    ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
-                  "    ",
-                  "    tests['Is sales'] = jsonData.response.status == \"OK\";",
-                  "    ",
-                  "    postman.setEnvironmentVariable(\"token\", token); ",
-                  "} else {",
-                  "    tests['Status code is 200'] = false;",
-                  "    postman.setNextRequest(null);",
-                  "}"
-                ]
-              }
-            }
-          ],
           "request": {
             "url": "{{url}}/good/sale",
             "method": "POST",
