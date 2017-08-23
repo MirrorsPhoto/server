@@ -49,4 +49,23 @@ class GoodController extends Controller
 
 	}
 
+	/**
+	 * @Post('/receipt')
+	 */
+	public function receiptAction()
+	{
+		(new \Validator\Good\Receipt())->validate();
+
+		$barCode = $this->getPost('bar_code');
+		$price = $this->getPost('price');
+
+		$good = Good::findFirstByBarCode($barCode);
+
+		if (!$good) throw new \Core\Exception\BadRequest('Товар с таким кодом отсутствует');
+
+		$good->receipt($price);
+
+		return 'Товар успешно добавлен в наличие';
+	}
+
 }

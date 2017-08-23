@@ -129,11 +129,21 @@ class Good extends Model
 
 	public function sale()
 	{
-		$rowSale = new Sale();
-
-		$rowSale->good_id = $this->id;
+		$rowSale = new Sale([
+			'good_id' => $this->id
+		]);
 
 		return $rowSale->save();
+	}
+
+	public function receipt($price)
+	{
+		$rowReceipt = new Receipt([
+			'good_id' => $this->id,
+			'price' => $price
+		]);
+
+		return $rowReceipt->save();
 	}
 
 }
