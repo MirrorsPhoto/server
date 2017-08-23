@@ -79,4 +79,8 @@ class Sale extends Model
 		return $this->validate($validator);
 	}
 
+	public function beforeSave()
+	{
+		$this->user_id = \Core\UserCenter\Security::getUser()->id;
+	}
 }
