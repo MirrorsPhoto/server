@@ -224,6 +224,26 @@
         {
           "_postman_id": "07561dab-0724-7e57-203a-4c8809979374",
           "name": ">102;5=85",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
           "request": {
             "url": "{{url}}/good/add",
             "method": "POST",
@@ -239,13 +259,13 @@
               "formdata": [
                 {
                   "key": "name",
-                  "value": "1;>6:0",
+                  "value": ""5AB>2K9 B>20@",
                   "description": "",
                   "type": "text"
                 },
                 {
                   "key": "bar_code",
-                  "value": "21341234",
+                  "value": "{{bar_code}}",
                   "description": "",
                   "type": "text"
                 }
