@@ -101,6 +101,11 @@ class Security extends Plugin
 			"token = '$token'"
 		]);
 
+		if (!$user) {
+			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
+			throw new Unauthorized();
+		}
+
 		$jwt = \JWT::getInstance();
 
 		$decoded = $jwt::decode($token);
