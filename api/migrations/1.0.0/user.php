@@ -95,7 +95,7 @@ class UserMigration_100 extends Migration
         );
 
 
-	    $this->batchInsert('user', [
+	    $this->batchInsert($this->_tableName, [
 			    'id',
 			    'username',
 			    'role',
