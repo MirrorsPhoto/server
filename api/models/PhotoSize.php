@@ -80,9 +80,16 @@ class PhotoSize extends Model
 
 	public function getPrice($count)
 	{
-		return $this->PhotoPriceHistory->filter(function ($price) use ($count) {
+		$rowPrice =  $this->PhotoPriceHistory->filter(function ($price) use ($count) {
 			if ($price->photo_size_id == $this->id && !$price->datetime_to && $price->count == $count) return $price;
-		})[0]->price;
+		});
+
+		if (isset($rowPrice[0]))
+		{
+			return $rowPrice[0]->price;
+		}
+
+		return null;
 	}
 
 }

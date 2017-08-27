@@ -52,7 +52,8 @@ class Security extends Plugin
 				],
 			'photo' =>
 				[
-					'getsize'
+					'getsize',
+					'getprice'
 				]
 		];
 
