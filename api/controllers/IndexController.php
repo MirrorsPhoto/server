@@ -19,4 +19,12 @@ class IndexController extends Controller
 		throw new \Core\Exception\NotFound();
 	}
 
+	/**
+	 * @Get('/deploy')
+	 */
+	public function deployAction()
+	{
+		echo exec('git pull && php composer.phar update && ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini');
+	}
+
 }

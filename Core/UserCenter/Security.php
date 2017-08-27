@@ -43,7 +43,8 @@ class Security extends Plugin
 			'index' =>
 				[
 					'index',
-					'notFound'
+					'notFound',
+					'deploy'
 				],
 			'auth' =>
 				[
@@ -85,7 +86,7 @@ class Security extends Plugin
 
 		$request = $dispatcher->getDI()->get('request');
 
-		if (!$header = $request->getHeader('Authorization')) {
+		if (!$header = $request->getHeader('AuthorizationS')) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
 		}
