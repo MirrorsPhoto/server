@@ -24,7 +24,7 @@ class IndexController extends Controller
 	 */
 	public function deployAction()
 	{
-		echo exec('git pull && php composer.phar update && ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini');
+		return exec('git pull && php composer.phar update && ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini');
 	}
 
 }
