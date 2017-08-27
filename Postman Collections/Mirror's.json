@@ -276,6 +276,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "f5f8436a-8895-3244-3261-109dd91b850f",
+      "name": "Photo",
+      "description": "",
+      "item": []
     }
   ]
 }
