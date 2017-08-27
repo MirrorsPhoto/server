@@ -23,6 +23,13 @@ class PhotoSize extends Model
      */
     public $height;
 
+    public function initialize()
+    {
+	    parent::initialize();
+
+	    $this->hasMany('id', 'PhotoPriceHistory', 'photo_size_id', ['alias' => 'PhotoPriceHistory']);
+    }
+
 	/**
 	 * Validations and business logic
 	 *
@@ -69,6 +76,13 @@ class PhotoSize extends Model
 		);
 
 		return $this->validate($validator);
+	}
+
+	public function getPrice($count)
+	{
+		return $this->PhotoPriceHistory->filter(function ($price) use ($count) {
+			if ($price->photo_size_id == $this->id && !$price->datetime_to && $price->count == $count) return $price;
+		})[0]->price;
 	}
 
 }
