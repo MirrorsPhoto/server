@@ -42,23 +42,16 @@
           "request": {
             "url": "{{url}}/login",
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
             "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "login",
-                  "value": "{{login}}",
-                  "description": ">38=*",
-                  "type": "text"
-                },
-                {
-                  "key": "password",
-                  "value": "{{password}}",
-                  "description": "0@>;L*",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": "{\"login\":\"{{login}}\",\"password\":\"{{password}}\"}"
             },
             "description": "> ;>38=C 8 ?0@>;N.\n >B25B 25@=5BAO JWT =5>1E>48<K9 4;O 4>ABC?0 : ?@820B=K< <5B>40<"
           },
