@@ -40,7 +40,7 @@
             }
           ],
           "request": {
-            "url": "{{url}}/asdasd",
+            "url": "{{url}}/login",
             "method": "POST",
             "header": [],
             "body": {
