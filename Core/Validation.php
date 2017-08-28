@@ -5,7 +5,10 @@ abstract class Validation extends \Phalcon\Validation
 
 	public function validate($data = null, $entity = null)
 	{
-		parent::validate($data ?? array_merge($_POST,$_GET) , $entity);
+		$post = $this->getDI()->get('request')->getPost();
+		$get = $this->getDI()->get('request')->getQuery();
+
+		parent::validate($data ?? array_merge($post, $get) , $entity);
 	}
 
 	public function afterValidation($data, $entity, $messages)

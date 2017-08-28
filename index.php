@@ -28,6 +28,8 @@ $debug = (new \Phalcon\Debug())->listen();
 $di = new FactoryDefault();
 $di->set('config', ConfigIni::getInstance());
 
+$di->set('request', new \Core\Request());
+
 $di->set(
 	'dispatcher',
 	function () {
