@@ -240,27 +240,19 @@
             "method": "POST",
             "header": [
               {
-                "key": "AuthorizationS",
-                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImZpcnN0X25hbWUiOm51bGwsImxhc3RfbmFtZSI6bnVsbCwibWlkZGxlX25hbWUiOm51bGwsInJvbGUiOjEsImVtYWlsIjoiYWRtaW5AbWlycm9ycy1waG90by5ydSJ9.EFu_bMUCmFhVvkBKoSj6433ttuHx1X72ZEUHP8jEz4E",
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
                 "description": ""
               }
             ],
             "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": ""5AB>2K9 B>20@",
-                  "description": "",
-                  "type": "text"
-                },
-                {
-                  "key": "bar_code",
-                  "value": "{{bar_code}}",
-                  "description": "",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "description": ""
           },
