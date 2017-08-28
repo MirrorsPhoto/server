@@ -17,6 +17,7 @@ require 'vendor/autoload.php';
 	])
 	->registerNamespaces([
 		'Core\UserCenter' => 'Core/UserCenter',
+		'Core\Plugin' => 'Core/Plugin',
 		'Core\Enum' => 'Core/Enum',
 		'Core' => 'Core',
 		'Validator' => 'api/validations'
@@ -32,8 +33,8 @@ $di->set(
 	function () {
 		$eventsManager = $this->get('eventsManager');
 
+		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\Plugin\PreFlightListener());
 		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\UserCenter\Security());
-		$eventsManager->attach('dispatch:beforeNotFoundAction', new \Core\Plugin\PreFlightListener());
 
 		$dispatcher = new Phalcon\Mvc\Dispatcher();
 
