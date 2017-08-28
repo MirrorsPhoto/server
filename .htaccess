@@ -8,7 +8,7 @@ Header always append X-Frame-Options DENY
 Header always set Access-Control-Allow-Origin "*"
 #Только GET и POST
 Header always set Access-Control-Allow-Methods "GET, POST"
-#Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept, Origin, User-Agent, Cache-Control, X-Requested-With, Access-Control-Allow-Origin"
+Header always set Access-Control-Allow-Headers "Authorization, Content-Type"
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
