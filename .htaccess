@@ -4,12 +4,6 @@ Header set X-Content-Type-Options nosniff
 #Этот заголовок служит инструкцией для браузера не загружать вашу страницу в frame/iframe
 Header always append X-Frame-Options DENY
 
-#Разрешены кроссдоменные запросы
-Header always set Access-Control-Allow-Origin "*"
-#Только GET и POST
-Header always set Access-Control-Allow-Methods "GET, POST"
-Header always set Access-Control-Allow-Headers "Authorization, Content-Type"
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -33,6 +33,7 @@ $di->set(
 		$eventsManager = $this->get('eventsManager');
 
 		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\UserCenter\Security());
+		$eventsManager->attach('dispatch:beforeNotFoundAction', new \Core\Plugin\PreFlightListener());
 
 		$dispatcher = new Phalcon\Mvc\Dispatcher();
 
