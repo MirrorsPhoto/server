@@ -86,7 +86,7 @@ try {
 
 		$result = [
 			'status' => 'ERROR',
-			'message' => $e->getMessage()
+			'message' => is_array($e->getMessage()) ? $e->getMessage() : [$e->getMessage()]
 		];
 	}
 
