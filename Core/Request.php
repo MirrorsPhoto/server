@@ -7,6 +7,7 @@ use Phalcon\Http\Request as HttpRequest;
 class Request extends HttpRequest
 {
 	protected $_postCache;
+	protected $_queryCache;
 	private $_isJson;
 	/**
 	 * Determine (and store in memory) whether or not the current request content-type is application/json or not
@@ -35,6 +36,17 @@ class Request extends HttpRequest
 			return $this->getHelper($this->_postCache, $name, $filters, $defaultValue, $notAllowEmpty, $notAllowEmpty);
 		} else {
 			return parent::getPost($name, $filters, $defaultValue, $notAllowEmpty, $noRecursive);
+		}
+	}
+	public function getQuery($name = NULL, $filters = NULL, $defaultValue = NULL, $notAllowEmpty = FALSE, $noRecursive = FALSE)
+	{
+		if($this->isApplicationJson()){
+			if(is_null($this->_queryCache)){
+				$this->_queryCache = (array)$this->getJsonRawBody();
+			}
+			return $this->getHelper($this->_queryCache, $name, $filters, $defaultValue, $notAllowEmpty, $notAllowEmpty);
+		} else {
+			return parent::getQuery($name, $filters, $defaultValue, $notAllowEmpty, $noRecursive);
 		}
 	}
 	public function hasPost($name)
