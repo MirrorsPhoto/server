@@ -3,6 +3,8 @@
 
 \.idea/
 
+static/
+
 api/config/config\.ini
 
 vendor/
