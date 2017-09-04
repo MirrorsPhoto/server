@@ -71,6 +71,16 @@ class User extends Model
 	 */
 	public $token;
 
+	/**
+	 * Initialize method for model.
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->belongsTo('avatar_id', '\File', 'id', ['alias' => 'Avatar']);
+	}
+
     /**
      * Validations and business logic
      *
