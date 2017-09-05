@@ -93,8 +93,6 @@ class Security extends Plugin
 
 		if ($acl->isAllowed($userEnum->getName($userEnum::GUEST), $controller, $action)) return true;
 
-		$request = $dispatcher->getDI()->get('request');
-
 		if (!isset(getallheaders()['Authorization'])) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
