@@ -16,6 +16,10 @@ class Security extends Plugin
 
 	protected static $_user;
 
+	/**
+	 * @return \User
+	 * @throws Unauthorized
+	 */
 	public static function getUser()
 	{
 		if (is_null(self::$_user))
