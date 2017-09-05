@@ -72,6 +72,13 @@ class User extends Model
 	public $token;
 
 	/**
+	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $avatar_id;
+
+	/**
 	 * Initialize method for model.
 	 */
 	public function initialize()
