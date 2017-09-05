@@ -95,18 +95,19 @@ class Security extends Plugin
 
 		$request = $dispatcher->getDI()->get('request');
 
-		if (!$header = $request->getHeader('Authorization')) {
+		if (!isset(getallheaders()['Authorization'])) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
 		}
 
+		$header = getallheaders()['Authorization'];
+
 		list($token) = sscanf($header, 'Bearer %s');
-		
+
 		if (!$token) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
 			throw new Unauthorized();
 		}
-
 		$user = \User::findFirst([
 			"token = '$token'"
 		]);
