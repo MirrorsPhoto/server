@@ -91,7 +91,7 @@ class Security extends Plugin
 
 		$request = $dispatcher->getDI()->get('request');
 
-		if (!$header = $request->getHeader('AuthorizationS')) {
+		if (!$header = $request->getHeader('Authorization')) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
 		}
