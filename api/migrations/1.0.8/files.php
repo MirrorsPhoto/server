@@ -44,6 +44,7 @@ class FilesMigration_108 extends Migration
 				],
 				'indexes' => [
 					new Index('file_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('file_path', ['path'], 'unique')
 				],
 			]
 		);
