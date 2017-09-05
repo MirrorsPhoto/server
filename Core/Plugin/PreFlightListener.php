@@ -29,7 +29,7 @@ class PreFlightListener extends Plugin
 		if ($this->isCorsRequest($request)) {
 			$response
 				->setHeader('Access-Control-Allow-Origin', $this->getOrigin($request))
-				->setHeader('Access-Control-Allow-Methods', 'GET, POST')
+				->setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH')
 				->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
 				->setHeader('Access-Control-Allow-Credentials', 'true');
 		}
