@@ -10,7 +10,20 @@ class PhotoController extends Controller
 	 */
 	public function getSizeAction()
 	{
-		return PhotoSize::find();
+		$rowSet = PhotoSize::find();
+
+		$result = [];
+
+		foreach ($rowSet as $row) {
+			$array = $row->toArray();
+
+			$array['count'] = $row->getCounts();
+
+			$result[] = $array;
+		}
+
+
+		return $result;
 	}
 
 	/**

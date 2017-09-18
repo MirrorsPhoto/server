@@ -92,4 +92,19 @@ class PhotoSize extends Model
 		return null;
 	}
 
+	/**
+	 * Возвращает массив с вариацией количства фотографий для данного размера
+	 * @return array
+	 */
+	public function getCounts()
+	{
+		$arrCounts = [];
+
+		$this->PhotoPriceHistory->filter(function ($price) use (&$arrCounts) {
+			if (!$price->datetime_to) $arrCounts[] = $price->count;
+		});
+
+		return $arrCounts;
+	}
+
 }
