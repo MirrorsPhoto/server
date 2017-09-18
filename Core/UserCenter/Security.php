@@ -53,11 +53,6 @@ class Security extends Plugin
 			'auth' =>
 				[
 					'login',
-				],
-			'photo' =>
-				[
-					'getsize',
-					'getprice'
 				]
 		];
 
