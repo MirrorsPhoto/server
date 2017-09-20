@@ -41,7 +41,7 @@ class User extends Model
 	 * @var integer
 	 * @Column(type="integer", nullable=false)
 	 */
-    public $role;
+    public $role_id;
 
     /**
      *
@@ -86,7 +86,7 @@ class User extends Model
 		parent::initialize();
 
 		$this->belongsTo('avatar_id', '\File', 'id', ['alias' => 'Avatar']);
-		$this->belongsTo('role_id', '\Role', 'id');
+		$this->belongsTo('role_id', '\Role', 'id', ['alias' => 'Role']);
 	}
 
     /**
