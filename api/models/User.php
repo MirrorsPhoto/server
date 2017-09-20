@@ -86,6 +86,7 @@ class User extends Model
 		parent::initialize();
 
 		$this->belongsTo('avatar_id', '\File', 'id', ['alias' => 'Avatar']);
+		$this->belongsTo('role_id', '\Role', 'id');
 	}
 
     /**
