@@ -5,6 +5,10 @@ use Phalcon\Validation\Validator\PresenceOf;
 
 class Role extends Model
 {
+	const GUEST = 0;
+	const ADMIN = 1;
+	const STAFF = 2;
+	const USER  = 3;
 
 	protected $_tableName = 'role';
 

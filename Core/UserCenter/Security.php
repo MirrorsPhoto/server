@@ -31,15 +31,14 @@ class Security extends Plugin
 
 	private function _getAcl()
 	{
-		$userEnum = Enum::getInstance();
+		$roles = \Role::find();
 
 		$acl = new AclList();
 		$acl->setDefaultAction(Acl::DENY);
-
 		//Регистрация роллей
-		foreach ($userEnum->getAll() as $name => $value)
+		foreach ($roles as $role)
 		{
-			$acl->addRole(new Role($name, $value));
+			$acl->addRole(new Role((string)$role->id, $role->name));
 		}
 
 		//Public area resources
@@ -71,14 +70,14 @@ class Security extends Plugin
 		}
 
 		//Разрешаем для группы ADMIN ВЕЗДЕ доступ
-		$acl->allow($userEnum->getName($userEnum::ADMIN), '*', '*');
+		$acl->allow(\Role::ADMIN, '*', '*');
 
 		return $acl;
 	}
 
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
 	{
-		$userEnum = Enum::getInstance();
+		$roles = \Role::find();
 
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
@@ -86,7 +85,7 @@ class Security extends Plugin
 		// Получаем список ACL
 		$acl = $this->_getAcl();
 
-		if ($acl->isAllowed($userEnum->getName($userEnum::GUEST), $controller, $action)) return true;
+		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) return true;
 
 		if (!isset(getallheaders()['Authorization'])) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
@@ -115,10 +114,10 @@ class Security extends Plugin
 		$decoded = $jwt::decode($token);
 
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
-		$allowed = $acl->isAllowed($userEnum->getName($decoded->role), $controller, $action);
-		if ($allowed != Acl::ALLOW || $decoded->role != $user->role || $decoded->id != $user->id)
+		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
+		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id)
 		{
-			throw new AccessDenied($controller, $action, $user->role);
+			throw new AccessDenied($controller, $action, $user->role_id);
 		}
 
 		self::$_user = $user;
