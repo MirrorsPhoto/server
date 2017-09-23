@@ -46,7 +46,6 @@ class RoleMigration_110 extends Migration
 
 
 		$this->batchInsert($this->_tableName, [
-				'id',
 				'name'
 			]
 		);

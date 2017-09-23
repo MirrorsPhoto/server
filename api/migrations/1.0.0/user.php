@@ -40,12 +40,14 @@ class UserMigration_100 extends Migration
                         'first_name',
                         [
                             'type' => Column::TYPE_TEXT,
+	                        'notNull' => true
                         ]
                     ),
                     new Column(
                         'last_name',
                         [
                             'type' => Column::TYPE_TEXT,
+	                        'notNull' => true
                         ]
                     ),
                     new Column(
@@ -96,12 +98,12 @@ class UserMigration_100 extends Migration
 
 
 	    $this->batchInsert($this->_tableName, [
-			    'id',
 			    'username',
+			    'first_name',
+			    'last_name',
 			    'role',
 			    'password',
-			    'email',
-			    'datetime_create'
+			    'email'
 		    ]
 	    );
     }

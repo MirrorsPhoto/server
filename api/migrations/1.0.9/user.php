@@ -45,7 +45,7 @@ class UserMigration_109 extends Migration
 			)
 		);
 
-		self::$_connection->query('UPDATE "user" SET avatar_id = 1 WHERE id = 1 ');
+		self::$_connection->query('UPDATE "user" SET avatar_id = 1 WHERE id = 3 ');
 	}
 
     /**
