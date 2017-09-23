@@ -13,6 +13,20 @@ use Phalcon\Acl\Adapter\Memory as AclList;
 
 class Security extends Plugin
 {
+	private $_acl;
+
+	private $_publicResources = [
+		'index' =>
+			[
+				'index',
+				'notFound',
+				'deploy'
+			],
+		'auth' =>
+			[
+				'login',
+			]
+	];
 
 	protected static $_user;
 
@@ -29,50 +43,51 @@ class Security extends Plugin
 		return self::$_user;
 	}
 
-	private function _getAcl()
+	private function _setup()
+	{
+		$acl = new AclList();
+		$acl->setDefaultAction(Acl::DENY);
+
+		$this->_acl = $acl;
+
+		$this->_setupRole();
+		$this->_setupResource();
+
+		$this->_acl->allow(\Role::ADMIN, '*', '*');
+	}
+
+	private function _setupRole()
 	{
 		$roles = \Role::find();
 
-		$acl = new AclList();
-		$acl->setDefaultAction(Acl::DENY);
-		//Регистрация роллей
 		foreach ($roles as $role)
 		{
-			$acl->addRole(new Role((string)$role->id, $role->name));
+			$this->_acl->addRole(new Role((string)$role->id, $role->name));
 		}
+	}
 
-		//Public area resources
-		$publicResources = [
-			'index' =>
-				[
-					'index',
-					'notFound',
-					'deploy'
-				],
-			'auth' =>
-				[
-					'login',
-				]
-		];
-
-		foreach ($publicResources as $resource => $actions)
+	private function _setupResource()
+	{
+		foreach ($this->_publicResources as $resource => $actions)
 		{
-			$acl->addResource(new Acl\Resource($resource), $actions);
+			$this->_acl->addResource(new Acl\Resource($resource), $actions);
 		}
 
 		//Grant access to public areas to both users and guests
-		foreach ($publicResources as $resource => $actions)
+		foreach ($this->_publicResources as $resource => $actions)
 		{
 			foreach ($actions as $action)
 			{
-				$acl->allow('*', $resource, $action);
+				$this->_acl->allow('*', $resource, $action);
 			}
 		}
+	}
 
-		//Разрешаем для группы ADMIN ВЕЗДЕ доступ
-		$acl->allow(\Role::ADMIN, '*', '*');
+	private function _getAcl()
+	{
+		$this->_setup();
 
-		return $acl;
+		return $this->_acl;
 	}
 
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
