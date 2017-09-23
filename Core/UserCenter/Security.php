@@ -31,8 +31,6 @@ class Security extends Plugin
 
 	private function _getAcl()
 	{
-		$roles = \Role::find();
-
 		$acl = new AclList();
 		$acl->setDefaultAction(Acl::DENY);
 		//Регистрация роллей
