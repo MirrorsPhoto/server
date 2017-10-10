@@ -307,9 +307,97 @@
               "mode": "raw",
               "raw": "{\"bar_code\":\"1234567890654\"}"
             },
-            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 D>B>\n\n5@=CBAO 2A5 20@80F88 @07<5@>2, 8 2 :0:>< :>;8G5AB25 >=8 1K20NB 8 F5=0 4;O :064>3> 20@80=B0"
+            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 D>B>\n\n5@=CBAO 2A5 20@80F88 @07<5@>2, 8 2 :0:>< :>;8G5AB25 >=8 1K20NB 8 F5=0 4;O :064>3> 20@80=B0\n\n```javascript\n{\n    \"id\": 1,\n    \"width\": \"2.5\", //(8@8=0\n    \"height\": \"3\", //KA>B0\n    \"variations\": {\n        \"4\": 100 //\">;8G5AB2>\": &5=0\n    }\n}\n```"
           },
-          "response": []
+          "response": [
+            {
+              "id": "fc9aa19c-f817-00d7-1557-b1f5b4a928ce",
+              "name": ">;CG5=85 @07<5@>2",
+              "originalRequest": {
+                "url": "{{url}}/photo/size",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"bar_code\":\"1234567890654\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "451",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Oct 2017 20:57:04 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5109",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"width\":\"2.5\",\"height\":\"3\",\"variations\":{\"4\":100}},{\"id\":2,\"width\":\"3\",\"height\":\"4\",\"variations\":{\"4\":100,\"6\":140}},{\"id\":3,\"width\":\"3.6\",\"height\":\"4.6\",\"variations\":{\"2\":55,\"4\":110}},{\"id\":4,\"width\":\"4\",\"height\":\"6\",\"variations\":{\"2\":100}},{\"id\":5,\"width\":\"5\",\"height\":\"5\",\"variations\":{\"2\":110}},{\"id\":6,\"width\":\"9\",\"height\":\"12\",\"variations\":{\"1\":110}},{\"id\":7,\"width\":\"10\",\"height\":\"15\",\"variations\":{\"1\":110}}]}"
+            }
+          ]
         }
       ]
     }
