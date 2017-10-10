@@ -264,7 +264,54 @@
       "_postman_id": "f5f8436a-8895-3244-3261-109dd91b850f",
       "name": "Photo",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "fe6fcb0f-4174-035d-ba6e-90e8811bece5",
+          "name": ">;CG5=85 @07<5@>2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is sales'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/photo/size",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bar_code\":\"1234567890654\"}"
+            },
+            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 D>B>\n\n5@=CBAO 2A5 20@80F88 @07<5@>2 8 2 :0:>< :>;8G5AB25 >=8 1K20NB"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
