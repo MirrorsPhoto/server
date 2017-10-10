@@ -17,7 +17,7 @@ class PhotoController extends Controller
 		foreach ($rowSet as $row) {
 			$array = $row->toArray();
 
-			$array['count'] = $row->getCounts();
+			$array['variations'] = $row->getVariations();
 
 			$result[] = $array;
 		}
