@@ -279,7 +279,7 @@
                   "    ",
                   "    var jsonData = JSON.parse(responseBody);",
                   "    ",
-                  "    tests['Is sales'] = jsonData.status == \"OK\";",
+                  "    tests['Is OK'] = jsonData.status == \"OK\";",
                   "} else {",
                   "    tests['Status code is 200'] = false;",
                   "    postman.setNextRequest(null);",
