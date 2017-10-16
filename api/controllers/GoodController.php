@@ -50,6 +50,29 @@ class GoodController extends Controller
 	}
 
 	/**
+	 * @Get('/{barCode:[0-9]+}')
+	 */
+	public function getInfoAction($barCode)
+	{
+		//(new \Validator\Good\Sale())->validate(); //@TODO
+
+		$good = Good::findFirstByBarCode($barCode);
+
+		if (!$good) throw new \Core\Exception\BadRequest('Товар с таким кодом отсутствует');
+
+//		if (!$good->isAvailable()) throw new \Core\Exception\BadRequest('Такого товара нет в наличии');
+
+		$arrGood = $good->toArray([
+			'name',
+			'description'
+		]);
+
+		$arrGood['price'] = $good->price;
+
+		return $arrGood;
+	}
+
+	/**
 	 * @Post('/receipt')
 	 */
 	public function receiptAction()
