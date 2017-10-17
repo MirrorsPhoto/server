@@ -257,6 +257,52 @@
             "description": ""
           },
           "response": []
+        },
+        {
+          "_postman_id": "f01e1c73-1ba0-bcd2-f5bf-6d4ccc87ad84",
+          "name": ">;CG5=85 8=D>@<0F88",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/good/{{bar_code}}",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "description": ""
+          },
+          "response": []
         }
       ]
     },
