@@ -300,9 +300,97 @@
               "mode": "raw",
               "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
             },
-            "description": ""
+            "description": " A;CG05 >BACBAB28O :>40 8;8 C =53> =5 25@=K9 D>@<0B - 25@=QBAO B5:AB >H81:8 A :>4>< 400\nA;8 B>20@ A B0:8 :>4>< >BACBAB2C5B 2 1075 (=5 2 =0;8G88, =C6=> ?>B>< 4>45;0BL) - >B25B A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
           },
-          "response": []
+          "response": [
+            {
+              "id": "18930ae2-32b8-89de-c751-8b64edc016e2",
+              "name": ">;CG5=85 8=D>@<0F88",
+              "originalRequest": {
+                "url": "{{url}}/good/{{bar_code}}",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "230",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Oct 2017 11:13:23 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5144",
+              "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":\"420\"}}"
+            }
+          ]
         }
       ]
     },
