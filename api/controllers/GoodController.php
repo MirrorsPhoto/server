@@ -60,12 +60,9 @@ class GoodController extends Controller
 
 		if (!$good) throw new \Core\Exception\BadRequest('Товар с таким кодом отсутствует');
 
-//		if (!$good->isAvailable()) throw new \Core\Exception\BadRequest('Такого товара нет в наличии');
+		if (!$good->isAvailable()) throw new \Core\Exception\BadRequest('Такого товара нет в наличии');
 
-		$arrGood = $good->toArray([
-			'name',
-			'description'
-		]);
+		$arrGood = $good->toArray();
 
 		$arrGood['price'] = $good->price;
 
