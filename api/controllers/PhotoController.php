@@ -17,6 +17,9 @@ class PhotoController extends Controller
 		foreach ($rowSet as $row) {
 			$array = $row->toArray();
 
+			$array['width'] = (float)$array['width'];
+			$array['height'] = (float)$array['height'];
+
 			$array['variations'] = $row->getVariations();
 
 			$result[] = $array;
