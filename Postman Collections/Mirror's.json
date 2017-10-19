@@ -767,7 +767,54 @@
       "_postman_id": "48ab3ef7-d52b-5672-7e60-d330670127a7",
       "name": "0<8=0F8O",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "89a377c7-8b35-12fd-0c0c-b5ff3ca09c1b",
+          "name": " 07<5@K",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/lamination/size",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "description": " A;CG05 >BACBAB28O F5=K =0 :A5@>:>?8N - 500 8 B5:AB >H81:8\n>340 2AQ >B;8G=> - 25@=QBAO F5=0 G8A;>< 8 >B25B 200"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
