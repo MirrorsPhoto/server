@@ -260,7 +260,7 @@
         },
         {
           "_postman_id": "f01e1c73-1ba0-bcd2-f5bf-6d4ccc87ad84",
-          "name": ">;CG5=85 F5=K",
+          "name": "=D>@<0F8O",
           "event": [
             {
               "listen": "test",
@@ -445,6 +445,93 @@
           },
           "response": [
             {
+              "id": "98439686-a0af-817f-89b7-8d5b22065f57",
+              "name": ">;CG5=85 @07<5@>2",
+              "originalRequest": {
+                "url": "{{url}}/photo/size",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "description": ""
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"bar_code\":\"1234567890654\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "423",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Oct 2017 16:12:02 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5213",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"width\":2.5,\"height\":3,\"variations\":{\"4\":100}},{\"id\":2,\"width\":3,\"height\":4,\"variations\":{\"4\":100,\"6\":140}},{\"id\":3,\"width\":3.6,\"height\":4.6,\"variations\":{\"2\":55,\"4\":110}},{\"id\":4,\"width\":4,\"height\":6,\"variations\":{\"2\":100}},{\"id\":5,\"width\":5,\"height\":5,\"variations\":{\"2\":110}},{\"id\":6,\"width\":9,\"height\":12,\"variations\":{\"1\":110}},{\"id\":7,\"width\":10,\"height\":15,\"variations\":{\"1\":110}}]}"
+            },
+            {
               "id": "fc9aa19c-f817-00d7-1557-b1f5b4a928ce",
               "name": ">;CG5=85 @07<5@>2",
               "originalRequest": {
@@ -539,7 +626,195 @@
       "_postman_id": "159d9949-7d36-a9b3-09c7-e45e60a55300",
       "name": "Copy",
       "description": "A5@>:>?8O",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "539ac1e1-1bc3-7bf4-bfc5-5a92c41fab77",
+          "name": ">;CG5=85 F5=K",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/copy/price",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "description": " A;CG05 >BACBAB28O F5=K =0 :A5@>:>?8N - 500 8 B5:AB >H81:8\n>340 2AQ >B;8G=> - 25@=QBAO F5=0 G8A;>< 8 >B25B 200"
+          },
+          "response": [
+            {
+              "id": "97c1d9b9-cc4e-9346-9866-7c33cec63ae3",
+              "name": ">;CG5=85 F5=K",
+              "originalRequest": {
+                "url": "{{url}}/copy/price",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Oct 2017 14:40:10 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5103",
+              "body": "{\"status\":\"OK\",\"response\":3}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_postman_id": "48ab3ef7-d52b-5672-7e60-d330670127a7",
+      "name": "0<8=0F8O",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "89a377c7-8b35-12fd-0c0c-b5ff3ca09c1b",
+          "name": " 07<5@K",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "{{url}}/lamination/size",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 ;0<8=0F88\n\n5@=CBAO 2A5 20@80F88 @07<5@>2 8 F5=0 4;O :064>3> 20@80=B0"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
