@@ -671,9 +671,103 @@
             },
             "description": " A;CG05 >BACBAB28O F5=K =0 :A5@>:>?8N - 500 8 B5:AB >H81:8\n>340 2AQ >B;8G=> - 25@=QBAO F5=0 G8A;>< 8 >B25B 200"
           },
-          "response": []
+          "response": [
+            {
+              "id": "97c1d9b9-cc4e-9346-9866-7c33cec63ae3",
+              "name": ">;CG5=85 F5=K",
+              "originalRequest": {
+                "url": "{{url}}/copy/price",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Oct 2017 14:40:10 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5103",
+              "body": "{\"status\":\"OK\",\"response\":3}"
+            }
+          ]
         }
       ]
+    },
+    {
+      "_postman_id": "48ab3ef7-d52b-5672-7e60-d330670127a7",
+      "name": "0<8=0F8O",
+      "description": "",
+      "item": []
     }
   ]
 }
