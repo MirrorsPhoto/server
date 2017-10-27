@@ -864,7 +864,34 @@
       "_postman_id": "013aa293-0fbb-2e31-d868-9689b0515a3b",
       "name": "@>4060",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "f36835ad-6f61-9185-9db8-bddc1cd7c8f7",
+          "name": "'5:",
+          "request": {
+            "url": "{{url}}/sale/batch",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"items\" : [\n\t{\n\t\t\"type\": \"photo\",\n\t\t\"id\": 1,\n\t\t\"count\": 6,\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"good\",\n\t\t\"id\": 1,\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"copy\",\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"lamination\",\n\t\t\"id\": 2,\n\t\t\"copies\": 4\n\t}\n]}"
+            },
+            "description": "@>4060 @07=KE 284>2 CA;C3 ?0G:>9"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
