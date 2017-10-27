@@ -167,52 +167,6 @@
       "description": "">20@K",
       "item": [
         {
-          "_postman_id": "8d9fcea3-46f1-9b25-878d-fd06875baa1e",
-          "name": "@>4060",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "if (responseCode.code === 200) {",
-                  "    tests['Status code is 200'] = true;",
-                  "    ",
-                  "    var jsonData = JSON.parse(responseBody);",
-                  "    ",
-                  "    tests['Is sales'] = jsonData.status == \"OK\";",
-                  "} else {",
-                  "    tests['Status code is 200'] = false;",
-                  "    postman.setNextRequest(null);",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "url": "{{url}}/good/sale",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "description": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"bar_code\":\"1234567890654\"}"
-            },
-            "description": "5B>4 4;O ?@>4068 B>20@0 ?> HB@8E-:>4C\n\n A;CG05 >BACBAB28O :>40 8;8 C =53> =5 25@=K9 D>@<0B - 25@=QBAO B5:AB >H81:8 A :>4>< `400`\n\nA;8 B>20@ A B0:8 :>4>< >BACBAB2C5B 2 1075 (=5 2 =0;8G88, =C6=> ?>B>< 4>45;0BL) - >B25B A :>4>< `400`\n\n>340 2AQ >B;8G=> - B>20@ 70?8H5BAO :0: \"?@>40=\" 8 >B25B `200`"
-          },
-          "response": []
-        },
-        {
           "_postman_id": "07561dab-0724-7e57-203a-4c8809979374",
           "name": ">102;5=85",
           "event": [
@@ -812,7 +766,97 @@
             },
             "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 ;0<8=0F88\n\n5@=CBAO 2A5 20@80F88 @07<5@>2 8 F5=0 4;O :064>3> 20@80=B0"
           },
-          "response": []
+          "response": [
+            {
+              "id": "d45d53a6-7f06-0a58-d82e-22eaa5633d3a",
+              "name": " 07<5@K",
+              "originalRequest": {
+                "url": "{{url}}/lamination/size",
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "description": ""
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": false,
+                    "description": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "_postman_previewtype": "text",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "96",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Oct 2017 09:16:14 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5141",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"format\":\"A4\",\"price\":30},{\"id\":2,\"format\":\"A5\",\"price\":20}]}"
+            }
+          ]
         }
       ]
     }
