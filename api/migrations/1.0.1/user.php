@@ -26,7 +26,7 @@ class UserMigration_101 extends Migration
 		self::$_connection->addIndex(
 			$this->_tableName,
 			'public',
-			new Index('user_token_key', ['token'], null)
+			new Index('user_token_key', ['token'], 'unique')
 		);
 	}
 
