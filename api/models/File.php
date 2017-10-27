@@ -66,7 +66,7 @@ class File extends Model
     {
         parent::initialize();
 
-        $this->hasMany('id', 'User', 'avatar_id', ['alias' => 'User']);
+        $this->hasMany('id', 'User', 'avatar_id', ['alias' => 'Users']);
     }
 
 	/**
