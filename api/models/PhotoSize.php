@@ -106,4 +106,27 @@ class PhotoSize extends Model
 		return $arrCounts;
 	}
 
+	public static function batch($data)
+	{
+		$row = self::findFirst($data->id);
+
+		$row->count = $data->count;
+
+		for ($i = 1; $i <= $data->copies; $i++) {
+			$row->sale();
+		}
+	}
+
+	public function sale()
+	{
+		$newSaleRow = new PhotoSale([
+			'photo_size_id' => $this->id,
+			'count' => $this->count
+		]);
+
+		$newSaleRow->save();
+
+		return $newSaleRow;
+	}
+
 }
