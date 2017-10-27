@@ -45,7 +45,9 @@ class LaminationSize extends Model
 
 	public function getPrice()
 	{
-		$row = $this->getLaminationPriceHistory('datetime_to IS NULL')->getLast();
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$row = $this->getLaminationPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
 		if (!$row) throw new \Core\Exception\ServerError("Для ламинации размера {$this->format} не задана цена");
 

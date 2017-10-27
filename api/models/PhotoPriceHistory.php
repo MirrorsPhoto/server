@@ -21,6 +21,13 @@ class PhotoPriceHistory extends Model
 	 * @var integer
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
+	public $department_id;
+
+	/**
+	 *
+	 * @var integer
+	 * @Column(type="integer", length=11, nullable=false)
+	 */
 	public $user_id;
 
     /**
@@ -147,7 +154,10 @@ class PhotoPriceHistory extends Model
 
 	public function beforeSave()
 	{
-		$this->user_id = \Core\UserCenter\Security::getUser()->id;
+		$user = \Core\UserCenter\Security::getUser();
+
+		$this->user_id = $user->id;
+		$this->department_id = $user->department_id;
 	}
 
 }

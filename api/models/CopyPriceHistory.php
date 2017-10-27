@@ -14,6 +14,13 @@ class CopyPriceHistory extends Model
 	 * @var integer
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
+	public $department_id;
+
+	/**
+	 *
+	 * @var integer
+	 * @Column(type="integer", length=11, nullable=false)
+	 */
 	public $user_id;
 
     /**
@@ -93,10 +100,24 @@ class CopyPriceHistory extends Model
 
 		return $this->validate($validator);
 	}
-	
+
 	public function beforeSave()
 	{
-		$this->user_id = \Core\UserCenter\Security::getUser()->id;
+		$user = \Core\UserCenter\Security::getUser();
+
+		$this->user_id = $user->id;
+		$this->department_id = $user->department_id;
+	}
+
+	public static function getPrice()
+	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$row = self::findFirst("datetime_to IS NULL AND department_id = $department_id");
+
+		if (!$row) throw new \Core\Exception\ServerError('Не установлена цена на ксерокопию');
+
+		return $row->price;
 	}
 
 }

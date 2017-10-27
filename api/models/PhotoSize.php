@@ -80,7 +80,9 @@ class PhotoSize extends Model
 
 	public function getPrice($count)
 	{
-		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND count = $count")->getLast();
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND count = $count AND department_id = $department_id")->getLast();
 
 		if (!$row) throw new \Core\Exception\ServerError("Для фотографии {$this->width}x{$this->height} с количеством {$count}шт не задана цена");
 
