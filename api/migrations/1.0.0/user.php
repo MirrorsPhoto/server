@@ -4,9 +4,6 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
-/**
- * Class UserMigration_100
- */
 class UserMigration_100 extends Migration
 {
 	private $_tableName = 'user';
