@@ -133,6 +133,8 @@ class Security extends Plugin
 			throw new AccessDenied($controller, $action, $user->role_id);
 		}
 
+		$user->department_id = $user->currentDepartments->getFirst()->id;
+
 		self::$_user = $user;
 
 		return true;
