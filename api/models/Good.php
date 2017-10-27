@@ -85,9 +85,11 @@ class Good extends Model
 
 	public function getPrice()
 	{
-		return $this->goodPriceHistory->filter(function ($price) {
-			if ($price->good_id == $this->id && !$price->datetime_to) return $price;
-		})[0]->price;
+		$row = $this->getGoodPriceHistory('datetime_to IS NULL')->getLast();
+
+		if (!$row) throw new \Core\Exception\ServerError("Для товара {$this->name} не задана цена");
+
+		return (float) $row->price;
 	}
 
 	/**

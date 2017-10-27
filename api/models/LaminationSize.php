@@ -45,16 +45,11 @@ class LaminationSize extends Model
 
 	public function getPrice()
 	{
-		$rowPrice =  $this->LaminationPriceHistory->filter(function ($price) {
-			if ($price->lamination_size_id == $this->id && !$price->datetime_to) return $price;
-		});
+		$row = $this->getLaminationPriceHistory('datetime_to IS NULL')->getLast();
 
-		if (isset($rowPrice[0]))
-		{
-			return $rowPrice[0]->price;
-		}
+		if (!$row) throw new \Core\Exception\ServerError("Для ламинации размера {$this->format} не задана цена");
 
-		return null;
+		return (float) $row->price;
 	}
 
 }

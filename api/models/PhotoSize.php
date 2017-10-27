@@ -80,16 +80,11 @@ class PhotoSize extends Model
 
 	public function getPrice($count)
 	{
-		$rowPrice =  $this->PhotoPriceHistory->filter(function ($price) use ($count) {
-			if ($price->photo_size_id == $this->id && !$price->datetime_to && $price->count == $count) return $price;
-		});
+		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND count = $count")->getLast();
 
-		if (isset($rowPrice[0]))
-		{
-			return $rowPrice[0]->price;
-		}
+		if (!$row) throw new \Core\Exception\ServerError("Для фотографии {$this->width}x{$this->height} с количеством {$count}шт не задана цена");
 
-		return null;
+		return (float) $row->price;
 	}
 
 	/**
@@ -100,9 +95,11 @@ class PhotoSize extends Model
 	{
 		$arrCounts = [];
 
-		$this->PhotoPriceHistory->filter(function ($price) use (&$arrCounts) {
-			if (!$price->datetime_to) $arrCounts[$price->count] = $price->price;
-		});
+		$rows = $this->getPhotoPriceHistory("datetime_to IS NULL");
+
+		foreach ($rows as $row) {
+			$arrCounts[$row->count] = $row->price;
+		}
 
 		return $arrCounts;
 	}
