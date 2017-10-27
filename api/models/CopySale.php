@@ -58,15 +58,6 @@ class CopySale extends Model
 		);
 
 		$validator->add(
-			'photo_size_id',
-			new PresenceOf(
-				[
-					'message' => 'Id размера фотографии обязательное поле',
-				]
-			)
-		);
-
-		$validator->add(
 			'user_id',
 			new PresenceOf(
 				[
@@ -84,6 +75,22 @@ class CopySale extends Model
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
+	}
+
+	public static function batch($data)
+	{
+		for ($i = 1; $i <= $data->copies; $i++) {
+			self::sale();
+		}
+	}
+
+	public static function sale()
+	{
+		$newSaleRow = new self();
+
+		$newSaleRow->save();
+
+		return $newSaleRow;
 	}
 
 }
