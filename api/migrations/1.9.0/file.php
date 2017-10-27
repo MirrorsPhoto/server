@@ -4,7 +4,7 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
-class FilesMigration_190 extends Migration
+class FileMigration_190 extends Migration
 {
 	private $_tableName = 'file';
 
