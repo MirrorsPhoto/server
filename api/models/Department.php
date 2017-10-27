@@ -3,6 +3,11 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 
+/**
+ * Class Department
+ *
+ * @method getUsers($con)
+ */
 class Department extends Model
 {
 	protected $_tableName = 'department';
@@ -36,6 +41,16 @@ class Department extends Model
 		parent::initialize();
 
 		$this->belongsTo('city_id', '\City', 'id', ['alias' => 'City']);
+		$this->hasManyToMany(
+			'id',
+			'DepartmentPersonnelHistory',
+			'department_id', 'user_id',
+			'User',
+			'id',
+			[
+				'alias' => 'Users'
+			]
+		);
 	}
 
     /**
@@ -75,6 +90,17 @@ class Department extends Model
 	    );
 
         return $this->validate($validator);
+    }
+
+
+	/**
+	 * Метод для получения всех текущих сотрудников данного салона
+	 *
+	 * @return Phalcon\Mvc\Model\Resultset\Simple
+	 */
+	public function getCurrentPersonnel()
+    {
+    	return $this->getUsers('datetime_to IS NULL');
     }
 
 }

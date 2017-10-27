@@ -3,6 +3,11 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Email as EmailValidator;
 
+/**
+ * Class User
+ *
+ * @method getDepartments($con)
+ */
 class User extends Model
 {
 
@@ -87,6 +92,16 @@ class User extends Model
 
 		$this->belongsTo('avatar_id', '\File', 'id', ['alias' => 'Avatar']);
 		$this->belongsTo('role_id', '\Role', 'id', ['alias' => 'Role']);
+		$this->hasManyToMany(
+			'id',
+			'DepartmentPersonnelHistory',
+			'user_id', 'department_id',
+			'Department',
+			'id',
+			[
+				'alias' => 'Departments'
+			]
+		);
 	}
 
     /**
@@ -109,6 +124,16 @@ class User extends Model
         );
 
         return $this->validate($validator);
+    }
+
+	/**
+	 * Метод для получения всех салонов где работает данный пользователь в настоящее время
+	 *
+	 * @return Phalcon\Mvc\Model\Resultset\Simple
+	 */
+	public function getCurrentDepartments()
+    {
+	    return $this->getDepartments('datetime_to IS NULL');
     }
 
 }
