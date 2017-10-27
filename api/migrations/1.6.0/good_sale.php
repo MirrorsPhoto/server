@@ -4,9 +4,9 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
-class SaleMigration_160 extends Migration
+class GoodSaleMigration_160 extends Migration
 {
-	private $_tableName = 'sale';
+	private $_tableName = 'good_sale';
 
 	/**
 	 * Define the table structure
@@ -57,15 +57,15 @@ class SaleMigration_160 extends Migration
 					),
 				],
 				'indexes' => [
-					new Index('sale_pkey', ['id'], 'PRIMARY KEY'),
-					new Index('sale_department_id', ['department_id']),
-					new Index('sale_user_id', ['user_id']),
-					new Index('sale_datetime', ['datetime'])
+					new Index('good_sale_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('good_sale_department_id', ['department_id']),
+					new Index('good_sale_user_id', ['user_id']),
+					new Index('good_sale_datetime', ['datetime'])
 				],
 				'references' => [
 					new \Phalcon\Db\Reference(
 
-						'good_receipt',
+						'good_sale_good',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'good',
@@ -75,7 +75,7 @@ class SaleMigration_160 extends Migration
 					),
 					new \Phalcon\Db\Reference(
 
-						'sale_department',
+						'good_sale_department',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'department',
@@ -85,7 +85,7 @@ class SaleMigration_160 extends Migration
 					),
 					new \Phalcon\Db\Reference(
 
-						'receipt_user',
+						'good_sale_user',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'user',

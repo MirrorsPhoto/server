@@ -4,10 +4,10 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\Date;
 
-class Receipt extends Model
+class GoodReceipt extends Model
 {
 
-	protected $_tableName = 'receipt';
+	protected $_tableName = 'good_receipt';
 
     /**
      *

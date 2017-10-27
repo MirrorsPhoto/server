@@ -4,9 +4,9 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Index;
 use Phalcon\Mvc\Model\Migration;
 
-class ReceiptMigration_150 extends Migration
+class GoodReceiptMigration_150 extends Migration
 {
-	private $_tableName = 'receipt';
+	private $_tableName = 'good_receipt';
 
 	/**
 	 * Define the table structure
@@ -64,15 +64,15 @@ class ReceiptMigration_150 extends Migration
 					),
 				],
 				'indexes' => [
-					new Index('receipt_pkey', ['id'], 'PRIMARY KEY'),
-					new Index('receipt_department_id', ['department_id']),
-					new Index('receipt_user_id', ['user_id']),
-					new Index('receipt_datetime', ['datetime'])
+					new Index('good_receipt_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('good_receipt_department_id', ['department_id']),
+					new Index('good_receipt_user_id', ['user_id']),
+					new Index('good_receipt_datetime', ['datetime'])
 				],
 				'references' => [
 					new \Phalcon\Db\Reference(
 
-						'good_receipt',
+						'good_receipt_good',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'good',
@@ -82,7 +82,7 @@ class ReceiptMigration_150 extends Migration
 					),
 					new \Phalcon\Db\Reference(
 
-						'receipt_department',
+						'good_receipt_department',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'department',
@@ -92,7 +92,7 @@ class ReceiptMigration_150 extends Migration
 					),
 					new \Phalcon\Db\Reference(
 
-						'receipt_user',
+						'good_receipt_user',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'user',

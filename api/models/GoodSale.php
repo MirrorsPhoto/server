@@ -4,10 +4,10 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use \Phalcon\Validation\Validator\PresenceOf;
 
-class Sale extends Model
+class GoodSale extends Model
 {
 
-	protected $_tableName = 'sale';
+	protected $_tableName = 'good_sale';
 
     /**
      *
