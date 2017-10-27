@@ -38,8 +38,8 @@ class Good extends Model
     {
         $this->setSchema("public");
         $this->hasMany('id', 'GoodPriceHistory', 'good_id', ['alias' => 'GoodPriceHistory']);
-        $this->hasMany('id', 'Receipt', 'good_id', ['alias' => 'Receipt']);
-        $this->hasMany('id', 'Sale', 'good_id', ['alias' => 'Sale']);
+        $this->hasMany('id', 'Receipt', 'good_id', ['alias' => 'Receipts']);
+        $this->hasMany('id', 'Sale', 'good_id', ['alias' => 'Sales']);
     }
 
 	/**
