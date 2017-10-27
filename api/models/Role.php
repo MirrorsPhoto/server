@@ -26,7 +26,7 @@ class Role extends Model
 	{
 		parent::initialize();
 
-		$this->hasMany('id', 'User', 'role_id');
+		$this->hasMany('id', 'User', 'role_id', [ 'alias' => 'Users' ]);
 	}
 
     /**
