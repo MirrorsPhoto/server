@@ -21,7 +21,7 @@ class City extends Model
 	{
 		parent::initialize();
 
-		//$this->hasMany('id', 'Department', 'city_id');
+		$this->hasMany('id', 'Department', 'city_id', ['alias' => 'Departments']);
 	}
 
     /**
