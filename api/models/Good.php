@@ -144,7 +144,7 @@ class Good extends Model
 
 	public function receipt($price)
 	{
-		$rowReceipt = new Receipt([
+		$rowReceipt = new GoodReceipt([
 			'good_id' => $this->id,
 			'price' => $price
 		]);
