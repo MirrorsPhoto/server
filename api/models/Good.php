@@ -133,9 +133,20 @@ class Good extends Model
 
 	}
 
+	public static function batch($data)
+	{
+		$row = self::findFirst($data->id);
+
+		for ($i = 1; $i <= $data->copies; $i++) {
+			if (!$row->isAvailable()) throw new \Core\Exception\BadRequest("Нельзя записать продажу товара {$row->name}, т.к. его не в наличии");
+
+			$row->sale();
+		}
+	}
+
 	public function sale()
 	{
-		$rowSale = new Sale([
+		$rowSale = new GoodSale([
 			'good_id' => $this->id
 		]);
 
