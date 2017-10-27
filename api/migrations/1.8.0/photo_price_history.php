@@ -97,7 +97,7 @@ class PhotoPriceHistoryMigration_180 extends Migration
 					),
 					new \Phalcon\Db\Reference(
 
-						'good_price_department',
+						'photo_price_history_department',
 						[
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'department',
