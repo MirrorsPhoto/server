@@ -34,6 +34,13 @@ class ReceiptMigration_104 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -58,6 +65,7 @@ class ReceiptMigration_104 extends Migration
 				],
 				'indexes' => [
 					new Index('receipt_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('receipt_department_id', ['department_id']),
 					new Index('receipt_user_id', ['user_id']),
 					new Index('receipt_datetime', ['datetime'])
 				],
@@ -69,6 +77,16 @@ class ReceiptMigration_104 extends Migration
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'good',
 							'columns'           => ['good_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
+					new \Phalcon\Db\Reference(
+
+						'receipt_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
 							'referencedColumns' => ['id'],
 						]
 					),

@@ -27,6 +27,13 @@ class CopyPriceHistoryMigration_112 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -57,10 +64,21 @@ class CopyPriceHistoryMigration_112 extends Migration
 				],
 				'indexes' => [
 					new Index('copy_price_history_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('copy_price_history_department_id', ['department_id']),
 					new Index('copy_price_history_user_id', ['user_id']),
 					new Index('copy_price_history_datetime_to', ['datetime_to'])
 				],
 				'references' => [
+					new \Phalcon\Db\Reference(
+
+						'copy_price_history_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
 					new \Phalcon\Db\Reference(
 
 						'copy_price_history_user',

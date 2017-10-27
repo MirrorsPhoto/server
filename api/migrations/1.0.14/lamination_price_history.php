@@ -34,6 +34,13 @@ class LaminationPriceHistoryMigration_114 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -65,6 +72,7 @@ class LaminationPriceHistoryMigration_114 extends Migration
 				'indexes' => [
 					new Index('lamination_price_history_pkey', ['id'], 'PRIMARY KEY'),
 					new Index('lamination_price_history_photo_size_id', ['lamination_size_id']),
+					new Index('lamitanion_price_history_department_id', ['department_id']),
 					new Index('lamination_price_history_user_id', ['user_id']),
 					new Index('lamination_price_history_datetime_to', ['datetime_to'])
 				],
@@ -76,6 +84,16 @@ class LaminationPriceHistoryMigration_114 extends Migration
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'lamination_size',
 							'columns'           => ['lamination_size_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
+					new \Phalcon\Db\Reference(
+
+						'lamination_price_history_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
 							'referencedColumns' => ['id'],
 						]
 					),

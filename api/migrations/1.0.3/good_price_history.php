@@ -34,6 +34,13 @@ class GoodPriceHistoryMigration_103 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -64,6 +71,7 @@ class GoodPriceHistoryMigration_103 extends Migration
 				],
 				'indexes' => [
 					new Index('good_price_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('good_price_department_id', ['department_id']),
 					new Index('good_price_user_id', ['user_id']),
 					new Index('good_price_good_id', ['good_id']),
 					new Index('good_price_datetime_to', ['datetime_to'])
@@ -76,6 +84,16 @@ class GoodPriceHistoryMigration_103 extends Migration
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'good',
 							'columns'           => ['good_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
+					new \Phalcon\Db\Reference(
+
+						'good_price_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
 							'referencedColumns' => ['id'],
 						]
 					),

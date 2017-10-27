@@ -34,6 +34,13 @@ class PhotoPriceHistoryMigration_107 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -72,6 +79,7 @@ class PhotoPriceHistoryMigration_107 extends Migration
 				'indexes' => [
 					new Index('photo_price_history_pkey', ['id'], 'PRIMARY KEY'),
 					new Index('photo_price_history_photo_size_id', ['photo_size_id']),
+					new Index('photo_price_history_department_id', ['department_id']),
 					new Index('photo_price_history_user_id', ['user_id']),
 					new Index('photo_price_history_count', ['count']),
 					new Index('photo_price_history_datetime_to', ['datetime_to'])
@@ -84,6 +92,16 @@ class PhotoPriceHistoryMigration_107 extends Migration
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'photo_size',
 							'columns'           => ['photo_size_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
+					new \Phalcon\Db\Reference(
+
+						'good_price_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
 							'referencedColumns' => ['id'],
 						]
 					),

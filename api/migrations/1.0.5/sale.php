@@ -34,6 +34,13 @@ class SaleMigration_105 extends Migration
 						]
 					),
 					new Column(
+						'department_id',
+						[
+							'type' => Column::TYPE_INTEGER,
+							'notNull' => true,
+						]
+					),
+					new Column(
 						'user_id',
 						[
 							'type' => Column::TYPE_INTEGER,
@@ -51,6 +58,7 @@ class SaleMigration_105 extends Migration
 				],
 				'indexes' => [
 					new Index('sale_pkey', ['id'], 'PRIMARY KEY'),
+					new Index('sale_department_id', ['department_id']),
 					new Index('sale_user_id', ['user_id']),
 					new Index('sale_datetime', ['datetime'])
 				],
@@ -62,6 +70,16 @@ class SaleMigration_105 extends Migration
 							'referencedSchema'  => 'public',
 							'referencedTable'   => 'good',
 							'columns'           => ['good_id'],
+							'referencedColumns' => ['id'],
+						]
+					),
+					new \Phalcon\Db\Reference(
+
+						'sale_department',
+						[
+							'referencedSchema'  => 'public',
+							'referencedTable'   => 'department',
+							'columns'           => ['department_id'],
 							'referencedColumns' => ['id'],
 						]
 					),
