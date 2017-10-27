@@ -104,8 +104,8 @@ class Good extends Model
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
 		$query = "select good.*, r.count - COALESCE(s.count, 0) as total from good
-				join (select good_id, count(*) from good_receipt WHERE $department_id = 1 group by good_id) r on good.id = r.good_id
-				left join (select good_id, count(*) from good_sale WHERE $department_id group by good_id) s on good.id = s.good_id
+				join (select good_id, count(*) from good_receipt WHERE department_id = $department_id group by good_id) r on good.id = r.good_id
+				left join (select good_id, count(*) from good_sale WHERE department_id = $department_id group by good_id) s on good.id = s.good_id
 				WHERE r.count > COALESCE(s.count, 0);
 		";
 
