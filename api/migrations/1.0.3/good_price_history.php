@@ -110,6 +110,14 @@ class GoodPriceHistoryMigration_103 extends Migration
 				]
 			]
 		);
+
+		$this->batchInsert($this->_tableName, [
+				'good_id',
+				'department_id',
+				'user_id',
+				'price'
+			]
+		);
 	}
 
     /**

@@ -55,6 +55,13 @@ class GoodMigration_102 extends Migration
 				],
 			]
 		);
+
+		$this->batchInsert($this->_tableName, [
+				'name',
+				'description',
+				'bar_code'
+			]
+		);
 	}
 
     /**
