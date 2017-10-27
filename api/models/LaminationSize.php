@@ -54,4 +54,24 @@ class LaminationSize extends Model
 		return (float) $row->price;
 	}
 
+	public static function batch($data)
+	{
+		$row = self::findFirst($data->id);
+
+		for ($i = 1; $i <= $data->copies; $i++) {
+			$row->sale();
+		}
+	}
+
+	public function sale()
+	{
+		$newSaleRow = new LaminationSale([
+			'lamination_size_id' => $this->id,
+		]);
+
+		$newSaleRow->save();
+
+		return $newSaleRow;
+	}
+
 }
