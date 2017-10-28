@@ -35,6 +35,12 @@ class SaleController extends Controller
 			$manager::batch($item);
 		}
 
+		$newCheck = new Check([
+			'data' => json_encode($items)
+		]);
+
+		$newCheck->save();
+
 		return true;
 	}
 
