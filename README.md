@@ -95,9 +95,6 @@ dir = static
 
 ```shell
 ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini
-
-
-
 ``` 
 
 
