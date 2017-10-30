@@ -950,6 +950,34 @@
           ]
         }
       ]
+    },
+    {
+      "_postman_id": "d4b2952a-f1e5-b708-56b3-9c000b9f2767",
+      "name": "!>:5B",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "c3f78702-7f23-48ce-9c2d-5969428aa5ff",
+          "name": ">;CG8BL >1=>2;5=8O",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {},
+            "url": "{{url}}/socket/update",
+            "description": ""
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
