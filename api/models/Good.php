@@ -95,19 +95,23 @@ class Good extends Model
 	}
 
 	/**
-	 * Возвращает товары в наличии
+	 * Возвращает товары в наличии или один определённый товар
 	 *
+	 * @param $id integer id товара
 	 * @return Resultset
 	 */
-	public static function getAvaible()
+	public static function getAvaible($id = null)
 	{
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
 		$query = "select good.*, r.count - COALESCE(s.count, 0) as total from good
 				join (select good_id, count(*) from good_receipt WHERE department_id = $department_id group by good_id) r on good.id = r.good_id
 				left join (select good_id, count(*) from good_sale WHERE department_id = $department_id group by good_id) s on good.id = s.good_id
-				WHERE r.count > COALESCE(s.count, 0);
-		";
+				WHERE r.count > COALESCE(s.count, 0)";
+
+		if ($id) {
+			$query .= " AND id = $id";
+		}
 
 		$selfObj = new self();
 
@@ -125,12 +129,20 @@ class Good extends Model
 	 */
 	public function isAvailable()
 	{
-		$available = self::getAvaible();
+		$available = self::getAvaible($this->id);
 
-		return !!$available->filter(function ($good) {
-			if ($good->id == $this->id) return $good;
-		});
+		return !!$available->getFirst();
 
+	}
+
+	/**
+	 * Сколько единиц данного товара в наличии
+	 *
+	 * @return integer
+	 */
+	public function getAvaibleCount()
+	{
+		return (self::getAvaible($this->id))->getFirst()->total;
 	}
 
 	public static function batch($data)
