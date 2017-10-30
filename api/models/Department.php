@@ -103,4 +103,25 @@ class Department extends Model
     	return $this->getUsers('datetime_to IS NULL');
     }
 
+	public function notifyPersonnels()
+	{
+		$userRows = $this->getCurrentPersonnel();
+
+		$arrUserIds = array_column($userRows->toArray(), 'id');
+
+		$data = [
+			'cash' => [
+				'photo' => PhotoSize::getTodayCash(),
+				'good' => Good::getTodayCash(),
+				'copy' => CopySale::getTodayCash(),
+				'lamination' => LaminationSize::getTodayCash()
+			],
+			'client_count' => Check::getTodayClientCount()
+		];
+
+		$socket = WebSocket::getInstance();
+
+		$socket->send($arrUserIds, $data);
+	}
+
 }
