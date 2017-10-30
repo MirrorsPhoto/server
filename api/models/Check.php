@@ -3,6 +3,7 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Check extends Model
 {
@@ -82,6 +83,20 @@ class Check extends Model
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
+	}
+
+	public static function getTodayClientCount()
+	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$query = "select COUNT(*) as count from \"check\"
+					WHERE datetime::date = now()::date AND department_id = $department_id";
+
+		$selfObj = new self();
+
+		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
+
+		return (int) $result->getFirst()->count;
 	}
 
 }
