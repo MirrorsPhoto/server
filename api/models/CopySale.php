@@ -99,7 +99,7 @@ class CopySale extends Model
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
 		$query = "select SUM(copy_price_history.price) as summ from copy_sale
-					JOIN copy_price_history ON copy_price_history.datetime_to IS NULL
+					JOIN copy_price_history ON copy_price_history.datetime_to IS NULL AND copy_price_history.department_id = copy_sale.department_id
 					WHERE copy_sale.datetime::date = now()::date AND copy_sale.department_id = $department_id";
 
 		$selfObj = new self();
