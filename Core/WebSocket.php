@@ -14,9 +14,12 @@ class WebSocket
 		}
 	}
 
-	public function send($data)
+	public function send($from, $data)
 	{
-		fwrite($this->_stream, json_encode($data));
+		fwrite($this->_stream, json_encode([
+			'from' => $from,
+			'data' => $data
+		]));
 		fclose($this->_stream);
 	}
 
