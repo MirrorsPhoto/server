@@ -41,6 +41,8 @@ class SaleController extends Controller
 
 		$newCheck->save();
 
+		(\Core\UserCenter\Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
+
 		return true;
 	}
 
