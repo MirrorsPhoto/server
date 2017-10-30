@@ -96,9 +96,11 @@ class PhotoSize extends Model
 	 */
 	public function getVariations()
 	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
 		$arrCounts = [];
 
-		$rows = $this->getPhotoPriceHistory("datetime_to IS NULL");
+		$rows = $this->getPhotoPriceHistory("datetime_to IS NULL AND department_id = $department_id");
 
 		foreach ($rows as $row) {
 			$arrCounts[$row->count] = $row->price;
