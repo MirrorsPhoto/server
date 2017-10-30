@@ -20,12 +20,15 @@ class PhotoController extends Controller
 			$array['width'] = (float)$array['width'];
 			$array['height'] = (float)$array['height'];
 
+			if (!$variations = $row->getVariations()) continue;
+
 			$array['variations'] = $row->getVariations();
 
 			$result[] = $array;
 		}
 
-
+		if (!$result) throw new \Core\Exception\ServerError('Нет цен для фото');
+		
 		return $result;
 	}
 
