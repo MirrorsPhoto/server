@@ -3,6 +3,7 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class PhotoSize extends Model
 {
@@ -127,6 +128,21 @@ class PhotoSize extends Model
 		$newSaleRow->save();
 
 		return $newSaleRow;
+	}
+
+	public static function getTodayCash()
+	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$query = "select SUM(photo_price_history.price) as summ from photo_sale
+					JOIN photo_price_history ON photo_price_history.photo_size_id = photo_sale.photo_size_id AND photo_price_history.count = photo_sale.count AND photo_price_history.datetime_to IS NULL AND photo_sale.department_id = photo_price_history.department_id
+					WHERE photo_sale.datetime::date = now()::date AND photo_sale.department_id = $department_id";
+
+		$selfObj = new self();
+
+		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
+
+		return (int) $result->getFirst()->summ;
 	}
 
 }

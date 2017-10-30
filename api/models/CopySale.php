@@ -3,6 +3,7 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class CopySale extends Model
 {
@@ -91,6 +92,21 @@ class CopySale extends Model
 		$newSaleRow->save();
 
 		return $newSaleRow;
+	}
+
+	public static function getTodayCash()
+	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$query = "select SUM(copy_price_history.price) as summ from copy_sale
+					JOIN copy_price_history ON copy_price_history.datetime_to IS NULL
+					WHERE copy_sale.datetime::date = now()::date AND copy_sale.department_id = $department_id";
+
+		$selfObj = new self();
+
+		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
+
+		return (int) $result->getFirst()->summ;
 	}
 
 }

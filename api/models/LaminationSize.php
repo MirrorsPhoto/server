@@ -2,6 +2,7 @@
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class LaminationSize extends Model
 {
@@ -72,6 +73,21 @@ class LaminationSize extends Model
 		$newSaleRow->save();
 
 		return $newSaleRow;
+	}
+
+	public static function getTodayCash()
+	{
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
+
+		$query = "select SUM(lamination_price_history.price) as summ from lamination_sale
+					JOIN lamination_price_history ON lamination_price_history.lamination_size_id = lamination_sale.lamination_size_id AND lamination_price_history.datetime_to IS NULL AND lamination_sale.department_id = lamination_price_history.department_id
+					WHERE lamination_sale.datetime::date = now()::date AND lamination_sale.department_id = $department_id";
+
+		$selfObj = new self();
+
+		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
+
+		return (float) $result->getFirst()->summ;
 	}
 
 }
