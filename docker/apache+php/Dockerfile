@@ -11,3 +11,5 @@ RUN composer --version
 RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 RUN "date"
+
+COPY entrypoint.sh /entrypoint.cmd
