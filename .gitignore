@@ -10,3 +10,5 @@ api/config/config\.ini
 vendor/
 
 \.phalcon/
+
+composer\.lock
