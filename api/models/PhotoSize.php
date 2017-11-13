@@ -24,6 +24,13 @@ class PhotoSize extends Model
      */
     public $height;
 
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=false)
+     */
+    public $datetime_create;
+
     public function initialize()
     {
 	    parent::initialize();

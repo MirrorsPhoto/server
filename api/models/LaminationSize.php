@@ -16,6 +16,13 @@ class LaminationSize extends Model
      */
     public $format;
 
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=false)
+     */
+    public $datetime_create;
+
     public function initialize()
     {
 	    parent::initialize();
