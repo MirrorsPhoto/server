@@ -99,13 +99,12 @@ class Security extends Plugin
 		$acl = $this->_getAcl();
 
 		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) return true;
+        $header = $dispatcher->getDI()->get('request')->getHeader('Authorization');
 
-		if (!isset(getallheaders()['Authorization'])) {
+		if (!$header) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
 			throw new Unauthorized();
 		}
-
-		$header = getallheaders()['Authorization'];
 
 		list($token) = sscanf($header, 'Bearer %s');
 

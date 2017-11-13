@@ -3,7 +3,8 @@
 
 #Этот заголовок служит инструкцией для браузера не загружать вашу страницу в frame/iframe
 #Header always append X-Frame-Options DENY
-
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-d
