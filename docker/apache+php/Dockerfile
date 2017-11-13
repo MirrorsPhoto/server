@@ -1,5 +1,8 @@
 FROM phalconphp/php-apache:ubuntu-16.04
 
+RUN a2enmod rewrite
+RUN a2enmod headers
+
 RUN apt-get update
 RUN apt-get install -y mc
 
