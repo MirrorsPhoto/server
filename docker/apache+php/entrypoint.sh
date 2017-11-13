@@ -2,7 +2,7 @@
 
 cd /app
 composer update
-./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini
+vendor/bin/phinx migrate
 
 #############################################
 ## Supervisord (start daemons)
