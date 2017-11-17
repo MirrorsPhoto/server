@@ -1,7 +1,6 @@
 {
     "require": {
         "firebase/php-jwt": "^5.0",
-        "phalcon/devtools": "~3.2",
         "workerman/workerman": "^3.5",
         "robmorgan/phinx": "^0.9.1"
     }
