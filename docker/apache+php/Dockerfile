@@ -1,18 +1,27 @@
-FROM phalconphp/php-apache:ubuntu-16.04
+FROM nimmis/alpine-apache-php7
+####################################################################################################################APK
+RUN set -xe && \
+    apk update && apk upgrade && \
+    apk add nano mc && \
+    apk add php7-pcntl php7-posix php7-ctype php7-pdo_pgsql
+####################################################################################################################
+####################################################################################################################Run srtipts
+ADD scripts/* /etc/run_always/
 
-RUN a2enmod rewrite
-RUN a2enmod headers
+RUN chmod +x /etc/run_always/*
+####################################################################################################################
+####################################################################################################################Services
+ADD services/socket.sh /etc/service/socket/run
 
-RUN apt-get update
-RUN apt-get install -y mc
-
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer --version
-
-# Set timezone
-RUN rm /etc/localtime
-RUN ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-RUN "date"
-
-COPY entrypoint.sh /entrypoint.cmd
+RUN chmod +x /etc/service/socket/run
+####################################################################################################################
+####################################################################################################################Install Phalcon
+ADD phalcon.so /usr/lib/php7/modules/phalcon.so
+RUN echo "extension=phalcon.so" > /etc/php7/conf.d/50-phalcon.ini
+####################################################################################################################
+####################################################################################################################Enable rewrite module
+RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" /web/config/conf.d/enable_mod_rewrite.conf
+####################################################################################################################
+####################################################################################################################Virtual hosts
+ADD virtual_hosts/api.conf /web/config/conf.d/api.conf
+ADD virtual_hosts/static.conf /web/config/conf.d/static.conf

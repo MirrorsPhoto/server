@@ -1,26 +1,25 @@
 version: "3"
 services:
+  mirrors_postgresql:
+      container_name: mirrors_postgresql
+      build: postgresql
+      restart: always
+      environment:
+          POSTGRES_PASSWORD: devpass
+          POSTGRES_USER: mirrors
+      ports:
+        - "6543:5432"
   mirrors_api:
     container_name: mirrors_api
     build: apache+php
     ports:
       - "420:80"
+      - "8000:8000"
     volumes:
         - "../:/app"
     working_dir: /app
     tty: true
-    entrypoint: /entrypoint.cmd/entrypoint.sh
     links:
       - mirrors_postgresql
     depends_on:
       - mirrors_postgresql
-
-  mirrors_postgresql:
-    container_name: mirrors_postgresql
-    build: postgresql
-    restart: always
-    environment:
-        POSTGRES_PASSWORD: devpass
-        POSTGRES_USER: mirrors
-    ports:
-      - "6543:5432"
