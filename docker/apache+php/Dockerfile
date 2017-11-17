@@ -20,8 +20,8 @@ ADD phalcon.so /usr/lib/php7/modules/phalcon.so
 RUN echo "extension=phalcon.so" > /etc/php7/conf.d/50-phalcon.ini
 ####################################################################################################################
 ####################################################################################################################Enable rewrite module
-RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" /web/config/conf.d/enable_mod_rewrite.conf
+RUN conf/virtual_hosts/enable_mod_rewrite.conf /web/config/conf.d/enable_mod_rewrite.conf
 ####################################################################################################################
 ####################################################################################################################Virtual hosts
-ADD virtual_hosts/api.conf /web/config/conf.d/api.conf
-ADD virtual_hosts/static.conf /web/config/conf.d/static.conf
+ADD conf/virtual_hosts/api.conf /web/config/conf.d/api.conf
+ADD conf/virtual_hosts/static.conf /web/config/conf.d/static.conf
