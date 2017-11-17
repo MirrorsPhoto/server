@@ -3,6 +3,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Workerman\Worker;
 use Firebase\JWT\JWT;
 
+$config = new \Phalcon\Config\Adapter\Ini('api/config/config.ini');
+
 // массив для связи соединения пользователя и необходимого нам параметра
 $users = [];
 
@@ -37,9 +39,9 @@ $ws_worker->onWorkerStart = function() use (&$users)
 	$inner_tcp_worker->listen();
 };
 
-$ws_worker->onConnect = function($connection) use (&$users)
+$ws_worker->onConnect = function($connection) use (&$users, $config)
 {
-	$connection->onWebSocketConnect = function($connection) use (&$users)
+	$connection->onWebSocketConnect = function($connection) use (&$users, $config)
 	{
 		//Если не передан JWT - закрываем соединение
 		if (!isset($_GET['token'])) {
@@ -51,7 +53,7 @@ $ws_worker->onConnect = function($connection) use (&$users)
 
 		//Валидация токена
 		try {
-			$newUser = JWT::decode($token, 'IUZeJW/liO5UnIXfgjUaayZreM3yXRiwWsj4VmXxZv+6BPJyDrHyNbr3VBk2rXFaCnuw5z0GbXAbDsx2CzCz6g==', ['HS256']);
+			$newUser = JWT::decode($token, $config->jwt->key, ['HS256']);
 		} catch (UnexpectedValueException $e) {
 			echo $e->getMessage() . "\n";
 
