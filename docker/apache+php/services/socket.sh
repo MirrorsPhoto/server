@@ -1,3 +1,3 @@
 #!/bin/sh
 exec 2>&1
-exec php /app/websocket_server.php start -d;
+exec php /app/websocket_server.php start;
