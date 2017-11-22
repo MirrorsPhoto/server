@@ -181,6 +181,7 @@
                   "    tests['Is added'] = jsonData.status == \"OK\";",
                   "    ",
                   "    postman.setEnvironmentVariable(\"good_id\", jsonData.response.id); ",
+                  "    postman.setEnvironmentVariable(\"good_name\", jsonData.response.name); ",
                   "} else {",
                   "    tests['Status code is 200'] = false;",
                   "    postman.setNextRequest(null);",
