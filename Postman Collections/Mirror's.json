@@ -179,6 +179,8 @@
                   "    var jsonData = JSON.parse(responseBody);",
                   "    ",
                   "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "    ",
+                  "    postman.setEnvironmentVariable(\"good_id\", jsonData.response.id); ",
                   "} else {",
                   "    tests['Status code is 200'] = false;",
                   "    postman.setNextRequest(null);",
@@ -201,7 +203,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\""5AB>2K9 B>20@{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
             },
             "url": "{{url}}/good/add",
             "description": ""
