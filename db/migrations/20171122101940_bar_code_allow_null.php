@@ -15,5 +15,14 @@ class BarCodeAllowNull extends AbstractMigration
                 'description'   => 'Тестовое описание'
             ]
         ])->save();
+
+        $this->table('good_price_history')->insert([
+            [
+                'good_id'       => 2,
+                'department_id' => 1,
+                'user_id'       => 1,
+                'price'         => 400
+            ]
+        ])->save();
     }
 }
