@@ -470,6 +470,67 @@
               "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":420,\"available\":6}}"
             }
           ]
+        },
+        {
+          "_postman_id": "8ae2b551-dad7-9e59-5520-5e9919d3c40c",
+          "name": ">8A: ?> =0720=8N",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "url": {
+              "raw": "{{url}}/good/search?query={{good_name}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "good",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "{{good_name}}",
+                  "equals": true
+                }
+              ]
+            },
+            "description": " A;CG05 >BACBAB28O B>20@>2 A B0:8< 8<5=5=< - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
+          },
+          "response": []
         }
       ]
     },
