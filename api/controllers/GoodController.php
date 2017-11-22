@@ -24,7 +24,7 @@ class GoodController extends Controller
 
 		$newGood->save();
 
-		return 'Товар успешно добавлен';
+		return $newGood;
 	}
 
 
@@ -50,25 +50,51 @@ class GoodController extends Controller
 	}
 
 	/**
-	 * @Get('/{barCode:[0-9]+}')
+	 * @Get('/search')
 	 */
-	public function getInfoAction($barCode)
+	public function searchAction()
 	{
-		//(new \Validator\Good\Sale())->validate(); //@TODO
+        $query = $this->getQuery('query');
 
-		$good = Good::findFirstByBarCode($barCode);
+		$goods = Good::find("LOWER(name) LIKE LOWER('%$query%')");
 
-		if (!$good) throw new \Core\Exception\BadRequest('Товар с таким кодом отсутствует');
+		if (!$goods->count()) throw new \Core\Exception\BadRequest('Ничего не найдено');
 
-		if (!$good->isAvailable()) throw new \Core\Exception\BadRequest('Такого товара нет в наличии');
-
-		$arrGood = $good->toArray();
-
-		$arrGood['price'] = $good->price;
-		$arrGood['available'] = $good->getAvaibleCount();
-
-		return $arrGood;
+		return $goods;
 	}
+
+    /**
+     * @Get('/bar-code/{barCode:[0-9]+}')
+     */
+    public function getInfoByBarCodeAction($barCode)
+    {
+        $good = Good::findFirstByBarCode($barCode);
+        if (!$good) throw new \Core\Exception\BadRequest('Такой товар отсутствует');
+
+        $arrGood = $good->toArray();
+
+        $arrGood['price'] = $good->price;
+        $arrGood['available'] = $good->getAvaibleCount();
+
+        return $arrGood;
+    }
+
+    /**
+     * @Get('/{id:[0-9]+}')
+     */
+    public function getInfoByIdAction($id)
+    {
+        $good = Good::findFirst($id);
+
+        if (!$good) throw new \Core\Exception\BadRequest('Такой товар отсутствует');
+
+        $arrGood = $good->toArray();
+
+        $arrGood['price'] = $good->price;
+        $arrGood['available'] = $good->getAvaibleCount();
+
+        return $arrGood;
+    }
 
 	/**
 	 * @Post('/receipt')
