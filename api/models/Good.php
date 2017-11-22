@@ -131,7 +131,7 @@ class Good extends Model
 	 */
 	public function getAvaibleCount()
 	{
-		return (self::getAvaible($this->id))->getFirst()->total;
+		return (self::getAvaible($this->id))->getFirst()->total | 0;
 	}
 
 	public static function batch($data)
