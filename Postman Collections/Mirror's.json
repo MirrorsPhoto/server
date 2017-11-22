@@ -249,7 +249,7 @@
               "mode": "raw",
               "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
             },
-            "url": "{{url}}/good/{{bar_code}}",
+            "url": "{{url}}/good/{{good_id}}",
             "description": " A;CG05 >BACBAB28O B>20@0 A B0:8< id - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
           },
           "response": [
