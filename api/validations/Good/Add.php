@@ -18,25 +18,6 @@ class Add extends \Validation
 				]
 			)
 		);
-
-		$this->add(
-			'bar_code',
-			new PresenceOf(
-				[
-					'message' => 'Код товара обязателен',
-					'cancelOnFail' => true
-				]
-			)
-		);
-
-		$this->add(
-			'bar_code',
-			new Numericality(
-				[
-					'message' => 'Код товара должен быть числовым значением',
-				]
-			)
-		);
 	}
 
 }

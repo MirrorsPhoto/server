@@ -60,16 +60,7 @@ class Good extends Model
 			)
 		);
 
-		$validator->add(
-			'bar_code',
-			new Numericality(
-				[
-					'message' => 'Код товара должно быть числовым значением',
-				]
-			)
-		);
-
-		return $this->validate($validator);
+        return $this->validate($validator);
 	}
 
 	public function getPrice()
