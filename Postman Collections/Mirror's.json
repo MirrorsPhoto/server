@@ -338,6 +338,135 @@
               "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":420,\"available\":6}}"
             }
           ]
+        },
+        {
+          "_postman_id": "a0a51789-64bb-2a70-6ca4-784dd19b5828",
+          "name": "=D>@<0F8O ?> id copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "url": "{{url}}/good/{{good_id}}",
+            "description": " A;CG05 >BACBAB28O B>20@0 A B0:8< id - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
+          },
+          "response": [
+            {
+              "id": "9b548296-117a-6550-3604-d3eb7d29f783",
+              "name": "=D>@<0F8O",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                },
+                "url": "{{url}}/good/{{bar_code}}"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "242",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 30 Oct 2017 00:13:36 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) LibreSSL/2.2.7 PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5135",
+              "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":420,\"available\":6}}"
+            }
+          ]
         }
       ]
     },
