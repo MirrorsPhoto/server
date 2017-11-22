@@ -27,7 +27,7 @@ class Good extends Model
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
+     * @Column(type="string", nullable=true)
      */
     public $bar_code;
 
@@ -59,17 +59,6 @@ class Good extends Model
 				]
 			)
 		);
-
-		$validator->add(
-			'bar_code',
-			new Uniqueness(
-				[
-					'message' => 'Код товара должно быть уникальным',
-				]
-			)
-		);
-
-
 
 		$validator->add(
 			'bar_code',
