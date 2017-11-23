@@ -54,6 +54,8 @@ class GoodController extends Controller
 	 */
 	public function searchAction()
 	{
+        (new \Validator\Good\Search())->validate();
+
         $query = $this->getQuery('query');
 
 		$goods = Good::find("LOWER(name) LIKE LOWER('%$query%')");
