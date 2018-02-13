@@ -1,5 +1,4 @@
 {
-  "variables": [],
   "info": {
     "name": "Mirror's",
     "_postman_id": "734d9056-a2f7-b37e-daf9-32200290e7c5",
@@ -209,7 +208,98 @@
             "url": "{{url}}/good/add",
             "description": ""
           },
-          "response": []
+          "response": [
+            {
+              "id": "9a0fd15d-3141-2d8c-ffb5-e48df531f8c0",
+              "name": ">102;5=85",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
+                },
+                "url": "{{url}}/good/add"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "237",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Nov 2017 11:56:00 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix)",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.0.25",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "298",
+              "body": "{\"status\":\"OK\",\"response\":{\"id\":\"13\",\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440db57879e-5dea-4040-b6e8-6efaa10611d5\",\"description\":null,\"bar_code\":\"1234567890123\",\"datetime_\\u0441reate\":null}}"
+            }
+          ]
         },
         {
           "_postman_id": "f01e1c73-1ba0-bcd2-f5bf-6d4ccc87ad84",
@@ -256,14 +346,15 @@
           },
           "response": [
             {
-              "id": "96c83d37-5b53-5a50-91b6-89f03132121d",
-              "name": "=D>@<0F8O",
+              "id": "880c91e4-a003-2ba7-0032-f9ec9323114a",
+              "name": "=D>@<0F8O ?> id",
               "originalRequest": {
                 "method": "GET",
                 "header": [
                   {
                     "key": "Content-Type",
-                    "value": "application/json"
+                    "value": "application/json",
+                    "disabled": true
                   },
                   {
                     "key": "Authorization",
@@ -274,7 +365,7 @@
                   "mode": "raw",
                   "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
                 },
-                "url": "{{url}}/good/{{bar_code}}"
+                "url": "{{url}}/good/{{good_id}}"
               },
               "status": "OK",
               "code": 200,
@@ -288,7 +379,7 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "242",
+                  "value": "285",
                   "name": "Content-Length",
                   "description": ""
                 },
@@ -300,7 +391,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Mon, 30 Oct 2017 00:13:36 GMT",
+                  "value": "Wed, 22 Nov 2017 11:56:56 GMT",
                   "name": "Date",
                   "description": ""
                 },
@@ -312,8 +403,14 @@
                 },
                 {
                   "key": "Server",
-                  "value": "Apache/2.4.27 (Unix) LibreSSL/2.2.7 PHP/7.1.7",
+                  "value": "Apache/2.4.27 (Unix)",
                   "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
                   "description": ""
                 },
                 {
@@ -330,14 +427,14 @@
                 },
                 {
                   "key": "X-Powered-By",
-                  "value": "PHP/7.1.7",
+                  "value": "PHP/7.0.25",
                   "name": "X-Powered-By",
                   "description": ""
                 }
               ],
               "cookie": [],
-              "responseTime": "5135",
-              "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":420,\"available\":6}}"
+              "responseTime": "269",
+              "body": "{\"status\":\"OK\",\"response\":{\"id\":13,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440db57879e-5dea-4040-b6e8-6efaa10611d5\",\"description\":null,\"bar_code\":\"1234567890123\",\"datetime_\\u0441reate\":\"2017-11-22 11:56:00.395316\",\"price\":400,\"available\":0}}"
             }
           ]
         },
@@ -386,14 +483,15 @@
           },
           "response": [
             {
-              "id": "9b548296-117a-6550-3604-d3eb7d29f783",
-              "name": "=D>@<0F8O",
+              "id": "dee0fb7b-de34-9256-116a-066ef1762015",
+              "name": "=D>@<0F8O ?> HB@8D-:>4C",
               "originalRequest": {
                 "method": "GET",
                 "header": [
                   {
                     "key": "Content-Type",
-                    "value": "application/json"
+                    "value": "application/json",
+                    "disabled": true
                   },
                   {
                     "key": "Authorization",
@@ -404,7 +502,7 @@
                   "mode": "raw",
                   "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
                 },
-                "url": "{{url}}/good/{{bar_code}}"
+                "url": "{{url}}/good/bar-code/{{good_bar_code}}"
               },
               "status": "OK",
               "code": 200,
@@ -418,7 +516,7 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "242",
+                  "value": "344",
                   "name": "Content-Length",
                   "description": ""
                 },
@@ -430,7 +528,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Mon, 30 Oct 2017 00:13:36 GMT",
+                  "value": "Wed, 22 Nov 2017 11:57:35 GMT",
                   "name": "Date",
                   "description": ""
                 },
@@ -442,8 +540,14 @@
                 },
                 {
                   "key": "Server",
-                  "value": "Apache/2.4.27 (Unix) LibreSSL/2.2.7 PHP/7.1.7",
+                  "value": "Apache/2.4.27 (Unix)",
                   "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
                   "description": ""
                 },
                 {
@@ -460,14 +564,14 @@
                 },
                 {
                   "key": "X-Powered-By",
-                  "value": "PHP/7.1.7",
+                  "value": "PHP/7.0.25",
                   "name": "X-Powered-By",
                   "description": ""
                 }
               ],
               "cookie": [],
-              "responseTime": "5135",
-              "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"price\":420,\"available\":6}}"
+              "responseTime": "252",
+              "body": "{\"status\":\"OK\",\"response\":{\"id\":1,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u0440\",\"description\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u043e\\u0435 \\u043e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435\",\"bar_code\":\"1234567890123\",\"datetime_\\u0441reate\":\"2017-11-22 08:37:45.537288\",\"price\":500,\"available\":30}}"
             }
           ]
         },
@@ -530,7 +634,115 @@
             },
             "description": " A;CG05 >BACBAB28O B>20@>2 A B0:8< 8<5=5=< - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
           },
-          "response": []
+          "response": [
+            {
+              "id": "945676a9-ab9e-bb38-f7cb-3e6e634f8b03",
+              "name": ">8A: ?> =0720=8N",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                },
+                "url": {
+                  "raw": "{{url}}/good/search?query={{good_name}}",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "good",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "{{good_name}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "261",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Nov 2017 11:54:59 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix)",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.0.25",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "225",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":12,\"name\":\"\\u0422\\u0435\\u0441\\u0442\\u043e\\u0432\\u044b\\u0439 \\u0442\\u043e\\u0432\\u0430\\u044079b93e97-20d9-430a-a5d0-47ba04ee3df9\",\"description\":null,\"bar_code\":\"1234567890123\",\"datetime_\\u0441reate\":\"2017-11-22 11:53:59.923651\"}]}"
+            }
+          ]
         }
       ]
     },
@@ -582,90 +794,6 @@
             "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 D>B>\n\n5@=CBAO 2A5 20@80F88 @07<5@>2, 8 2 :0:>< :>;8G5AB25 >=8 1K20NB 8 F5=0 4;O :064>3> 20@80=B0\n\n```javascript\n{\n    \"id\": 1,\n    \"width\": \"2.5\", //(8@8=0\n    \"height\": \"3\", //KA>B0\n    \"variations\": {\n        \"4\": 100 //\">;8G5AB2>\": &5=0\n    }\n}\n```"
           },
           "response": [
-            {
-              "id": "98439686-a0af-817f-89b7-8d5b22065f57",
-              "name": ">;CG5=85 @07<5@>2",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{token}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\"bar_code\":\"1234567890654\"}"
-                },
-                "url": "{{url}}/photo/size"
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Connection",
-                  "value": "Keep-Alive",
-                  "name": "Connection",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "423",
-                  "name": "Content-Length",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=UTF-8",
-                  "name": "Content-Type",
-                  "description": ""
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 18 Oct 2017 16:12:02 GMT",
-                  "name": "Date",
-                  "description": ""
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5, max=100",
-                  "name": "Keep-Alive",
-                  "description": ""
-                },
-                {
-                  "key": "Server",
-                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
-                  "name": "Server",
-                  "description": ""
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff",
-                  "name": "X-Content-Type-Options",
-                  "description": ""
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "DENY",
-                  "name": "X-Frame-Options",
-                  "description": ""
-                },
-                {
-                  "key": "X-Powered-By",
-                  "value": "PHP/7.1.7",
-                  "name": "X-Powered-By",
-                  "description": ""
-                }
-              ],
-              "cookie": [],
-              "responseTime": "5213",
-              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"width\":2.5,\"height\":3,\"variations\":{\"4\":100}},{\"id\":2,\"width\":3,\"height\":4,\"variations\":{\"4\":100,\"6\":140}},{\"id\":3,\"width\":3.6,\"height\":4.6,\"variations\":{\"2\":55,\"4\":110}},{\"id\":4,\"width\":4,\"height\":6,\"variations\":{\"2\":100}},{\"id\":5,\"width\":5,\"height\":5,\"variations\":{\"2\":110}},{\"id\":6,\"width\":9,\"height\":12,\"variations\":{\"1\":110}},{\"id\":7,\"width\":10,\"height\":15,\"variations\":{\"1\":110}}]}"
-            },
             {
               "id": "fc9aa19c-f817-00d7-1557-b1f5b4a928ce",
               "name": ">;CG5=85 @07<5@>2",
@@ -749,6 +877,90 @@
               "cookie": [],
               "responseTime": "5109",
               "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"width\":\"2.5\",\"height\":\"3\",\"variations\":{\"4\":100}},{\"id\":2,\"width\":\"3\",\"height\":\"4\",\"variations\":{\"4\":100,\"6\":140}},{\"id\":3,\"width\":\"3.6\",\"height\":\"4.6\",\"variations\":{\"2\":55,\"4\":110}},{\"id\":4,\"width\":\"4\",\"height\":\"6\",\"variations\":{\"2\":100}},{\"id\":5,\"width\":\"5\",\"height\":\"5\",\"variations\":{\"2\":110}},{\"id\":6,\"width\":\"9\",\"height\":\"12\",\"variations\":{\"1\":110}},{\"id\":7,\"width\":\"10\",\"height\":\"15\",\"variations\":{\"1\":110}}]}"
+            },
+            {
+              "id": "98439686-a0af-817f-89b7-8d5b22065f57",
+              "name": ">;CG5=85 @07<5@>2",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"bar_code\":\"1234567890654\"}"
+                },
+                "url": "{{url}}/photo/size"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "423",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Oct 2017 16:12:02 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.27 (Unix) PHP/7.1.7",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.7",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "5213",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"width\":2.5,\"height\":3,\"variations\":{\"4\":100}},{\"id\":2,\"width\":3,\"height\":4,\"variations\":{\"4\":100,\"6\":140}},{\"id\":3,\"width\":3.6,\"height\":4.6,\"variations\":{\"2\":55,\"4\":110}},{\"id\":4,\"width\":4,\"height\":6,\"variations\":{\"2\":100}},{\"id\":5,\"width\":5,\"height\":5,\"variations\":{\"2\":110}},{\"id\":6,\"width\":9,\"height\":12,\"variations\":{\"1\":110}},{\"id\":7,\"width\":10,\"height\":15,\"variations\":{\"1\":110}}]}"
             }
           ]
         }
