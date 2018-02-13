@@ -8,6 +8,7 @@ trait Singleton
 	 * @var self
 	 */
 	protected static $_objInstance;
+
 	/**
 	 * @return self
 	 */
@@ -19,6 +20,7 @@ trait Singleton
 		}
 		return self::$_objInstance;
 	}
+
 	/**
 	 * @return self
 	 */
@@ -27,6 +29,7 @@ trait Singleton
 		self::$_objInstance = new self();
 		return self::$_objInstance;
 	}
+	
 	public function __wakeup()
 	{
 		trigger_error('Unserializing ' . __CLASS__ . ' is not allowed.', E_USER_ERROR);
