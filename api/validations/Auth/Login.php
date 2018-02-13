@@ -13,7 +13,7 @@ class Login extends \Validation
 			'login',
 			new PresenceOf(
 				[
-					'message' => 'The login is required',
+					'message' => 'auth.login.required',
 				]
 			)
 		);
@@ -22,7 +22,7 @@ class Login extends \Validation
 			'password',
 			new PresenceOf(
 				[
-					'message' => 'The password is required',
+					'message' => 'auth.password.required',
 				]
 			)
 		);

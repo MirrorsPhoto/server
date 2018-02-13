@@ -15,7 +15,7 @@ class AuthController extends Controller
 
 		$user = User::findFirstByUsername($login);
 
-		if (!$user || !password_verify($password, $user->password)) throw new \Core\Exception\BadRequest('Не верный логин или пароль');
+		if (!$user || !password_verify($password, $user->password)) throw new \Core\Exception\BadRequest('auth.invalid_login_or_pass'); //Не верный логин или пароль
 
 		$jwt = JWT::getInstance();
 
