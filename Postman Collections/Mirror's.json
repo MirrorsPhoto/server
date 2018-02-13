@@ -48,7 +48,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"logins\":\"{{login}}\",\"password\":\"{{password}}\"}"
+              "raw": "{\"login\":\"{{login}}\",\"password\":\"{{password}}\"}"
             },
             "url": "{{url}}/login",
             "description": "> ;>38=C 8 ?0@>;N.\n >B25B 25@=5BAO JWT =5>1E>48<K9 4;O 4>ABC?0 : ?@820B=K< <5B>40<"
