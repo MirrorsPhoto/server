@@ -27,7 +27,7 @@ class AuthController extends Controller
 			'last_name' => $user->last_name,
 			'email' => $user->email,
 			'role_id' => $user->role->id,
-			'role_name' => $user->role->name,
+			'role_phrase' => $user->role->getPhrase(),
 			'avatar' => $user->avatar ? $user->avatar->fullPath : ''
 		]);
 

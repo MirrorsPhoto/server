@@ -50,4 +50,21 @@ class Role extends Model
         return $this->validate($validator);
     }
 
+    public function getPhrase()
+    {
+      switch ($this->id) {
+        case 2:
+          $phrase = 'admin';
+          break;
+        case 3:
+          $phrase = 'staff';
+          break;
+
+        default:
+          throw new \Core\Exception\ServerError('Not found phrase role for ' . $this->name);
+      }
+
+      return "user.roles.$phrase";
+    }
+
 }
