@@ -16,6 +16,7 @@ ADD services/socket.sh /etc/service/socket/run
 RUN chmod +x /etc/service/socket/run
 ####################################################################################################################
 ####################################################################################################################Install Phalcon
+# http://packages.nanobox.io/2017/11/base/index.html
 ADD phalcon.so /usr/lib/php7/modules/phalcon.so
 RUN echo "extension=phalcon.so" > /etc/php7/conf.d/50-phalcon.ini
 ####################################################################################################################
