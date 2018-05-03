@@ -125,8 +125,7 @@ class Photo extends Model
     $department_id = Core\UserCenter\Security::getUser()->department_id;
 
     $query = "SELECT SUM(photo_price_history.price) as summ from photo_sale
-JOIN photo ON photo.id = photo_sale.photo_id
-JOIN photo_price_history ON photo.id = photo_price_history.photo_id AND photo_price_history.datetime_to IS NULL AND photo_sale.department_id = photo_price_history.department_id
+JOIN photo_price_history ON photo_sale.photo_id = photo_price_history.photo_id AND photo_sale.datetime >= photo_price_history.datetime_from AND (photo_sale.datetime < photo_price_history.datetime_to OR photo_price_history.datetime_to IS NULL) AND photo_sale.department_id = photo_price_history.department_id
 WHERE photo_sale.datetime::date = now()::date AND photo_sale.department_id = $department_id";
 
     $selfObj = new self();
