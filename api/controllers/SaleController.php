@@ -16,7 +16,7 @@ class SaleController extends Controller
 		foreach ($items as $item) {
 			switch ($item->type) {
 				case 'photo':
-					$manager = 'PhotoSize';
+					$manager = 'Photo';
 					break;
 				case 'good':
 					$manager = 'Good';

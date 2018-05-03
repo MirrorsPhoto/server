@@ -111,7 +111,7 @@ class Department extends Model
 
 		$data = [
 			'cash' => [
-				'photo' => PhotoSize::getTodayCash(),
+				'photo' => Photo::getTodayCash(),
 				'good' => Good::getTodayCash(),
 				'copy' => CopySale::getTodayCash(),
 				'lamination' => LaminationSize::getTodayCash()

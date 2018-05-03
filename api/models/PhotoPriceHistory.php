@@ -14,7 +14,7 @@ class PhotoPriceHistory extends Model
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $photo_size_id;
+    public $photo_id;
 
 	/**
 	 *
@@ -29,13 +29,6 @@ class PhotoPriceHistory extends Model
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=32, nullable=false)
-     */
-    public $count;
 
     /**
      *
@@ -64,7 +57,7 @@ class PhotoPriceHistory extends Model
     public function initialize()
     {
         $this->setSchema("public");
-        $this->belongsTo('photo_size_id', '\PhotoSize', 'id', ['alias' => 'PhotoSize']);
+        $this->belongsTo('photo_id', '\Photo', 'id', ['alias' => 'Photo']);
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
     }
 
@@ -78,10 +71,10 @@ class PhotoPriceHistory extends Model
 		$validator = new Validation();
 
 		$validator->add(
-			'photo_size_id',
+			'photo_id',
 			new Numericality(
 				[
-					'message' => 'Id размера фото должно быть числом',
+					'message' => 'Id фото должно быть числом',
 				]
 			)
 		);
@@ -100,15 +93,6 @@ class PhotoPriceHistory extends Model
 			new Numericality(
 				[
 					'message' => 'Цена должна быть числом',
-				]
-			)
-		);
-
-		$validator->add(
-			'count',
-			new Numericality(
-				[
-					'message' => 'Количество должно быть числом',
 				]
 			)
 		);
@@ -136,15 +120,6 @@ class PhotoPriceHistory extends Model
 			new PresenceOf(
 				[
 					'message' => 'Цена обезательное поле',
-				]
-			)
-		);
-
-		$validator->add(
-			'count',
-			new PresenceOf(
-				[
-					'message' => 'Количество обезательное поле',
 				]
 			)
 		);

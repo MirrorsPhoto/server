@@ -15,14 +15,17 @@ class PhotoController extends Controller
 		$result = [];
 
 		foreach ($rowSet as $row) {
-			$array = $row->toArray();
+			$array = $row->toArray([
+			  'width',
+        'height'
+      ]);
 
 			$array['width'] = (float)$array['width'];
 			$array['height'] = (float)$array['height'];
 
 			if (!$variations = $row->getVariations()) continue;
 
-			$array['variations'] = $row->getVariations();
+			$array['variations'] = $variations;
 
 			$result[] = $array;
 		}
