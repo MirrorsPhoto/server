@@ -9,6 +9,13 @@ class CopyPriceHistory extends Model
 
 	protected $_tableName = 'copy_price_history';
 
+  /**
+   *
+   * @var integer
+   * @Column(type="integer", length=11, nullable=false)
+   */
+  public $copy_id;
+
 	/**
 	 *
 	 * @var integer
@@ -51,6 +58,7 @@ class CopyPriceHistory extends Model
     {
         $this->setSchema("public");
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
+        $this->belongsTo('copy_id', '\Copy', 'id', ['alias' => 'Copy']);
     }
 
 	/**
@@ -71,6 +79,15 @@ class CopyPriceHistory extends Model
 			)
 		);
 
+    $validator->add(
+      'copy_id',
+      new Numericality(
+        [
+          'message' => 'Id копии должно быть числом',
+        ]
+      )
+    );
+
 		$validator->add(
 			'price',
 			new Numericality(
@@ -79,6 +96,15 @@ class CopyPriceHistory extends Model
 				]
 			)
 		);
+
+    $validator->add(
+      'copy_id',
+      new PresenceOf(
+        [
+          'message' => 'Id копии обезательное поле',
+        ]
+      )
+    );
 
 		$validator->add(
 			'user_id',
@@ -107,17 +133,6 @@ class CopyPriceHistory extends Model
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
-	}
-
-	public static function getPrice()
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$row = self::findFirst("datetime_to IS NULL AND department_id = $department_id");
-
-		if (!$row) throw new \Core\Exception\ServerError('Не установлена цена на ксерокопию');
-
-		return $row->price;
 	}
 
 }

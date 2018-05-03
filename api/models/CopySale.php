@@ -10,6 +10,13 @@ class CopySale extends Model
 
 	protected $_tableName = 'copy_sale';
 
+  /**
+   *
+   * @var integer
+   * @Column(type="integer", length=11, nullable=false)
+   */
+  public $copy_id;
+
 	/**
 	 *
 	 * @var integer
@@ -38,6 +45,7 @@ class CopySale extends Model
     {
         $this->setSchema("public");
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
+        $this->belongsTo('copy_id', '\Copy', 'id', ['alias' => 'Copy']);
     }
 
 	/**
@@ -58,6 +66,15 @@ class CopySale extends Model
 			)
 		);
 
+    $validator->add(
+      'copy_id',
+      new Numericality(
+        [
+          'message' => 'Id копии должно быть числом',
+        ]
+      )
+    );
+
 		$validator->add(
 			'user_id',
 			new PresenceOf(
@@ -66,6 +83,15 @@ class CopySale extends Model
 				]
 			)
 		);
+
+    $validator->add(
+      'copy_id',
+      new PresenceOf(
+        [
+          'message' => 'Id копии обезательное поле',
+        ]
+      )
+    );
 
 		return $this->validate($validator);
 	}
@@ -76,37 +102,6 @@ class CopySale extends Model
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
-	}
-
-	public static function batch($data)
-	{
-		for ($i = 1; $i <= $data->copies; $i++) {
-			self::sale();
-		}
-	}
-
-	public static function sale()
-	{
-		$newSaleRow = new self();
-
-		$newSaleRow->save();
-
-		return $newSaleRow;
-	}
-
-	public static function getTodayCash()
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$query = "select SUM(copy_price_history.price) as summ from copy_sale
-					JOIN copy_price_history ON copy_price_history.datetime_to IS NULL AND copy_price_history.department_id = copy_sale.department_id
-					WHERE copy_sale.datetime::date = now()::date AND copy_sale.department_id = $department_id";
-
-		$selfObj = new self();
-
-		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-		return (int) $result->getFirst()->summ;
 	}
 
 }

@@ -22,7 +22,7 @@ class SaleController extends Controller
 					$manager = 'Good';
 					break;
 				case 'copy':
-					$manager = 'CopySale';
+					$manager = 'Copy';
 					break;
 				case 'lamination':
 					$manager = 'LaminationSize';

@@ -113,7 +113,7 @@ class Department extends Model
 			'cash' => [
 				'photo' => Photo::getTodayCash(),
 				'good' => Good::getTodayCash(),
-				'copy' => CopySale::getTodayCash(),
+				'copy' => Copy::getTodayCash(),
 				'lamination' => LaminationSize::getTodayCash()
 			],
 			'client_count' => Check::getTodayClientCount()

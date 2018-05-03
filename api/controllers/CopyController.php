@@ -6,11 +6,11 @@
 class CopyController extends Controller
 {
 	/**
-	 * @Get('/price')
+	 * @Get('/price/{id:[0-9]+}')
 	 */
-	public function priceAction()
+	public function priceAction($id)
 	{
-		return CopyPriceHistory::getPrice();
+		return Copy::findFirst($id)->price;
 	}
 
 
