@@ -12,3 +12,5 @@ vendor/
 \.phalcon/
 
 composer\.lock
+
+docs/\.vuepress/dist/
