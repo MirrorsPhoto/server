@@ -10,7 +10,7 @@ class LaminationController extends Controller
 	 */
 	public function getSizeAction()
 	{
-		$rowSet = LaminationSize::find();
+		$rowSet = Lamination::find();
 
 		$result = [];
 
