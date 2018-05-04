@@ -1261,7 +1261,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"items\" : [\n\t{\n\t\t\"type\": \"photo\",\n\t\t\"id\": 1,\n\t\t\"count\": 4,\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"copy\",\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"lamination\",\n\t\t\"id\": 2,\n\t\t\"copies\": 4\n\t}\n]}"
+              "raw": "{\"items\" : [\n  {\n    \"type\": \"photo\",\n    \"id\": 1,\n    \"count\": 4,\n    \"copies\": 2\n  },\n  {\n    \"type\": \"copy\",\n    \"copies\": 2\n  },\n  {\n    \"type\": \"lamination\",\n    \"id\": 2,\n    \"copies\": 4\n  },\n  {\n    \"type\": \"service\",\n    \"id\": 2,\n    \"copies\": 4\n  },\n  {\n    \"type\": \"service\",\n    \"id\": 6,\n    \"copies\": 4\n  }\n]}"
             },
             "url": "{{url}}/sale/batch",
             "description": "\u041f\u0440\u043e\u0434\u0430\u0436\u0430 \u0440\u0430\u0437\u043d\u044b\u0445 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433 \u043f\u0430\u0447\u043a\u043e\u0439"
@@ -1431,7 +1431,98 @@
             },
             "url": "{{url}}/service"
           },
-          "response": []
+          "response": [
+            {
+              "id": "365c5fac-3128-c667-4701-d3bf43d7254a",
+              "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
+                },
+                "url": "{{url}}/service"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "619",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 04 May 2018 10:57:19 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.33 (Unix)",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.16",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "242",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"name\":\"\\u041c\\u043e\\u043d\\u0442\\u0430\\u0436\",\"price\":40},{\"id\":2,\"name\":\"\\u0421\\u043a\\u0430\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\",\"price\":30},{\"id\":3,\"name\":\"\\u0417\\u0430\\u043f\\u0438\\u0441\\u044c \\u043d\\u0430 USB \\u043d\\u0430\\u043a\\u043e\\u043f\\u0438\\u0442\\u0435\\u043b\\u044c\",\"price\":30},{\"id\":4,\"name\":\"\\u0417\\u0430\\u043f\\u0438\\u0441\\u044c \\u043d\\u0430 \\u0434\\u0438\\u0441\\u043a\",\"price\":50},{\"id\":5,\"name\":\"\\u0418\\u043d\\u0442\\u0435\\u0440\\u043d\\u0435\\u0442\",\"price\":30},{\"id\":6,\"name\":\"\\u0420\\u0435\\u0441\\u0442\\u0430\\u0432\\u0440\\u0430\\u0446\\u0438\\u044f\",\"price\":100}]}"
+            }
+          ]
         }
       ]
     }
