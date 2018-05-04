@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "Mirror's",
     "_postman_id": "734d9056-a2f7-b37e-daf9-32200290e7c5",
+    "name": "Mirror's",
     "description": "API",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
@@ -13,7 +13,7 @@
       "item": [
         {
           "_postman_id": "a912d7ad-a3d1-2caa-6964-5bc9f20de581",
-          "name": "2B>@870F8O",
+          "name": "\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044f",
           "event": [
             {
               "listen": "test",
@@ -51,12 +51,12 @@
               "raw": "{\"login\":\"{{login}}\",\"password\":\"{{password}}\"}"
             },
             "url": "{{url}}/login",
-            "description": "> ;>38=C 8 ?0@>;N.\n >B25B 25@=5BAO JWT =5>1E>48<K9 4;O 4>ABC?0 : ?@820B=K< <5B>40<"
+            "description": "\u041f\u043e \u043b\u043e\u0433\u0438\u043d\u0443 \u0438 \u043f\u0430\u0440\u043e\u043b\u044e.\n\u0412 \u043e\u0442\u0432\u0435\u0442 \u0432\u0435\u0440\u043d\u0435\u0442\u0441\u044f JWT \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0439 \u0434\u043b\u044f \u0434\u043e\u0441\u0442\u0443\u043f\u0430 \u043a \u043f\u0440\u0438\u0432\u0430\u0442\u043d\u044b\u043c \u043c\u0435\u0442\u043e\u0434\u0430\u043c"
           },
           "response": [
             {
               "id": "0bd7d940-986b-5446-1aee-9c9cfb9eb310",
-              "name": "@8<5@ 02B>@870F88",
+              "name": "\u041f\u0440\u0438\u043c\u0435\u0440 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
@@ -66,13 +66,13 @@
                     {
                       "key": "login",
                       "value": "{{login}}",
-                      "description": ">38=",
+                      "description": "\u041b\u043e\u0433\u0438\u043d",
                       "type": "text"
                     },
                     {
                       "key": "password",
                       "value": "{{password}}",
-                      "description": "0@>;L",
+                      "description": "\u041f\u0430\u0440\u043e\u043b\u044c",
                       "type": "text"
                     }
                   ]
@@ -161,11 +161,11 @@
     {
       "_postman_id": "bcd73bb1-c934-f54e-8f7c-ce7a088eff95",
       "name": "Good",
-      "description": "">20@K",
+      "description": "\u0422\u043e\u0432\u0430\u0440\u044b",
       "item": [
         {
           "_postman_id": "07561dab-0724-7e57-203a-4c8809979374",
-          "name": ">102;5=85",
+          "name": "\u0414\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u0435",
           "event": [
             {
               "listen": "test",
@@ -203,15 +203,14 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
             },
-            "url": "{{url}}/good/add",
-            "description": ""
+            "url": "{{url}}/good/add"
           },
           "response": [
             {
               "id": "9a0fd15d-3141-2d8c-ffb5-e48df531f8c0",
-              "name": ">102;5=85",
+              "name": "\u0414\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u0435",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -226,7 +225,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440{{$guid}}\",\"bar_code\":\"{{good_bar_code}}\"}"
                 },
                 "url": "{{url}}/good/add"
               },
@@ -303,7 +302,7 @@
         },
         {
           "_postman_id": "f01e1c73-1ba0-bcd2-f5bf-6d4ccc87ad84",
-          "name": "=D>@<0F8O ?> id",
+          "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043f\u043e id",
           "event": [
             {
               "listen": "test",
@@ -339,15 +338,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "url": "{{url}}/good/{{good_id}}",
-            "description": " A;CG05 >BACBAB28O B>20@0 A B0:8< id - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
+            "description": "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u0442\u043e\u0432\u0430\u0440\u0430 \u0441 \u0442\u0430\u043a\u0438\u043c id - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u0442\u0435\u043a\u0441\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0441 \u043a\u043e\u0434\u043e\u043c 400\n\u041a\u043e\u0433\u0434\u0430 \u0432\u0441\u0451 \u043e\u0442\u043b\u0438\u0447\u043d\u043e - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u043e\u0431\u044a\u0435\u043a\u0442 \u0438 \u043e\u0442\u0432\u0435\u0442 200"
           },
           "response": [
             {
               "id": "880c91e4-a003-2ba7-0032-f9ec9323114a",
-              "name": "=D>@<0F8O ?> id",
+              "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043f\u043e id",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -363,7 +362,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
                 },
                 "url": "{{url}}/good/{{good_id}}"
               },
@@ -440,7 +439,7 @@
         },
         {
           "_postman_id": "a0a51789-64bb-2a70-6ca4-784dd19b5828",
-          "name": "=D>@<0F8O ?> HB@8D-:>4C",
+          "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043f\u043e \u0448\u0442\u0440\u0438\u0444-\u043a\u043e\u0434\u0443",
           "event": [
             {
               "listen": "test",
@@ -476,15 +475,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "url": "{{url}}/good/bar-code/{{good_bar_code}}",
-            "description": " A;CG05 >BACBAB28O B>20@0 A B0:8< HB@8E-:>4>< - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
+            "description": "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u0442\u043e\u0432\u0430\u0440\u0430 \u0441 \u0442\u0430\u043a\u0438\u043c \u0448\u0442\u0440\u0438\u0445-\u043a\u043e\u0434\u043e\u043c - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u0442\u0435\u043a\u0441\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0441 \u043a\u043e\u0434\u043e\u043c 400\n\u041a\u043e\u0433\u0434\u0430 \u0432\u0441\u0451 \u043e\u0442\u043b\u0438\u0447\u043d\u043e - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u043e\u0431\u044a\u0435\u043a\u0442 \u0438 \u043e\u0442\u0432\u0435\u0442 200"
           },
           "response": [
             {
               "id": "dee0fb7b-de34-9256-116a-066ef1762015",
-              "name": "=D>@<0F8O ?> HB@8D-:>4C",
+              "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f \u043f\u043e \u0448\u0442\u0440\u0438\u0444-\u043a\u043e\u0434\u0443",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -500,7 +499,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
                 },
                 "url": "{{url}}/good/bar-code/{{good_bar_code}}"
               },
@@ -577,7 +576,7 @@
         },
         {
           "_postman_id": "8ae2b551-dad7-9e59-5520-5e9919d3c40c",
-          "name": ">8A: ?> =0720=8N",
+          "name": "\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044e",
           "event": [
             {
               "listen": "test",
@@ -613,7 +612,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "url": {
               "raw": "{{url}}/good/search?query={{good_name}}",
@@ -632,12 +631,12 @@
                 }
               ]
             },
-            "description": " A;CG05 >BACBAB28O B>20@>2 A B0:8< 8<5=5=< - 25@=QBAO B5:AB >H81:8 A :>4>< 400\n>340 2AQ >B;8G=> - 25@=QBAO >1J5:B 8 >B25B 200"
+            "description": "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u0442\u043e\u0432\u0430\u0440\u043e\u0432 \u0441 \u0442\u0430\u043a\u0438\u043c \u0438\u043c\u0435\u043d\u0435\u043d\u043c - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u0442\u0435\u043a\u0441\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0441 \u043a\u043e\u0434\u043e\u043c 400\n\u041a\u043e\u0433\u0434\u0430 \u0432\u0441\u0451 \u043e\u0442\u043b\u0438\u0447\u043d\u043e - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u043e\u0431\u044a\u0435\u043a\u0442 \u0438 \u043e\u0442\u0432\u0435\u0442 200"
           },
           "response": [
             {
               "id": "945676a9-ab9e-bb38-f7cb-3e6e634f8b03",
-              "name": ">8A: ?> =0720=8N",
+              "name": "\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044e",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -653,7 +652,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
                 },
                 "url": {
                   "raw": "{{url}}/good/search?query={{good_name}}",
@@ -753,7 +752,7 @@
       "item": [
         {
           "_postman_id": "fe6fcb0f-4174-035d-ba6e-90e8811bece5",
-          "name": ">;CG5=85 @07<5@>2",
+          "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432",
           "event": [
             {
               "listen": "test",
@@ -791,12 +790,12 @@
               "raw": "{\"bar_code\":\"1234567890654\"}"
             },
             "url": "{{url}}/photo/size",
-            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 D>B>\n\n5@=CBAO 2A5 20@80F88 @07<5@>2, 8 2 :0:>< :>;8G5AB25 >=8 1K20NB 8 F5=0 4;O :064>3> 20@80=B0\n\n```javascript\n{\n    \"id\": 1,\n    \"width\": \"2.5\", //(8@8=0\n    \"height\": \"3\", //KA>B0\n    \"variations\": {\n        \"4\": 100 //\">;8G5AB2>\": &5=0\n    }\n}\n```"
+            "description": "\u041c\u0435\u0442\u043e\u0434 \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432 \u0444\u043e\u0442\u043e\n\n\u0412\u0435\u0440\u043d\u0443\u0442\u0441\u044f \u0432\u0441\u0435 \u0432\u0430\u0440\u0438\u0430\u0446\u0438\u0438 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432, \u0438 \u0432 \u043a\u0430\u043a\u043e\u043c \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u0435 \u043e\u043d\u0438 \u0431\u044b\u0432\u0430\u044e\u0442 \u0438 \u0446\u0435\u043d\u0430 \u0434\u043b\u044f \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430\n\n```javascript\n{\n    \"id\": 1,\n    \"width\": \"2.5\", //\u0428\u0438\u0440\u0438\u043d\u0430\n    \"height\": \"3\", //\u0412\u044b\u0441\u043e\u0442\u0430\n    \"variations\": {\n        \"4\": 100 //\"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e\": \u0426\u0435\u043d\u0430\n    }\n}\n```"
           },
           "response": [
             {
               "id": "fc9aa19c-f817-00d7-1557-b1f5b4a928ce",
-              "name": ">;CG5=85 @07<5@>2",
+              "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -880,7 +879,7 @@
             },
             {
               "id": "98439686-a0af-817f-89b7-8d5b22065f57",
-              "name": ">;CG5=85 @07<5@>2",
+              "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -969,11 +968,11 @@
     {
       "_postman_id": "159d9949-7d36-a9b3-09c7-e45e60a55300",
       "name": "Copy",
-      "description": "A5@>:>?8O",
+      "description": "\u041a\u0441\u0435\u0440\u043e\u043a\u043e\u043f\u0438\u044f",
       "item": [
         {
           "_postman_id": "539ac1e1-1bc3-7bf4-bfc5-5a92c41fab77",
-          "name": ">;CG5=85 F5=K",
+          "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0446\u0435\u043d\u044b",
           "event": [
             {
               "listen": "test",
@@ -1008,15 +1007,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "url": "{{url}}/copy/price",
-            "description": " A;CG05 >BACBAB28O F5=K =0 :A5@>:>?8N - 500 8 B5:AB >H81:8\n>340 2AQ >B;8G=> - 25@=QBAO F5=0 G8A;>< 8 >B25B 200"
+            "description": "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u0446\u0435\u043d\u044b \u043d\u0430 \u043a\u0441\u0435\u0440\u043e\u043a\u043e\u043f\u0438\u044e - 500 \u0438 \u0442\u0435\u043a\u0441\u0442 \u043e\u0448\u0438\u0431\u043a\u0438\n\u041a\u043e\u0433\u0434\u0430 \u0432\u0441\u0451 \u043e\u0442\u043b\u0438\u0447\u043d\u043e - \u0432\u0435\u0440\u043d\u0451\u0442\u0441\u044f \u0446\u0435\u043d\u0430 \u0447\u0438\u0441\u043b\u043e\u043c \u0438 \u043e\u0442\u0432\u0435\u0442 200"
           },
           "response": [
             {
               "id": "97c1d9b9-cc4e-9346-9866-7c33cec63ae3",
-              "name": ">;CG5=85 F5=K",
+              "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0446\u0435\u043d\u044b",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -1031,7 +1030,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
                 },
                 "url": "{{url}}/copy/price"
               },
@@ -1104,12 +1103,12 @@
     },
     {
       "_postman_id": "48ab3ef7-d52b-5672-7e60-d330670127a7",
-      "name": "0<8=0F8O",
+      "name": "\u041b\u0430\u043c\u0438\u043d\u0430\u0446\u0438\u044f",
       "description": "",
       "item": [
         {
           "_postman_id": "89a377c7-8b35-12fd-0c0c-b5ff3ca09c1b",
-          "name": " 07<5@K",
+          "name": "\u0420\u0430\u0437\u043c\u0435\u0440\u044b",
           "event": [
             {
               "listen": "test",
@@ -1144,15 +1143,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
             },
             "url": "{{url}}/lamination/size",
-            "description": "5B>4 4;O ?>;CG5=8O @07<5@>2 ;0<8=0F88\n\n5@=CBAO 2A5 20@80F88 @07<5@>2 8 F5=0 4;O :064>3> 20@80=B0"
+            "description": "\u041c\u0435\u0442\u043e\u0434 \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432 \u043b\u0430\u043c\u0438\u043d\u0430\u0446\u0438\u0438\n\n\u0412\u0435\u0440\u043d\u0443\u0442\u0441\u044f \u0432\u0441\u0435 \u0432\u0430\u0440\u0438\u0430\u0446\u0438\u0438 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432 \u0438 \u0446\u0435\u043d\u0430 \u0434\u043b\u044f \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u0430"
           },
           "response": [
             {
               "id": "d45d53a6-7f06-0a58-d82e-22eaa5633d3a",
-              "name": " 07<5@K",
+              "name": "\u0420\u0430\u0437\u043c\u0435\u0440\u044b",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -1169,7 +1168,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\"name\":\""5AB>2K9 B>20@\",\"bar_code\":\"{{bar_code}}\"}"
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
                 },
                 "url": "{{url}}/lamination/size"
               },
@@ -1242,12 +1241,12 @@
     },
     {
       "_postman_id": "013aa293-0fbb-2e31-d868-9689b0515a3b",
-      "name": "@>4060",
+      "name": "\u041f\u0440\u043e\u0434\u0430\u0436\u0430",
       "description": "",
       "item": [
         {
           "_postman_id": "f36835ad-6f61-9185-9db8-bddc1cd7c8f7",
-          "name": "'5:",
+          "name": "\u0427\u0435\u043a",
           "request": {
             "method": "POST",
             "header": [
@@ -1262,15 +1261,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"items\" : [\n\t{\n\t\t\"type\": \"photo\",\n\t\t\"id\": 1,\n\t\t\"count\": 4,\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"copy\",\n\t\t\"copies\": 2\n\t},\n\t{\n\t\t\"type\": \"lamination\",\n\t\t\"id\": 2,\n\t\t\"copies\": 4\n\t}\n]}"
+              "raw": "{\"items\" : [\n  {\n    \"type\": \"photo\",\n    \"id\": 1,\n    \"count\": 4,\n    \"copies\": 2\n  },\n  {\n    \"type\": \"copy\",\n    \"copies\": 2\n  },\n  {\n    \"type\": \"lamination\",\n    \"id\": 2,\n    \"copies\": 4\n  },\n  {\n    \"type\": \"service\",\n    \"id\": 2,\n    \"copies\": 4\n  },\n  {\n    \"type\": \"service\",\n    \"id\": 6,\n    \"copies\": 4\n  }\n]}"
             },
             "url": "{{url}}/sale/batch",
-            "description": "@>4060 @07=KE 284>2 CA;C3 ?0G:>9"
+            "description": "\u041f\u0440\u043e\u0434\u0430\u0436\u0430 \u0440\u0430\u0437\u043d\u044b\u0445 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433 \u043f\u0430\u0447\u043a\u043e\u0439"
           },
           "response": [
             {
               "id": "7abb7725-f973-553e-56d4-98c7b89fe1f4",
-              "name": "'5:",
+              "name": "\u0427\u0435\u043a",
               "originalRequest": {
                 "method": "POST",
                 "header": [
@@ -1360,12 +1359,12 @@
     },
     {
       "_postman_id": "d4b2952a-f1e5-b708-56b3-9c000b9f2767",
-      "name": "!>:5B",
+      "name": "\u0421\u043e\u043a\u0435\u0442",
       "description": "",
       "item": [
         {
           "_postman_id": "c3f78702-7f23-48ce-9c2d-5969428aa5ff",
-          "name": ">;CG8BL >1=>2;5=8O",
+          "name": "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f",
           "request": {
             "method": "GET",
             "header": [
@@ -1380,9 +1379,150 @@
             ],
             "body": {},
             "url": "{{url}}/socket/update",
-            "description": " 0AAK;:0 C254><;5=89 > B5:CI59 :0AA5 2A5 @01>B=8:0< A0;>=0"
+            "description": "\u0420\u0430\u0441\u0441\u044b\u043b\u043a\u0430 \u0443\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u0439 \u043e \u0442\u0435\u043a\u0443\u0449\u0435\u0439 \u043a\u0430\u0441\u0441\u0435 \u0432\u0441\u0435 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a\u0430\u043c \u0441\u0430\u043b\u043e\u043d\u0430"
           },
           "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "9a8fb9cc-9bc8-89cb-c86d-d98d3c7b6ec7",
+      "name": "Service",
+      "description": "\u0423\u0441\u043b\u0443\u0433\u0438",
+      "item": [
+        {
+          "_postman_id": "ee7eede4-9a06-adb5-c6f8-da3c86a4d7c8",
+          "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "url": "{{url}}/service"
+          },
+          "response": [
+            {
+              "id": "365c5fac-3128-c667-4701-d3bf43d7254a",
+              "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
+                },
+                "url": "{{url}}/service"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Connection",
+                  "value": "Keep-Alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "619",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 04 May 2018 10:57:19 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5, max=100",
+                  "name": "Keep-Alive",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "Apache/2.4.33 (Unix)",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Authorization",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": ""
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/7.1.16",
+                  "name": "X-Powered-By",
+                  "description": ""
+                }
+              ],
+              "cookie": [],
+              "responseTime": "242",
+              "body": "{\"status\":\"OK\",\"response\":[{\"id\":1,\"name\":\"\\u041c\\u043e\\u043d\\u0442\\u0430\\u0436\",\"price\":40},{\"id\":2,\"name\":\"\\u0421\\u043a\\u0430\\u043d\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435\",\"price\":30},{\"id\":3,\"name\":\"\\u0417\\u0430\\u043f\\u0438\\u0441\\u044c \\u043d\\u0430 USB \\u043d\\u0430\\u043a\\u043e\\u043f\\u0438\\u0442\\u0435\\u043b\\u044c\",\"price\":30},{\"id\":4,\"name\":\"\\u0417\\u0430\\u043f\\u0438\\u0441\\u044c \\u043d\\u0430 \\u0434\\u0438\\u0441\\u043a\",\"price\":50},{\"id\":5,\"name\":\"\\u0418\\u043d\\u0442\\u0435\\u0440\\u043d\\u0435\\u0442\",\"price\":30},{\"id\":6,\"name\":\"\\u0420\\u0435\\u0441\\u0442\\u0430\\u0432\\u0440\\u0430\\u0446\\u0438\\u044f\",\"price\":100}]}"
+            }
+          ]
         }
       ]
     }
