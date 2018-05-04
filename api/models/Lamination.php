@@ -4,10 +4,10 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
-class LaminationSize extends Model
+class Lamination extends Model
 {
 
-	protected $_tableName = 'lamination_size';
+	protected $_tableName = 'lamination';
 
     /**
      *
@@ -27,7 +27,7 @@ class LaminationSize extends Model
     {
 	    parent::initialize();
 
-	    $this->hasMany('id', 'LaminationPriceHistory', 'lamination_size_id', ['alias' => 'LaminationPriceHistory']);
+	    $this->hasMany('id', 'LaminationPriceHistory', 'lamination_id', ['alias' => 'LaminationPriceHistory']);
     }
 
 	/**
@@ -74,7 +74,7 @@ class LaminationSize extends Model
 	public function sale()
 	{
 		$newSaleRow = new LaminationSale([
-			'lamination_size_id' => $this->id,
+			'lamination_id' => $this->id,
 		]);
 
 		$newSaleRow->save();
@@ -87,8 +87,9 @@ class LaminationSize extends Model
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
 		$query = "select SUM(lamination_price_history.price) as summ from lamination_sale
-					JOIN lamination_price_history ON lamination_price_history.lamination_size_id = lamination_sale.lamination_size_id AND lamination_price_history.datetime_to IS NULL AND lamination_sale.department_id = lamination_price_history.department_id
-					WHERE lamination_sale.datetime::date = now()::date AND lamination_sale.department_id = $department_id";
+					JOIN lamination_price_history ON lamination_price_history.lamination_id = lamination_sale.lamination_id AND lamination_sale.datetime >= lamination_price_history.datetime_from AND (lamination_sale.datetime < lamination_price_history.datetime_to OR lamination_price_history.datetime_to IS NULL)
+ AND lamination_sale.department_id = lamination_price_history.department_id
+WHERE lamination_sale.datetime::date = now()::date AND lamination_sale.department_id = $department_id";
 
 		$selfObj = new self();
 

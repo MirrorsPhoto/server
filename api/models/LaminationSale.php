@@ -43,7 +43,7 @@ class LaminationSale extends Model
     public function initialize()
     {
         $this->setSchema("public");
-        $this->belongsTo('lamination_size_id', '\LaminationSize', 'id', ['alias' => 'LaminationSize']);
+        $this->belongsTo('lamination_id', '\Lamination', 'id', ['alias' => 'Lamination']);
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
     }
 
@@ -57,7 +57,7 @@ class LaminationSale extends Model
 		$validator = new Validation();
 
 		$validator->add(
-			'lamination_size_id',
+			'lamination_id',
 			new Numericality(
 				[
 					'message' => 'Id размера ламинации должно быть числом',
@@ -75,7 +75,7 @@ class LaminationSale extends Model
 		);
 
 		$validator->add(
-			'lamination_size_id',
+			'lamination_id',
 			new PresenceOf(
 				[
 					'message' => 'Id размера ламинации обязательное поле',

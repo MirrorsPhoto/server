@@ -25,7 +25,7 @@ class SaleController extends Controller
 					$manager = 'Copy';
 					break;
 				case 'lamination':
-					$manager = 'LaminationSize';
+					$manager = 'Lamination';
 					break;
 				default:
 					throw new \Core\Exception\BadRequest('Не известный тип услуги ' . $item->type);
