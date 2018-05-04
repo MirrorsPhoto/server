@@ -14,7 +14,7 @@ class LaminationSale extends Model
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $lamination_size_id;
+    public $lamination_id;
 
 	/**
 	 *
