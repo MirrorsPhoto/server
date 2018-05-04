@@ -1389,7 +1389,51 @@
       "_postman_id": "9a8fb9cc-9bc8-89cb-c86d-d98d3c7b6ec7",
       "name": "Service",
       "description": "\u0423\u0441\u043b\u0443\u0433\u0438",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "ee7eede4-9a06-adb5-c6f8-da3c86a4d7c8",
+          "name": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u0432\u0438\u0434\u043e\u0432 \u0443\u0441\u043b\u0443\u0433",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (responseCode.code === 200) {",
+                  "    tests['Status code is 200'] = true;",
+                  "    ",
+                  "    var jsonData = JSON.parse(responseBody);",
+                  "    ",
+                  "    tests['Is added'] = jsonData.status == \"OK\";",
+                  "} else {",
+                  "    tests['Status code is 200'] = false;",
+                  "    postman.setNextRequest(null);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0442\u043e\u0432\u0430\u0440\",\"bar_code\":\"{{bar_code}}\"}"
+            },
+            "url": "{{url}}/service"
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
