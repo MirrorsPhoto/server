@@ -92,7 +92,7 @@ class GoodController extends Controller
 
 		$good->receipt($price);
 
-		return 'Товар успешно добавлен в наличие';
+		return 'good.receipt.success';
 	}
 
 }
