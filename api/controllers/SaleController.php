@@ -27,6 +27,9 @@ class SaleController extends Controller
 				case 'lamination':
 					$manager = 'Lamination';
 					break;
+        case 'service':
+          $manager = 'Service';
+          break;
 				default:
 					throw new \Core\Exception\BadRequest('Не известный тип услуги ' . $item->type);
 
