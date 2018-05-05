@@ -14,7 +14,7 @@ class ServicePriceHistory extends Model
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $service_size_id;
+    public $service_id;
 
 	/**
 	 *
