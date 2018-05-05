@@ -15,7 +15,10 @@ class LaminationController extends Controller
 		$result = [];
 
 		foreach ($rowSet as $row) {
-			$array = $row->toArray();
+			$array = $row->toArray([
+				'id',
+				'format'
+			]);
 
 			$array['price'] = $row->price;
 

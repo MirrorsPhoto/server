@@ -14,6 +14,8 @@ class SocketController extends Controller
 		$department = \Core\UserCenter\Security::getUser()->getCurrentDepartments()->getLast();
 
 		$department->notifyPersonnels();
+
+		return 'socket.update.success';
 	}
 
 }

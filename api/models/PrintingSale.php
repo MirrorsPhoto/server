@@ -4,17 +4,17 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
 
-class ServicePriceHistory extends Model
+class PrintingSale extends Model
 {
 
-	protected $_tableName = 'service_price_history';
+	protected $_tableName = 'printing_sale';
 
     /**
      *
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $service_id;
+    public $printing_id;
 
 	/**
 	 *
@@ -32,24 +32,10 @@ class ServicePriceHistory extends Model
 
     /**
      *
-     * @var integer
-     * @Column(type="integer", length=32, nullable=false)
-     */
-    public $price;
-
-    /**
-     *
      * @var string
      * @Column(type="string", nullable=false)
      */
-    public $datetime_from;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=true)
-     */
-    public $datetime_to;
+    public $datetime;
 
     /**
      * Initialize method for model.
@@ -57,7 +43,7 @@ class ServicePriceHistory extends Model
     public function initialize()
     {
         $this->setSchema("public");
-        $this->belongsTo('service_id', '\Service', 'id', ['alias' => 'Service']);
+        $this->belongsTo('printing_id', '\Printing', 'id', ['alias' => 'Printing']);
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
     }
 
@@ -71,10 +57,10 @@ class ServicePriceHistory extends Model
 		$validator = new Validation();
 
 		$validator->add(
-			'service_id',
+			'printing_id',
 			new Numericality(
 				[
-					'message' => 'Id услуши должно быть числом',
+					'message' => 'Id распечатки должно быть числом',
 				]
 			)
 		);
@@ -89,19 +75,10 @@ class ServicePriceHistory extends Model
 		);
 
 		$validator->add(
-			'price',
-			new Numericality(
-				[
-					'message' => 'Цена должна быть числом',
-				]
-			)
-		);
-
-		$validator->add(
-			'service_id',
+			'printing_id',
 			new PresenceOf(
 				[
-					'message' => 'Id услуги обязательное поле',
+					'message' => 'Id распечатки обязательное поле',
 				]
 			)
 		);
@@ -111,15 +88,6 @@ class ServicePriceHistory extends Model
 			new PresenceOf(
 				[
 					'message' => 'Id пользователя обезательное поле',
-				]
-			)
-		);
-
-		$validator->add(
-			'price',
-			new PresenceOf(
-				[
-					'message' => 'Цена обезательное поле',
 				]
 			)
 		);

@@ -4,17 +4,17 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
 
-class ServicePriceHistory extends Model
+class PrintingPriceHistory extends Model
 {
 
-	protected $_tableName = 'service_price_history';
+	protected $_tableName = 'printing_price_history';
 
     /**
      *
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $service_id;
+    public $printing_id;
 
 	/**
 	 *
@@ -57,7 +57,7 @@ class ServicePriceHistory extends Model
     public function initialize()
     {
         $this->setSchema("public");
-        $this->belongsTo('service_id', '\Service', 'id', ['alias' => 'Service']);
+        $this->belongsTo('printing_id', '\Printing', 'id', ['alias' => 'Printing']);
         $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
     }
 
@@ -71,10 +71,10 @@ class ServicePriceHistory extends Model
 		$validator = new Validation();
 
 		$validator->add(
-			'service_id',
+			'Printing',
 			new Numericality(
 				[
-					'message' => 'Id услуши должно быть числом',
+					'message' => 'Id распечатки должно быть числом',
 				]
 			)
 		);
@@ -98,10 +98,10 @@ class ServicePriceHistory extends Model
 		);
 
 		$validator->add(
-			'service_id',
+			'Printing',
 			new PresenceOf(
 				[
-					'message' => 'Id услуги обязательное поле',
+					'message' => 'Id распечатки обязательное поле',
 				]
 			)
 		);
