@@ -30,6 +30,9 @@ class SaleController extends Controller
         case 'service':
           $manager = 'Service';
           break;
+				case 'printing':
+					$manager = 'Printing';
+					break;
 				default:
 					throw new \Core\Exception\BadRequest('Не известный тип услуги ' . $item->type);
 
