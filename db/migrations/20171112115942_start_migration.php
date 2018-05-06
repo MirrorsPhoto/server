@@ -8,6 +8,8 @@ class StartMigration extends AbstractMigration
 
     public function change()
     {
+    		$this->execute('set timezone TO \'Europe/Moscow\';');
+
         $this->_user();
 
         $this->_city();
