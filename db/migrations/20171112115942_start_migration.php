@@ -775,14 +775,14 @@ class StartMigration extends AbstractMigration
                 'department_id' => 1,
                 'user_id'       => 1,
                 'count'         => 2,
-                'price'         => 55
+                'price'         => 60
             ],
             [
                 'photo_size_id' => 3,
                 'department_id' => 1,
                 'user_id'       => 1,
                 'count'         => 4,
-                'price'         => 110
+                'price'         => 120
             ],
             [
                 'photo_size_id' => 4,
@@ -796,21 +796,21 @@ class StartMigration extends AbstractMigration
                 'department_id' => 1,
                 'user_id'       => 1,
                 'count'         => 2,
-                'price'         => 110
+                'price'         => 120
             ],
             [
                 'photo_size_id' => 6,
                 'department_id' => 1,
                 'user_id'       => 1,
                 'count'         => 1,
-                'price'         => 110
+                'price'         => 120
             ],
             [
                 'photo_size_id' => 7,
                 'department_id' => 1,
                 'user_id'       => 1,
                 'count'         => 1,
-                'price'         => 110
+                'price'         => 120
             ]
         ])->save();
 
