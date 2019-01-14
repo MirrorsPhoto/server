@@ -1,7 +1,7 @@
 version: "3"
 services:
-  mirrors_postgresql:
-      container_name: mirrors_postgresql
+  postgresql:
+      container_name: postgresql
       build: postgresql
       restart: always
       environment:
@@ -9,8 +9,8 @@ services:
           POSTGRES_USER: mirrors
       ports:
         - "6543:5432"
-  mirrors_api:
-    container_name: mirrors_api
+  api:
+    container_name: api
     build: apache+php
     ports:
       - "420:80"
@@ -20,6 +20,6 @@ services:
     working_dir: /app
     tty: true
     links:
-      - mirrors_postgresql
+      - postgresql
     depends_on:
-      - mirrors_postgresql
+      - postgresql
