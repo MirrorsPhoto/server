@@ -51,7 +51,11 @@ $di->set('router', new Router(false));
 $di->set(
 	'db',
 	function () {
-		return Factory::load($this->get('config')->database);
+		$connection = new \Phalcon\Db\Adapter\Pdo\Postgresql($this->get('config')->database->toArray());
+
+		$connection->execute('set timezone TO \'Europe/Moscow\';');
+
+		return $connection;
 	}
 );
 
