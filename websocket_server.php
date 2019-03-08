@@ -15,7 +15,7 @@ $ws_worker = new Worker("websocket://0.0.0.0:8000");
 $ws_worker->onWorkerStart = function() use (&$users)
 {
 	// создаём локальный tcp-сервер, чтобы отправлять на него сообщения из кода нашего сайта
-	$inner_tcp_worker = new Worker("tcp://127.0.0.1:1337");
+	$inner_tcp_worker = new Worker("tcp://websocket:1337");
 
 	// создаём обработчик сообщений, который будет срабатывать,
 	// когда на локальный tcp-сокет приходит сообщение
