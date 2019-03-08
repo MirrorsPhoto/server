@@ -64,7 +64,7 @@ $application = new Application($di);
 try {
 	$router = $di->get('router');
 
-	$router->handle();
+	$router->handle($_SERVER['REQUEST_URI']);
 
 	$dispatcher = $di->get('dispatcher');
 
