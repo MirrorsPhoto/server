@@ -16,3 +16,5 @@ composer\.lock
 docs/\.vuepress/dist/
 
 \.env
+
+db/data/

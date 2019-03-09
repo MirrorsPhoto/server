@@ -9,7 +9,7 @@ services:
     ports:
       - ${POSTGRES_PORT}:5432
     volumes:
-      - ./db:/var/lib/postgresql
+      - ./db/data:/var/lib/postgresql/data
 
   web:
     image: nginx:latest
