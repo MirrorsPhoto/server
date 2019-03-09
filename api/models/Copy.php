@@ -89,13 +89,13 @@ class Copy extends Model
 		return $newSaleRow;
 	}
 
-	public static function getTodayCash()
+	public static function getCash(Datetime $datetime)
 	{
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
-		$query = 'SELECT SUM(copy_price_history.price) as summ FROM copy_sale
+		$query = "SELECT SUM(copy_price_history.price) as summ FROM copy_sale
 JOIN copy_price_history ON copy_sale.datetime >= copy_price_history.datetime_from AND (copy_sale.datetime < copy_price_history.datetime_to OR copy_price_history.datetime_to IS NULL) AND copy_price_history.department_id = copy_sale.department_id AND copy_sale.copy_id = copy_price_history.copy_id
-WHERE copy_sale.datetime::date = now()::date AND copy_sale.department_id = ' .  $department_id;
+WHERE copy_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND copy_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND copy_sale.department_id = " .  $department_id;
 
 		$selfObj = new self();
 

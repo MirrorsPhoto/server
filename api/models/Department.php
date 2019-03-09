@@ -105,20 +105,31 @@ class Department extends Model
 
 	public function notifyPersonnels()
 	{
+		echo "<pre>";
 		$userRows = $this->getCurrentPersonnel();
 
 		$arrUserIds = array_column($userRows->toArray(), 'id');
 
+		$currentDatetime = date_create();
+		$subYearDatetime = date_create()->sub(new DateInterval('P1Y'));
+		$subMonthDatetime = date_create()->sub(new DateInterval('P1M'));
+		$subWeekDatetime = date_create()->sub(new DateInterval('P7D'));
+
 		$data = [
 			'cash' => [
-				'photo' => Photo::getTodayCash(),
-				'good' => Good::getTodayCash(),
-				'copy' => Copy::getTodayCash(),
-				'lamination' => Lamination::getTodayCash(),
-				'printing' => Printing::getTodayCash(),
-				'service' => Service::getTodayCash()
+				'today' => [
+					'photo' => Photo::getCash($currentDatetime),
+					'good' => Good::getCash($currentDatetime),
+					'copy' => Copy::getCash($currentDatetime),
+					'lamination' => Lamination::getCash($currentDatetime),
+					'printing' => Printing::getCash($currentDatetime),
+					'service' => Service::getCash($currentDatetime)
+				],
+				'week' => Photo::getCash($subWeekDatetime) + Good::getCash($subWeekDatetime) + Copy::getCash($subWeekDatetime) + Lamination::getCash($subWeekDatetime) + Printing::getCash($subWeekDatetime) + Service::getCash($subWeekDatetime),
+				'month' => Photo::getCash($subMonthDatetime) + Good::getCash($subMonthDatetime) + Copy::getCash($subMonthDatetime) + Lamination::getCash($subMonthDatetime) + Printing::getCash($subMonthDatetime) + Service::getCash($subMonthDatetime),
+				'year' => Photo::getCash($subYearDatetime) + Good::getCash($subYearDatetime) + Copy::getCash($subYearDatetime) + Lamination::getCash($subYearDatetime) + Printing::getCash($subYearDatetime) + Service::getCash($subYearDatetime)
 			],
-			'client_count' => Check::getTodayClientCount()
+			'client_count' => Check::getClientCount($currentDatetime)
 		];
 
 		$socket = WebSocket::getInstance();

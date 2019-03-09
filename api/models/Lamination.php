@@ -82,14 +82,13 @@ class Lamination extends Model
 		return $newSaleRow;
 	}
 
-	public static function getTodayCash()
+	public static function getCash(Datetime $datetime)
 	{
 		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
 		$query = "select SUM(lamination_price_history.price) as summ from lamination_sale
-					JOIN lamination_price_history ON lamination_price_history.lamination_id = lamination_sale.lamination_id AND lamination_sale.datetime >= lamination_price_history.datetime_from AND (lamination_sale.datetime < lamination_price_history.datetime_to OR lamination_price_history.datetime_to IS NULL)
- AND lamination_sale.department_id = lamination_price_history.department_id
-WHERE lamination_sale.datetime::date = now()::date AND lamination_sale.department_id = $department_id";
+					JOIN lamination_price_history ON lamination_price_history.lamination_id = lamination_sale.lamination_id AND lamination_sale.datetime >= lamination_price_history.datetime_from AND (lamination_sale.datetime < lamination_price_history.datetime_to OR lamination_price_history.datetime_to IS NULL) AND lamination_sale.department_id = lamination_price_history.department_id
+					WHERE lamination_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND lamination_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND lamination_sale.department_id = $department_id";
 
 		$selfObj = new self();
 
