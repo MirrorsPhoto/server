@@ -120,19 +120,4 @@ class Photo extends Model
     return $newSaleRow;
   }
 
-  public static function getCash(Datetime $datetime)
-  {
-  	$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-    $query = "SELECT SUM(photo_price_history.price) as summ from photo_sale
-JOIN photo_price_history ON photo_sale.photo_id = photo_price_history.photo_id AND photo_sale.datetime >= photo_price_history.datetime_from AND (photo_sale.datetime < photo_price_history.datetime_to OR photo_price_history.datetime_to IS NULL) AND photo_sale.department_id = photo_price_history.department_id
-WHERE photo_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND photo_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND photo_sale.department_id = $department_id";
-
-    $selfObj = new self();
-
-    $result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-    return (int) $result->getFirst()->summ;
-  }
-
 }

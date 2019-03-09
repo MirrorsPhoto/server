@@ -85,18 +85,4 @@ class Check extends Model
 		$this->department_id = $user->department_id;
 	}
 
-	public static function getClientCount(Datetime $datetime)
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$query = "select COUNT(*) as count from \"check\"
-					WHERE datetime::date = '{$datetime->format('Y-m-d')}' AND datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND department_id = $department_id";
-
-		$selfObj = new self();
-
-		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-		return (int) $result->getFirst()->count;
-	}
-
 }

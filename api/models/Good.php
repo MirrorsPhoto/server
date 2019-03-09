@@ -155,19 +155,4 @@ class Good extends Model
 		return $rowReceipt->save();
 	}
 
-	public static function getCash(Datetime $datetime)
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$query = "select SUM(good_price_history.price) as summ from good_sale
-					JOIN good_price_history ON good_price_history.good_id = good_sale.good_id AND good_price_history.datetime_to IS NULL
-					WHERE good_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND good_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND good_sale.department_id = $department_id";
-
-		$selfObj = new self();
-
-		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-		return (float) $result->getFirst()->summ;
-	}
-
 }

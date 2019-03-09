@@ -103,19 +103,4 @@ class Printing extends Model
 		return $newSaleRow;
 	}
 
-	public static function getCash(Datetime $datetime)
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$query = "select SUM(printing_price_history.price) as summ from printing_sale
-					JOIN printing_price_history ON printing_price_history.printing_id = printing_sale.printing_id AND printing_sale.datetime >= printing_price_history.datetime_from AND (printing_sale.datetime < printing_price_history.datetime_to OR printing_price_history.datetime_to IS NULL) AND printing_sale.department_id = printing_price_history.department_id
-					WHERE printing_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND printing_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND printing_sale.department_id = $department_id";
-
-		$selfObj = new self();
-
-		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-		return (float) $result->getFirst()->summ;
-	}
-
 }

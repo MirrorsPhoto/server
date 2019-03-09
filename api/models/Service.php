@@ -82,19 +82,4 @@ class Service extends Model
 		return $newSaleRow;
 	}
 
-	public static function getCash(Datetime $datetime)
-	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
-
-		$query = "select SUM(service_price_history.price) as summ from service_sale
-					JOIN service_price_history ON service_price_history.service_id = service_sale.service_id AND service_sale.datetime >= service_price_history.datetime_from AND (service_sale.datetime < service_price_history.datetime_to OR service_price_history.datetime_to IS NULL) AND service_sale.department_id = service_price_history.department_id
-					WHERE service_sale.datetime::date = '{$datetime->format('Y-m-d')}' AND service_sale.datetime <= '{$datetime->format('Y-m-d H:i:s')}' AND service_sale.department_id = $department_id";
-
-		$selfObj = new self();
-
-		$result = new Resultset(null, $selfObj, $selfObj->getReadConnection()->query($query));
-
-		return (float) $result->getFirst()->summ;
-	}
-
 }
