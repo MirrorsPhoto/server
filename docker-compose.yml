@@ -30,6 +30,8 @@ services:
     links:
       - postgresql
       - websocket
+    ports:
+      - 9000
 
   websocket:
     build: ./docker/websocket
@@ -38,4 +40,4 @@ services:
       - ./:/code
     ports:
       - 8000:8000
-      - 1337:1337
+      - 1337
