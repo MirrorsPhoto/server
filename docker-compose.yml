@@ -39,5 +39,5 @@ services:
     volumes:
       - ./:/code
     ports:
-      - 8000:8000
+      - ${WEBSOCKET_SERVER_PORT}:8000
       - 1337
