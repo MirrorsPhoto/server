@@ -105,32 +105,92 @@ class Department extends Model
 
 	public function notifyPersonnels()
 	{
-		echo "<pre>";
 		$userRows = $this->getCurrentPersonnel();
-
 		$arrUserIds = array_column($userRows->toArray(), 'id');
 
-		$currentDatetime = date_create();
-		$subYearDatetime = date_create()->sub(new DateInterval('P1Y'));
-		$subMonthDatetime = date_create()->sub(new DateInterval('P1M'));
-		$subWeekDatetime = date_create()->sub(new DateInterval('P7D'));
+		$department_id = Core\UserCenter\Security::getUser()->department_id;
 
-		$data = [
-			'cash' => [
-				'today' => [
-					'photo' => Photo::getCash($currentDatetime),
-					'good' => Good::getCash($currentDatetime),
-					'copy' => Copy::getCash($currentDatetime),
-					'lamination' => Lamination::getCash($currentDatetime),
-					'printing' => Printing::getCash($currentDatetime),
-					'service' => Service::getCash($currentDatetime)
-				],
-				'week' => Photo::getCash($subWeekDatetime) + Good::getCash($subWeekDatetime) + Copy::getCash($subWeekDatetime) + Lamination::getCash($subWeekDatetime) + Printing::getCash($subWeekDatetime) + Service::getCash($subWeekDatetime),
-				'month' => Photo::getCash($subMonthDatetime) + Good::getCash($subMonthDatetime) + Copy::getCash($subMonthDatetime) + Lamination::getCash($subMonthDatetime) + Printing::getCash($subMonthDatetime) + Service::getCash($subMonthDatetime),
-				'year' => Photo::getCash($subYearDatetime) + Good::getCash($subYearDatetime) + Copy::getCash($subYearDatetime) + Lamination::getCash($subYearDatetime) + Printing::getCash($subYearDatetime) + Service::getCash($subYearDatetime)
-			],
-			'client_count' => Check::getClientCount($currentDatetime)
+		$data = [];
+
+		$datetime = [
+			'today' => date_create()->sub(new DateInterval('P15D')),
+			'week' => date_create()->sub(new DateInterval('P7D')),
+			'month' => date_create()->sub(new DateInterval('P1M')),
+			'year' => date_create()->sub(new DateInterval('P1Y'))
 		];
+
+		$types = [
+			'photo',
+			'good',
+			'copy',
+			'lamination',
+			'printing',
+			'service'
+		];
+
+		$query = [];
+
+		foreach ($datetime as $moment => $time) {
+			foreach ($types as $type) {
+				$query['cash'][$moment][] = "SELECT "
+						. "'{$type}' as type, "
+						. "SUM({$type}_price_history.price) as summ "
+					. "FROM {$type}_sale "
+					. "JOIN {$type}_price_history ON "
+						. "{$type}_sale.{$type}_id = {$type}_price_history.{$type}_id "
+						. "AND {$type}_sale.datetime >= {$type}_price_history.datetime_from "
+						. "AND ({$type}_sale.datetime < {$type}_price_history.datetime_to "
+						. "OR "
+							. "{$type}_price_history.datetime_to IS NULL) "
+							. "AND {$type}_sale.department_id = {$type}_price_history.department_id "
+					. "WHERE "
+						. "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
+						. "AND {$type}_sale.datetime <= '{$time->format('Y-m-d H:i:s')}' "
+						. "AND {$type}_sale.department_id = $department_id"
+				;
+			}
+			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
+
+			$query['client'][$moment] = "SELECT "
+						. "'{$moment}' as moment, "
+						. "COUNT(*) as count "
+					. "FROM \"check\" "
+					. "WHERE "
+						. "datetime::date = '{$time->format('Y-m-d')}' "
+						. "AND datetime <= '{$time->format('Y-m-d H:i:s')}' "
+						. "AND department_id = $department_id"
+			;
+		}
+
+		$query['client'] = implode(' UNION ALL ', $query['client']);
+
+		$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
+
+		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+			$data['cash']['today'][$res['type']] = (int)$res['summ'];
+		}
+
+		unset($query['cash']['today']);
+
+		$agoSql = [];
+
+		foreach ($query['cash'] as $moment => $sql) {
+			$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
+		}
+
+		$agoSql = implode(' UNION ALL ', $agoSql);
+
+		$result = $this->getDI()->getShared('db')->query($agoSql);
+
+		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+			$data['cash'][$res['momemt']] = (int)$res['summ'];
+		}
+
+		$result = $this->getDI()->getShared('db')->query($query['client']);
+		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+
+			$data['client'][$res['moment']] = (int)$res['count'];
+		}
 
 		$socket = WebSocket::getInstance();
 
