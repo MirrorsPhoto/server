@@ -113,10 +113,10 @@ class Department extends Model
 		$data = [];
 
 		$datetime = [
-			'today' => date_create()->sub(new DateInterval('P15D')),
-			'week' => date_create()->sub(new DateInterval('P7D')),
-			'month' => date_create()->sub(new DateInterval('P1M')),
-			'year' => date_create()->sub(new DateInterval('P1Y'))
+			'today' => date_create(null, new DateTimeZone('+3')),
+			'week' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P7D')),
+			'month' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1M')),
+			'year' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1Y'))
 		];
 
 		$types = [
