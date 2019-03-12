@@ -1,6 +1,7 @@
 version: '3'
 services:
   postgresql:
+    container_name: postgresql
     image: postgres:11-alpine
     restart: always
     environment:
@@ -12,6 +13,7 @@ services:
       - ./db/data:/var/lib/postgresql/data
 
   web:
+    container_name: web
     build: ./docker/nginx
     working_dir: /code
     ports:
@@ -27,6 +29,7 @@ services:
       - DOMAIN=${DOMAIN}
 
   php:
+    container_name: php
     build: ./docker/php
     working_dir: /code
     volumes:
@@ -38,6 +41,7 @@ services:
       - 9000
 
   websocket:
+    container_name: websocket
     build: ./docker/websocket
     working_dir: /code
     volumes:
