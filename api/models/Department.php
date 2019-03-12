@@ -145,7 +145,7 @@ class Department extends Model
 							. "AND {$type}_sale.department_id = {$type}_price_history.department_id "
 					. "WHERE "
 						. "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
-						. "AND {$type}_sale.datetime <= '{$time->format('Y-m-d H:i:s')}' "
+						. "AND date_trunc('second', {$type}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
 						. "AND {$type}_sale.department_id = $department_id"
 				;
 			}
