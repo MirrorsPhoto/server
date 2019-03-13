@@ -183,7 +183,7 @@ class Department extends Model
 		$result = $this->getDI()->getShared('db')->query($agoSql);
 
 		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
-			$data['cash'][$res['momemt']] = (int)$res['summ'];
+			$data['cash'][$res['momemt']] = (int)$res['sum'];
 		}
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
