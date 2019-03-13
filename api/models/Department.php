@@ -114,6 +114,7 @@ class Department extends Model
 
 		$datetime = [
 			'today' => date_create(null, new DateTimeZone('+3')),
+			'yesterday' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1D')),
 			'week' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P7D')),
 			'month' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1M')),
 			'year' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1Y'))
