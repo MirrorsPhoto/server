@@ -31,8 +31,7 @@ class File extends Model
 	 * @throws ServerError
 	 * @return self
 	 */
-	public static function factory(Phalcon\Http\Request\File $file)
-	{
+	public static function factory(Phalcon\Http\Request\File $file) {
 		$fileName = hash_file('md5', $file->getTempName()) . ".{$file->getExtension()}";
 
 		$config = ConfigIni::getInstance();
@@ -54,7 +53,9 @@ class File extends Model
 			}
 		} else {
 			//Если нет такой папки - создать
-			if (!is_dir("$dir/$path")) mkdir("$dir/$path", 0777, true);
+			if (!is_dir("$dir/$path")) {
+mkdir("$dir/$path", 0777, true);
+			}
 
 			$isSave = $file->moveTo("$dir/$path/$fileName");
 
@@ -75,8 +76,7 @@ class File extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'User', 'avatar_id', ['alias' => 'Users']);
@@ -87,13 +87,12 @@ class File extends Model
 	 *
 	 * @return string
 	 */
-	public function getFullPath()
-    {
+	public function getFullPath() {
 		$config = ConfigIni::getInstance();
 
 		$domain = $config->static->url;
 
 		return "$domain/{$this->path}";
-    }
+	}
 
 }

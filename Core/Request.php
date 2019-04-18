@@ -18,9 +18,8 @@ class Request extends HttpRequest
 	 * Determine (and store in memory) whether or not the current request content-type is application/json or not
 	 * @return boolean
 	 */
-	private function isApplicationJson()
-	{
-		if(is_null($this->_isJson)){
+	private function isApplicationJson() {
+		if (is_null($this->_isJson)) {
 			$this->_isJson = (($contentType = $this->getDI()->getShared('request')->getHeader('CONTENT_TYPE')) && explode(';', $contentType)[0] === 'application/json');
 		}
 
@@ -34,9 +33,8 @@ class Request extends HttpRequest
 	 * @param bool $notAllowEmpty
 	 * @param bool $noRecursive
 	 */
-	public function getPut($name = NULL, $filters = NULL, $defaultValue = NULL, $notAllowEmpty = FALSE, $noRecursive = FALSE)
-	{
-		if(!is_array($this->_putCache)){
+	public function getPut($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false) {
+		if (!is_array($this->_putCache)) {
 			$this->_putCache = ($this->isApplicationJson()) ? (array)$this->getJsonRawBody() : $this->getRawBody();
 		}
 
@@ -50,10 +48,9 @@ class Request extends HttpRequest
 	 * @param bool $notAllowEmpty
 	 * @param bool $noRecursive
 	 */
-	public function getPost($name = NULL, $filters = NULL, $defaultValue = NULL, $notAllowEmpty = FALSE, $noRecursive = FALSE)
-	{
-		if($this->isApplicationJson()){
-			if(is_null($this->_postCache)){
+	public function getPost($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false) {
+		if ($this->isApplicationJson()) {
+			if (is_null($this->_postCache)) {
 				$this->_postCache = (array)$this->getJsonRawBody();
 			}
 
@@ -70,10 +67,9 @@ class Request extends HttpRequest
 	 * @param bool $notAllowEmpty
 	 * @param bool $noRecursive
 	 */
-	public function getQuery($name = NULL, $filters = NULL, $defaultValue = NULL, $notAllowEmpty = FALSE, $noRecursive = FALSE)
-	{
-		if($this->isApplicationJson()){
-			if(is_null($this->_queryCache)){
+	public function getQuery($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false) {
+		if ($this->isApplicationJson()) {
+			if (is_null($this->_queryCache)) {
 				$this->_queryCache = (array)$this->getJsonRawBody();
 			}
 
@@ -87,8 +83,7 @@ class Request extends HttpRequest
 	 * @param $name
 	 * @return bool|void
 	 */
-	public function hasPost($name)
-	{
+	public function hasPost($name) {
 		return array_key_exists($name, $this->getPost($name));
 	}
 

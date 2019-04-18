@@ -53,8 +53,7 @@ class GoodPriceHistory extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 		$this->belongsTo('good_id', '\Good', 'id', ['alias' => 'Good']);
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
@@ -63,8 +62,7 @@ class GoodPriceHistory extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -101,8 +99,7 @@ class GoodPriceHistory extends Model
 	 * @throws Unauthorized
 	 * @return void
 	 */
-	public function beforeSave()
-	{
+	public function beforeSave() {
 		$user = Security::getUser();
 
 		$this->user_id = $user->id;

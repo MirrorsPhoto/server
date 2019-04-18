@@ -86,8 +86,7 @@ class User extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('avatar_id', '\File', 'id', ['alias' => 'Avatar']);
@@ -107,8 +106,7 @@ class User extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -129,8 +127,7 @@ class User extends Model
 	 *
 	 * @return Simple
 	 */
-	public function getCurrentDepartments()
-	{
+	public function getCurrentDepartments() {
 		return $this->getDepartments('datetime_to IS NULL');
 	}
 

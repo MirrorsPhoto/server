@@ -21,8 +21,7 @@ class PreFlightListener extends Plugin
 	 * @param Dispatcher $dispatcher
 	 * @return void
 	 */
-	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
-	{
+	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher) {
 		$di = $dispatcher->getDI();
 
 		/** @var Request $request */
@@ -40,7 +39,8 @@ class PreFlightListener extends Plugin
 		}
 
 		if ($this->isPreflightRequest($request)) {
-			$response->setStatusCode(200, 'OK')->send(); exit;
+			$response->setStatusCode(200, 'OK')->send();
+exit;
 		}
 	}
 
@@ -48,8 +48,7 @@ class PreFlightListener extends Plugin
 	 * @param Request $request
 	 * @return bool
 	 */
-	public function isCorsRequest(Request $request)
-	{
+	public function isCorsRequest(Request $request) {
 		return !empty($request->getHeader('Origin')) && !$this->isSameHost($request);
 	}
 
@@ -57,8 +56,7 @@ class PreFlightListener extends Plugin
 	 * @param Request $request
 	 * @return bool
 	 */
-	public function isPreflightRequest(Request $request)
-	{
+	public function isPreflightRequest(Request $request) {
 		return $this->isCorsRequest($request)
 			&& $request->getMethod() === 'OPTIONS'
 			&& !empty($request->getHeader('Access-Control-Request-Method'));
@@ -68,8 +66,7 @@ class PreFlightListener extends Plugin
 	 * @param Request $request
 	 * @return bool
 	 */
-	public function isSameHost(Request $request)
-	{
+	public function isSameHost(Request $request) {
 		return $request->getHeader('Origin') === $this->getSchemeAndHttpHost($request);
 	}
 
@@ -77,8 +74,7 @@ class PreFlightListener extends Plugin
 	 * @param Request $request
 	 * @return string
 	 */
-	public function getSchemeAndHttpHost(Request $request)
-	{
+	public function getSchemeAndHttpHost(Request $request) {
 		return $request->getScheme() . '://' . $request->getHttpHost();
 	}
 
@@ -86,8 +82,7 @@ class PreFlightListener extends Plugin
 	 * @param Request $request
 	 * @return string
 	 */
-	public function getOrigin(Request $request)
-	{
+	public function getOrigin(Request $request) {
 		return $request->getHeader('Origin') ? $request->getHeader('Origin') : '*';
 	}
 }

@@ -43,8 +43,7 @@ class Good extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'GoodPriceHistory', 'good_id', ['alias' => 'GoodPriceHistory']);
@@ -55,8 +54,7 @@ class Good extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -76,8 +74,7 @@ class Good extends Model
 	 * @throws Unauthorized
 	 * @return float
 	 */
-	public function getPrice()
-	{
+	public function getPrice() {
 		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getGoodPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
@@ -86,7 +83,7 @@ class Good extends Model
 			throw new ServerError("Для товара {$this->name} не задана цена");
 		}
 
-		return (float) $row->price;
+		return (float)$row->price;
 	}
 
 	/**
@@ -96,8 +93,7 @@ class Good extends Model
 	 * @throws Unauthorized
 	 * @return Simple
 	 */
-	public static function getAvaible($id = null)
-	{
+	public static function getAvaible($id = null) {
 		$department_id = Security::getUser()->department_id;
 
 		$query = "SELECT
@@ -141,11 +137,10 @@ class Good extends Model
 	 * @throws Unauthorized
 	 * @return bool
 	 */
-	public function isAvailable()
-	{
+	public function isAvailable() {
 		$available = self::getAvaible($this->id);
 
-		return (bool) $available->getFirst();
+		return (bool)$available->getFirst();
 
 	}
 
@@ -155,8 +150,7 @@ class Good extends Model
 	 * @throws Unauthorized
 	 * @return integer
 	 */
-	public function getAvaibleCount()
-	{
+	public function getAvaibleCount() {
 		return (self::getAvaible($this->id))->getFirst()->total | 0;
 	}
 
@@ -166,8 +160,7 @@ class Good extends Model
 	 * @throws Unauthorized
 	 * @throws ServerError
 	 */
-	public static function batch($data)
-	{
+	public static function batch($data) {
 		$row = self::findFirst($data->id);
 
 		for ($i = 1; $i <= $data->copies; $i++) {
@@ -183,8 +176,7 @@ class Good extends Model
 	 * @return bool
 	 * @throws ServerError
 	 */
-	public function sale()
-	{
+	public function sale() {
 		$rowSale = new GoodSale([
 			'good_id' => $this->id
 		]);
@@ -197,8 +189,7 @@ class Good extends Model
 	 * @return bool
 	 * @throws ServerError
 	 */
-	public function receipt($price)
-	{
+	public function receipt($price) {
 		$rowReceipt = new GoodReceipt([
 			'good_id' => $this->id,
 			'price' => $price

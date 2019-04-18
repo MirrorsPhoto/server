@@ -11,8 +11,7 @@ class ServiceController extends Controller
 	 *
 	 * @return array
 	 */
-	public function getSizeAction()
-	{
+	public function getSizeAction() {
 		$rowSet = Service::find();
 
 		$result = [];

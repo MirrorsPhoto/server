@@ -42,8 +42,7 @@ class Department extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('city_id', '\City', 'id', ['alias' => 'City']);
@@ -62,8 +61,7 @@ class Department extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -94,7 +92,7 @@ class Department extends Model
 		);
 
 		return $this->validate($validator);
-    }
+	}
 
 
 	/**
@@ -102,8 +100,7 @@ class Department extends Model
 	 *
 	 * @return Simple
 	 */
-	public function getCurrentPersonnel()
-	{
+	public function getCurrentPersonnel() {
 		return $this->getUsers('datetime_to IS NULL');
 	}
 
@@ -111,8 +108,7 @@ class Department extends Model
 	 * @throws Unauthorized
 	 * @return void
 	 */
-	public function notifyPersonnels()
-	{
+	public function notifyPersonnels() {
 		$userRows = $this->getCurrentPersonnel();
 		$arrUserIds = array_column($userRows->toArray(), 'id');
 
@@ -198,7 +194,6 @@ class Department extends Model
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-
 			$data['client'][$res['moment']] = (int)$res['count'];
 		}
 

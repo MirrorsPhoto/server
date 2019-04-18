@@ -9,13 +9,12 @@ abstract class Validation extends Phalcon\Validation
 	 * @param null $data
 	 * @param null $entity
 	 */
-	public function validate($data = null, $entity = null)
-	{
+	public function validate($data = null, $entity = null) {
 		$post = $this->request->getPost();
 		$get = $this->request->getQuery();
 		$put = $this->request->getPut();
 
-		parent::validate($data ?? array_merge($post, $get, $put) , $entity);
+		parent::validate($data ?? array_merge($post, $get, $put), $entity);
 	}
 
 	/**
@@ -24,11 +23,12 @@ abstract class Validation extends Phalcon\Validation
 	 * @param $messages
 	 * @throws BadRequest
 	 */
-	public function afterValidation($data, $entity, $messages)
-	{
+	public function afterValidation($data, $entity, $messages) {
 		$totalCountMessages = $messages->count();
 
-		if (!$totalCountMessages) return;
+		if (!$totalCountMessages) {
+return;
+		}
 
 		$errorMessage = [];
 

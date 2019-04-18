@@ -19,8 +19,7 @@ class GoodController extends Controller
 	 * @throws ServerError
 	 * @return void
 	 */
-	public function addAction()
-	{
+	public function addAction() {
 		$validator = new Add();
 		$validator->validate();
 
@@ -45,8 +44,7 @@ class GoodController extends Controller
 	 * @throws BadRequest
 	 * @return Simple
 	 */
-	public function searchAction()
-	{
+	public function searchAction() {
 		$validator = new Search();
 		$validator->validate();
 
@@ -68,8 +66,7 @@ class GoodController extends Controller
 	 * @throws BadRequest
 	 * @return array
 	 */
-	public function getInfoByBarCodeAction($barCode)
-	{
+	public function getInfoByBarCodeAction($barCode) {
 		$good = Good::findFirstByBarCode($barCode);
 		if (!$good) {
 			throw new BadRequest('Такой товар отсутствует');
@@ -90,8 +87,7 @@ class GoodController extends Controller
 	 * @throws BadRequest
 	 * @return array
 	 */
-	public function getInfoByIdAction($id)
-	{
+	public function getInfoByIdAction($id) {
 		$good = Good::findFirst($id);
 
 		if (!$good) {
@@ -112,13 +108,12 @@ class GoodController extends Controller
 	 * @throws BadRequest
 	 * @return string
 	 */
-	public function receiptAction()
-	{
+	public function receiptAction() {
 		$validator = new Receipt();
 		$validator->validate();
 
-		$barCode = (int) $this->getPost('bar_code');
-		$price = (float) $this->getPost('price');
+		$barCode = (int)$this->getPost('bar_code');
+		$price = (float)$this->getPost('price');
 
 		$good = Good::findFirstByBarCode($barCode);
 

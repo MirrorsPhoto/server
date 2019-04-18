@@ -41,8 +41,7 @@ class ServiceSale extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('service_id', '\Service', 'id', ['alias' => 'Service']);
@@ -52,8 +51,7 @@ class ServiceSale extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -99,8 +97,7 @@ class ServiceSale extends Model
 	 * @throws Unauthorized
 	 * @return void
 	 */
-	public function beforeSave()
-	{
+	public function beforeSave() {
 		$user = Security::getUser();
 
 		$this->user_id = $user->id;

@@ -7,8 +7,7 @@ use CoreException;
 class AccessDenied extends CoreException
 {
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct("Access denied", 403);
 	}
 

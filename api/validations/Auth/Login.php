@@ -11,8 +11,7 @@ class Login extends Validation
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		$this->add(
 			'login',
 			new PresenceOf(

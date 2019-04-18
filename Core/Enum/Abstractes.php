@@ -30,8 +30,7 @@ abstract class Abstractes
 	 * @throws ReflectionException
 	 * @throws Exception
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		$this->_objReflection = new ReflectionClass($this);
 		$this->_arrValues = array_flip($this->_objReflection->getConstants());
 
@@ -47,8 +46,7 @@ abstract class Abstractes
 	 * @return boolean
 	 * @throws Exception
 	 */
-	public function validate($mixValue, $bThrowException = TRUE)
-	{
+	public function validate($mixValue, $bThrowException = true) {
 		$bExists = isset($this->_arrValues[$mixValue]);
 
 		if (!$bExists && $bThrowException) {
@@ -64,8 +62,7 @@ abstract class Abstractes
 	 *
 	 * @return array
 	 */
-	public function getAll()
-	{
+	public function getAll() {
 		return $this->_objReflection->getConstants();
 	}
 
@@ -75,8 +72,7 @@ abstract class Abstractes
 	 * @throws Exception
 	 * @return string
 	 */
-	public function getName($mixValue)
-	{
+	public function getName($mixValue) {
 		$this->validate($mixValue);
 
 		return $this->_arrValues[$mixValue];
@@ -87,11 +83,9 @@ abstract class Abstractes
 	 * @throws Exception
 	 * @return mixed
 	 */
-	public function getValue($strName)
-	{
+	public function getValue($strName) {
 		$value = $this->_objReflection->getConstant($strName);
-		if ($value === FALSE)
-		{
+		if ($value === false) {
 			throw new Exception($strName . ' name not found in ' . $this->_objReflection->getName());
 		}
 

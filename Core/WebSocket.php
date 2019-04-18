@@ -17,8 +17,7 @@ class WebSocket
 	 * @param string $address
 	 * @throws ServerError
 	 */
-	public function __construct($address = 'tcp://websocket:1337')
-	{
+	public function __construct($address = 'tcp://websocket:1337') {
 		$this->_stream = stream_socket_client($address);
 
 		if (!$this->_stream) {
@@ -30,8 +29,7 @@ class WebSocket
 	 * @param $from
 	 * @param $data
 	 */
-	public function send($from, $data)
-	{
+	public function send($from, $data) {
 		fwrite($this->_stream, json_encode([
 			'from' => $from,
 			'data' => $data

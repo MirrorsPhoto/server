@@ -40,8 +40,7 @@ class Photo extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'PhotoPriceHistory', 'photo_id', ['alias' => 'PhotoPriceHistory']);
@@ -50,8 +49,7 @@ class Photo extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -98,8 +96,7 @@ class Photo extends Model
 	 * @throws Unauthorized
 	 * @return float
 	 */
-	public function getPrice()
-	{
+	public function getPrice() {
 		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
@@ -108,16 +105,15 @@ class Photo extends Model
 			throw new ServerError("Для фотографии {$this->width}x{$this->height} с количеством {$this->count}шт не задана цена");
 		}
 
-		return (float) $row->price;
-  }
+		return (float)$row->price;
+	}
 
 	/**
 	 * @param mixed $data
 	 * @throws ServerError
 	 * @return void
 	 */
-	public static function batch($data)
-	{
+	public static function batch($data) {
 		$photoId = $data->id;
 		$count = $data->copies;
 
@@ -132,8 +128,7 @@ class Photo extends Model
 	 * @return PhotoSale
 	 * @throws ServerError
 	 */
-	public function sale()
-	{
+	public function sale() {
 		$newSaleRow = new PhotoSale([
 			'photo_id' => $this->id
 		]);

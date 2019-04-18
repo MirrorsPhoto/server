@@ -35,8 +35,7 @@ class Copy extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'CopyPriceHistory', 'copy_id', ['alias' => 'CopyPriceHistory']);
@@ -46,8 +45,7 @@ class Copy extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -67,8 +65,7 @@ class Copy extends Model
 	 * @throws Unauthorized
 	 * @return float
 	 */
-	public function getPrice()
-	{
+	public function getPrice() {
 		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getCopyPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
@@ -77,7 +74,7 @@ class Copy extends Model
 			throw new ServerError("Для копии формата {$this->format} не задана цена");
 		}
 
-		return (float) $row->price;
+		return (float)$row->price;
 	}
 
 	/**
@@ -85,8 +82,7 @@ class Copy extends Model
 	 * @throws ServerError
 	 * @return void
 	 */
-	public static function batch($data)
-	{
+	public static function batch($data) {
 		$copyId = $data->id;
 		$count = $data->copies;
 
@@ -101,8 +97,7 @@ class Copy extends Model
 	 * @throws ServerError
 	 * @return CopySale
 	 */
-	public function sale()
-	{
+	public function sale() {
 		$newSaleRow = new CopySale([
 			'copy_id' => $this->id
 		]);

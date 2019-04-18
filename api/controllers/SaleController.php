@@ -19,8 +19,7 @@ class SaleController extends Controller
 	 * @throws Unauthorized
 	 * @return bool
 	 */
-	public function batchAction()
-	{
+	public function batchAction() {
 		$items = $this->getPost('items');
 
 		foreach ($items as $item) {
@@ -45,7 +44,6 @@ class SaleController extends Controller
 					break;
 				default:
 					throw new BadRequest('Не известный тип услуги ' . $item->type);
-
 			}
 
 			$manager::batch($item);

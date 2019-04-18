@@ -13,10 +13,8 @@ trait Singleton
 	/**
 	 * @return self
 	 */
-	public static function getInstance()
-	{
-		if (is_null(self::$_objInstance))
-		{
+	public static function getInstance() {
+		if (is_null(self::$_objInstance)) {
 			self::$_objInstance = new static();
 		}
 
@@ -26,15 +24,13 @@ trait Singleton
 	/**
 	 * @return self
 	 */
-	public static function refreshInstance()
-	{
+	public static function refreshInstance() {
 		self::$_objInstance = new self();
 
 		return self::$_objInstance;
 	}
 
-	public function __wakeup()
-	{
+	public function __wakeup() {
 		trigger_error('Unserializing ' . __CLASS__ . ' is not allowed.', E_USER_ERROR);
 	}
 

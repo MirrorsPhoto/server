@@ -5,8 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class PrintingMigration extends AbstractMigration
 {
-    public function change()
-    {
+	public function change() {
 			$printing = $this->table('printing');
 
 			$printing
@@ -42,9 +41,9 @@ class PrintingMigration extends AbstractMigration
 				->addColumn('datetime_from', 'timestamp', ['comment' => 'С какой даты действительна цена', 'default' => 'CURRENT_TIMESTAMP'])
 				->addColumn('datetime_to', 'timestamp', ['comment' => 'По какую дату действительна цена', 'null' => true])
 				->addIndex(['printing_id', 'department_id', 'user_id', 'price', 'datetime_to'])
-				->addForeignKey('printing_id', 'printing', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+				->addForeignKey('printing_id', 'printing', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 				->create()
 			;
 
@@ -72,10 +71,10 @@ class PrintingMigration extends AbstractMigration
 				->addColumn('user_id', 'integer', ['comment' => 'Id пользователя который делал эту распечатку'])
 				->addColumn('datetime', 'timestamp', ['comment' => 'Дата продажи', 'default' => 'CURRENT_TIMESTAMP'])
 				->addIndex(['printing_id', 'department_id', 'user_id', 'datetime'])
-				->addForeignKey('printing_id', 'printing', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+				->addForeignKey('printing_id', 'printing', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 				->create()
 			;
-    }
+	}
 }

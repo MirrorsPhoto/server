@@ -53,8 +53,7 @@ class PhotoPriceHistory extends Model
 	/**
 	 * Initialize method for model.
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('photo_id', '\Photo', 'id', ['alias' => 'Photo']);
@@ -64,8 +63,7 @@ class PhotoPriceHistory extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -129,8 +127,7 @@ class PhotoPriceHistory extends Model
 	 * @throws Unauthorized
 	 * @return void
 	 */
-	public function beforeSave()
-	{
+	public function beforeSave() {
 		$user = Security::getUser();
 
 		$this->user_id = $user->id;

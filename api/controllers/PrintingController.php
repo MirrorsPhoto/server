@@ -11,8 +11,7 @@ class PrintingController extends Controller
 	 *
 	 * @return array
 	 */
-	public function getAction()
-	{
+	public function getAction() {
 		$rowSet = Printing::find();
 
 		$result = [];

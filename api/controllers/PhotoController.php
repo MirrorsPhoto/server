@@ -14,8 +14,7 @@ class PhotoController extends Controller
 	 * @throws ServerError
 	 * @return array
 	 */
-	public function getSizeAction()
-	{
+	public function getSizeAction() {
 		$rowSet = PhotoSize::find();
 
 		$result = [];
@@ -27,8 +26,8 @@ class PhotoController extends Controller
 				'height'
 			]);
 
-			$array['width'] = (float) $array['width'];
-			$array['height'] = (float) $array['height'];
+			$array['width'] = (float)$array['width'];
+			$array['height'] = (float)$array['height'];
 
 			$variations = $row->getVariations();
 			if (!$variations) {

@@ -25,8 +25,7 @@ class Role extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'User', 'role_id', [ 'alias' => 'Users' ]);
@@ -35,8 +34,7 @@ class Role extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -55,8 +53,7 @@ class Role extends Model
 	 * @throws ServerError
 	 * @return string
 	 */
-	public function getPhrase()
-	{
+	public function getPhrase() {
 		switch ($this->id) {
 			case 2:
 				$phrase = 'admin';

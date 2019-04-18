@@ -12,8 +12,7 @@ class Receipt extends Validation
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		$this->add(
 			'bar_code',
 			new PresenceOf(

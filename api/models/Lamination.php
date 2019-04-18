@@ -32,8 +32,7 @@ class Lamination extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'LaminationPriceHistory', 'lamination_id', ['alias' => 'LaminationPriceHistory']);
@@ -42,8 +41,7 @@ class Lamination extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -63,8 +61,7 @@ class Lamination extends Model
 	 * @throws Unauthorized
 	 * @return float
 	 */
-	public function getPrice()
-	{
+	public function getPrice() {
 		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getLaminationPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
@@ -73,15 +70,14 @@ class Lamination extends Model
 			throw new ServerError("Для ламинации размера {$this->format} не задана цена");
 		}
 
-		return (float) $row->price;
+		return (float)$row->price;
 	}
 
 	/**
 	 * @param mixed $data
 	 * @throws ServerError
 	 */
-	public static function batch($data)
-	{
+	public static function batch($data) {
 		$row = self::findFirst($data->id);
 
 		for ($i = 1; $i <= $data->copies; $i++) {
@@ -93,8 +89,7 @@ class Lamination extends Model
 	 * @throws ServerError
 	 * @return LaminationSale
 	 */
-	public function sale()
-	{
+	public function sale() {
 		$newSaleRow = new LaminationSale([
 			'lamination_id' => $this->id,
 		]);

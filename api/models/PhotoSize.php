@@ -37,8 +37,7 @@ class PhotoSize extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'Photo', 'photo_size_id', ['alias' => 'Photo']);
@@ -47,8 +46,7 @@ class PhotoSize extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -94,8 +92,7 @@ class PhotoSize extends Model
 	 * Возвращает массив с вариацией количества фотографий для данного размера и цены
 	 * @return array
 	 */
-	public function getVariations()
-	{
+	public function getVariations() {
 		$result = [];
 
 		/** @var Photo $photo */

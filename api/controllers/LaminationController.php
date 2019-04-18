@@ -11,8 +11,7 @@ class LaminationController extends Controller
 	 *
 	 * @return array
 	 */
-	public function getSizeAction()
-	{
+	public function getSizeAction() {
 		$rowSet = Lamination::find();
 
 		$result = [];

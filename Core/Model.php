@@ -26,8 +26,7 @@ abstract class Model extends Phalcon\Mvc\Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		$this->setSchema("public");
 	}
 
@@ -36,8 +35,7 @@ abstract class Model extends Phalcon\Mvc\Model
 	 *
 	 * @return string
 	 */
-	public function getSource()
-	{
+	public function getSource() {
 		return $this->_tableName;
 	}
 
@@ -47,9 +45,10 @@ abstract class Model extends Phalcon\Mvc\Model
 	 * @return bool
 	 * @throws ServerError
 	 */
-	public function save($data = null, $whiteList = null)
-	{
-		if (method_exists($this,'beforeSave')) $this->beforeSave();
+	public function save($data = null, $whiteList = null) {
+		if (method_exists($this, 'beforeSave')) {
+$this->beforeSave();
+		}
 
 		if (parent::save($data, $whiteList)) {
 			return true;

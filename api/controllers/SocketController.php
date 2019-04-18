@@ -15,8 +15,7 @@ class SocketController extends Controller
 	 * @throws Unauthorized
 	 * @return string
 	 */
-	public function updateAction()
-	{
+	public function updateAction() {
 		$department = Security::getUser()->getCurrentDepartments()->getLast();
 
 		$department->notifyPersonnels();

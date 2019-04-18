@@ -40,8 +40,7 @@ class DepartmentPersonnelHistory extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
@@ -51,8 +50,7 @@ class DepartmentPersonnelHistory extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(

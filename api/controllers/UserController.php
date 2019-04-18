@@ -15,8 +15,7 @@ class UserController extends Controller
 	 * @throws Unauthorized
 	 * @return string
 	 */
-	public function editSelfAction()
-	{
+	public function editSelfAction() {
 		$user = Security::getUser();
 
 		if ($this->request->hasFiles(true)) {

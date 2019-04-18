@@ -53,8 +53,7 @@ class PrintingPriceHistory extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->belongsTo('printing_id', '\Printing', 'id', ['alias' => 'Printing']);
@@ -64,8 +63,7 @@ class PrintingPriceHistory extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -129,8 +127,7 @@ class PrintingPriceHistory extends Model
 	 * @throws Unauthorized
 	 * @return void
 	 */
-	public function beforeSave()
-	{
+	public function beforeSave() {
 		$user = Security::getUser();
 
 		$this->user_id = $user->id;

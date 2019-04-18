@@ -35,8 +35,7 @@ class Service extends Model
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		$this->hasMany('id', 'ServicePriceHistory', 'service_id', ['alias' => 'ServicePriceHistory']);
@@ -45,8 +44,7 @@ class Service extends Model
 	/**
 	 * @return boolean
 	 */
-	public function validation()
-	{
+	public function validation() {
 		$validator = new Validation();
 
 		$validator->add(
@@ -66,8 +64,7 @@ class Service extends Model
 	 * @throws Unauthorized
 	 * @return float
 	 */
-	public function getPrice()
-	{
+	public function getPrice() {
 		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getServicePriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
@@ -76,15 +73,14 @@ class Service extends Model
 			throw new ServerError("Для услуги {$this->name} не задана цена");
 		}
 
-		return (float) $row->price;
+		return (float)$row->price;
 	}
 
 	/**
 	 * @param mixed $data
 	 * @throws ServerError
 	 */
-	public static function batch($data)
-	{
+	public static function batch($data) {
 		$row = self::findFirst($data->id);
 
 		for ($i = 1; $i <= $data->copies; $i++) {
@@ -96,8 +92,7 @@ class Service extends Model
 	 * @throws ServerError
 	 * @return ServiceSale
 	 */
-	public function sale()
-	{
+	public function sale() {
 		$newSaleRow = new ServiceSale([
 			'service_id' => $this->id,
 		]);

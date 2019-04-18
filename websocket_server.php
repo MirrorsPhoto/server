@@ -24,9 +24,10 @@ $ws_worker->onWorkerStart = function() use (&$users)
 
 		//Обходим все id пользователей, которым нужно отправить сообщение
 		foreach ($data->from as $fromId) {
-
 			//Если такой пользователь не подключен - далее
-			if (!isset($users[$fromId])) continue;
+			if (!isset($users[$fromId])) {
+continue;
+			}
 
 			//Обходим все соединения пользователя и отправляем и сообщение
 			foreach ($users[$fromId] as $connect) {
@@ -69,7 +70,7 @@ $ws_worker->onConnect = function($connection) use (&$users, $config)
 $ws_worker->onClose = function($connection) use(&$users)
 {
 	//Удаляем соединение
-	foreach ($users as &$user){
+	foreach ($users as &$user) {
 		$connect = array_search($connection, $user);
 
 		unset($user[$connect]);

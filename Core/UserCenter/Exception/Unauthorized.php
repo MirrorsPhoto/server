@@ -7,8 +7,7 @@ use CoreException;
 class Unauthorized extends CoreException
 {
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct("WWW-Authenticate", 401);
 	}
 

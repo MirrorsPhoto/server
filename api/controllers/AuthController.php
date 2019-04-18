@@ -15,8 +15,7 @@ class AuthController extends Controller
 	 * @throws ServerError
 	 * @return array
 	 */
-	public function loginAction()
-	{
+	public function loginAction() {
 		$validator = new Login();
 		$validator->validate();
 

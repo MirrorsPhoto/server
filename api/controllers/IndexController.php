@@ -13,8 +13,7 @@ class IndexController extends Controller
 	 *
 	 * @return int
 	 */
-	public function indexAction()
-	{
+	public function indexAction() {
 		return 1;
 	}
 
@@ -22,8 +21,7 @@ class IndexController extends Controller
 	 * @throws NotFound
 	 * @return void
 	 */
-	public function notFoundAction()
-	{
+	public function notFoundAction() {
 		throw new NotFound();
 	}
 
@@ -32,8 +30,7 @@ class IndexController extends Controller
 	 *
 	 * @return string
 	 */
-	public function deployAction()
-	{
+	public function deployAction() {
 		return exec('git pull && php composer.phar update && ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini');
 	}
 

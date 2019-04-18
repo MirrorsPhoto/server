@@ -45,10 +45,8 @@ class Security extends Plugin
 	 * @throws Unauthorized
 	 * @return User
 	 */
-	public static function getUser()
-	{
-		if (is_null(self::$_user))
-		{
+	public static function getUser() {
+		if (is_null(self::$_user)) {
 			throw new Unauthorized();
 		}
 		return self::$_user;
@@ -57,8 +55,7 @@ class Security extends Plugin
 	/**
 	 * @return void
 	 */
-	private function _setup()
-	{
+	private function _setup() {
 		$acl = new Memory();
 		$acl->setDefaultAction(Acl::DENY);
 
@@ -73,13 +70,11 @@ class Security extends Plugin
 	/**
 	 * @return void
 	 */
-	private function _setupRole()
-	{
+	private function _setupRole() {
 		$roles = \Role::find();
 
 		/** @var \Role $role */
-		foreach ($roles as $role)
-		{
+		foreach ($roles as $role) {
 			$this->_acl->addRole(new Role((string)$role->id, $role->name));
 		}
 	}
@@ -87,18 +82,14 @@ class Security extends Plugin
 	/**
 	 * @return void
 	 */
-	private function _setupResource()
-	{
-		foreach ($this->_publicResources as $resource => $actions)
-		{
+	private function _setupResource() {
+		foreach ($this->_publicResources as $resource => $actions) {
 			$this->_acl->addResource(new Acl\Resource($resource), $actions);
 		}
 
 		//Grant access to public areas to both users and guests
-		foreach ($this->_publicResources as $resource => $actions)
-		{
-			foreach ($actions as $action)
-			{
+		foreach ($this->_publicResources as $resource => $actions) {
+			foreach ($actions as $action) {
 				$this->_acl->allow('*', $resource, $action);
 			}
 		}
@@ -107,8 +98,7 @@ class Security extends Plugin
 	/**
 	 * @return Memory
 	 */
-	private function _getAcl()
-	{
+	private function _getAcl() {
 		$this->_setup();
 
 		return $this->_acl;
@@ -121,16 +111,17 @@ class Security extends Plugin
 	 * @throws Unauthorized
 	 * @return bool
 	 */
-	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
-	{
+	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher) {
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
 
 		// Получаем список ACL
 		$acl = $this->_getAcl();
 
-		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) return true;
-        $header = $dispatcher->getDI()->get('request')->getHeader('Authorization');
+		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) {
+return true;
+		}
+		$header = $dispatcher->getDI()->get('request')->getHeader('Authorization');
 
 		if (!$header) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
@@ -160,8 +151,7 @@ class Security extends Plugin
 
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
 		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
-		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id)
-		{
+		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id) {
 			throw new AccessDenied();
 		}
 

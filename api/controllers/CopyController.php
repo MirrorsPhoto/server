@@ -12,8 +12,7 @@ class CopyController extends Controller
 	 * @param int $id
 	 * @return float
 	 */
-	public function priceAction($id)
-	{
+	public function priceAction($id) {
 		return Copy::findFirst($id)->price;
 	}
 

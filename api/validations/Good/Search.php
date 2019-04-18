@@ -11,8 +11,7 @@ class Search extends Validation
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		$this->add(
 			'query',
 			new PresenceOf(
