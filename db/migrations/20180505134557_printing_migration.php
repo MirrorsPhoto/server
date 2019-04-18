@@ -51,9 +51,9 @@ class PrintingMigration extends AbstractMigration
 					'null' => true
 				])
 				->addIndex(['printing_id', 'department_id', 'user_id', 'price', 'datetime_to'])
-				->addForeignKey('printing_id', 'printing', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+				->addForeignKey('printing_id', 'printing', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 				->create()
 			;
 
@@ -81,9 +81,9 @@ class PrintingMigration extends AbstractMigration
 				->addColumn('user_id', 'integer', ['comment' => 'Id пользователя который делал эту распечатку'])
 				->addColumn('datetime', 'timestamp', ['comment' => 'Дата продажи', 'default' => 'CURRENT_TIMESTAMP'])
 				->addIndex(['printing_id', 'department_id', 'user_id', 'datetime'])
-				->addForeignKey('printing_id', 'printing', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-				->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+				->addForeignKey('printing_id', 'printing', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+				->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 				->create()
 			;
 	}

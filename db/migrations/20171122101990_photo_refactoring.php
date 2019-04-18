@@ -8,30 +8,30 @@ class PhotoRefactoring extends AbstractMigration
 		$table = $this->table('photo');
 
 		$table
-		->addColumn('photo_size_id', 'integer', ['comment' => 'Размер'])
-		->addColumn('count', 'integer', ['comment' => 'Количество штук'])
-		->addColumn('datetime_create', 'timestamp', [
-			'comment' => 'Дата добавления этого варианта размер-кол-во',
-			'default' => 'CURRENT_TIMESTAMP'
-		])
+			->addColumn('photo_size_id', 'integer', ['comment' => 'Размер'])
+			->addColumn('count', 'integer', ['comment' => 'Количество штук'])
+			->addColumn('datetime_create', 'timestamp', [
+				'comment' => 'Дата добавления этого варианта размер-кол-во',
+				'default' => 'CURRENT_TIMESTAMP'
+			])
 		;
 
 		$table
-		->addIndex(['photo_size_id', 'count', 'datetime_create'])
+			->addIndex(['photo_size_id', 'count', 'datetime_create'])
 		;
 
 		$table
-		->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
 
 		$rows = $this->fetchAll('SELECT * FROM photo_price_history');
 
-		foreach ($this->fetchAll('SELECT * FROM photo_price_history') as $row) {
+		foreach ($rows as $row) {
 			$table->insert([
-			'photo_size_id' => $row['photo_size_id'],
-			'count' => $row['count']
+				'photo_size_id' => $row['photo_size_id'],
+				'count' => $row['count']
 			]);
 		}
 
@@ -52,21 +52,21 @@ class PhotoRefactoring extends AbstractMigration
 		}
 
 		$table
-		->changeColumn('photo_size_id', 'integer', ['comment' => 'Id фотографии'])
-		->renameColumn('photo_size_id', 'photo_id')
-		->removeColumn('count')
-		->addForeignKey('photo_id', 'photo', 'id', ['delete'=> 'RESTRICT'])
-		->update()
+			->changeColumn('photo_size_id', 'integer', ['comment' => 'Id фотографии'])
+			->renameColumn('photo_size_id', 'photo_id')
+			->removeColumn('count')
+			->addForeignKey('photo_id', 'photo', 'id', ['delete' => 'RESTRICT'])
+			->update()
 		;
 
 		$table = $this->table('photo_sale');
 		$table
-		->dropForeignKey('photo_size_id')
-		->changeColumn('photo_size_id', 'integer', ['comment' => 'Id фотографии'])
-		->renameColumn('photo_size_id', 'photo_id')
-		->removeColumn('count')
-		->addForeignKey('photo_id', 'photo', 'id', ['delete'=> 'RESTRICT'])
-		->update()
+			->dropForeignKey('photo_size_id')
+			->changeColumn('photo_size_id', 'integer', ['comment' => 'Id фотографии'])
+			->renameColumn('photo_size_id', 'photo_id')
+			->removeColumn('count')
+			->addForeignKey('photo_id', 'photo', 'id', ['delete' => 'RESTRICT'])
+			->update()
 		;
 	}
 }

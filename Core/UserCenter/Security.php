@@ -78,7 +78,7 @@ class Security extends Plugin
 
 		/** @var \Role $role */
 		foreach ($roles as $role) {
-			$this->acl->addRole(new Role((string)$role->id, $role->name));
+			$this->acl->addRole(new Role((string) $role->id, $role->name));
 		}
 	}
 

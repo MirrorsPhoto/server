@@ -39,7 +39,7 @@ class Request extends HttpRequest
 	public function getPut($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false)
 	{
 		if (!is_array($this->_putCache)) {
-			$this->_putCache = ($this->isApplicationJson()) ? (array)$this->getJsonRawBody() : $this->getRawBody();
+			$this->_putCache = ($this->isApplicationJson()) ? (array) $this->getJsonRawBody() : $this->getRawBody();
 		}
 
 		return parent::getPut($name, $filters, $defaultValue, $notAllowEmpty, $noRecursive);
@@ -56,7 +56,7 @@ class Request extends HttpRequest
 	{
 		if ($this->isApplicationJson()) {
 			if (is_null($this->postCache)) {
-				$this->postCache = (array)$this->getJsonRawBody();
+				$this->postCache = (array) $this->getJsonRawBody();
 			}
 
 			return $this->getHelper($this->postCache, $name, $filters, $defaultValue, $notAllowEmpty, $notAllowEmpty);
@@ -76,7 +76,7 @@ class Request extends HttpRequest
 	{
 		if ($this->isApplicationJson()) {
 			if (is_null($this->queryCache)) {
-				$this->queryCache = (array)$this->getJsonRawBody();
+				$this->queryCache = (array) $this->getJsonRawBody();
 			}
 
 			return $this->getHelper($this->queryCache, $name, $filters, $defaultValue, $notAllowEmpty, $notAllowEmpty);

@@ -178,7 +178,7 @@ class Department extends Model
 		$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['cash']['today'][$res['type']] = (int)$res['summ'];
+			$data['cash']['today'][$res['type']] = (int) $res['summ'];
 		}
 
 		unset($query['cash']['today']);
@@ -194,12 +194,12 @@ class Department extends Model
 		$result = $this->getDI()->getShared('db')->query($agoSql);
 
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['cash'][$res['momemt']] = (int)$res['sum'];
+			$data['cash'][$res['momemt']] = (int) $res['sum'];
 		}
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['client'][$res['moment']] = (int)$res['count'];
+			$data['client'][$res['moment']] = (int) $res['count'];
 		}
 
 		$socket = WebSocket::getInstance();

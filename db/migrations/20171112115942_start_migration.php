@@ -518,9 +518,9 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('good_id', 'good', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('good_id', 'good', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -544,9 +544,9 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('good_id', 'good', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('good_id', 'good', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -577,8 +577,8 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -604,8 +604,8 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -631,8 +631,8 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -688,8 +688,8 @@ class StartMigration extends AbstractMigration
 
 		$table
 			->addForeignKey('lamination_size_id', 'lamination_size', 'id', ['delete' => 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -723,9 +723,9 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('lamination_size_id', 'lamination_size', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('lamination_size_id', 'lamination_size', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -804,9 +804,9 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
@@ -892,9 +892,9 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table
-			->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('department_id', 'department', 'id', ['delete'=> 'RESTRICT'])
-			->addForeignKey('user_id', 'user', 'id', ['delete'=> 'RESTRICT'])
+			->addForeignKey('photo_size_id', 'photo_size', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
+			->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 		;
 
 		$table->create();
