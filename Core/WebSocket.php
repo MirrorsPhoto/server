@@ -19,7 +19,9 @@ class WebSocket
 	 */
 	public function __construct($address = 'tcp://websocket:1337')
 	{
-		if (!$this->_stream = stream_socket_client($address)) {
+		$this->_stream = stream_socket_client($address);
+
+		if (!$this->_stream) {
 			throw new ServerError('Не удаётся установить соединение с WebSocket сервером');
 		}
 	}
