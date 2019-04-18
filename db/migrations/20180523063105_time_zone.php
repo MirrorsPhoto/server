@@ -5,8 +5,8 @@ use Phinx\Migration\AbstractMigration;
 
 class TimeZone extends AbstractMigration
 {
-    public function change()
-    {
+	public function change()
+	{
 			$this->execute("set timezone TO 'Europe/Moscow';");
 
 			$this->execute('UPDATE "check" SET datetime = datetime + interval' . "'3 hour';");
@@ -42,5 +42,5 @@ class TimeZone extends AbstractMigration
 				UPDATE service_price_history SET datetime_to = datetime_to + interval '3 hour';
 				UPDATE service_sale SET datetime = datetime + interval '3 hour';
 			");
-		}
+	}
 }
