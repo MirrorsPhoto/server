@@ -1,8 +1,5 @@
 FROM php:7.0-fpm-alpine
 
-#Update
-RUN apk update && apk upgrade
-
 #Install custom dependencies
 RUN apk --no-cache add nano mc bash gcc libtool autoconf g++ make pcre-dev re2c file
 

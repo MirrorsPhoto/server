@@ -1,8 +1,5 @@
 FROM php:7.1-cli-alpine
 
-#Update
-RUN apk update && apk upgrade
-
 # Build and install PHP extensions
 RUN docker-php-ext-install -j$(nproc) pcntl
 
