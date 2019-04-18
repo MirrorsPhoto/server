@@ -12,7 +12,7 @@ class ServiceSale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'service_sale';
+	protected $tableName = 'service_sale';
 
 	/**
 	 * @var int
@@ -106,5 +106,4 @@ class ServiceSale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

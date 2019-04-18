@@ -22,5 +22,4 @@ class Search extends Validation
 			)
 		);
 	}
-
 }

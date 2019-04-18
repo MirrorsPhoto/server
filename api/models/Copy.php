@@ -18,7 +18,7 @@ class Copy extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'copy';
+	protected $tableName = 'copy';
 
 	/**
 	 * @var string
@@ -111,5 +111,4 @@ class Copy extends Model
 
 		return $newSaleRow;
 	}
-
 }

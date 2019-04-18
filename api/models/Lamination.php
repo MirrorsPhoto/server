@@ -15,7 +15,7 @@ class Lamination extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'lamination';
+	protected $tableName = 'lamination';
 
 	/**
 	 * @var string
@@ -103,5 +103,4 @@ class Lamination extends Model
 
 		return $newSaleRow;
 	}
-
 }

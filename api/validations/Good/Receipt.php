@@ -52,5 +52,4 @@ class Receipt extends Validation
 			)
 		);
 	}
-
 }

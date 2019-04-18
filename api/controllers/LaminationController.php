@@ -30,5 +30,4 @@ class LaminationController extends Controller
 
 		return $result;
 	}
-
 }

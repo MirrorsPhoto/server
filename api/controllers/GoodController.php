@@ -130,5 +130,4 @@ class GoodController extends Controller
 
 		return 'good.receipt.success';
 	}
-
 }

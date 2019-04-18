@@ -12,7 +12,7 @@ class LaminationSale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'lamination_sale';
+	protected $tableName = 'lamination_sale';
 
 	/**
 	 * @var int
@@ -106,5 +106,4 @@ class LaminationSale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

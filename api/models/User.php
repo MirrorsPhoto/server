@@ -21,7 +21,7 @@ class User extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'user';
+	protected $tableName = 'user';
 
 	/**
 	 * @var string
@@ -95,7 +95,8 @@ class User extends Model
 		$this->hasManyToMany(
 			'id',
 			'DepartmentPersonnelHistory',
-			'user_id', 'department_id',
+			'user_id',
+			'department_id',
 			'Department',
 			'id',
 			[
@@ -133,5 +134,4 @@ class User extends Model
 	{
 		return $this->getDepartments('datetime_to IS NULL');
 	}
-
 }

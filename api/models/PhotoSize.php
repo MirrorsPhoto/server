@@ -14,7 +14,7 @@ class PhotoSize extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'photo_size';
+	protected $tableName = 'photo_size';
 
 	/**
 	 * @var string
@@ -109,5 +109,4 @@ class PhotoSize extends Model
 
 		return $result;
 	}
-
 }

@@ -12,7 +12,7 @@ class PrintingPriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'printing_price_history';
+	protected $tableName = 'printing_price_history';
 
 	/**
 	 * @var int
@@ -136,5 +136,4 @@ class PrintingPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

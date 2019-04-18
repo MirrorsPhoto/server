@@ -31,5 +31,4 @@ class ServiceController extends Controller
 
 		return $result;
 	}
-
 }

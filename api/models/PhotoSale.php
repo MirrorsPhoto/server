@@ -12,7 +12,7 @@ class PhotoSale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'photo_sale';
+	protected $tableName = 'photo_sale';
 
 	/**
 	 * @var int
@@ -106,5 +106,4 @@ class PhotoSale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

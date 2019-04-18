@@ -14,7 +14,7 @@ class Role extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'role';
+	protected $tableName = 'role';
 
 	/**
 	 * @var string
@@ -70,5 +70,4 @@ class Role extends Model
 
 		return "user.roles.$phrase";
 	}
-
 }

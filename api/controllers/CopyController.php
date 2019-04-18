@@ -16,5 +16,4 @@ class CopyController extends Controller
 	{
 		return Copy::findFirst($id)->price;
 	}
-
 }

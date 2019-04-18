@@ -45,7 +45,6 @@ class SaleController extends Controller
 					break;
 				default:
 					throw new BadRequest('Не известный тип услуги ' . $item->type);
-
 			}
 
 			$manager::batch($item);
@@ -61,5 +60,4 @@ class SaleController extends Controller
 
 		return true;
 	}
-
 }

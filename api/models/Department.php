@@ -18,7 +18,7 @@ class Department extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'department';
+	protected $tableName = 'department';
 
 	/**
 	 * @var int
@@ -50,7 +50,8 @@ class Department extends Model
 		$this->hasManyToMany(
 			'id',
 			'DepartmentPersonnelHistory',
-			'department_id', 'user_id',
+			'department_id',
+			'user_id',
 			'User',
 			'id',
 			[
@@ -94,7 +95,7 @@ class Department extends Model
 		);
 
 		return $this->validate($validator);
-    }
+	}
 
 
 	/**
@@ -198,7 +199,6 @@ class Department extends Model
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-
 			$data['client'][$res['moment']] = (int)$res['count'];
 		}
 
@@ -206,5 +206,4 @@ class Department extends Model
 
 		$socket->send($arrUserIds, $data);
 	}
-
 }

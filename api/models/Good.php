@@ -20,7 +20,7 @@ class Good extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'good';
+	protected $tableName = 'good';
 
 	/**
 	 * @var string
@@ -133,7 +133,6 @@ class Good extends Model
 			$selfObj,
 			$selfObj->getReadConnection()->query($query)
 		);
-
 	}
 
 	/**
@@ -146,7 +145,6 @@ class Good extends Model
 		$available = self::getAvaible($this->id);
 
 		return (bool) $available->getFirst();
-
 	}
 
 	/**
@@ -206,5 +204,4 @@ class Good extends Model
 
 		return $rowReceipt->save();
 	}
-
 }

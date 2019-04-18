@@ -10,7 +10,7 @@ class DepartmentPersonnelHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'department_personnel_history';
+	protected $tableName = 'department_personnel_history';
 
 	/**
 	 * @var int
@@ -93,5 +93,4 @@ class DepartmentPersonnelHistory extends Model
 
 		return $this->validate($validator);
 	}
-
 }

@@ -23,5 +23,4 @@ class SocketController extends Controller
 
 		return 'socket.update.success';
 	}
-
 }

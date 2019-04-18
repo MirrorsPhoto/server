@@ -26,15 +26,4 @@ class IndexController extends Controller
 	{
 		throw new NotFound();
 	}
-
-	/**
-	 * @Get('/deploy')
-	 *
-	 * @return string
-	 */
-	public function deployAction()
-	{
-		return exec('git pull && php composer.phar update && ./vendor/phalcon/devtools/phalcon.php migration run --config=./api/config/config.ini');
-	}
-
 }

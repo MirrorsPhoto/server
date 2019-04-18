@@ -12,7 +12,7 @@ class File extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'file';
+	protected $tableName = 'file';
 
 	/**
 	 * @var string
@@ -54,7 +54,9 @@ class File extends Model
 			}
 		} else {
 			//Если нет такой папки - создать
-			if (!is_dir("$dir/$path")) mkdir("$dir/$path", 0777, true);
+			if (!is_dir("$dir/$path")) {
+				mkdir("$dir/$path", 0777, true);
+			}
 
 			$isSave = $file->moveTo("$dir/$path/$fileName");
 
@@ -88,12 +90,11 @@ class File extends Model
 	 * @return string
 	 */
 	public function getFullPath()
-    {
+	{
 		$config = ConfigIni::getInstance();
 
 		$domain = $config->static->url;
 
 		return "$domain/{$this->path}";
-    }
-
+	}
 }

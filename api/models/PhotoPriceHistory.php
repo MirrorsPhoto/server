@@ -12,7 +12,7 @@ class PhotoPriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'photo_price_history';
+	protected $tableName = 'photo_price_history';
 
 	/**
 	 * @var int
@@ -136,5 +136,4 @@ class PhotoPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

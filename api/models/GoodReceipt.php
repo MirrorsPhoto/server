@@ -11,7 +11,7 @@ class GoodReceipt extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'good_receipt';
+	protected $tableName = 'good_receipt';
 
 	/**
 	 * @var int
@@ -103,5 +103,4 @@ class GoodReceipt extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

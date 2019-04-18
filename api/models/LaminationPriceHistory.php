@@ -12,7 +12,7 @@ class LaminationPriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'lamination_price_history';
+	protected $tableName = 'lamination_price_history';
 
 	/**
 	 * @var int
@@ -136,5 +136,4 @@ class LaminationPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

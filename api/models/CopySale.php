@@ -12,7 +12,7 @@ class CopySale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'copy_sale';
+	protected $tableName = 'copy_sale';
 
 	/**
 	 * @var int
@@ -107,5 +107,4 @@ class CopySale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

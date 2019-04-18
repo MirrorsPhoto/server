@@ -11,9 +11,9 @@ class AuthController extends Controller
 {
 
 	/**
-	 * @throws BadRequest
-	 * @throws ServerError
 	 * @return array
+	 * @throws ServerError
+	 * @throws BadRequest
 	 */
 	public function loginAction()
 	{
@@ -54,5 +54,4 @@ class AuthController extends Controller
 			'token' => $token
 		];
 	}
-
 }

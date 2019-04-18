@@ -12,7 +12,7 @@ class PrintingSale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'printing_sale';
+	protected $tableName = 'printing_sale';
 
 	/**
 	 * @var int
@@ -106,5 +106,4 @@ class PrintingSale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

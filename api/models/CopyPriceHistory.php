@@ -12,7 +12,7 @@ class CopyPriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'copy_price_history';
+	protected $tableName = 'copy_price_history';
 
 	/**
 	 * @var int
@@ -136,5 +136,4 @@ class CopyPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

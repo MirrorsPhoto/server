@@ -17,7 +17,7 @@ class Photo extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'photo';
+	protected $tableName = 'photo';
 
 	/**
 	 * @var int
@@ -105,11 +105,12 @@ class Photo extends Model
 		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
 		if (!$row) {
-			throw new ServerError("Для фотографии {$this->width}x{$this->height} с количеством {$this->count}шт не задана цена");
+			$errorMsg = "Для фотографии {$this->width}x{$this->height} с количеством {$this->count}шт не задана цена";
+			throw new ServerError($errorMsg);
 		}
 
 		return (float) $row->price;
-  }
+	}
 
 	/**
 	 * @param mixed $data
@@ -142,5 +143,4 @@ class Photo extends Model
 
 		return $newSaleRow;
 	}
-
 }

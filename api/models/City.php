@@ -9,7 +9,7 @@ class City extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'city';
+	protected $tableName = 'city';
 
 	/**
 	 * @var string
@@ -45,5 +45,4 @@ class City extends Model
 
 		return $this->validate($validator);
 	}
-
 }

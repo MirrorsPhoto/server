@@ -31,5 +31,4 @@ class Login extends Validation
 			)
 		);
 	}
-
 }

@@ -1,25 +1,28 @@
 <?php
 
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 /**
  * Class Printing
  *
  * @property float price
+ * @method PrintingPriceHistory getPrintingPriceHistory(string $string)
  */
 class Printing extends Model
 {
 
-	protected $_tableName = 'printing';
+	protected $tableName = 'printing';
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $name;
+	/**
+	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $name;
 
 	/**
 	 *
@@ -42,19 +45,19 @@ class Printing extends Model
 	 */
 	public $ext;
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime_create;
+	/**
+	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime_create;
 
-    public function initialize()
-    {
-	    parent::initialize();
+	public function initialize()
+	{
+		parent::initialize();
 
-	    $this->hasMany('id', 'PrintingPriceHistory', 'printing_id', ['alias' => 'PrintingPriceHistory']);
-    }
+		$this->hasMany('id', 'PrintingPriceHistory', 'printing_id', ['alias' => 'PrintingPriceHistory']);
+	}
 
 	/**
 	 * Validations and business logic
@@ -77,17 +80,28 @@ class Printing extends Model
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @return float
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 */
 	public function getPrice()
 	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getPrintingPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) throw new \Core\Exception\ServerError("Для распечатки {$this->name} не задана цена");
+		if (!$row) {
+			throw new ServerError("Для распечатки {$this->name} не задана цена");
+		}
 
 		return (float) $row->price;
 	}
 
+	/**
+	 * @param $data
+	 * @throws ServerError
+	 */
 	public static function batch($data)
 	{
 		$row = self::findFirst($data->id);
@@ -97,6 +111,10 @@ class Printing extends Model
 		}
 	}
 
+	/**
+	 * @return PrintingSale
+	 * @throws ServerError
+	 */
 	public function sale()
 	{
 		$newSaleRow = new PrintingSale([
@@ -107,5 +125,4 @@ class Printing extends Model
 
 		return $newSaleRow;
 	}
-
 }

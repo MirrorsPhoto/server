@@ -18,7 +18,7 @@ class Service extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'service';
+	protected $tableName = 'service';
 
 	/**
 	 * @var string
@@ -106,5 +106,4 @@ class Service extends Model
 
 		return $newSaleRow;
 	}
-
 }

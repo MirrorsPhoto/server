@@ -11,9 +11,9 @@ class UserController extends Controller
 {
 
 	/**
-	 * @throws ServerError
-	 * @throws Unauthorized
 	 * @return string
+	 * @throws Unauthorized
+	 * @throws ServerError
 	 */
 	public function editSelfAction()
 	{
@@ -36,5 +36,4 @@ class UserController extends Controller
 
 		return "Профиль успешно изменён";
 	}
-
 }

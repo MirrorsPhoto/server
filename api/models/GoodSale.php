@@ -12,7 +12,7 @@ class GoodSale extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'good_sale';
+	protected $tableName = 'good_sale';
 
 	/**
 	 * @var int

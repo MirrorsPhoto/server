@@ -11,7 +11,7 @@ class GoodPriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'good_price_history';
+	protected $tableName = 'good_price_history';
 
 	/**
 	 * @var int
@@ -108,5 +108,4 @@ class GoodPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

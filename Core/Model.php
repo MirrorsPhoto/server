@@ -38,7 +38,7 @@ abstract class Model extends Phalcon\Mvc\Model
 	 */
 	public function getSource()
 	{
-		return $this->_tableName;
+		return $this->tableName;
 	}
 
 	/**

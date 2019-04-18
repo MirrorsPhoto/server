@@ -46,5 +46,4 @@ class PhotoController extends Controller
 
 		return $result;
 	}
-
 }

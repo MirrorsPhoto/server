@@ -22,5 +22,4 @@ class Add extends Validation
 			)
 		);
 	}
-
 }

@@ -12,7 +12,7 @@ class ServicePriceHistory extends Model
 	/**
 	 * @var string
 	 */
-	protected $_tableName = 'service_price_history';
+	protected $tableName = 'service_price_history';
 
 	/**
 	 * @var int
@@ -136,5 +136,4 @@ class ServicePriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
-
 }

@@ -34,5 +34,4 @@ class PrintingController extends Controller
 
 		return $result;
 	}
-
 }
