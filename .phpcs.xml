@@ -161,7 +161,11 @@
 
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
 
-	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat">
+		<properties>
+			<property name="allowMultiline" value="true"/>
+		</properties>
+	</rule>
 
 	<rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
 
