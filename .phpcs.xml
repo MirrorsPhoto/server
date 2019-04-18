@@ -161,11 +161,7 @@
 
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
 
-	<rule ref="Generic.Strings.UnnecessaryStringConcat">
-		<properties>
-			<property name="allowMultiline" value="true" />
-		</properties>
-	</rule>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
 
 	<rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
 
@@ -177,7 +173,7 @@
 
 	<rule ref="Squiz.ControlStructures.ControlSignature">
 		<properties>
-			<property name="requiredSpacesBeforeColon" value="0" />
+			<property name="requiredSpacesBeforeColon" value="0"/>
 		</properties>
 	</rule>
 
@@ -189,13 +185,13 @@
 
 	<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
 		<properties>
-			<property name="ignoreNewlines" value="true" />
+			<property name="ignoreNewlines" value="true"/>
 		</properties>
 	</rule>
 
 	<rule ref="Squiz.WhiteSpace.OperatorSpacing">
 		<properties>
-			<property name="ignoreNewlines" value="true" />
+			<property name="ignoreNewlines" value="true"/>
 		</properties>
 	</rule>
 </ruleset>
