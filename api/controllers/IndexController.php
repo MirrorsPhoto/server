@@ -15,7 +15,6 @@ class IndexController extends Controller
 	 */
 	public function indexAction()
 	{
-		var_dump($this->request->getBestLanguage());die;
 		return 1;
 	}
 

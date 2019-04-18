@@ -14,7 +14,6 @@ class CopyController extends Controller
 	 */
 	public function priceAction($id)
 	{
-		var_dump($this->request->getBestLanguage());die;
 		return Copy::findFirst($id)->price;
 	}
 
