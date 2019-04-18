@@ -38,12 +38,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this
-			->table('city')
-			->insert([['name' => 'Амвросиевка']])
-			->save()
-		;
 	}
 
 	private function department()
@@ -69,15 +63,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('department')->insert([
-			[
-				'city_id' => 1,
-				'name' => 'Амвросиевка',
-				'address' => 'Фрунзе 16'
-			]
-		])->save();
-
 		$table = $this->table('department_personnel_history');
 
 		$table
@@ -108,21 +93,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('department_personnel_history')->insert([
-			[
-				'department_id' => 1,
-				'user_id'       => 1
-			],
-			[
-				'department_id' => 1,
-				'user_id'       => 2
-			],
-			[
-				'department_id' => 1,
-				'user_id'       => 3
-			]
-		])->save();
 	}
 
 	private function user()
@@ -138,13 +108,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('role')->insert([
-			['name' => 'Гость'],
-			['name' => 'Администратор'],
-			['name' => 'Оператор'],
-			['name' => 'Пользователь']
-		])->save();
 
 		$table = $this->table('file');
 
@@ -216,33 +179,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('user')->insert([
-			[
-				'username' => 'admin',
-				'first_name' => 'Админ',
-				'last_name' => 'Админский',
-				'role_id' => '2',
-				'password' => '$2y$10$s6fBj2xEDJfwJikk2kRt8elkqfGX9YI/zEzpf9pxE2jiliXznSIWS',
-				'email' => 'admin@mirrors-photo.ru'
-			],
-			[
-				'username' => 'dimchenko_alina',
-				'first_name' => 'Алина',
-				'last_name' => 'Дымченко',
-				'role_id' => '2',
-				'password' => '$2y$10$hYV7js7YRrJ/56Kfk7LEN.UMbTG.WQb1wxt7gYYdXxiZIg7car3bG',
-				'email' => 'dimchenko_alina@icloud.com'
-			],
-			[
-				'username' => 'jonkofee',
-				'first_name' => 'Jon',
-				'last_name' => 'Kofee',
-				'role_id' => '2',
-				'password' => '$2y$10$e5A4kmEvLI1g8LQ/cw.BX.pTmQzyAzXoxsDYm8Un.XnIkdUA7HWZK',
-				'email' => 'jonkofee@icloud.com'
-			]
-		])->save();
 	}
 
 	private function good()
@@ -274,14 +210,6 @@ class StartMigration extends AbstractMigration
 
 		$table->create();
 
-		$this->table('good')->insert([
-			[
-				'name' => 'Тестовый товар',
-				'description' => 'Тестовое описание',
-				'bar_code' => '1234567890123'
-			]
-		])->save();
-
 		$table = $this->table('good_receipt');
 
 		$table
@@ -312,189 +240,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('good_receipt')->insert([
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			],
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 420
-			]
-		])->save();
 
 		$table = $this->table('good_sale');
 
@@ -550,15 +295,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('good_price_history')->insert([
-			[
-				'good_id' => 1,
-				'department_id' => 1,
-				'user_id' => 1,
-				'price' => 500
-			]
-		])->save();
 	}
 
 	private function check()
@@ -610,14 +346,6 @@ class StartMigration extends AbstractMigration
 
 		$table->create();
 
-		$this->table('copy_price_history')->insert([
-			[
-				'department_id'         => 1,
-				'user_id'               => 1,
-				'price'                 => 3
-			]
-		])->save();
-
 		$table = $this->table('copy_sale');
 
 		$table
@@ -656,15 +384,6 @@ class StartMigration extends AbstractMigration
 
 		$table->create();
 
-		$this->table('lamination_size')->insert([
-			[
-				'format' => 'A4'
-			],
-			[
-				'format' => 'A5'
-			]
-		])->save();
-
 		$table = $this->table('lamination_price_history');
 
 		$table
@@ -693,21 +412,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('lamination_price_history')->insert([
-			[
-				'lamination_size_id'    => 1,
-				'department_id'         => 1,
-				'user_id'               => 1,
-				'price'                 => 30
-			],
-			[
-				'lamination_size_id'    => 2,
-				'department_id'         => 1,
-				'user_id'               => 1,
-				'price'                 => 20
-			]
-		])->save();
 
 		$table = $this->table('lamination_sale');
 
@@ -750,37 +454,6 @@ class StartMigration extends AbstractMigration
 
 		$table->create();
 
-		$this->table('photo_size')->insert([
-			[
-				'width'     => 2.5,
-				'height'    => 3
-			],
-			[
-				'width'     => 3,
-				'height'    => 4
-			],
-			[
-				'width'     => 3.6,
-				'height'    => 4.6
-			],
-			[
-				'width'     => 4,
-				'height'    => 6
-			],
-			[
-				'width'     => 5,
-				'height'    => 5
-			],
-			[
-				'width'     => 9,
-				'height'    => 12
-			],
-			[
-				'width'     => 10,
-				'height'    => 15
-			]
-		])->save();
-
 		$table = $this->table('photo_price_history');
 
 		$table
@@ -810,72 +483,6 @@ class StartMigration extends AbstractMigration
 		;
 
 		$table->create();
-
-		$this->table('photo_price_history')->insert([
-			[
-				'photo_size_id' => 1,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 4,
-				'price'         => 100
-			],
-			[
-				'photo_size_id' => 2,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 4,
-				'price'         => 100
-			],
-			[
-				'photo_size_id' => 2,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 6,
-				'price'         => 140
-			],
-			[
-				'photo_size_id' => 3,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 2,
-				'price'         => 60
-			],
-			[
-				'photo_size_id' => 3,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 4,
-				'price'         => 120
-			],
-			[
-				'photo_size_id' => 4,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 2,
-				'price'         => 100
-			],
-			[
-				'photo_size_id' => 5,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 2,
-				'price'         => 120
-			],
-			[
-				'photo_size_id' => 6,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 1,
-				'price'         => 120
-			],
-			[
-				'photo_size_id' => 7,
-				'department_id' => 1,
-				'user_id'       => 1,
-				'count'         => 1,
-				'price'         => 120
-			]
-		])->save();
 
 		$table = $this->table('photo_sale');
 

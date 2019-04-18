@@ -19,10 +19,7 @@ class RefactoringCopy extends AbstractMigration
 			->addIndex('format', ['unique' => true])
 		;
 
-		$copy
-			->insert(['format' => 'A4'])
-			->save()
-		;
+		$copy->save();
 
 		$copyPriceHistory = $this->table('copy_price_history');
 

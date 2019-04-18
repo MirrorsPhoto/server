@@ -22,19 +22,6 @@ class PrintingMigration extends AbstractMigration
 				->create()
 			;
 
-			$printing
-				->insert([
-					[
-						'name' => 'A4',
-					],
-					[
-						'name' => 'A4',
-						'color' => 'true',
-					]
-				])
-				->update()
-			;
-
 			$printingPriceHistory = $this->table('printing_price_history');
 
 			$printingPriceHistory
@@ -55,24 +42,6 @@ class PrintingMigration extends AbstractMigration
 				->addForeignKey('department_id', 'department', 'id', ['delete' => 'RESTRICT'])
 				->addForeignKey('user_id', 'user', 'id', ['delete' => 'RESTRICT'])
 				->create()
-			;
-
-			$printingPriceHistory
-				->insert([
-					[
-						'printing_id' => 1,
-						'department_id' => 1,
-						'user_id' => 1,
-						'price' => 4
-					],
-					[
-						'printing_id' => 2,
-						'department_id' => 1,
-						'user_id' => 1,
-						'price' => 20
-					]
-				])
-				->update()
 			;
 
 			$this->table('printing_sale')
