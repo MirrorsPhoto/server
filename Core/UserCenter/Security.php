@@ -4,17 +4,25 @@ namespace Core\UserCenter;
 
 use Core\UserCenter\Exception\AccessDenied;
 use Core\UserCenter\Exception\Unauthorized;
+use JWT;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\User\Plugin;
 use Phalcon\Acl;
 use Phalcon\Acl\Role;
 use Phalcon\Mvc\Dispatcher;
-use Phalcon\Acl\Adapter\Memory as AclList;
+use Phalcon\Acl\Adapter\Memory;
+use User;
 
 class Security extends Plugin
 {
+	/**
+	 * @var Memory
+	 */
 	private $_acl;
 
+	/**
+	 * @var array
+	 */
 	private $_publicResources = [
 		'index' =>
 			[
@@ -28,11 +36,14 @@ class Security extends Plugin
 			]
 	];
 
+	/**
+	 * @var User
+	 */
 	protected static $_user;
 
 	/**
-	 * @return \User
 	 * @throws Unauthorized
+	 * @return User
 	 */
 	public static function getUser()
 	{
@@ -43,9 +54,12 @@ class Security extends Plugin
 		return self::$_user;
 	}
 
+	/**
+	 * @return void
+	 */
 	private function _setup()
 	{
-		$acl = new AclList();
+		$acl = new Memory();
 		$acl->setDefaultAction(Acl::DENY);
 
 		$this->_acl = $acl;
@@ -56,16 +70,23 @@ class Security extends Plugin
 		$this->_acl->allow(\Role::ADMIN, '*', '*');
 	}
 
+	/**
+	 * @return void
+	 */
 	private function _setupRole()
 	{
 		$roles = \Role::find();
 
+		/** @var \Role $role */
 		foreach ($roles as $role)
 		{
 			$this->_acl->addRole(new Role((string)$role->id, $role->name));
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	private function _setupResource()
 	{
 		foreach ($this->_publicResources as $resource => $actions)
@@ -83,6 +104,9 @@ class Security extends Plugin
 		}
 	}
 
+	/**
+	 * @return Memory
+	 */
 	private function _getAcl()
 	{
 		$this->_setup();
@@ -90,6 +114,13 @@ class Security extends Plugin
 		return $this->_acl;
 	}
 
+	/**
+	 * @param Event $event
+	 * @param Dispatcher $dispatcher
+	 * @throws AccessDenied
+	 * @throws Unauthorized
+	 * @return bool
+	 */
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
 	{
 		$controller = $dispatcher->getControllerName();
@@ -112,7 +143,9 @@ class Security extends Plugin
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
 			throw new Unauthorized();
 		}
-		$user = \User::findFirst([
+
+		/** @var User $user */
+		$user = User::findFirst([
 			"token = '$token'"
 		]);
 
@@ -121,7 +154,7 @@ class Security extends Plugin
 			throw new Unauthorized();
 		}
 
-		$jwt = \JWT::getInstance();
+		$jwt = JWT::getInstance();
 
 		$decoded = $jwt::decode($token);
 
@@ -129,7 +162,7 @@ class Security extends Plugin
 		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
 		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id)
 		{
-			throw new AccessDenied($controller, $action, $user->role_id);
+			throw new AccessDenied();
 		}
 
 		$user->department_id = $user->currentDepartments->getFirst()->id;

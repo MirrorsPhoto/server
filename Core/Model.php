@@ -1,18 +1,30 @@
 <?php
 
-abstract class Model extends \Phalcon\Mvc\Model
+use Core\Exception\ServerError;
+use Phalcon\Mvc\Model\Resultset\Simple;
+
+/**
+ * Class Model
+ *
+ * @property string _tableName
+ *
+ * @method update()
+ * @method static self findFirst(int $id)
+ * @method static Simple find(mixed $params = null)
+ * @method int count()
+ */
+abstract class Model extends Phalcon\Mvc\Model
 {
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Identity
 	 * @Column(type="integer", length=32, nullable=false)
 	 */
 	public $id;
 
 	/**
-	 * Initialize method for model.
+	 * @return void
 	 */
 	public function initialize()
 	{
@@ -29,11 +41,19 @@ abstract class Model extends \Phalcon\Mvc\Model
 		return $this->_tableName;
 	}
 
+	/**
+	 * @param mixed $data
+	 * @param null $whiteList
+	 * @return bool
+	 * @throws ServerError
+	 */
 	public function save($data = null, $whiteList = null)
 	{
 		if (method_exists($this,'beforeSave')) $this->beforeSave();
 
-		if (parent::save($data, $whiteList)) return true;
+		if (parent::save($data, $whiteList)) {
+			return true;
+		}
 
 		$messages = [];
 
@@ -41,7 +61,7 @@ abstract class Model extends \Phalcon\Mvc\Model
 			$messages[] = $message->getMessage();
 		}
 
-		throw new \Core\Exception\ServerError($messages);
+		throw new ServerError($messages);
 	}
 
 }

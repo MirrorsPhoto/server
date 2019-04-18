@@ -4,6 +4,11 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
+/**
+ * Class Printing
+ *
+ * @property float price
+ */
 class Printing extends Model
 {
 

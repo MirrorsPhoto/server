@@ -1,38 +1,48 @@
 <?php
 
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
+/**
+ * Class Service
+ *
+ * @property float price
+ * @method ServicePriceHistory getServicePriceHistory(string $string)
+ */
 class Service extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'service';
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $name;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime_create;
-
-    public function initialize()
-    {
-	    parent::initialize();
-
-	    $this->hasMany('id', 'ServicePriceHistory', 'service_id', ['alias' => 'ServicePriceHistory']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $name;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime_create;
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->hasMany('id', 'ServicePriceHistory', 'service_id', ['alias' => 'ServicePriceHistory']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -51,17 +61,28 @@ class Service extends Model
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return float
+	 */
 	public function getPrice()
 	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getServicePriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) throw new \Core\Exception\ServerError("Для услуги {$this->name} не задана цена");
+		if (!$row) {
+			throw new ServerError("Для услуги {$this->name} не задана цена");
+		}
 
 		return (float) $row->price;
 	}
 
+	/**
+	 * @param mixed $data
+	 * @throws ServerError
+	 */
 	public static function batch($data)
 	{
 		$row = self::findFirst($data->id);
@@ -71,6 +92,10 @@ class Service extends Model
 		}
 	}
 
+	/**
+	 * @throws ServerError
+	 * @return ServiceSale
+	 */
 	public function sale()
 	{
 		$newSaleRow = new ServiceSale([

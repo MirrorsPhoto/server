@@ -1,21 +1,34 @@
 <?php
 
+use Core\Exception\BadRequest;
+use Core\Exception\ServerError;
+use Validator\Auth\Login;
+
 /**
  * @RoutePrefix('/auth')
  */
 class AuthController extends Controller
 {
 
+	/**
+	 * @throws BadRequest
+	 * @throws ServerError
+	 * @return array
+	 */
 	public function loginAction()
 	{
-		(new \Validator\Auth\Login())->validate();
+		$validator = new Login();
+		$validator->validate();
 
 		$login = $this->getPost('login');
 		$password = $this->getPost('password');
 
+		/** @var User $user */
 		$user = User::findFirstByUsername($login);
 
-		if (!$user || !password_verify($password, $user->password)) throw new \Core\Exception\BadRequest('auth.invalid_login_or_pass'); //Не верный логин или пароль
+		if (!$user || !password_verify($password, $user->password)) {
+			throw new BadRequest('auth.invalid_login_or_pass'); //Не верный логин или пароль
+		}
 
 		$jwt = JWT::getInstance();
 
@@ -26,18 +39,20 @@ class AuthController extends Controller
 			'middle_name' => $user->middle_name,
 			'last_name' => $user->last_name,
 			'email' => $user->email,
-			'role_id' => $user->role->id,
-			'role_phrase' => $user->role->getPhrase(),
-			'avatar' => $user->avatar ? $user->avatar->fullPath : ''
+			'role_id' => $user->getRole()->id,
+			'role_phrase' => $user->getRole()->getPhrase(),
+			'avatar' => $user->getAvatar() ? $user->getAvatar()->fullPath : ''
 		]);
 
 		$user->token = $token;
 
-		if ($user->update()) {
-			return [
-				'token' => $token
-			];
+		if (!$user->update()) {
+			throw new ServerError();
 		}
+
+		return [
+			'token' => $token
+		];
 	}
 
 }

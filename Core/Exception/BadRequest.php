@@ -2,9 +2,10 @@
 
 namespace Core\Exception;
 
+use CoreException;
 use Throwable;
 
-class BadRequest extends \CoreException
+class BadRequest extends CoreException
 {
 
 	public function __construct($message = "Bad Request", $code = 400, Throwable $previous = null)

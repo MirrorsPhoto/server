@@ -1,5 +1,10 @@
 <?php
 
+use Core\Exception\BadRequest;
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
+
 /**
  * @RoutePrefix('/sale')
  */
@@ -8,6 +13,11 @@ class SaleController extends Controller
 
 	/**
 	 * @Post('/batch')
+	 *
+	 * @throws BadRequest
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return bool
 	 */
 	public function batchAction()
 	{
@@ -27,14 +37,14 @@ class SaleController extends Controller
 				case 'lamination':
 					$manager = 'Lamination';
 					break;
-        case 'service':
-          $manager = 'Service';
-          break;
+				case 'service':
+					$manager = 'Service';
+					break;
 				case 'printing':
 					$manager = 'Printing';
 					break;
 				default:
-					throw new \Core\Exception\BadRequest('Не известный тип услуги ' . $item->type);
+					throw new BadRequest('Не известный тип услуги ' . $item->type);
 
 			}
 
@@ -47,7 +57,7 @@ class SaleController extends Controller
 
 		$newCheck->save();
 
-		(\Core\UserCenter\Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
+		(Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
 
 		return true;
 	}

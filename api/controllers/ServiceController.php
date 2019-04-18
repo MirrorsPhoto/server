@@ -5,8 +5,11 @@
  */
 class ServiceController extends Controller
 {
+
 	/**
 	 * @Get('/')
+	 *
+	 * @return array
 	 */
 	public function getSizeAction()
 	{
@@ -14,17 +17,17 @@ class ServiceController extends Controller
 
 		$result = [];
 
+		/** @var Service $row */
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
-			  'id',
-        'name'
-      ]);
+				'id',
+				'name'
+			]);
 
 			$array['price'] = $row->price;
 
 			$result[] = $array;
 		}
-
 
 		return $result;
 	}

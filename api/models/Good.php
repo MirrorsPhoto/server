@@ -1,50 +1,58 @@
 <?php
 
+use Core\Exception\BadRequest;
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Uniqueness;
-use Phalcon\Validation\Validator\Numericality;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+use Phalcon\Mvc\Model\Resultset\Simple;
 
+/**
+ * @method static self findFirstByBarCode(int $barCode)
+ * @method GoodPriceHistory getGoodPriceHistory(string $string)
+ *
+ * @property float price
+ */
 class Good extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'good';
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $name;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=true)
-     */
-    public $description;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=true)
-     */
-    public $bar_code;
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->setSchema("public");
-        $this->hasMany('id', 'GoodPriceHistory', 'good_id', ['alias' => 'GoodPriceHistory']);
-        $this->hasMany('id', 'GoodReceipt', 'good_id', ['alias' => 'Receipts']);
-        $this->hasMany('id', 'GoodSale', 'good_id', ['alias' => 'Sales']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $name;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @var string
+	 * @Column(type="string", nullable=true)
+	 */
+	public $description;
+
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=true)
+	 */
+	public $bar_code;
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->hasMany('id', 'GoodPriceHistory', 'good_id', ['alias' => 'GoodPriceHistory']);
+		$this->hasMany('id', 'GoodReceipt', 'good_id', ['alias' => 'Receipts']);
+		$this->hasMany('id', 'GoodSale', 'good_id', ['alias' => 'Sales']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -60,16 +68,23 @@ class Good extends Model
 			)
 		);
 
-        return $this->validate($validator);
+		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return float
+	 */
 	public function getPrice()
 	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getGoodPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) throw new \Core\Exception\ServerError("Для товара {$this->name} не задана цена");
+		if (!$row) {
+			throw new ServerError("Для товара {$this->name} не задана цена");
+		}
 
 		return (float) $row->price;
 	}
@@ -78,15 +93,33 @@ class Good extends Model
 	 * Возвращает товары в наличии или один определённый товар
 	 *
 	 * @param $id integer id товара
-	 * @return Resultset
+	 * @throws Unauthorized
+	 * @return Simple
 	 */
 	public static function getAvaible($id = null)
 	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
-		$query = "select good.*, r.count - COALESCE(s.count, 0) as total from good
-				join (select good_id, count(*) from good_receipt WHERE department_id = $department_id group by good_id) r on good.id = r.good_id
-				left join (select good_id, count(*) from good_sale WHERE department_id = $department_id group by good_id) s on good.id = s.good_id
+		$query = "SELECT
+					good.*,
+       				r.count - COALESCE(s.count, 0) as total 
+				FROM good
+				JOIN (
+					SELECT 
+						good_id, 
+						COUNT(*)
+					FROM good_receipt 
+					WHERE department_id = $department_id 
+					GROUP BY good_id
+				) r ON good.id = r.good_id
+				LEFT JOIN (
+					SELECT
+						good_id,
+						COUNT(*)
+					FROM good_sale
+					WHERE department_id = $department_id
+					GROUP BY good_id
+				) s ON good.id = s.good_id
 				WHERE r.count > COALESCE(s.count, 0)";
 
 		if ($id) {
@@ -95,7 +128,7 @@ class Good extends Model
 
 		$selfObj = new self();
 
-		return new Resultset(
+		return new Simple(
 			null,
 			$selfObj,
 			$selfObj->getReadConnection()->query($query)
@@ -105,19 +138,21 @@ class Good extends Model
 
 	/**
 	 * Функция проверки наличия товара
+	 * @throws Unauthorized
 	 * @return bool
 	 */
 	public function isAvailable()
 	{
 		$available = self::getAvaible($this->id);
 
-		return !!$available->getFirst();
+		return (bool) $available->getFirst();
 
 	}
 
 	/**
 	 * Сколько единиц данного товара в наличии
 	 *
+	 * @throws Unauthorized
 	 * @return integer
 	 */
 	public function getAvaibleCount()
@@ -125,17 +160,29 @@ class Good extends Model
 		return (self::getAvaible($this->id))->getFirst()->total | 0;
 	}
 
+	/**
+	 * @param mixed $data
+	 * @throws BadRequest
+	 * @throws Unauthorized
+	 * @throws ServerError
+	 */
 	public static function batch($data)
 	{
 		$row = self::findFirst($data->id);
 
 		for ($i = 1; $i <= $data->copies; $i++) {
-			if (!$row->isAvailable()) throw new \Core\Exception\BadRequest("Нельзя записать продажу товара {$row->name}, т.к. его не в наличии");
+			if (!$row->isAvailable()) {
+				throw new BadRequest("Нельзя записать продажу товара {$row->name}, т.к. его не в наличии");
+			}
 
 			$row->sale();
 		}
 	}
 
+	/**
+	 * @return bool
+	 * @throws ServerError
+	 */
 	public function sale()
 	{
 		$rowSale = new GoodSale([
@@ -145,6 +192,11 @@ class Good extends Model
 		return $rowSale->save();
 	}
 
+	/**
+	 * @param float $price
+	 * @return bool
+	 * @throws ServerError
+	 */
 	public function receipt($price)
 	{
 		$rowReceipt = new GoodReceipt([

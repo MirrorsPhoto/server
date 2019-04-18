@@ -1,9 +1,9 @@
 <?php
 
-class ConfigIni extends \Phalcon\Config\Adapter\Ini
+class ConfigIni extends Phalcon\Config\Adapter\Ini
 {
 
-	use \Core\Singleton;
+	use Core\Singleton;
 
 	public function __construct($filePath = 'api/config/config.ini', $mode = null)
 	{

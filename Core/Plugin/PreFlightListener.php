@@ -19,13 +19,18 @@ class PreFlightListener extends Plugin
 	/**
 	 * @param Event $event
 	 * @param Dispatcher $dispatcher
+	 * @return void
 	 */
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
 	{
 		$di = $dispatcher->getDI();
+
+		/** @var Request $request */
 		$request = $di->get('request');
+
+		/** @var Response $response */
 		$response = $di->get('response');
-		
+
 		if ($this->isCorsRequest($request)) {
 			$response
 				->setHeader('Access-Control-Allow-Origin', $this->getOrigin($request))

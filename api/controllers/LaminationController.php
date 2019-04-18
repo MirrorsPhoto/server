@@ -5,8 +5,11 @@
  */
 class LaminationController extends Controller
 {
+
 	/**
 	 * @Get('/size')
+	 *
+	 * @return array
 	 */
 	public function getSizeAction()
 	{
@@ -24,7 +27,6 @@ class LaminationController extends Controller
 
 			$result[] = $array;
 		}
-
 
 		return $result;
 	}

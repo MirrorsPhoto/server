@@ -3,44 +3,48 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
+use Phalcon\Mvc\Model\Resultset\Simple;
 
+/**
+ * @property Simple Photo
+ */
 class PhotoSize extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'photo_size';
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $width;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $height;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime_create;
-
-    public function initialize()
-    {
-	    parent::initialize();
-
-      $this->hasMany('id', 'Photo', 'photo_size_id', ['alias' => 'Photo']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $width;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $height;
+
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime_create;
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->hasMany('id', 'Photo', 'photo_size_id', ['alias' => 'Photo']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -94,15 +98,16 @@ class PhotoSize extends Model
 	{
 		$result = [];
 
+		/** @var Photo $photo */
 		foreach ($this->Photo as $photo) {
-		  $result[] = [
-		    'id' => $photo->id,
-		    'count' => $photo->count,
-        'price' => $photo->price
-      ];
-    }
+			$result[] = [
+				'id' => $photo->id,
+				'count' => $photo->count,
+				'price' => $photo->price
+			];
+		}
 
-    return $result;
+		return $result;
 	}
 
 }

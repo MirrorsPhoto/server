@@ -2,6 +2,9 @@
 
 namespace Core\Enum;
 
-class Exception extends \CoreException
+use CoreException;
+
+class Exception extends CoreException
 {
+
 }

@@ -2,12 +2,16 @@
 
 namespace Validator\Good;
 
-use \Phalcon\Validation\Validator\PresenceOf;
-use \Phalcon\Validation\Validator\Numericality;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Numericality;
+use Validation;
 
-class Receipt extends \Validation
+class Receipt extends Validation
 {
 
+	/**
+	 * @return void
+	 */
 	public function initialize()
 	{
 		$this->add(

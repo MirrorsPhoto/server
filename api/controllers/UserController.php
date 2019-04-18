@@ -1,14 +1,23 @@
 <?php
 
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
+
 /**
  * @RoutePrefix('/user')
  */
 class UserController extends Controller
 {
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return string
+	 */
 	public function editSelfAction()
 	{
-		$user = \Core\UserCenter\Security::getUser();
+		$user = Security::getUser();
 
 		if ($this->request->hasFiles(true)) {
 			$file = $this->request->getUploadedFiles(true)[0];
@@ -18,7 +27,8 @@ class UserController extends Controller
 			$user->avatar_id = $objFile->id;
 		}
 
-		if ($username = $this->getPost('username')) {
+		$username = $this->getPost('username');
+		if ($username) {
 			$user->username = $username;
 		}
 

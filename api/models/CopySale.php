@@ -1,56 +1,56 @@
 <?php
 
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class CopySale extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'copy_sale';
 
-  /**
-   *
-   * @var integer
-   * @Column(type="integer", length=11, nullable=false)
-   */
-  public $copy_id;
+	/**
+	 * @var int
+	 * @Column(type="integer", length=11, nullable=false)
+	 */
+	public $copy_id;
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime;
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->setSchema("public");
-        $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
-        $this->belongsTo('copy_id', '\Copy', 'id', ['alias' => 'Copy']);
-    }
+	/**
+	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
+		$this->belongsTo('copy_id', '\Copy', 'id', ['alias' => 'Copy']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -66,14 +66,14 @@ class CopySale extends Model
 			)
 		);
 
-    $validator->add(
-      'copy_id',
-      new Numericality(
-        [
-          'message' => 'Id копии должно быть числом',
-        ]
-      )
-    );
+		$validator->add(
+			'copy_id',
+			new Numericality(
+				[
+					'message' => 'Id копии должно быть числом',
+				]
+			)
+		);
 
 		$validator->add(
 			'user_id',
@@ -84,21 +84,25 @@ class CopySale extends Model
 			)
 		);
 
-    $validator->add(
-      'copy_id',
-      new PresenceOf(
-        [
-          'message' => 'Id копии обезательное поле',
-        ]
-      )
-    );
+		$validator->add(
+			'copy_id',
+			new PresenceOf(
+				[
+					'message' => 'Id копии обезательное поле',
+				]
+			)
+		);
 
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws Unauthorized
+	 * @return void
+	 */
 	public function beforeSave()
 	{
-		$user = \Core\UserCenter\Security::getUser();
+		$user = Security::getUser();
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;

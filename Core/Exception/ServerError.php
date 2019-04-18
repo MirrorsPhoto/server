@@ -2,9 +2,10 @@
 
 namespace Core\Exception;
 
+use CoreException;
 use Throwable;
 
-class ServerError extends \CoreException
+class ServerError extends CoreException
 {
 
 	public function __construct($message = "Unknown Error", $code = 500, Throwable $previous = null)

@@ -2,11 +2,15 @@
 
 namespace Validator\Auth;
 
-use \Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\PresenceOf;
+use Validation;
 
-class Login extends \Validation
+class Login extends Validation
 {
 
+	/**
+	 * @return void
+	 */
 	public function initialize()
 	{
 		$this->add(

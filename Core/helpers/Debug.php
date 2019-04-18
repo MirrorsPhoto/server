@@ -1,18 +1,28 @@
 <?php
 
+use Phalcon\Debug\Dump;
+
 class Debug
 {
 
+	/**
+	 * @param mixed $obj
+	 */
 	public static function dumpMethodDie($obj)
 	{
-		$objDump = new \Phalcon\Debug\Dump();
+		$objDump = new Dump();
 
 		echo "<pre>";
 		echo $objDump->variable($obj);
+
 		debug_print_backtrace();
+
 		die();
 	}
 
+	/**
+	 * @param mixed $var
+	 */
 	public static function dumpDie($var)
 	{
 		echo "<pre>";

@@ -1,5 +1,9 @@
 <?php
 
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
+use Phalcon\Db;
+use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 
@@ -10,31 +14,33 @@ use Phalcon\Validation\Validator\PresenceOf;
  */
 class Department extends Model
 {
+
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'department';
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Column(type="integer", nullable=false)
 	 */
 	public $city_id;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $name;
 
 	/**
 	 *
 	 * @var string
 	 * @Column(type="string", nullable=false)
 	 */
+	public $name;
+
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
 	public $address;
 
 	/**
-	 * Initialize method for model.
+	 * @return void
 	 */
 	public function initialize()
 	{
@@ -53,62 +59,64 @@ class Department extends Model
 		);
 	}
 
-    /**
-     * Validations and business logic
-     *
-     * @return boolean
-     */
-    public function validation()
-    {
-        $validator = new Validation();
+	/**
+	 * @return boolean
+	 */
+	public function validation()
+	{
+		$validator = new Validation();
 
-	    $validator->add(
-		    'city_id',
-		    new PresenceOf(
-			    [
-				    'message' => 'Город обязателен',
-			    ]
-		    )
-	    );
+		$validator->add(
+			'city_id',
+			new PresenceOf(
+				[
+					'message' => 'Город обязателен',
+				]
+			)
+		);
 
-	    $validator->add(
-		    'name',
-		    new PresenceOf(
-			    [
-				    'message' => 'Название салона обязательно',
-			    ]
-		    )
-	    );
+		$validator->add(
+			'name',
+			new PresenceOf(
+				[
+					'message' => 'Название салона обязательно',
+					]
+			)
+		);
 
-	    $validator->add(
-		    'address',
-		    new PresenceOf(
-			    [
-				    'message' => 'Адрес салона обязателен',
-			    ]
-		    )
-	    );
+		$validator->add(
+			'address',
+			new PresenceOf(
+				[
+					'message' => 'Адрес салона обязателен',
+					]
+			)
+		);
 
-        return $this->validate($validator);
+		return $this->validate($validator);
     }
 
 
 	/**
 	 * Метод для получения всех текущих сотрудников данного салона
 	 *
-	 * @return Phalcon\Mvc\Model\Resultset\Simple
+	 * @return Simple
 	 */
 	public function getCurrentPersonnel()
-    {
-    	return $this->getUsers('datetime_to IS NULL');
-    }
+	{
+		return $this->getUsers('datetime_to IS NULL');
+	}
 
+	/**
+	 * @throws Unauthorized
+	 * @return void
+	 */
 	public function notifyPersonnels()
 	{
 		$userRows = $this->getCurrentPersonnel();
 		$arrUserIds = array_column($userRows->toArray(), 'id');
 
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
 		$data = [];
 
@@ -131,6 +139,7 @@ class Department extends Model
 
 		$query = [];
 
+		/** @var DateTime $time */
 		foreach ($datetime as $moment => $time) {
 			foreach ($types as $type) {
 				$query['cash'][$moment][] = "SELECT "
@@ -167,7 +176,7 @@ class Department extends Model
 
 		$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
-		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
 			$data['cash']['today'][$res['type']] = (int)$res['summ'];
 		}
 
@@ -183,12 +192,12 @@ class Department extends Model
 
 		$result = $this->getDI()->getShared('db')->query($agoSql);
 
-		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
 			$data['cash'][$res['momemt']] = (int)$res['sum'];
 		}
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
-		foreach ($result->fetchAll(\Phalcon\Db::FETCH_ASSOC) as $res) {
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
 
 			$data['client'][$res['moment']] = (int)$res['count'];
 		}

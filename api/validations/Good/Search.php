@@ -2,12 +2,15 @@
 
 namespace Validator\Good;
 
-use \Phalcon\Validation\Validator\PresenceOf;
-use \Phalcon\Validation\Validator\Numericality;
+use Phalcon\Validation\Validator\PresenceOf;
+use Validation;
 
-class Search extends \Validation
+class Search extends Validation
 {
 
+	/**
+	 * @return void
+	 */
 	public function initialize()
 	{
 		$this->add(

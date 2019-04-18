@@ -2,7 +2,9 @@
 
 namespace Core\UserCenter\Exception;
 
-class AccessDenied extends \CoreException
+use CoreException;
+
+class AccessDenied extends CoreException
 {
 
 	public function __construct()

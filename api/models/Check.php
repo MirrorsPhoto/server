@@ -1,55 +1,54 @@
 <?php
 
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
 class Check extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'check';
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
-	 *
-	 * @var integer
+	 * @var int
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
 	/**
-	 *
 	 * @var string
 	 * @Column(type="string", nullable=false)
 	 */
 	public $data;
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime;
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->setSchema("public");
-        $this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -77,9 +76,13 @@ class Check extends Model
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws Unauthorized
+	 * @return void
+	 */
 	public function beforeSave()
 	{
-		$user = \Core\UserCenter\Security::getUser();
+		$user = Security::getUser();
 
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;

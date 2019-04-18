@@ -1,42 +1,49 @@
 <?php
 
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
-use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
+/**
+ * Class Copy
+ *
+ * @property float price
+ * @method CopyPriceHistory getCopyPriceHistory(string $string)
+ */
 class Copy extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'copy';
 
-  /**
-   *
-   * @var string
-   * @Column(type="string", nullable=false)
-   */
-  public $format;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime_create;
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->setSchema("public");
-        $this->hasMany('id', 'CopyPriceHistory', 'copy_id', ['alias' => 'CopyPriceHistory']);
-        $this->hasMany('id', 'CopySale', 'copy_id', ['alias' => 'CopySale']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $format;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime_create;
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->hasMany('id', 'CopyPriceHistory', 'copy_id', ['alias' => 'CopyPriceHistory']);
+		$this->hasMany('id', 'CopySale', 'copy_id', ['alias' => 'CopySale']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -55,34 +62,50 @@ class Copy extends Model
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return float
+	 */
 	public function getPrice()
-  {
-    $department_id = Core\UserCenter\Security::getUser()->department_id;
+	{
+		$department_id = Security::getUser()->department_id;
 
-    $row = $this->getCopyPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
+		$row = $this->getCopyPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-    if (!$row) throw new \Core\Exception\ServerError("Для копии формата {$this->format} не задана цена");
+		if (!$row) {
+			throw new ServerError("Для копии формата {$this->format} не задана цена");
+		}
 
-    return (float) $row->price;
-  }
+		return (float) $row->price;
+	}
 
+	/**
+	 * @param mixed $data
+	 * @throws ServerError
+	 * @return void
+	 */
 	public static function batch($data)
 	{
-    $copyId = $data->id;
-    $count = $data->copies;
+		$copyId = $data->id;
+		$count = $data->copies;
 
-    $row = self::findFirst($copyId);
+		$row = self::findFirst($copyId);
 
 		for ($i = 1; $i <= $count; $i++) {
-      $row->sale();
+			$row->sale();
 		}
 	}
 
+	/**
+	 * @throws ServerError
+	 * @return CopySale
+	 */
 	public function sale()
 	{
 		$newSaleRow = new CopySale([
-      'copy_id' => $this->id
-    ]);
+			'copy_id' => $this->id
+		]);
 
 		$newSaleRow->save();
 

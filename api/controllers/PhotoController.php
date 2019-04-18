@@ -1,12 +1,18 @@
 <?php
 
+use Core\Exception\ServerError;
+
 /**
  * @RoutePrefix('/photo')
  */
 class PhotoController extends Controller
 {
+
 	/**
 	 * @Get('/size')
+	 *
+	 * @throws ServerError
+	 * @return array
 	 */
 	public function getSizeAction()
 	{
@@ -14,24 +20,30 @@ class PhotoController extends Controller
 
 		$result = [];
 
+		/** @var PhotoSize $row */
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
-			  'width',
-        'height'
-      ]);
+				'width',
+				'height'
+			]);
 
-			$array['width'] = (float)$array['width'];
-			$array['height'] = (float)$array['height'];
+			$array['width'] = (float) $array['width'];
+			$array['height'] = (float) $array['height'];
 
-			if (!$variations = $row->getVariations()) continue;
+			$variations = $row->getVariations();
+			if (!$variations) {
+				continue;
+			}
 
 			$array['variations'] = $variations;
 
 			$result[] = $array;
 		}
 
-		if (!$result) throw new \Core\Exception\ServerError('Нет цен для фото');
-		
+		if (!$result) {
+			throw new ServerError('Нет цен для фото');
+		}
+
 		return $result;
 	}
 

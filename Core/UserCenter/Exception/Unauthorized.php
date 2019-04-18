@@ -2,7 +2,9 @@
 
 namespace Core\UserCenter\Exception;
 
-class Unauthorized extends \CoreException
+use CoreException;
+
+class Unauthorized extends CoreException
 {
 
 	public function __construct()

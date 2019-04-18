@@ -1,38 +1,45 @@
 <?php
 
+use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
+use Core\UserCenter\Security;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
 
+/**
+ * @method LaminationPriceHistory getLaminationPriceHistory(string $string)
+ */
 class Lamination extends Model
 {
 
+	/**
+	 * @var string
+	 */
 	protected $_tableName = 'lamination';
 
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $format;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $datetime_create;
-
-    public function initialize()
-    {
-	    parent::initialize();
-
-	    $this->hasMany('id', 'LaminationPriceHistory', 'lamination_id', ['alias' => 'LaminationPriceHistory']);
-    }
+	/**
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $format;
 
 	/**
-	 * Validations and business logic
-	 *
+	 * @var string
+	 * @Column(type="string", nullable=false)
+	 */
+	public $datetime_create;
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
+	{
+		parent::initialize();
+
+		$this->hasMany('id', 'LaminationPriceHistory', 'lamination_id', ['alias' => 'LaminationPriceHistory']);
+	}
+
+	/**
 	 * @return boolean
 	 */
 	public function validation()
@@ -51,17 +58,28 @@ class Lamination extends Model
 		return $this->validate($validator);
 	}
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 * @return float
+	 */
 	public function getPrice()
 	{
-		$department_id = Core\UserCenter\Security::getUser()->department_id;
+		$department_id = Security::getUser()->department_id;
 
 		$row = $this->getLaminationPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) throw new \Core\Exception\ServerError("Для ламинации размера {$this->format} не задана цена");
+		if (!$row) {
+			throw new ServerError("Для ламинации размера {$this->format} не задана цена");
+		}
 
 		return (float) $row->price;
 	}
 
+	/**
+	 * @param mixed $data
+	 * @throws ServerError
+	 */
 	public static function batch($data)
 	{
 		$row = self::findFirst($data->id);
@@ -71,6 +89,10 @@ class Lamination extends Model
 		}
 	}
 
+	/**
+	 * @throws ServerError
+	 * @return LaminationSale
+	 */
 	public function sale()
 	{
 		$newSaleRow = new LaminationSale([

@@ -1,6 +1,6 @@
 <?php
 
-class Router extends \Phalcon\Mvc\Router\Annotations
+class Router extends Phalcon\Mvc\Router\Annotations
 {
 
 	public function __construct($defaultRoutes = null)
