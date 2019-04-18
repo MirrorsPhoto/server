@@ -3,7 +3,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class ServiceMigration extends AbstractMigration
+class Service extends AbstractMigration
 {
 	public function change()
 	{

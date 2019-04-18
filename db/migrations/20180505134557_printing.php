@@ -3,7 +3,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class PrintingMigration extends AbstractMigration
+class Printing extends AbstractMigration
 {
 	public function change()
 	{
