@@ -12,21 +12,21 @@ $users = [];
 $ws_worker = new Worker("websocket://0.0.0.0:8000");
 
 // создаём обработчик, который будет выполняться при запуске ws-сервера
-$ws_worker->onWorkerStart = function() use (&$users)
-{
+$ws_worker->onWorkerStart = function () use (&$users) {
 	// создаём локальный tcp-сервер, чтобы отправлять на него сообщения из кода нашего сайта
 	$inner_tcp_worker = new Worker("tcp://websocket:1337");
 
 	// создаём обработчик сообщений, который будет срабатывать,
 	// когда на локальный tcp-сокет приходит сообщение
-	$inner_tcp_worker->onMessage = function($connection, $data) use (&$users) {
+	$inner_tcp_worker->onMessage = function ($connection, $data) use (&$users) {
 		$data = json_decode($data);
 
 		//Обходим все id пользователей, которым нужно отправить сообщение
 		foreach ($data->from as $fromId) {
-
 			//Если такой пользователь не подключен - далее
-			if (!isset($users[$fromId])) continue;
+			if (!isset($users[$fromId])) {
+				continue;
+			}
 
 			//Обходим все соединения пользователя и отправляем и сообщение
 			foreach ($users[$fromId] as $connect) {
@@ -39,10 +39,8 @@ $ws_worker->onWorkerStart = function() use (&$users)
 	$inner_tcp_worker->listen();
 };
 
-$ws_worker->onConnect = function($connection) use (&$users, $config)
-{
-	$connection->onWebSocketConnect = function($connection) use (&$users, $config)
-	{
+$ws_worker->onConnect = function ($connection) use (&$users, $config) {
+	$connection->onWebSocketConnect = function ($connection) use (&$users, $config) {
 		//Если не передан JWT - закрываем соединение
 		if (!isset($_GET['token'])) {
 			$connection->close();
@@ -66,10 +64,9 @@ $ws_worker->onConnect = function($connection) use (&$users, $config)
 	};
 };
 
-$ws_worker->onClose = function($connection) use(&$users)
-{
+$ws_worker->onClose = function ($connection) use (&$users) {
 	//Удаляем соединение
-	foreach ($users as &$user){
+	foreach ($users as &$user) {
 		$connect = array_search($connection, $user);
 
 		unset($user[$connect]);

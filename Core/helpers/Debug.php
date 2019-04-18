@@ -30,5 +30,4 @@ class Debug
 		debug_print_backtrace();
 		die();
 	}
-
 }
