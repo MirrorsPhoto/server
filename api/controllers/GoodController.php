@@ -2,6 +2,7 @@
 
 use Core\Exception\BadRequest;
 use Core\Exception\ServerError;
+use Core\UserCenter\Exception\Unauthorized;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Validator\Good\Add;
 use Validator\Good\Receipt;
@@ -65,6 +66,7 @@ class GoodController extends Controller
 	 * @Get('/bar-code/{barCode:[0-9]+}')
 	 *
 	 * @param int $barCode
+	 * @throws Unauthorized
 	 * @throws BadRequest
 	 * @return array
 	 */
@@ -87,6 +89,7 @@ class GoodController extends Controller
 	 * @Get('/{id:[0-9]+}')
 	 *
 	 * @param int $id
+	 * @throws Unauthorized
 	 * @throws BadRequest
 	 * @return array
 	 */
@@ -109,6 +112,7 @@ class GoodController extends Controller
 	/**
 	 * @Post('/receipt')
 	 *
+	 * @throws ServerError
 	 * @throws BadRequest
 	 * @return string
 	 */
