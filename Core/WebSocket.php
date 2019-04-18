@@ -10,7 +10,7 @@ class WebSocket
 	/**
 	 * @var resource
 	 */
-	private $_stream;
+	private $stream;
 
 	/**
 	 * WebSocket constructor.
@@ -19,9 +19,9 @@ class WebSocket
 	 */
 	public function __construct($address = 'tcp://websocket:1337')
 	{
-		$this->_stream = stream_socket_client($address);
+		$this->stream = stream_socket_client($address);
 
-		if (!$this->_stream) {
+		if (!$this->stream) {
 			throw new ServerError('Не удаётся установить соединение с WebSocket сервером');
 		}
 	}
@@ -32,12 +32,11 @@ class WebSocket
 	 */
 	public function send($from, $data)
 	{
-		fwrite($this->_stream, json_encode([
+		fwrite($this->stream, json_encode([
 			'from' => $from,
 			'data' => $data
 		]));
 
-		fclose($this->_stream);
+		fclose($this->stream);
 	}
-
 }

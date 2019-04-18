@@ -9,5 +9,4 @@ class ConfigIni extends Phalcon\Config\Adapter\Ini
 	{
 		parent::__construct($filePath, $mode);
 	}
-
 }

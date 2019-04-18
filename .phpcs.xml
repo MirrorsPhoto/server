@@ -13,10 +13,10 @@
 	<!-- Закрывающий тег должен отсутствовать в файлах, где только PHP код -->
 	<rule ref="PSR2.Files.ClosingTag"/>
 
-	<!-- Строка должна быть не длинее 120 символов -->
+	<!-- Строка должна быть не длинее 130 символов -->
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<property name="lineLimit" value="120"/>
+			<property name="lineLimit" value="130"/>
 			<property name="absoluteLineLimit" value="0"/>
 		</properties>
 	</rule>

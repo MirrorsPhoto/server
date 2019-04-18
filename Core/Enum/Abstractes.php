@@ -13,17 +13,17 @@ abstract class Abstractes
 	/**
 	 * @var ReflectionClass
 	 */
-	protected $_objReflection;
+	protected $objReflection;
 
 	/**
 	 * @var array
 	 */
-	protected $_arrValues;
+	protected $arrValues;
 
 	/**
 	 * @var array
 	 */
-	protected $_rulesMap = [];
+	protected $rulesMap = [];
 
 	/**
 	 * Constructor
@@ -32,11 +32,11 @@ abstract class Abstractes
 	 */
 	public function __construct()
 	{
-		$this->_objReflection = new ReflectionClass($this);
-		$this->_arrValues = array_flip($this->_objReflection->getConstants());
+		$this->objReflection = new ReflectionClass($this);
+		$this->arrValues = array_flip($this->objReflection->getConstants());
 
-		if (!is_array($this->_arrValues)) {
-			throw new Exception('No values in ' . $this->_objReflection->getName());
+		if (!is_array($this->arrValues)) {
+			throw new Exception('No values in ' . $this->objReflection->getName());
 		}
 	}
 
@@ -47,12 +47,12 @@ abstract class Abstractes
 	 * @return boolean
 	 * @throws Exception
 	 */
-	public function validate($mixValue, $bThrowException = TRUE)
+	public function validate($mixValue, $bThrowException = true)
 	{
-		$bExists = isset($this->_arrValues[$mixValue]);
+		$bExists = isset($this->arrValues[$mixValue]);
 
 		if (!$bExists && $bThrowException) {
-			throw new Exception($mixValue . ' not found in ' . $this->_objReflection->getName());
+			throw new Exception($mixValue . ' not found in ' . $this->objReflection->getName());
 		}
 
 		return $bExists;
@@ -66,7 +66,7 @@ abstract class Abstractes
 	 */
 	public function getAll()
 	{
-		return $this->_objReflection->getConstants();
+		return $this->objReflection->getConstants();
 	}
 
 	/**
@@ -79,7 +79,7 @@ abstract class Abstractes
 	{
 		$this->validate($mixValue);
 
-		return $this->_arrValues[$mixValue];
+		return $this->arrValues[$mixValue];
 	}
 
 	/**
@@ -89,10 +89,9 @@ abstract class Abstractes
 	 */
 	public function getValue($strName)
 	{
-		$value = $this->_objReflection->getConstant($strName);
-		if ($value === FALSE)
-		{
-			throw new Exception($strName . ' name not found in ' . $this->_objReflection->getName());
+		$value = $this->objReflection->getConstant($strName);
+		if ($value === false) {
+			throw new Exception($strName . ' name not found in ' . $this->objReflection->getName());
 		}
 
 		return $value;

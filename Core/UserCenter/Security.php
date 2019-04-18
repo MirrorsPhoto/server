@@ -18,12 +18,12 @@ class Security extends Plugin
 	/**
 	 * @var Memory
 	 */
-	private $_acl;
+	private $acl;
 
 	/**
 	 * @var array
 	 */
-	private $_publicResources = [
+	private $publicResources = [
 		'index' =>
 			[
 				'index',
@@ -39,7 +39,7 @@ class Security extends Plugin
 	/**
 	 * @var User
 	 */
-	protected static $_user;
+	protected static $user;
 
 	/**
 	 * @throws Unauthorized
@@ -47,59 +47,54 @@ class Security extends Plugin
 	 */
 	public static function getUser()
 	{
-		if (is_null(self::$_user))
-		{
+		if (is_null(self::$user)) {
 			throw new Unauthorized();
 		}
-		return self::$_user;
+		return self::$user;
 	}
 
 	/**
 	 * @return void
 	 */
-	private function _setup()
+	private function setup()
 	{
 		$acl = new Memory();
 		$acl->setDefaultAction(Acl::DENY);
 
-		$this->_acl = $acl;
+		$this->acl = $acl;
 
-		$this->_setupRole();
-		$this->_setupResource();
+		$this->setupRole();
+		$this->setupResource();
 
-		$this->_acl->allow(\Role::ADMIN, '*', '*');
+		$this->acl->allow(\Role::ADMIN, '*', '*');
 	}
 
 	/**
 	 * @return void
 	 */
-	private function _setupRole()
+	private function setupRole()
 	{
 		$roles = \Role::find();
 
 		/** @var \Role $role */
-		foreach ($roles as $role)
-		{
-			$this->_acl->addRole(new Role((string)$role->id, $role->name));
+		foreach ($roles as $role) {
+			$this->acl->addRole(new Role((string)$role->id, $role->name));
 		}
 	}
 
 	/**
 	 * @return void
 	 */
-	private function _setupResource()
+	private function setupResource()
 	{
-		foreach ($this->_publicResources as $resource => $actions)
-		{
-			$this->_acl->addResource(new Acl\Resource($resource), $actions);
+		foreach ($this->publicResources as $resource => $actions) {
+			$this->acl->addResource(new Acl\Resource($resource), $actions);
 		}
 
 		//Grant access to public areas to both users and guests
-		foreach ($this->_publicResources as $resource => $actions)
-		{
-			foreach ($actions as $action)
-			{
-				$this->_acl->allow('*', $resource, $action);
+		foreach ($this->publicResources as $resource => $actions) {
+			foreach ($actions as $action) {
+				$this->acl->allow('*', $resource, $action);
 			}
 		}
 	}
@@ -107,11 +102,11 @@ class Security extends Plugin
 	/**
 	 * @return Memory
 	 */
-	private function _getAcl()
+	private function getAcl()
 	{
-		$this->_setup();
+		$this->setup();
 
-		return $this->_acl;
+		return $this->acl;
 	}
 
 	/**
@@ -127,10 +122,12 @@ class Security extends Plugin
 		$action = $dispatcher->getActionName();
 
 		// Получаем список ACL
-		$acl = $this->_getAcl();
+		$acl = $this->getAcl();
 
-		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) return true;
-        $header = $dispatcher->getDI()->get('request')->getHeader('Authorization');
+		if ($acl->isAllowed(\Role::GUEST, $controller, $action)) {
+			return true;
+		}
+		$header = $dispatcher->getDI()->get('request')->getHeader('Authorization');
 
 		if (!$header) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Unauthorized"');
@@ -160,14 +157,13 @@ class Security extends Plugin
 
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
 		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
-		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id)
-		{
+		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id) {
 			throw new AccessDenied();
 		}
 
 		$user->department_id = $user->currentDepartments->getFirst()->id;
 
-		self::$_user = $user;
+		self::$user = $user;
 
 		return true;
 	}

@@ -40,7 +40,8 @@ class PreFlightListener extends Plugin
 		}
 
 		if ($this->isPreflightRequest($request)) {
-			$response->setStatusCode(200, 'OK')->send(); exit;
+			$response->setStatusCode(200, 'OK')->send();
+			exit;
 		}
 	}
 

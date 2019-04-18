@@ -36,5 +36,4 @@ class JWT extends \Firebase\JWT\JWT
 	{
 		return parent::decode($jwt, self::$key, ['HS256']);
 	}
-
 }

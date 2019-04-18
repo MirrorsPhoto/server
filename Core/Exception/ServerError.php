@@ -12,5 +12,4 @@ class ServerError extends CoreException
 	{
 		parent::__construct($message, $code, $previous);
 	}
-
 }

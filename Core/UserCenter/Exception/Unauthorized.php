@@ -11,5 +11,4 @@ class Unauthorized extends CoreException
 	{
 		parent::__construct("WWW-Authenticate", 401);
 	}
-
 }

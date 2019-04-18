@@ -15,7 +15,7 @@ abstract class Validation extends Phalcon\Validation
 		$get = $this->request->getQuery();
 		$put = $this->request->getPut();
 
-		parent::validate($data ?? array_merge($post, $get, $put) , $entity);
+		parent::validate($data ?? array_merge($post, $get, $put), $entity);
 	}
 
 	/**
@@ -28,7 +28,9 @@ abstract class Validation extends Phalcon\Validation
 	{
 		$totalCountMessages = $messages->count();
 
-		if (!$totalCountMessages) return;
+		if (!$totalCountMessages) {
+			return;
+		}
 
 		$errorMessage = [];
 
@@ -38,5 +40,4 @@ abstract class Validation extends Phalcon\Validation
 
 		throw new BadRequest($errorMessage);
 	}
-
 }

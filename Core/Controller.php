@@ -20,5 +20,4 @@ abstract class Controller extends \Phalcon\Mvc\Controller
 	{
 		return $this->request->getPost($name);
 	}
-
 }

@@ -12,5 +12,4 @@ class BadRequest extends CoreException
 	{
 		parent::__construct($message, $code, $previous);
 	}
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Config\Adapter\Ini;
+
 class Router extends Phalcon\Mvc\Router\Annotations
 {
 
@@ -7,13 +9,13 @@ class Router extends Phalcon\Mvc\Router\Annotations
 	{
 		parent::__construct($defaultRoutes);
 
-		$this->_setRoutes();
-		$this->_setResources();
+		$this->setRoutes();
+		$this->setResources();
 
 		$this->removeExtraSlashes(true);
 	}
 
-	private function _setResources()
+	private function setResources()
 	{
 		$arrControllers = array_diff(scandir(__DIR__ . '/../api/controllers'), ['..', '.']);
 
@@ -23,13 +25,12 @@ class Router extends Phalcon\Mvc\Router\Annotations
 			$prefix = '/' . strtolower($name);
 
 			$this->addResource($name, $prefix);
-
 		}
 	}
 
-	private function _setRoutes()
+	private function setRoutes()
 	{
-		$routes = new \Phalcon\Config\Adapter\Ini(__DIR__ . '/../api/config/route.ini');
+		$routes = new Ini(__DIR__ . '/../api/config/route.ini');
 
 		foreach ($routes->toArray() as $pattern => $paths) {
 			$pattern = "/$pattern";
@@ -56,5 +57,4 @@ class Router extends Phalcon\Mvc\Router\Annotations
 			]
 		);
 	}
-
 }
