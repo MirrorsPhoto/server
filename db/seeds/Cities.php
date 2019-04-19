@@ -11,7 +11,5 @@ class Cities extends AbstractSeed
 			->insert([['name' => 'Амвросиевка']])
 			->save()
 		;
-
-		$a = 1;
 	}
 }
