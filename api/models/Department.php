@@ -122,11 +122,11 @@ class Department extends Model
 		$data = [];
 
 		$datetime = [
-			'today' => date_create(null, new DateTimeZone('+3')),
-			'yesterday' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1D')),
-			'week' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P7D')),
-			'month' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1M')),
-			'year' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1Y'))
+			'today' => date_create(null, new DateTimeZone('+3')), // new DateTime("now", new DateTimeZone("Europe/Moscow"))
+			'yesterday' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1D')), // new DateTime("previous day", new DateTimeZone("Europe/Moscow"))
+			'week' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P7D')), // new DateTime("previous weeks", new DateTimeZone("Europe/Moscow"))
+			'month' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1M')), // new DateTime("previous month", new DateTimeZone("Europe/Moscow"))
+			'year' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1Y')) // new DateTime("previous year", new DateTimeZone("Europe/Moscow"))
 		];
 
 		$types = [
