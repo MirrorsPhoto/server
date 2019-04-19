@@ -52,7 +52,13 @@ $di->set('router', new Router(false));
 $di->set(
 	'db',
 	function () {
-		$connection = new \Phalcon\Db\Adapter\Pdo\Postgresql($this->get('config')->database->toArray());
+		$connection = new \Phalcon\Db\Adapter\Pdo\Postgresql([
+			'host' => $_ENV['DATABASE_HOST'],
+			'username' => $_ENV['DATABASE_USERNAME'],
+			'password' => $_ENV['DATABASE_PASSWORD'],
+			'dbname' => $_ENV['DATABASE_NAME'],
+			'port' => $_ENV['DATABASE_PORT'],
+		]);
 
 		$connection->execute('set timezone TO \'Europe/Moscow\';');
 

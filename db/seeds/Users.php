@@ -1,6 +1,6 @@
 <?php
 
-namespace Phinx\Seed;
+use Phinx\Seed\AbstractSeed;
 
 class Users extends AbstractSeed
 {
