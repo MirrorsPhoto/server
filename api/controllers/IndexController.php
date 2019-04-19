@@ -9,16 +9,6 @@ class IndexController extends Controller
 {
 
 	/**
-	 * @Get('/index')
-	 *
-	 * @return int
-	 */
-	public function indexAction()
-	{
-		return 1;
-	}
-
-	/**
 	 * @throws NotFound
 	 * @return void
 	 */
