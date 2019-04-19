@@ -8,8 +8,6 @@ services:
       POSTGRES_USER: mirrors
     ports:
       - ${POSTGRES_PORT}:5432
-    volumes:
-      - ./db/data:/var/lib/postgresql/data
 
   web:
     image: jonkofee/nginx
