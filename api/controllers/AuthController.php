@@ -54,4 +54,12 @@ class AuthController extends Controller
 			'token' => $token
 		];
 	}
+
+	/**
+	 * @Get('/check')
+	 */
+	public function checkAction()
+	{
+		return true;
+	}
 }
