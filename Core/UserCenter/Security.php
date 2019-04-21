@@ -26,9 +26,7 @@ class Security extends Plugin
 	private $publicResources = [
 		'index' =>
 			[
-				'index',
-				'notFound',
-				'deploy'
+				'notFound'
 			],
 		'auth' =>
 			[
@@ -65,8 +63,6 @@ class Security extends Plugin
 
 		$this->setupRole();
 		$this->setupResource();
-
-		$this->acl->allow(\Role::ADMIN, '*', '*');
 	}
 
 	/**
@@ -79,7 +75,13 @@ class Security extends Plugin
 		/** @var \Role $role */
 		foreach ($roles as $role) {
 			$this->acl->addRole(new Role((string) $role->id, $role->name));
+
+			if ($role->id === \Role::ADMIN) {
+				$this->acl->allow((string) \Role::ADMIN, '*', '*');
+			}
 		}
+
+		$this->acl->addRole(new Role((string) \Role::GUEST, 'Гость'));
 	}
 
 	/**

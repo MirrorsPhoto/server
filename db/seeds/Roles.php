@@ -9,7 +9,6 @@ class Roles extends AbstractSeed
 		$this
 			->table('role')
 			->insert([
-				['name' => 'Гость'],
 				['name' => 'Администратор'],
 				['name' => 'Оператор'],
 				['name' => 'Пользователь']

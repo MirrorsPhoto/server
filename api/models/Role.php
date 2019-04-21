@@ -6,10 +6,10 @@ use Phalcon\Validation\Validator\PresenceOf;
 
 class Role extends Model
 {
-	const GUEST = 1;
-	const ADMIN = 2;
-	const STAFF = 3;
-	const USER  = 4;
+	const ADMIN = 1;
+	const STAFF = 2;
+	const USER  = 3;
+	const GUEST = 4;
 
 	/**
 	 * @var string
@@ -58,10 +58,10 @@ class Role extends Model
 	public function getPhrase()
 	{
 		switch ($this->id) {
-			case 2:
+			case 1:
 				$phrase = 'admin';
 				break;
-			case 3:
+			case 2:
 				$phrase = 'staff';
 				break;
 			default:
