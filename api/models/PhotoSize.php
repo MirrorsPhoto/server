@@ -100,10 +100,16 @@ class PhotoSize extends Model
 
 		/** @var Photo $photo */
 		foreach ($this->Photo as $photo) {
+			$price = $photo->price;
+
+			if (empty($price)) {
+				continue;
+			}
+
 			$result[] = [
 				'id' => $photo->id,
 				'count' => $photo->count,
-				'price' => $photo->price
+				'price' => $price
 			];
 		}
 

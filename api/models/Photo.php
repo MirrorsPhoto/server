@@ -94,7 +94,6 @@ class Photo extends Model
 	}
 
 	/**
-	 * @throws ServerError
 	 * @throws Unauthorized
 	 * @return float
 	 */
@@ -104,12 +103,7 @@ class Photo extends Model
 
 		$row = $this->getPhotoPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) {
-			$errorMsg = "Для фотографии {$this->width}x{$this->height} с количеством {$this->count}шт не задана цена";
-			throw new ServerError($errorMsg);
-		}
-
-		return (float) $row->price;
+		return (float) $row->price ?? 0;
 	}
 
 	/**
