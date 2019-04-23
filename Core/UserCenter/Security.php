@@ -150,7 +150,7 @@ class Security extends Plugin
 
 		if (!$user) {
 			$dispatcher->getDI()->get('response')->setHeader('WWW-Authenticate', 'Bearer realm="Bad Unauthorized"');
-			throw new Unauthorized();
+			throw new Unauthorized('auth.wrong_token');
 		}
 
 		$jwt = JWT::getInstance();

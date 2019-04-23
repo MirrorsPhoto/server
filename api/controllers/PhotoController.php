@@ -41,7 +41,7 @@ class PhotoController extends Controller
 		}
 
 		if (!$result) {
-			throw new ServerError('Нет цен для фото');
+			throw new ServerError('photo.no_sizes');
 		}
 
 		return $result;

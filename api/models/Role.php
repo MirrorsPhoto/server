@@ -68,6 +68,6 @@ class Role extends Model
 				throw new ServerError('Not found phrase role for ' . $this->name);
 		}
 
-		return "user.roles.$phrase";
+		return $phrase;
 	}
 }
