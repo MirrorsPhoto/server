@@ -3,8 +3,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Workerman\Worker;
 use Firebase\JWT\JWT;
 
-$config = parse_ini_file('api/config/config.ini', true);
-
 // массив для связи соединения пользователя и необходимого нам параметра
 $users = [];
 
@@ -39,8 +37,8 @@ $ws_worker->onWorkerStart = function () use (&$users) {
 	$inner_tcp_worker->listen();
 };
 
-$ws_worker->onConnect = function ($connection) use (&$users, $config) {
-	$connection->onWebSocketConnect = function ($connection) use (&$users, $config) {
+$ws_worker->onConnect = function ($connection) use (&$users) {
+	$connection->onWebSocketConnect = function ($connection) use (&$users) {
 		//Если не передан JWT - закрываем соединение
 		if (!isset($_GET['token'])) {
 			$connection->close();
@@ -51,7 +49,7 @@ $ws_worker->onConnect = function ($connection) use (&$users, $config) {
 
 		//Валидация токена
 		try {
-			$newUser = JWT::decode($token, $config['jwt']['key'], ['HS256']);
+			$newUser = JWT::decode($token, $_ENV['JWT_KEY'], ['HS256']);
 		} catch (UnexpectedValueException $e) {
 			echo $e->getMessage() . "\n";
 
