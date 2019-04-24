@@ -1,0 +1,10 @@
+default:
+  autoload:
+    - %paths.base%/bootstrap/
+  suites:
+    auth:
+      paths: [ %paths.base%/features/auth.feature ]
+      contexts: [ AuthContext ]
+    photo:
+      paths: [ %paths.base%/features/photo.feature ]
+      contexts: [ PhotoContext ]

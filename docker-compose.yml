@@ -14,6 +14,7 @@ services:
     working_dir: /code
     ports:
       - ${NGINX_PORT_EXTERNAL}:80
+      - 80
     volumes:
       - ./:/code
       - ./docker/nginx/conf:/etc/nginx/conf.d
@@ -22,6 +23,11 @@ services:
       - websocket
     environment:
       - DOMAIN=${NGINX_DOMAIN}
+    networks:
+      default:
+        aliases:
+          - api.${NGINX_DOMAIN}
+          - static.${NGINX_DOMAIN}
 
   php:
     build: ./docker/php
@@ -49,3 +55,21 @@ services:
     ports:
       - ${WEBSOCKET_PORT_EXTERNAL}:8000
       - 1337
+    environment:
+      - JWT_KEY=${JWT_KEY}
+
+  tests:
+    build: ./docker/tests
+    working_dir: /code
+    tty: true
+    volumes:
+      - ./vendor:/code/vendor
+      - ./tests:/code/tests
+    environment:
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_PORT=${DATABASE_PORT_INTERNAL}
+      - JWT_KEY=${JWT_KEY}
+      - DOMAIN=${NGINX_DOMAIN}
