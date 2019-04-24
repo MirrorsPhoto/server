@@ -1,43 +1,49 @@
 <?php
+
+use Core\Plugin\PreFlightListener;
+use Core\Request;
+use Core\UserCenter\Security;
+use Phalcon\Db\Adapter\Pdo\Postgresql;
+use Phalcon\Events\Manager;
+use Phalcon\Http\Response;
 use Phalcon\Loader;
 use Phalcon\Mvc\Application;
 use Phalcon\Di\FactoryDefault;
-use Phalcon\Db\Adapter\Pdo\Factory;
 use Phalcon\Mvc\Dispatcher;
 
 require 'vendor/autoload.php';
 
-(new Loader())
-	->registerDirs([
-		'api/controllers/',
-		'api/models/',
-		'api/validations',
-		'Core/helpers',
-		'Core/UserCenter',
-		'Core/'
-	])
-	->registerNamespaces([
-		'Core\UserCenter' => 'Core/UserCenter',
-		'Core\Plugin' => 'Core/Plugin',
-		'Core\Enum' => 'Core/Enum',
-		'Core' => 'Core',
-		'Validator' => 'api/validations'
-	])->register();
-
-$debug = (new \Phalcon\Debug())->listen();
+$loader = new Loader();
+$loader->registerDirs([
+	'api/controllers/',
+	'api/models/',
+	'api/validations',
+	'Core/helpers',
+	'Core/UserCenter',
+	'Core/'
+]);
+$loader->registerNamespaces([
+	'Core\UserCenter' => 'Core/UserCenter',
+	'Core\Plugin' => 'Core/Plugin',
+	'Core\Enum' => 'Core/Enum',
+	'Core' => 'Core',
+	'Validator' => 'api/validations'
+]);
+$loader->register();
 
 $di = new FactoryDefault();
 $di->set('config', ConfigIni::getInstance());
 
-$di->set('request', new \Core\Request());
+$di->set('request', new Request());
 
 $di->set(
 	'dispatcher',
 	function () {
+		/** @var Manager $eventsManager */
 		$eventsManager = $this->get('eventsManager');
 
-		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\Plugin\PreFlightListener());
-		$eventsManager->attach('dispatch:beforeExecuteRoute', new \Core\UserCenter\Security());
+		$eventsManager->attach('dispatch:beforeExecuteRoute', new PreFlightListener());
+		$eventsManager->attach('dispatch:beforeExecuteRoute', new Security());
 
 		$dispatcher = new Phalcon\Mvc\Dispatcher();
 
@@ -52,7 +58,7 @@ $di->set('router', new Router(false));
 $di->set(
 	'db',
 	function () {
-		$connection = new \Phalcon\Db\Adapter\Pdo\Postgresql([
+		$connection = new Postgresql([
 			'host' => $_ENV['DATABASE_HOST'],
 			'username' => $_ENV['DATABASE_USERNAME'],
 			'password' => $_ENV['DATABASE_PASSWORD'],
@@ -69,10 +75,12 @@ $di->set(
 $application = new Application($di);
 
 try {
+	/** @var Router $router */
 	$router = $di->get('router');
 
 	$router->handle($_SERVER['REQUEST_URI']);
 
+	/** @var Dispatcher $dispatcher */
 	$dispatcher = $di->get('dispatcher');
 
 	$dispatcher->setControllerName($router->getControllerName());
@@ -81,6 +89,7 @@ try {
 
 	$dispatcher->setParams($router->getParams());
 
+	/** @var Response $response */
 	$response = $di->get('response');
 
 	try {
