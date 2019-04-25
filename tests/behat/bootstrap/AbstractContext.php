@@ -292,6 +292,26 @@ abstract class AbstractContext extends Assert implements Context
 		$this->data['user']['department'] = $name;
 	}
 
+	/**
+	 * @Then response must contain correct data
+	 *
+	 * @param PyStringNode $text
+	 */
+	public function checkResponse(PyStringNode $text)
+	{
+		$text = $text->getRaw();
+		$text = $string = preg_replace('/\s+/', '', $text);
+
+		$response = $this->data['response']['body']['response'];
+		$response = json_encode($response);
+
+		$pattern = '@^' . preg_quote($text, '@') . '$@';
+		$pattern = str_replace('\\\\d\\+', '\\d+', $pattern);
+		$result = (bool) preg_match($pattern, $response);
+
+		self::assertTrue($result);
+	}
+
 	/** @noinspection PhpDocMissingThrowsInspection */
 	/**
 	 * @param string $path

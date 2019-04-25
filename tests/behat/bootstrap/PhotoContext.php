@@ -10,7 +10,7 @@ class PhotoContext extends AbstractContext
 	 * @param TableNode $table
 	 * @throws Exception
 	 */
-	public function createPhotoSize(TableNode $table)
+	public function create(TableNode $table)
 	{
 		if (!isset($this->data['user']['id'])) {
 			throw new InvalidArgumentException("user_id is not set");
@@ -51,12 +51,14 @@ class PhotoContext extends AbstractContext
 				'price' => $photo['price']
 			]);
 		}
+
+		$this->data['photos'] = $photos;
 	}
 
 	/**
 	 * @When i want get photo sizes
 	 */
-	public function getPhotoSize()
+	public function get()
 	{
 		$response = $this->request('photo/size', 'GET');
 

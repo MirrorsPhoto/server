@@ -32,3 +32,35 @@ Feature: Photo
 				| 5     | 5      | 2     | 910   | Кодак      |
 		When i want get photo sizes
 		Then the response status code should be 200
+			And response must contain correct data
+				"""
+					[
+						{
+							"width": 3,
+							"height": 4,
+							"variations": [
+								{
+									"id": \d+,
+									"count": 4,
+									"price": 100
+								},
+								{
+									"id": \d+,
+									"count": 6,
+									"price": 120
+								}
+							]
+						},
+						{
+							"width": 5,
+							"height": 5,
+							"variations": [
+								{
+									"id": \d+,
+									"count": 2,
+									"price": 110
+								}
+							]
+						}
+					]
+				"""
