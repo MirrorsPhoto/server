@@ -15,8 +15,8 @@ class AuthContext extends AbstractContext
 		$responseCode = $response['status'];
 		$responseBody = $response['body'];
 
-		self::assertObjectHasAttribute('status', $responseBody);
-		$responseStatus = $responseBody->status;
+		self::assertArrayHasKey('status', $responseBody);
+		$responseStatus = $responseBody['status'];
 
 		self::assertEquals($responseStatus, 'OK');
 		self::assertEquals($responseCode, 200);

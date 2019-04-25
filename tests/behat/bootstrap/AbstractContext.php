@@ -1,6 +1,7 @@
 <?php
 
 use Behat\Behat\Context\Context;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Faker\Factory;
 use Faker\Generator;
@@ -86,12 +87,12 @@ abstract class AbstractContext extends Assert implements Context
 		$response = $this->data['response'];
 		$responseBody = $response['body'];
 
-		self::assertObjectHasAttribute('status', $responseBody);
-		$responseStatus = $responseBody->status;
+		self::assertArrayHasKey('status', $responseBody);
+		$responseStatus = $responseBody['status'];
 		self::assertEquals($responseStatus, 'ERROR');
 
-		self::assertObjectHasAttribute('message', $responseBody);
-		$responseMessage = $responseBody->message;
+		self::assertArrayHasKey('message', $responseBody);
+		$responseMessage = $responseBody['message'];
 		self::assertEquals($responseMessage, $table->getRow(0));
 	}
 
@@ -111,8 +112,8 @@ abstract class AbstractContext extends Assert implements Context
 		if ($code >= 200 && $code < 300) {
 			$responseBody = $response['body'];
 
-			self::assertObjectHasAttribute('status', $responseBody);
-			$responseStatus = $responseBody->status;
+			self::assertArrayHasKey('status', $responseBody);
+			$responseStatus = $responseBody['status'];
 			self::assertEquals($responseStatus, 'OK');
 		}
 	}
@@ -220,7 +221,7 @@ abstract class AbstractContext extends Assert implements Context
 		$response = $this->data['response'];
 		$responseBody = $response['body'];
 
-		$token = $responseBody->response->token;
+		$token = $responseBody['response']['token'];
 
 		$this->token = $token;
 	}
@@ -287,6 +288,8 @@ abstract class AbstractContext extends Assert implements Context
 			'department_id' => $departmentId,
 			'user_id' => $userId
 		]);
+
+		$this->data['user']['department'] = $name;
 	}
 
 	/** @noinspection PhpDocMissingThrowsInspection */
@@ -316,7 +319,7 @@ abstract class AbstractContext extends Assert implements Context
 		return [
 			'headers' => $response->getHeaders(),
 			'status' => $response->getStatusCode(),
-			'body' => json_decode($response->getBody()->getContents())
+			'body' => json_decode($response->getBody()->getContents(), TRUE)
 		];
 	}
 
