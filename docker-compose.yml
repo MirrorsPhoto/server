@@ -4,16 +4,16 @@ services:
     image: postgres:11-alpine
     restart: always
     environment:
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_USER=$DATABASE_USERNAME
     ports:
-      - ${DATABASE_PORT_EXTERNAL}:5432
+      - $DATABASE_PORT_EXTERNAL:5432
 
   web:
     image: jonkofee/nginx
     working_dir: /code
     ports:
-      - ${NGINX_PORT_EXTERNAL}:80
+      - $NGINX_PORT_EXTERNAL:80
       - 80
     volumes:
       - ./:/code
@@ -22,12 +22,12 @@ services:
       - php
       - websocket
     environment:
-      - DOMAIN=${NGINX_DOMAIN}
+      - DOMAIN=$DOMAIN
     networks:
       default:
         aliases:
-          - api.${NGINX_DOMAIN}
-          - static.${NGINX_DOMAIN}
+          - api.$DOMAIN
+          - static.$DOMAIN
 
   php:
     build: ./docker/php
@@ -40,12 +40,12 @@ services:
     ports:
       - 9000
     environment:
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_NAME=${DATABASE_NAME}
-      - DATABASE_PORT=${DATABASE_PORT_INTERNAL}
-      - JWT_KEY=${JWT_KEY}
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_USERNAME=$DATABASE_USERNAME
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE_NAME=$DATABASE_NAME
+      - DATABASE_PORT=$DATABASE_PORT_INTERNAL
+      - JWT_KEY=$JWT_KEY
 
   websocket:
     build: ./docker/websocket
@@ -53,10 +53,10 @@ services:
     volumes:
       - ./:/code
     ports:
-      - ${WEBSOCKET_PORT_EXTERNAL}:8000
+      - $WEBSOCKET_PORT_EXTERNAL:8000
       - 1337
     environment:
-      - JWT_KEY=${JWT_KEY}
+      - JWT_KEY=$JWT_KEY
 
   tests:
     build: ./docker/tests
@@ -66,10 +66,10 @@ services:
       - ./vendor:/code/vendor
       - ./tests:/code/tests
     environment:
-      - DATABASE_HOST=${DATABASE_HOST}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_NAME=${DATABASE_NAME}
-      - DATABASE_PORT=${DATABASE_PORT_INTERNAL}
-      - JWT_KEY=${JWT_KEY}
-      - DOMAIN=${NGINX_DOMAIN}
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_USERNAME=$DATABASE_USERNAME
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE_NAME=$DATABASE_NAME
+      - DATABASE_PORT=$DATABASE_PORT_INTERNAL
+      - JWT_KEY=$JWT_KEY
+      - DOMAIN=$DOMAIN
