@@ -1,5 +1,7 @@
 <?php
 
+use Core\Exception\BadRequest;
+
 /**
  * @RoutePrefix('/copy')
  */
@@ -11,9 +13,16 @@ class CopyController extends Controller
 	 *
 	 * @param int $id
 	 * @return float
+	 * @throws BadRequest
 	 */
 	public function priceAction($id)
 	{
-		return Copy::findFirst($id)->price;
+		$row = Copy::findFirst($id);
+
+		if (!$row) {
+			throw new BadRequest('copy.not_found');
+		}
+
+		return $row->price;
 	}
 }

@@ -74,7 +74,7 @@ class Copy extends Model
 		$row = $this->getCopyPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
 		if (!$row) {
-			throw new ServerError("Для копии формата {$this->format} не задана цена");
+			throw new ServerError('copy.not_price');
 		}
 
 		return (float) $row->price;

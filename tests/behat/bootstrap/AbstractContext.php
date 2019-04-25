@@ -79,6 +79,7 @@ abstract class AbstractContext extends Assert implements Context
 
 	/**
 	 * @Then response having error message:
+	 *
 	 * @param TableNode $table
 	 */
 	public function checkErrorMessage(TableNode $table)
@@ -310,6 +311,18 @@ abstract class AbstractContext extends Assert implements Context
 		$result = (bool) preg_match($pattern, $response);
 
 		self::assertTrue($result);
+	}
+
+	/**
+	 * @Then response must contain numeric :value
+	 *
+	 * @param $value
+	 */
+	public function checkResponseNumeric($value)
+	{
+		$response = $this->data['response']['body']['response'];
+
+		self::assertEquals($response, $value);
 	}
 
 	/** @noinspection PhpDocMissingThrowsInspection */

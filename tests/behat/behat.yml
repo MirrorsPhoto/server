@@ -8,3 +8,6 @@ default:
     photo:
       paths: [ %paths.base%/features/photo.feature ]
       contexts: [ PhotoContext ]
+    copy:
+      paths: [ %paths.base%/features/copy.feature ]
+      contexts: [ CopyContext ]
