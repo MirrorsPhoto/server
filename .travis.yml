@@ -16,6 +16,8 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+  - sudo chmod +x /usr/local/bin/docker-compose
+  - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 install:
   - docker-compose build
@@ -29,6 +31,3 @@ script:
 after_script:
   - docker-compose stop
   - docker-compose rm -f
-
-notifications:
-  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
