@@ -58,13 +58,13 @@ services:
     environment:
       - JWT_KEY=$JWT_KEY
 
-  tests:
-    build: ./docker/tests
+  behat:
+    build: ./docker/tests/behat
     working_dir: /code
     tty: true
     volumes:
       - ./vendor:/code/vendor
-      - ./tests:/code/tests
+      - ./tests/behat:/code
     environment:
       - DATABASE_HOST=$DATABASE_HOST
       - DATABASE_USERNAME=$DATABASE_USERNAME

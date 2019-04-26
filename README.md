@@ -23,5 +23,5 @@ docker exec -it mirrors_php_1 vendor/bin/phinx seed:run
 
 ## Тесты
 ```bash
-docker exec -it mirrors_tests_1 vendor/bin/behat --config=tests/behat/behat.yml
+docker exec -it mirrors_behat_1 vendor/bin/behat
 ```
