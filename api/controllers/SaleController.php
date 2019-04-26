@@ -23,6 +23,10 @@ class SaleController extends Controller
 	{
 		$items = $this->getPost('items');
 
+		if (empty($items)) {
+			throw new BadRequest('sale.invalid_items');
+		}
+
 		foreach ($items as $item) {
 			switch ($item->type) {
 				case 'photo':
@@ -44,10 +48,29 @@ class SaleController extends Controller
 					$manager = 'Printing';
 					break;
 				default:
-					throw new BadRequest('Не известный тип услуги ' . $item->type);
+					throw new BadRequest('sale.unknown_type');
 			}
 
-			$manager::batch($item);
+			$id = $item->id;
+			$copies = $item->copies;
+
+			if ($copies <= 0) {
+				throw new BadRequest('sale.invalid_copies');
+			}
+
+			if ($id <= 0) {
+				throw new BadRequest('sale.invalid_id');
+			}
+
+			$row = $manager::findFirst($id);
+
+			if (!$row) {
+				throw new BadRequest('sale.wrong_id');
+			}
+
+			for ($i = 1; $i <= $copies; $i++) {
+				$row->sale();
+			}
 		}
 
 		$newCheck = new Check([

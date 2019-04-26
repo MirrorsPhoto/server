@@ -17,3 +17,6 @@ default:
     service:
       paths: [ %paths.base%/features/service.feature ]
       contexts: [ ServiceContext ]
+    sale:
+      paths: [ %paths.base%/features/sale.feature ]
+      contexts: [ SaleContext ]

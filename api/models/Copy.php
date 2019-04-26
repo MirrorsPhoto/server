@@ -81,23 +81,6 @@ class Copy extends Model
 	}
 
 	/**
-	 * @param mixed $data
-	 * @throws ServerError
-	 * @return void
-	 */
-	public static function batch($data)
-	{
-		$copyId = $data->id;
-		$count = $data->copies;
-
-		$row = self::findFirst($copyId);
-
-		for ($i = 1; $i <= $count; $i++) {
-			$row->sale();
-		}
-	}
-
-	/**
 	 * @throws ServerError
 	 * @return CopySale
 	 */

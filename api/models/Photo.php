@@ -107,23 +107,6 @@ class Photo extends Model
 	}
 
 	/**
-	 * @param mixed $data
-	 * @throws ServerError
-	 * @return void
-	 */
-	public static function batch($data)
-	{
-		$photoId = $data->id;
-		$count = $data->copies;
-
-		$row = self::findFirst($photoId);
-
-		for ($i = 1; $i <= $count; $i++) {
-			$row->sale();
-		}
-	}
-
-	/**
 	 * @return PhotoSale
 	 * @throws ServerError
 	 */

@@ -73,19 +73,6 @@ class Lamination extends Model
 	}
 
 	/**
-	 * @param mixed $data
-	 * @throws ServerError
-	 */
-	public static function batch($data)
-	{
-		$row = self::findFirst($data->id);
-
-		for ($i = 1; $i <= $data->copies; $i++) {
-			$row->sale();
-		}
-	}
-
-	/**
 	 * @throws ServerError
 	 * @return LaminationSale
 	 */

@@ -99,19 +99,6 @@ class Printing extends Model
 	}
 
 	/**
-	 * @param $data
-	 * @throws ServerError
-	 */
-	public static function batch($data)
-	{
-		$row = self::findFirst($data->id);
-
-		for ($i = 1; $i <= $data->copies; $i++) {
-			$row->sale();
-		}
-	}
-
-	/**
 	 * @return PrintingSale
 	 * @throws ServerError
 	 */
