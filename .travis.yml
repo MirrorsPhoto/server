@@ -1,0 +1,27 @@
+git:
+  depth: false
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+install:
+  - docker-compose build
+  - docker-compose up -d
+  - docker exec -it mirrors_php_1 php composer.phar install
+  - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
+
+script:
+  - docker exec -it mirrors_behat_1 vendor/bin/behat
+
+after_script:
+  - docker-compose stop
+  - docker-compose rm -f
