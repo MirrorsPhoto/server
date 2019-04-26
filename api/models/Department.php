@@ -109,8 +109,9 @@ class Department extends Model
 	}
 
 	/**
-	 * @throws Unauthorized
 	 * @return void
+	 * @throws Exception
+	 * @throws Unauthorized
 	 */
 	public function notifyPersonnels()
 	{
@@ -121,12 +122,13 @@ class Department extends Model
 
 		$data = [];
 
+		$timeZone = new DateTimeZone("Europe/Moscow");
 		$datetime = [
-			'today' => date_create(null, new DateTimeZone('+3')), // new DateTime("now", new DateTimeZone("Europe/Moscow"))
-			'yesterday' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1D')), // new DateTime("previous day", new DateTimeZone("Europe/Moscow"))
-			'week' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P7D')), // new DateTime("previous weeks", new DateTimeZone("Europe/Moscow"))
-			'month' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1M')), // new DateTime("previous month", new DateTimeZone("Europe/Moscow"))
-			'year' => date_create(null, new DateTimeZone('+3'))->sub(new DateInterval('P1Y')) // new DateTime("previous year", new DateTimeZone("Europe/Moscow"))
+			'today' => new DateTime("now", $timeZone),
+			'yesterday' => new DateTime("previous day", $timeZone),
+			'week' => new DateTime("previous weeks", $timeZone),
+			'month' => new DateTime("previous month", $timeZone),
+			'year' => new DateTime("previous year", $timeZone)
 		];
 
 		$types = [

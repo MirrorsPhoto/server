@@ -2,7 +2,7 @@
 <ruleset>
 	<arg name="tab-width" value="4"/>
 	<arg name="colors"/>
-	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>*vendor/*</exclude-pattern>
 	<arg name="basepath" value="."/>
 
 	<rule ref="PSR1">

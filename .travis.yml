@@ -24,6 +24,7 @@ install:
 
 script:
   - docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
+  - docker exec -it mirrors_tests_1 vendor/bin/phpcs .
 
 after_script:
   - docker-compose stop

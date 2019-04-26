@@ -26,4 +26,6 @@ docker exec -it mirrors_php_1 vendor/bin/phinx seed:run
 ```bash
 docker exec -it mirrors_tests_1 composer install
 docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
+docker exec -it mirrors_tests_1 vendor/bin/phpcs .
+
 ```

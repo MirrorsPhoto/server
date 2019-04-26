@@ -60,10 +60,10 @@ services:
 
   tests:
     build: ./docker/tests
-    working_dir: /code
+    working_dir: /code/tests
     tty: true
     volumes:
-      - ./tests:/code
+      - ./:/code
     environment:
       - DATABASE_HOST=$DATABASE_HOST
       - DATABASE_USERNAME=$DATABASE_USERNAME
