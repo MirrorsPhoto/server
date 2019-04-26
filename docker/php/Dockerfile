@@ -16,6 +16,9 @@ ADD phalcon.so /usr/lib/php7/modules/phalcon.so
 RUN cp /usr/lib/php7/modules/phalcon.so $(php -r 'echo ini_get("extension_dir");')
 RUN docker-php-ext-enable phalcon
 
+#Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Eliminar cosas que ya no necesitamos :D
 RUN rm -fr /var/lib/apt/lists/* && \
     rm -fr /tmp/* /var/tmp/*

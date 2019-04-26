@@ -52,6 +52,10 @@ abstract class AbstractContext extends Assert implements Context
 	 */
 	private $connection;
 
+	/**
+	 * AbstractContext constructor.
+	 * @throws Exception
+	 */
 	public function __construct()
 	{
 		$this->connection = pg_connect("
@@ -61,6 +65,10 @@ abstract class AbstractContext extends Assert implements Context
 			user={$_ENV['DATABASE_USERNAME']}
 			password={$_ENV['DATABASE_PASSWORD']}
 		");
+
+		if (!$this->connection) {
+			throw new Exception('postgresql connection failed');
+		}
 
 		$this->faker = Factory::create('ru_RU');
 
@@ -435,6 +443,10 @@ abstract class AbstractContext extends Assert implements Context
 		");
 
 		$truncateQuery = $truncateQuery[0]['query'];
+
+		if (empty($truncateQuery)) {
+			return;
+		}
 
 		$this->queryDb($truncateQuery);
 	}

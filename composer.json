@@ -3,11 +3,5 @@
         "firebase/php-jwt": "^5.0",
         "workerman/workerman": "^3.5",
         "robmorgan/phinx": "^0.9.1"
-    },
-    "require-dev": {
-        "behat/behat": "^3.5",
-        "fzaninotto/faker": "^1.8",
-        "phpunit/phpunit": "^6.5",
-        "guzzlehttp/guzzle": "^6.3"
     }
 }

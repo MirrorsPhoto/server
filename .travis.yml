@@ -18,11 +18,12 @@ before_install:
 
 install:
   - docker-compose up -d --build
-  - docker exec -it mirrors_php_1 php composer.phar install
+  - docker exec -it mirrors_php_1 composer install
   - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
+  - docker exec -it mirrors_tests_1 composer install
 
 script:
-  - docker exec -it mirrors_behat_1 vendor/bin/behat
+  - docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
 
 after_script:
   - docker-compose stop

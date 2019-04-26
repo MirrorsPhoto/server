@@ -1,0 +1,10 @@
+{
+    "require": {
+        "squizlabs/php_codesniffer": "^3.4",
+        "behat/behat": "^3.5",
+        "fzaninotto/faker": "^1.8",
+        "phpunit/phpunit": "^8.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "firebase/php-jwt": "^5.0"
+    }
+}

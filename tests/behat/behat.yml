@@ -1,22 +1,22 @@
 default:
   autoload:
-    - %paths.base%/bootstrap/
+    - '%paths.base%/bootstrap'
   suites:
     auth:
-      paths: [ %paths.base%/features/auth.feature ]
+      paths: [ '%paths.base%/features/auth.feature' ]
       contexts: [ AuthContext ]
     photo:
-      paths: [ %paths.base%/features/photo.feature ]
+      paths: [ '%paths.base%/features/photo.feature' ]
       contexts: [ PhotoContext ]
     copy:
-      paths: [ %paths.base%/features/copy.feature ]
+      paths: [ '%paths.base%/features/copy.feature' ]
       contexts: [ CopyContext ]
     lamination:
-      paths: [ %paths.base%/features/lamination.feature ]
+      paths: [ '%paths.base%/features/lamination.feature' ]
       contexts: [ LaminationContext ]
     service:
-      paths: [ %paths.base%/features/service.feature ]
+      paths: [ '%paths.base%/features/service.feature' ]
       contexts: [ ServiceContext ]
     sale:
-      paths: [ %paths.base%/features/sale.feature ]
+      paths: [ '%paths.base%/features/sale.feature' ]
       contexts: [ SaleContext ]
