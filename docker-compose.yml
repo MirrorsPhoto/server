@@ -9,7 +9,7 @@ services:
     ports:
       - $DATABASE_PORT_EXTERNAL:5432
 
-  web:
+  nginx:
     image: jonkofee/nginx
     working_dir: /code
     ports:
