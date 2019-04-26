@@ -16,7 +16,6 @@
         {
           "type": "photo",
           "id": 1,
-          "count": 4,
           "copies": 2
         },
         {
