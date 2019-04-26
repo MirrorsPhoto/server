@@ -62,7 +62,6 @@ class Service extends Model
 	}
 
 	/**
-	 * @throws ServerError
 	 * @throws Unauthorized
 	 * @return float
 	 */
@@ -72,11 +71,7 @@ class Service extends Model
 
 		$row = $this->getServicePriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) {
-			throw new ServerError("Для услуги {$this->name} не задана цена");
-		}
-
-		return (float) $row->price;
+		return (float) $row->price ?? 0;
 	}
 
 	/**

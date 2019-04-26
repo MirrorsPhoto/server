@@ -14,3 +14,6 @@ default:
     lamination:
       paths: [ %paths.base%/features/lamination.feature ]
       contexts: [ LaminationContext ]
+    service:
+      paths: [ %paths.base%/features/service.feature ]
+      contexts: [ ServiceContext ]
