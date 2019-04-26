@@ -11,3 +11,6 @@ default:
     copy:
       paths: [ %paths.base%/features/copy.feature ]
       contexts: [ CopyContext ]
+    lamination:
+      paths: [ %paths.base%/features/lamination.feature ]
+      contexts: [ LaminationContext ]

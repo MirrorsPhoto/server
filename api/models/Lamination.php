@@ -7,6 +7,7 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 
 /**
+ * @property float price
  * @method LaminationPriceHistory getLaminationPriceHistory(string $string)
  */
 class Lamination extends Model
@@ -59,7 +60,6 @@ class Lamination extends Model
 	}
 
 	/**
-	 * @throws ServerError
 	 * @throws Unauthorized
 	 * @return float
 	 */
@@ -69,11 +69,7 @@ class Lamination extends Model
 
 		$row = $this->getLaminationPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
 
-		if (!$row) {
-			throw new ServerError("Для ламинации размера {$this->format} не задана цена");
-		}
-
-		return (float) $row->price;
+		return (float) $row->price ?? 0;
 	}
 
 	/**
