@@ -9,7 +9,7 @@ class AuthContext extends AbstractContext
 	/**
 	 * @Then token must contain valid JWT
 	 */
-	public function checkJWT()
+	public function checkJwt()
 	{
 		$response = $this->request('auth/check', 'GET');
 		$responseCode = $response['status'];
@@ -26,20 +26,14 @@ class AuthContext extends AbstractContext
 	 * @Then JWT token payload must contain:
 	 * @param TableNode $table
 	 */
-	public function checkJWTpayload(TableNode $table)
+	public function checkJwtPayload(TableNode $table)
 	{
 		$payload = JWT::decode($this->token, $_ENV['JWT_KEY'], ['HS256']);
 
 		foreach ($table->getRow(0) as $key) {
 			self::assertObjectHasAttribute($key, $payload);
 
-			switch ($key) {
-				/** @noinspection PhpMissingBreakStatementInspection */
-				case 'id':
-					self::assertInternalType(IsType::TYPE_INT, $payload->{$key});
-				default:
-					self::assertEquals($this->data['user'][$key], $payload->{$key});
-			}
+			self::assertEquals($this->data['user'][$key], $payload->{$key});
 		}
 	}
 }

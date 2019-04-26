@@ -333,7 +333,8 @@ abstract class AbstractContext extends Assert implements Context
 	 * @param array $headers
 	 * @return array
 	 */
-	protected function request(string $path, string $method = 'GET', array $body = [], array $headers = []) {
+	protected function request(string $path, string $method = 'GET', array $body = [], array $headers = [])
+	{
 		$defaultHeaders = [
 			'Content-Type' => 'application/json'
 		];
@@ -352,7 +353,7 @@ abstract class AbstractContext extends Assert implements Context
 		return [
 			'headers' => $response->getHeaders(),
 			'status' => $response->getStatusCode(),
-			'body' => json_decode($response->getBody()->getContents(), TRUE)
+			'body' => json_decode($response->getBody()->getContents(), true)
 		];
 	}
 
