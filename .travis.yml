@@ -12,16 +12,9 @@ sudo: required
 
 env:
   - DOCKER_COMPOSE_VERSION=1.24
-  - DOMAIN=mirrors-photo.local
-  - NGINX_PORT_EXTERNAL=420
-  - WEBSOCKET_PORT_EXTERNAL=8000
-  - DATABASE_HOST=postgresql
-  - DATABASE_USERNAME=mirrors
-  - DATABASE_PASSWORD=devpass
-  - DATABASE_NAME=mirrors
-  - DATABASE_PORT_INTERNAL=5432
-  - DATABASE_PORT_EXTERNAL=2517
-  - JWT_KEY=devkey
+
+before_install:
+  - cp .env.dist .env
 
 install:
   - docker-compose up -d --build
