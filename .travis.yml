@@ -6,22 +6,20 @@ git:
 services:
   - docker
 
-before_install:
-  - cp .env.dist .env
-
-install:
-  - docker-compose up -d --build
-  - docker exec -it mirrors_php_1 composer install
-  - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
-  - docker exec -it mirrors_tests_1 composer install
-
-script:
-  - docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
-  - docker exec -it mirrors_tests_1 vendor/bin/phpcs .
-
-after_script:
-  - docker-compose stop
-  - docker-compose rm -f
+jobs:
+  include:
+    - stage: "Build docker image"
+      script:
+        - cp .env.dist .env
+        - docker-compose up -d --build
+        - docker exec -it mirrors_php_1 composer install
+        - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
+        - docker exec -it mirrors_tests_1 composer install
+    - stage: "Tests"
+      name: "Lint"
+      script: docker exec -it mirrors_tests_1 vendor/bin/phpcs .
+    - script: docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
+      name: "Integration"
 
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
