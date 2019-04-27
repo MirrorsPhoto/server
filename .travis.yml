@@ -6,15 +6,6 @@ git:
 services:
   - docker
 
-sudo: required
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.24
-
 before_install:
   - cp .env.dist .env
 
