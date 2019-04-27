@@ -12,6 +12,7 @@ RUN docker-php-ext-install -j$(nproc) pdo && \
     docker-php-ext-install -j$(nproc) pcntl
 
 #Phalcon extension
+# http://packages.nanobox.io/2017/11/base/index.html
 ADD phalcon.so /usr/lib/php7/modules/phalcon.so
 RUN cp /usr/lib/php7/modules/phalcon.so $(php -r 'echo ini_get("extension_dir");')
 RUN docker-php-ext-enable phalcon
