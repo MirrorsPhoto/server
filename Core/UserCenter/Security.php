@@ -31,6 +31,7 @@ class Security extends Plugin
 		'auth' =>
 			[
 				'login',
+				'check'
 			]
 	];
 
@@ -145,7 +146,8 @@ class Security extends Plugin
 		$decoded = $jwt::decode($token);
 
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
-		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
+		$allowed = (int) $acl->isAllowed($decoded->role_id, $controller, $action);
+
 		if ($allowed !== Acl::ALLOW || $decoded->role_id !== $user->role_id || $decoded->id !== $user->id) {
 			throw new AccessDenied();
 		}
