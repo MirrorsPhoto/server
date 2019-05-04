@@ -13,9 +13,8 @@ class SocketController extends Controller
 	 * @Get('/update')
 	 *
 	 * @throws Unauthorized
-	 * @return string
 	 */
-	public function updateAction()
+	public function updateAction(): string
 	{
 		$department = Security::getUser()->getCurrentDepartments()->getLast();
 

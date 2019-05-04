@@ -7,15 +7,15 @@ Feature: Service
 
 	Scenario: User tries to get service list without token
 		When i want get service list
-		Then the response status code should be 401
-			And response having error message:
+		Then the resp status code should be 401
+			And resp having error message:
 				| auth.required |
 
 	Scenario: User tries to get service list when there are none
 		Given i have token
 		When i want get service list
-		Then the response status code should be 500
-			And response having error message:
+		Then the resp status code should be 500
+			And resp having error message:
 				| service.empty |
 
 	Scenario: User tries to get service list without price
@@ -28,8 +28,8 @@ Feature: Service
 				| Burn |
 				| Scan |
 		When i want get service list
-		Then the response status code should be 500
-			And response having error message:
+		Then the resp status code should be 500
+			And resp having error message:
 				| service.empty |
 
 	Scenario: User tries to get service list
@@ -44,8 +44,8 @@ Feature: Service
 				| Burn | 30    | Кодак      |
 				| Scan | 15    | Кодак      |
 		When i want get service list
-		Then the response status code should be 200
-			And response must contain correct data
+		Then the resp status code should be 200
+			And resp must contain correct data
 				"""
 					[
 						{

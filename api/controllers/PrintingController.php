@@ -9,9 +9,9 @@ class PrintingController extends Controller
 	/**
 	 * @Get('/')
 	 *
-	 * @return array
+	 * @return mixed[]
 	 */
-	public function getAction()
+	public function getAction(): array
 	{
 		$rowSet = Printing::find();
 

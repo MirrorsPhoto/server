@@ -7,11 +7,7 @@ use Validation;
 
 class Login extends Validation
 {
-
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		$this->add(
 			'login',

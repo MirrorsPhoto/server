@@ -6,7 +6,7 @@ use Phinx\Migration\AbstractMigration;
 class Start extends AbstractMigration
 {
 
-	public function change()
+	public function change(): void
 	{
 		$this->user();
 
@@ -25,7 +25,7 @@ class Start extends AbstractMigration
 		$this->photo();
 	}
 
-	private function city()
+	private function city(): void
 	{
 		$table = $this->table('city');
 
@@ -40,7 +40,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function department()
+	private function department(): void
 	{
 		$table = $this->table('department');
 
@@ -95,7 +95,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function user()
+	private function user(): void
 	{
 		$table = $this->table('role');
 
@@ -135,7 +135,7 @@ class Start extends AbstractMigration
 			])
 			->addColumn('role_id', 'integer', [
 				'comment' => 'Id роли пользователя',
-				'default' => Role::USER
+				'default' => 3
 			])
 			->addColumn('username', 'text', ['comment' => 'Логин пользователя'])
 			->addColumn('first_name', 'text', ['comment' => 'Имя пользователя'])
@@ -181,7 +181,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function good()
+	private function good(): void
 	{
 		$table = $this->table('good');
 
@@ -297,7 +297,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function check()
+	private function check(): void
 	{
 		$table = $this->table('check');
 
@@ -320,7 +320,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function copy()
+	private function copy(): void
 	{
 		$table = $this->table('copy_price_history');
 
@@ -366,7 +366,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function lamination()
+	private function lamination(): void
 	{
 		$table = $this->table('lamination_size');
 
@@ -435,7 +435,7 @@ class Start extends AbstractMigration
 		$table->create();
 	}
 
-	private function photo()
+	private function photo(): void
 	{
 		$table = $this->table('photo_size');
 

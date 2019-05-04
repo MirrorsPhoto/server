@@ -22,30 +22,26 @@ class Service extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'ServicePriceHistory', 'service_id', ['alias' => 'ServicePriceHistory']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -63,9 +59,8 @@ class Service extends Model
 
 	/**
 	 * @throws Unauthorized
-	 * @return float
 	 */
-	public function getPrice()
+	public function getPrice(): float
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -76,9 +71,8 @@ class Service extends Model
 
 	/**
 	 * @throws ServerError
-	 * @return ServiceSale
 	 */
-	public function sale()
+	public function sale(): ServiceSale
 	{
 		$newSaleRow = new ServiceSale([
 			'service_id' => $this->id,

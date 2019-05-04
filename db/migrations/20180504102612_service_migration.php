@@ -5,7 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class ServiceMigration extends AbstractMigration
 {
-	public function change()
+	public function change(): void
 	{
 		$service = $this->table('service');
 

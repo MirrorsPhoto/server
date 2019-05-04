@@ -12,10 +12,9 @@ class CopyController extends Controller
 	 * @Get('/price/{id:[0-9]+}')
 	 *
 	 * @param int $id
-	 * @return float
 	 * @throws BadRequest
 	 */
-	public function priceAction($id)
+	public function priceAction(int $id): float
 	{
 		$row = Copy::findFirst($id);
 

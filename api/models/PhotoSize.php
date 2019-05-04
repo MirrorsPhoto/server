@@ -3,11 +3,7 @@
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Numericality;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model\Resultset\Simple;
 
-/**
- * @property Simple Photo
- */
 class PhotoSize extends Model
 {
 
@@ -18,36 +14,33 @@ class PhotoSize extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $width;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $height;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'Photo', 'photo_size_id', ['alias' => 'Photo']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -92,9 +85,10 @@ class PhotoSize extends Model
 
 	/**
 	 * Возвращает массив с вариацией количества фотографий для данного размера и цены
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
-	public function getVariations()
+	public function getVariations(): array
 	{
 		$result = [];
 

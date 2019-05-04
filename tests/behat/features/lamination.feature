@@ -7,15 +7,15 @@ Feature: Lamination
 
 	Scenario: User tries to get sizes without token
 		When i want get lamination sizes
-		Then the response status code should be 401
-			And response having error message:
+		Then the resp status code should be 401
+			And resp having error message:
 				| auth.required |
 
 	Scenario: User tries to get sizes when there are none
 		Given i have token
 		When i want get lamination sizes
-		Then the response status code should be 500
-			And response having error message:
+		Then the resp status code should be 500
+			And resp having error message:
 				| lamination.no_sizes |
 
 	Scenario: User tries to get sizes without price
@@ -28,8 +28,8 @@ Feature: Lamination
 				| A4     |
 				| A5     |
 		When i want get lamination sizes
-		Then the response status code should be 500
-			And response having error message:
+		Then the resp status code should be 500
+			And resp having error message:
 				| lamination.no_sizes |
 
 	Scenario: User tries to get sizes
@@ -44,8 +44,8 @@ Feature: Lamination
 				| A4     | 30    | Кодак      |
 				| A5     | 15    | Кодак      |
 		When i want get lamination sizes
-		Then the response status code should be 200
-		And response must contain correct data
+		Then the resp status code should be 200
+		And resp must contain correct data
 				"""
 					[
 						{

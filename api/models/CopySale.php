@@ -16,33 +16,33 @@ class CopySale extends Model
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $copy_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
 	/**
-	 *
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -50,10 +50,7 @@ class CopySale extends Model
 		$this->belongsTo('copy_id', '\Copy', 'id', ['alias' => 'Copy']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -98,9 +95,8 @@ class CopySale extends Model
 
 	/**
 	 * @throws Unauthorized
-	 * @return void
 	 */
-	public function beforeSave()
+	public function beforeSave(): void
 	{
 		$user = Security::getUser();
 

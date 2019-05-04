@@ -11,10 +11,11 @@ class ServiceController extends Controller
 	/**
 	 * @Get('/')
 	 *
-	 * @return array
 	 * @throws ServerError
+	 *
+	 * @return mixed[]
 	 */
-	public function getSizeAction()
+	public function getSizeAction(): array
 	{
 		$rowSet = Service::find();
 

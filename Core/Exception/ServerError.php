@@ -3,13 +3,12 @@
 namespace Core\Exception;
 
 use CoreException;
-use Throwable;
 
 class ServerError extends CoreException
 {
 
-	public function __construct($message = "Unknown Error", $code = 500, Throwable $previous = null)
+	public function __construct(string $message = "Unknown Error", int $code = 500)
 	{
-		parent::__construct($message, $code, $previous);
+		parent::__construct($message, $code);
 	}
 }

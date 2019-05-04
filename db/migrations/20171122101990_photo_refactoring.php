@@ -3,7 +3,7 @@ use Phinx\Migration\AbstractMigration;
 
 class PhotoRefactoring extends AbstractMigration
 {
-	public function change()
+	public function change(): void
 	{
 		$table = $this->table('photo');
 

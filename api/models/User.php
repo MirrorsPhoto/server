@@ -9,7 +9,6 @@ use Phalcon\Validation\Validator\Email as EmailValidator;
  *
  * @property int department_id
  * @property Simple currentDepartments
- *
  * @method getDepartments($con)
  * @method static self findFirstByUsername(string $login)
  * @method Role getRole()
@@ -25,68 +24,75 @@ class User extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $username;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $first_name;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $last_name;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=true)
 	 */
 	public $middle_name;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", nullable=false)
 	 */
 	public $role_id;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $password;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $email;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $token;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $avatar_id;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -105,10 +111,7 @@ class User extends Model
 		);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -127,10 +130,8 @@ class User extends Model
 
 	/**
 	 * Метод для получения всех салонов где работает данный пользователь в настоящее время
-	 *
-	 * @return Simple
 	 */
-	public function getCurrentDepartments()
+	public function getCurrentDepartments(): Simple
 	{
 		return $this->getDepartments('datetime_to IS NULL');
 	}
