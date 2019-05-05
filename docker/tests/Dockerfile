@@ -1,5 +1,8 @@
 FROM php:7.3-cli-alpine
 
+#Update
+RUN apk update && apk upgrade
+
 #Install custom dependencies
 RUN apk --no-cache add nano mc bash
 
