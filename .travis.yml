@@ -3,6 +3,8 @@ language: generic
 git:
   depth: false
 
+sudo: required
+
 services:
   - docker
 
