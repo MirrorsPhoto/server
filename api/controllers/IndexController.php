@@ -10,9 +10,8 @@ class IndexController extends Controller
 
 	/**
 	 * @throws NotFound
-	 * @return void
 	 */
-	public function notFoundAction()
+	public function notFoundAction(): void
 	{
 		throw new NotFound();
 	}

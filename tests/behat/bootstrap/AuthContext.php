@@ -2,14 +2,13 @@
 
 use Behat\Gherkin\Node\TableNode;
 use Firebase\JWT\JWT;
-use PHPUnit\Framework\Constraint\IsType;
 
 class AuthContext extends AbstractContext
 {
 	/**
 	 * @Then token must contain valid JWT
 	 */
-	public function checkJwt()
+	public function checkJwt(): void
 	{
 		$response = $this->request('auth/check', 'GET');
 		$responseCode = $response['status'];
@@ -23,10 +22,11 @@ class AuthContext extends AbstractContext
 	}
 
 	/**
-	 * @Then JWT token payload must contain:
 	 * @param TableNode $table
+	 *
+	 * @Then JWT token payload must contain:
 	 */
-	public function checkJwtPayload(TableNode $table)
+	public function checkJwtPayload(TableNode $table): void
 	{
 		$payload = JWT::decode($this->token, $_ENV['JWT_KEY'], ['HS256']);
 

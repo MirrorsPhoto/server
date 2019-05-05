@@ -11,11 +11,10 @@ class UserController extends Controller
 {
 
 	/**
-	 * @return string
 	 * @throws Unauthorized
 	 * @throws ServerError
 	 */
-	public function editSelfAction()
+	public function editSelfAction(): string
 	{
 		$user = Security::getUser();
 

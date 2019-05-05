@@ -6,7 +6,7 @@ Feature: Authorization
 
 	Scenario: User tries to login with valid credential
 		When i am login as "admin" with "devpass" password
-		Then the response status code should be 200
+		Then the resp status code should be 200
 			And the "Content-Type" header should be "application/json; charset=UTF-8"
 			And i have token
 			And token must contain valid JWT
@@ -15,14 +15,14 @@ Feature: Authorization
 
 	Scenario: User tries to login with wrong password
 		When i am login as "admin" with "other" password
-		Then the response status code should be 400
+		Then the resp status code should be 400
 			And the "Content-Type" header should be "application/json; charset=UTF-8"
-			And response having error message:
+			And resp having error message:
 				| auth.invalid_login_or_pass |
 
 	Scenario: User tries to login with wrong username
 		When i am login as "other" with "devpass" password
-		Then the response status code should be 400
+		Then the resp status code should be 400
 			And the "Content-Type" header should be "application/json; charset=UTF-8"
-			And response having error message:
+			And resp having error message:
 				| auth.invalid_login_or_pass |

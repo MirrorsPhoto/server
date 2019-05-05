@@ -4,14 +4,17 @@ use Phinx\Seed\AbstractSeed;
 
 class Users extends AbstractSeed
 {
-	public function getDependencies()
+	/**
+	 * @return string[]
+	 */
+	public function getDependencies(): array
 	{
 		return [
 			'Roles'
 		];
 	}
 
-	public function run()
+	public function run(): void
 	{
 		$this
 			->table('user')

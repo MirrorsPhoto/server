@@ -10,18 +10,15 @@ use Phalcon\Mvc\Dispatcher;
 
 /**
  * Class PreFlightListener
+ *
  * @package RealWorld\Listener
  * @property Request $request
  * @property Response $response
  */
 class PreFlightListener extends Plugin
 {
-	/**
-	 * @param Event $event
-	 * @param Dispatcher $dispatcher
-	 * @return void
-	 */
-	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
+	// @codingStandardsIgnoreLine SlevomatCodingStandard.Variables.UnusedVariable
+	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher): void
 	{
 		$di = $dispatcher->getDI();
 
@@ -45,49 +42,29 @@ class PreFlightListener extends Plugin
 		}
 	}
 
-	/**
-	 * @param Request $request
-	 * @return bool
-	 */
-	public function isCorsRequest(Request $request)
+	public function isCorsRequest(Request $request): bool
 	{
 		return !empty($request->getHeader('Origin')) && !$this->isSameHost($request);
 	}
 
-	/**
-	 * @param Request $request
-	 * @return bool
-	 */
-	public function isPreflightRequest(Request $request)
+	public function isPreflightRequest(Request $request): bool
 	{
 		return $this->isCorsRequest($request)
 			&& $request->getMethod() === 'OPTIONS'
 			&& !empty($request->getHeader('Access-Control-Request-Method'));
 	}
 
-	/**
-	 * @param Request $request
-	 * @return bool
-	 */
-	public function isSameHost(Request $request)
+	public function isSameHost(Request $request): bool
 	{
 		return $request->getHeader('Origin') === $this->getSchemeAndHttpHost($request);
 	}
 
-	/**
-	 * @param Request $request
-	 * @return string
-	 */
-	public function getSchemeAndHttpHost(Request $request)
+	public function getSchemeAndHttpHost(Request $request): string
 	{
 		return $request->getScheme() . '://' . $request->getHttpHost();
 	}
 
-	/**
-	 * @param Request $request
-	 * @return string
-	 */
-	public function getOrigin(Request $request)
+	public function getOrigin(Request $request): string
 	{
 		return $request->getHeader('Origin') ? $request->getHeader('Origin') : '*';
 	}

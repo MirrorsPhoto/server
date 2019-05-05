@@ -11,6 +11,9 @@ use PHPUnit\Framework\Assert;
 
 abstract class AbstractContext extends Assert implements Context
 {
+	/**
+	 * @var mixed[]
+	 */
 	private $roles = [
 		'admin' => [
 			'name' => 'Администратор',
@@ -30,10 +33,13 @@ abstract class AbstractContext extends Assert implements Context
 		]
 	];
 
+	/**
+	 * @var string
+	 */
 	protected $token;
 
 	/**
-	 * @var array
+	 * @var mixed[]
 	 */
 	protected $data = [];
 
@@ -54,6 +60,7 @@ abstract class AbstractContext extends Assert implements Context
 
 	/**
 	 * AbstractContext constructor.
+	 *
 	 * @throws Exception
 	 */
 	public function __construct()
@@ -80,17 +87,17 @@ abstract class AbstractContext extends Assert implements Context
 	/**
 	 * @BeforeScenario
 	 */
-	public function beforeScenario()
+	public function beforeScenario(): void
 	{
 		$this->eraseAllTables();
 	}
 
 	/**
-	 * @Then response having error message:
-	 *
 	 * @param TableNode $table
+	 *
+	 * @Then resp having error message:
 	 */
-	public function checkErrorMessage(TableNode $table)
+	public function checkErrorMessage(TableNode $table): void
 	{
 		/** @var Response $response */
 		$response = $this->data['response'];
@@ -106,11 +113,11 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Then the response status code should be :code
-	 *
 	 * @param int $code
+	 *
+	 * @Then the resp status code should be :code
 	 */
-	public function checkResponseCode(int $code)
+	public function checkResponseCode(int $code): void
 	{
 		/** @var Response $response */
 		$response = $this->data['response'];
@@ -128,12 +135,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Then the :name header should be :value
-	 *
 	 * @param string $name
 	 * @param string $value
+	 *
+	 * @Then the :name header should be :value
 	 */
-	public function checkResponseHeader(string $name, string $value)
+	public function checkResponseHeader(string $name, string $value): void
 	{
 		/** @var Response $response */
 		$response = $this->data['response'];
@@ -144,12 +151,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Given that there is a :role role
-	 *
 	 * @param string $role
 	 * @throws Exception
+	 *
+	 * @Given that there is a :role role
 	 */
-	public function createRole(string $role)
+	public function createRole(string $role): void
 	{
 		if (!isset($this->roles[$role])) {
 			throw new InvalidArgumentException("$role role not supported");
@@ -166,13 +173,13 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Given that there is a registered user :username with :password password
-	 *
 	 * @param string $username
 	 * @param string $password
 	 * @throws Exception
+	 *
+	 * @Given that there is a registered user :username with :password password
 	 */
-	public function registerUser(string $username, string $password)
+	public function registerUser(string $username, string $password): void
 	{
 		$firstName = $this->faker->firstNameMale;
 		$lastName = $this->faker->lastName;
@@ -205,12 +212,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @When i am login as :username with :password password
-	 *
 	 * @param string $username
 	 * @param string $password
+	 *
+	 * @When i am login as :username with :password password
 	 */
-	public function loginUser(string $username, string $password)
+	public function loginUser(string $username, string $password): void
 	{
 		$credentials = [
 			'login' => $username,
@@ -225,7 +232,7 @@ abstract class AbstractContext extends Assert implements Context
 	/**
 	 * @Given i have token
 	 */
-	public function storeToken()
+	public function storeToken(): void
 	{
 		$response = $this->data['response'];
 		$responseBody = $response['body'];
@@ -236,12 +243,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Given that there is exist city :city
-	 *
 	 * @param string $city
 	 * @throws Exception
+	 *
+	 * @Given that there is exist city :city
 	 */
-	public function createCity(string $city)
+	public function createCity(string $city): void
 	{
 		$id = $this->insertDb('city', [
 			'name' => $city
@@ -251,12 +258,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Given in this city exist department :name
-	 *
 	 * @param string $name
 	 * @throws Exception
+	 *
+	 * @Given in this city exist department :name
 	 */
-	public function createDepartment(string $name)
+	public function createDepartment(string $name): void
 	{
 		if (!isset($this->data['city_id'])) {
 			throw new InvalidArgumentException("city_id is not set");
@@ -275,12 +282,12 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Given i work in :name department
-	 *
 	 * @param string $name
 	 * @throws Exception
+	 *
+	 * @Given i work in :name department
 	 */
-	public function addUserToDepartment(string $name)
+	public function addUserToDepartment(string $name): void
 	{
 		if (!isset($this->data['departments'][$name])) {
 			throw new InvalidArgumentException("department_id is not set");
@@ -302,11 +309,11 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Then response must contain correct data
-	 *
 	 * @param PyStringNode $text
+	 *
+	 * @Then resp must contain correct data
 	 */
-	public function checkResponse(PyStringNode $text)
+	public function checkResponse(PyStringNode $text): void
 	{
 		$text = $text->getRaw();
 		$text = $string = preg_replace('/\s+/', '', $text);
@@ -322,11 +329,9 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @Then response must contain numeric :value
-	 *
-	 * @param $value
+	 * @Then resp must contain numeric :value
 	 */
-	public function checkResponseNumeric($value)
+	public function checkResponseNumeric(int $value): void
 	{
 		$response = $this->data['response']['body']['response'];
 
@@ -337,11 +342,12 @@ abstract class AbstractContext extends Assert implements Context
 	/**
 	 * @param string $path
 	 * @param string $method
-	 * @param array $body
-	 * @param array $headers
-	 * @return array
+	 * @param mixed[] $body
+	 * @param string[] $headers
+	 *
+	 * @return mixed[]
 	 */
-	protected function request(string $path, string $method = 'GET', array $body = [], array $headers = [])
+	protected function request(string $path, string $method = 'GET', array $body = [], array $headers = []): array
 	{
 		$defaultHeaders = [
 			'Content-Type' => 'application/json'
@@ -367,12 +373,11 @@ abstract class AbstractContext extends Assert implements Context
 
 	/**
 	 * @param string $table
-	 * @param array $data
+	 * @param mixed[] $data
 	 * @param string $idColumnName
 	 * @throws Exception
-	 * @return int
 	 */
-	protected function insertDb(string $table, array $data, string $idColumnName = 'id')
+	protected function insertDb(string $table, array $data, string $idColumnName = 'id'): int
 	{
 		if (empty($data)) {
 			throw new Exception('empty data to insert');
@@ -394,31 +399,24 @@ abstract class AbstractContext extends Assert implements Context
 		return (int) $result[0][$idColumnName];
 	}
 
-	/**
-	 * @param string $query
-	 * @return void
-	 */
-	protected function queryDb(string $query)
+	protected function queryDb(string $query): void
 	{
 		$this->pgQuery($query);
 	}
 
 	/**
 	 * @param string $query
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
-	protected function fetchDb(string $query)
+	protected function fetchDb(string $query): array
 	{
 		$result = $this->pgQuery($query);
 
 		return pg_fetch_all($result);
 	}
 
-	/**
-	 * @param $id
-	 * @return string
-	 */
-	private function getRolePhrase($id)
+	private function getRolePhrase(int $id): string
 	{
 		$phrase = '';
 
@@ -432,7 +430,7 @@ abstract class AbstractContext extends Assert implements Context
 		return $phrase;
 	}
 
-	private function eraseAllTables()
+	private function eraseAllTables(): void
 	{
 		$truncateQuery = $this->fetchDb("
 			SELECT 'TRUNCATE TABLE ' || string_agg(oid::regclass::text, ', ') || ' CASCADE' as \"query\"
@@ -453,7 +451,8 @@ abstract class AbstractContext extends Assert implements Context
 
 	/**
 	 * @param string $query
-	 * @return resource
+	 *
+	 * @return bool|object|resource
 	 */
 	private function pgQuery(string $query)
 	{

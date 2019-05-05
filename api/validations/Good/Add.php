@@ -7,11 +7,7 @@ use Validation;
 
 class Add extends Validation
 {
-
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		$this->add(
 			'name',

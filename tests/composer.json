@@ -5,6 +5,7 @@
         "fzaninotto/faker": "^1.8",
         "phpunit/phpunit": "^8.1",
         "guzzlehttp/guzzle": "^6.3",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "consistence/coding-standard": "^3.8"
     }
 }

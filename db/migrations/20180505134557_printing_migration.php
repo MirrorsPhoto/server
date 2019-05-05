@@ -5,7 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class PrintingMigration extends AbstractMigration
 {
-	public function change()
+	public function change(): void
 	{
 			$printing = $this->table('printing');
 

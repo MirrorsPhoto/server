@@ -4,7 +4,10 @@ use Phinx\Seed\AbstractSeed;
 
 class Roles extends AbstractSeed
 {
-	public function run()
+	/**
+	 * @return string[]
+	 */
+	public function run(): void
 	{
 		$this
 			->table('role')

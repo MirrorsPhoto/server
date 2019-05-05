@@ -5,7 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class RefactoringCopy extends AbstractMigration
 {
-	public function change()
+	public function change(): void
 	{
 		$copy = $this->table('copy');
 

@@ -12,9 +12,10 @@ class PhotoController extends Controller
 	 * @Get('/size')
 	 *
 	 * @throws ServerError
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
-	public function getSizeAction()
+	public function getSizeAction(): array
 	{
 		$rowSet = PhotoSize::find();
 

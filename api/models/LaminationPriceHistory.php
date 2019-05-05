@@ -16,44 +16,47 @@ class LaminationPriceHistory extends Model
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $lamination_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=32, nullable=false)
 	 */
 	public $price;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_from;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=true)
 	 */
 	public $datetime_to;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -61,10 +64,7 @@ class LaminationPriceHistory extends Model
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -127,9 +127,8 @@ class LaminationPriceHistory extends Model
 
 	/**
 	 * @throws Unauthorized
-	 * @return void
 	 */
-	public function beforeSave()
+	public function beforeSave(): void
 	{
 		$user = Security::getUser();
 
