@@ -21,7 +21,7 @@ class Security extends Plugin
 	private $acl;
 
 	/**
-	 * @var mixed[]
+	 * @var array
 	 */
 	private $publicResources = [
 		'index' =>
@@ -31,7 +31,6 @@ class Security extends Plugin
 		'auth' =>
 			[
 				'login',
-				'check'
 			]
 	];
 
@@ -42,8 +41,9 @@ class Security extends Plugin
 
 	/**
 	 * @throws Unauthorized
+	 * @return User
 	 */
-	public static function getUser(): User
+	public static function getUser()
 	{
 		if (is_null(self::$user)) {
 			throw new Unauthorized();
@@ -51,7 +51,10 @@ class Security extends Plugin
 		return self::$user;
 	}
 
-	private function setup(): void
+	/**
+	 * @return void
+	 */
+	private function setup()
 	{
 		$acl = new Memory();
 		$acl->setDefaultAction(Acl::DENY);
@@ -62,7 +65,10 @@ class Security extends Plugin
 		$this->setupResource();
 	}
 
-	private function setupRole(): void
+	/**
+	 * @return void
+	 */
+	private function setupRole()
 	{
 		$roles = \Role::find();
 
@@ -78,7 +84,10 @@ class Security extends Plugin
 		$this->acl->addRole(new Role((string) \Role::GUEST, 'Гость'));
 	}
 
-	private function setupResource(): void
+	/**
+	 * @return void
+	 */
+	private function setupResource()
 	{
 		foreach ($this->publicResources as $resource => $actions) {
 			$this->acl->addResource(new Acl\Resource($resource), $actions);
@@ -92,7 +101,10 @@ class Security extends Plugin
 		}
 	}
 
-	private function getAcl(): Memory
+	/**
+	 * @return Memory
+	 */
+	private function getAcl()
 	{
 		$this->setup();
 
@@ -104,9 +116,9 @@ class Security extends Plugin
 	 * @param Dispatcher $dispatcher
 	 * @throws AccessDenied
 	 * @throws Unauthorized
+	 * @return bool
 	 */
-	// @codingStandardsIgnoreLine SlevomatCodingStandard.Variables.UnusedVariable
-	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher): bool
+	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
 	{
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
@@ -146,9 +158,8 @@ class Security extends Plugin
 		$decoded = $jwt::decode($token);
 
 		// Проверяем, имеет ли данная роль доступ к контроллеру (ресурсу)
-		$allowed = (int) $acl->isAllowed($decoded->role_id, $controller, $action);
-
-		if ($allowed !== Acl::ALLOW || $decoded->role_id !== $user->role_id || $decoded->id !== $user->id) {
+		$allowed = $acl->isAllowed($decoded->role_id, $controller, $action);
+		if ($allowed != Acl::ALLOW || $decoded->role_id != $user->role_id || $decoded->id != $user->id) {
 			throw new AccessDenied();
 		}
 

@@ -7,7 +7,11 @@ use Validation;
 
 class Search extends Validation
 {
-	public function initialize(): void
+
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		$this->add(
 			'query',

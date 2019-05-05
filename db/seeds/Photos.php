@@ -4,10 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Photos extends AbstractSeed
 {
-	/**
-	 * @return string[]
-	 */
-	public function getDependencies(): array
+	public function getDependencies()
 	{
 		return [
 			'Departments',
@@ -15,7 +12,7 @@ class Photos extends AbstractSeed
 		];
 	}
 
-	public function run(): void
+	public function run()
 	{
 		$this
 			->table('photo_size')

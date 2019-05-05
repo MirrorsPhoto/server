@@ -4,10 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Laminations extends AbstractSeed
 {
-	/**
-	 * @return string[]
-	 */
-	public function getDependencies(): array
+	public function getDependencies()
 	{
 		return [
 			'Departments',
@@ -15,7 +12,7 @@ class Laminations extends AbstractSeed
 		];
 	}
 
-	public function run(): void
+	public function run()
 	{
 		$this
 			->table('lamination')

@@ -15,54 +15,56 @@ use Phalcon\Validation\Validator\PresenceOf;
 class Printing extends Model
 {
 
-	/**
-	 * @var string
-	 */
 	protected $tableName = 'printing';
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="boolean", nullable=false)
 	 */
 	public $color;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="boolean", nullable=false)
 	 */
 	public $photo;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="boolean", nullable=false)
 	 */
 	public $ext;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	public function initialize(): void
+	public function initialize()
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'PrintingPriceHistory', 'printing_id', ['alias' => 'PrintingPriceHistory']);
 	}
 
-	public function validation(): bool
+	/**
+	 * Validations and business logic
+	 *
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -79,10 +81,11 @@ class Printing extends Model
 	}
 
 	/**
+	 * @return float
 	 * @throws ServerError
 	 * @throws Unauthorized
 	 */
-	public function getPrice(): float
+	public function getPrice()
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -96,9 +99,10 @@ class Printing extends Model
 	}
 
 	/**
+	 * @return PrintingSale
 	 * @throws ServerError
 	 */
-	public function sale(): PrintingSale
+	public function sale()
 	{
 		$newSaleRow = new PrintingSale([
 			'printing_id' => $this->id,

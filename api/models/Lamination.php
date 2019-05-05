@@ -20,26 +20,30 @@ class Lamination extends Model
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $format;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'LaminationPriceHistory', 'lamination_id', ['alias' => 'LaminationPriceHistory']);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -57,8 +61,9 @@ class Lamination extends Model
 
 	/**
 	 * @throws Unauthorized
+	 * @return float
 	 */
-	public function getPrice(): float
+	public function getPrice()
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -69,8 +74,9 @@ class Lamination extends Model
 
 	/**
 	 * @throws ServerError
+	 * @return LaminationSale
 	 */
-	public function sale(): LaminationSale
+	public function sale()
 	{
 		$newSaleRow = new LaminationSale([
 			'lamination_id' => $this->id,

@@ -1,13 +1,10 @@
 <?php
-//phpcs:disable
 
 class JWT extends \Firebase\JWT\JWT
 {
+
 	use Core\Singleton;
 
-	/**
-	 * @var string
-	 */
 	private static $key;
 
 	public function __construct()
@@ -16,20 +13,25 @@ class JWT extends \Firebase\JWT\JWT
 	}
 
 	/**
-	 * @param mixed[] $payload
-	 *
-	 * @param null $key
+	 * @param array|object $payload
+	 * @param string $key
 	 * @param string $alg
 	 * @param null $keyId
 	 * @param null $head
 	 * @return string
 	 */
-	public static function encode($payload, $key = null, $alg = 'HS256', $keyId = null, $head = null): string
+	public static function encode($payload, $key = null, $alg = 'HS256', $keyId = null, $head = null)
 	{
 		return parent::encode($payload, self::$key);
 	}
 
-	public static function decode($jwt, $key = null, array $allowed_algs = []): object
+	/**
+	 * @param string $jwt
+	 * @param string $key
+	 * @param array $allowed_algs
+	 * @return object
+	 */
+	public static function decode($jwt, $key = null, array $allowed_algs = array())
 	{
 		return parent::decode($jwt, self::$key, ['HS256']);
 	}

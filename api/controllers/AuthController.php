@@ -11,12 +11,11 @@ class AuthController extends Controller
 {
 
 	/**
+	 * @return array
 	 * @throws ServerError
 	 * @throws BadRequest
-	 *
-	 * @return mixed[]
 	 */
-	public function loginAction(): array
+	public function loginAction()
 	{
 		$validator = new Login();
 		$validator->validate();
@@ -59,7 +58,7 @@ class AuthController extends Controller
 	/**
 	 * @Get('/check')
 	 */
-	public function checkAction(): bool
+	public function checkAction()
 	{
 		return true;
 	}

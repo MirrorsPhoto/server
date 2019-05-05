@@ -5,12 +5,12 @@ use Behat\Gherkin\Node\TableNode;
 class PhotoContext extends AbstractContext
 {
 	/**
+	 * @Given that there is a sizes:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a sizes:
 	 */
-	public function create(TableNode $table): void
+	public function create(TableNode $table)
 	{
 		if (!isset($this->data['user']['id'])) {
 			throw new InvalidArgumentException("user_id is not set");
@@ -58,7 +58,7 @@ class PhotoContext extends AbstractContext
 	/**
 	 * @When i want get photo sizes
 	 */
-	public function get(): void
+	public function get()
 	{
 		$response = $this->request('photo/size', 'GET');
 

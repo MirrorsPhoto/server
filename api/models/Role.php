@@ -18,19 +18,24 @@ class Role extends Model
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'User', 'role_id', [ 'alias' => 'Users' ]);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -48,8 +53,9 @@ class Role extends Model
 
 	/**
 	 * @throws ServerError
+	 * @return string
 	 */
-	public function getPhrase(): string
+	public function getPhrase()
 	{
 		switch ($this->id) {
 			case 1:

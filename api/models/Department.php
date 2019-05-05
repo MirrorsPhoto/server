@@ -22,26 +22,27 @@ class Department extends Model
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", nullable=false)
 	 */
 	public $city_id;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $address;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
@@ -59,7 +60,10 @@ class Department extends Model
 		);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -96,17 +100,20 @@ class Department extends Model
 
 	/**
 	 * Метод для получения всех текущих сотрудников данного салона
+	 *
+	 * @return Simple
 	 */
-	public function getCurrentPersonnel(): Simple
+	public function getCurrentPersonnel()
 	{
 		return $this->getUsers('datetime_to IS NULL');
 	}
 
 	/**
+	 * @return void
 	 * @throws Exception
 	 * @throws Unauthorized
 	 */
-	public function notifyPersonnels(): void
+	public function notifyPersonnels()
 	{
 		$userRows = $this->getCurrentPersonnel();
 		$arrUserIds = array_column($userRows->toArray(), 'id');

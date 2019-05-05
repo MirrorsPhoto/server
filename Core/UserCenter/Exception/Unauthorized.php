@@ -7,7 +7,7 @@ use CoreException;
 class Unauthorized extends CoreException
 {
 
-	public function __construct(string $message = 'auth.required')
+	public function __construct($message = 'auth.required')
 	{
 		parent::__construct($message, 401);
 	}

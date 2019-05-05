@@ -11,11 +11,10 @@ class LaminationController extends Controller
 	/**
 	 * @Get('/size')
 	 *
+	 * @return array
 	 * @throws ServerError
-	 *
-	 * @return mixed[]
 	 */
-	public function getSizeAction(): array
+	public function getSizeAction()
 	{
 		$rowSet = Lamination::find();
 

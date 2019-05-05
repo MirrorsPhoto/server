@@ -1,19 +1,12 @@
 <?php
-//phpcs:disable
-
 namespace Core;
 use Phalcon\Http\Request as HttpRequest;
 
 class Request extends HttpRequest
 {
-	/**
-	 * @var mixed[]
-	 */
+
 	protected $postCache;
 
-	/**
-	 * @var mixed[]
-	 */
 	protected $queryCache;
 
 	/**
@@ -23,8 +16,9 @@ class Request extends HttpRequest
 
 	/**
 	 * Determine (and store in memory) whether or not the current request content-type is application/json or not
+	 * @return boolean
 	 */
-	private function isApplicationJson(): bool
+	private function isApplicationJson()
 	{
 		if (is_null($this->isJson)) {
 			$contentType = $this->getDI()->getShared('request')->getHeader('CONTENT_TYPE');
@@ -36,18 +30,14 @@ class Request extends HttpRequest
 	}
 
 	/**
-	 * @param mixed $defaultValue
-	 * @param mixed[] $filters
-	 *
-	 * @return mixed
+	 * @param null $name
+	 * @param null $filters
+	 * @param null $defaultValue
+	 * @param bool $notAllowEmpty
+	 * @param bool $noRecursive
 	 */
-	public function getPut(
-		$name = null,
-		$filters = null,
-		$defaultValue = null,
-		$notAllowEmpty = false,
-		$noRecursive = false
-	) {
+	public function getPut($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false)
+	{
 		if (!is_array($this->_putCache)) {
 			$this->_putCache = ($this->isApplicationJson()) ? (array) $this->getJsonRawBody() : $this->getRawBody();
 		}
@@ -56,18 +46,14 @@ class Request extends HttpRequest
 	}
 
 	/**
-	 * @param mixed $defaultValue
-	 * @param mixed[] $filters
-	 *
-	 * @return mixed
+	 * @param null $name
+	 * @param null $filters
+	 * @param null $defaultValue
+	 * @param bool $notAllowEmpty
+	 * @param bool $noRecursive
 	 */
-	public function getPost(
-		$name = null,
-		$filters = null,
-		$defaultValue = null,
-		$notAllowEmpty = false,
-		$noRecursive = false
-	) {
+	public function getPost($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false)
+	{
 		if ($this->isApplicationJson()) {
 			if (is_null($this->postCache)) {
 				$this->postCache = (array) $this->getJsonRawBody();
@@ -80,18 +66,14 @@ class Request extends HttpRequest
 	}
 
 	/**
-	 * @param mixed $defaultValue
-	 * @param mixed[] $filters
-	 *
-	 * @return mixed
+	 * @param null $name
+	 * @param null $filters
+	 * @param null $defaultValue
+	 * @param bool $notAllowEmpty
+	 * @param bool $noRecursive
 	 */
-	public function getQuery(
-		$name= null,
-		$filters = null,
-		$defaultValue = null,
-		$notAllowEmpty = false,
-		$noRecursive = false
-	) {
+	public function getQuery($name = null, $filters = null, $defaultValue = null, $notAllowEmpty = false, $noRecursive = false)
+	{
 		if ($this->isApplicationJson()) {
 			if (is_null($this->queryCache)) {
 				$this->queryCache = (array) $this->getJsonRawBody();
@@ -103,7 +85,11 @@ class Request extends HttpRequest
 		}
 	}
 
-	public function hasPost($name): bool
+	/**
+	 * @param $name
+	 * @return bool|void
+	 */
+	public function hasPost($name)
 	{
 		return array_key_exists($name, $this->getPost($name));
 	}

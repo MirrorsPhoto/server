@@ -5,12 +5,12 @@ use Behat\Gherkin\Node\TableNode;
 class SaleContext extends AbstractContext
 {
 	/**
+	 * @When i want sale:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @When i want sale:
 	 */
-	public function create(TableNode $table): void
+	public function create(TableNode $table)
 	{
 		$rows = $table->getColumnsHash();
 

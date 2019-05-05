@@ -14,33 +14,33 @@ class DepartmentPersonnelHistory extends Model
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_from;
 
 	/**
-	 * @var string
 	 *
+	 * @var string
 	 * @Column(type="string", nullable=true)
 	 */
 	public $datetime_to;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
@@ -48,7 +48,10 @@ class DepartmentPersonnelHistory extends Model
 		$this->belongsTo('department_id', '\Department', 'id', ['alias' => 'Department']);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 

@@ -32,6 +32,7 @@ $loader->registerNamespaces([
 $loader->register();
 
 $di = new FactoryDefault();
+$di->set('config', ConfigIni::getInstance());
 
 $di->set('request', new Request());
 
@@ -71,7 +72,7 @@ $di->set(
 	}
 );
 
-new Application($di);
+$application = new Application($di);
 
 try {
 	/** @var Router $router */

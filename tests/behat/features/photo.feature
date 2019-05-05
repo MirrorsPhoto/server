@@ -7,15 +7,15 @@ Feature: Photo
 
 	Scenario: User tries to get sizes without token
 		When i want get photo sizes
-		Then the resp status code should be 401
-			And resp having error message:
+		Then the response status code should be 401
+			And response having error message:
 				| auth.required |
 
 	Scenario: User tries to get sizes when there are none
 		Given i have token
 		When i want get photo sizes
-		Then the resp status code should be 500
-			And resp having error message:
+		Then the response status code should be 500
+			And response having error message:
 				| photo.no_sizes |
 
 	Scenario: User tries to get sizes
@@ -31,8 +31,8 @@ Feature: Photo
 				| 5     | 5      | 2     | 110   | Фуджия     |
 				| 5     | 5      | 2     | 910   | Кодак      |
 		When i want get photo sizes
-		Then the resp status code should be 200
-			And resp must contain correct data
+		Then the response status code should be 200
+			And response must contain correct data
 				"""
 					[
 						{

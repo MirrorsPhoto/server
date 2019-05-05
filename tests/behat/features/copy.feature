@@ -7,15 +7,15 @@ Feature: Copy
 
 	Scenario: User tries to get copy price without token
 		When i want get copy price format "A4"
-		Then the resp status code should be 401
-			And resp having error message:
+		Then the response status code should be 401
+			And response having error message:
 				| auth.required |
 
 	Scenario: User tries to get copy price unknown format
 		Given i have token
 		When i want get copy price format "A456"
-		Then the resp status code should be 400
-			And resp having error message:
+		Then the response status code should be 400
+			And response having error message:
 				| copy.not_found |
 
 	Scenario: User tries to get copy price without price
@@ -28,8 +28,8 @@ Feature: Copy
 				| A4     |
 				| A5     |
 		When i want get copy price format "A4"
-		Then the resp status code should be 500
-			And resp having error message:
+		Then the response status code should be 500
+			And response having error message:
 				| copy.not_price |
 
 	Scenario: User tries to get copy price
@@ -44,5 +44,5 @@ Feature: Copy
 				| A4     | 30    | Кодак      |
 				| A5     | 15    | Кодак      |
 		When i want get copy price format "A4"
-		Then the resp status code should be 200
-			And resp must contain numeric 30
+		Then the response status code should be 200
+			And response must contain numeric 30

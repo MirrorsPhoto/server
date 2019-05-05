@@ -8,7 +8,7 @@ class Debug
 	/**
 	 * @param mixed $obj
 	 */
-	public static function dumpMethodDie($obj): void
+	public static function dumpMethodDie($obj)
 	{
 		$objDump = new Dump();
 
@@ -23,7 +23,7 @@ class Debug
 	/**
 	 * @param mixed $var
 	 */
-	public static function dumpDie($var): void
+	public static function dumpDie($var)
 	{
 		echo "<pre>";
 		var_dump($var);

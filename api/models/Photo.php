@@ -21,33 +21,36 @@ class Photo extends Model
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $photo_size_id;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="integer", nullable=false)
 	 */
 	public $count;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'PhotoPriceHistory', 'photo_id', ['alias' => 'PhotoPriceHistory']);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -92,8 +95,9 @@ class Photo extends Model
 
 	/**
 	 * @throws Unauthorized
+	 * @return float
 	 */
-	public function getPrice(): float
+	public function getPrice()
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -103,9 +107,10 @@ class Photo extends Model
 	}
 
 	/**
+	 * @return PhotoSale
 	 * @throws ServerError
 	 */
-	public function sale(): PhotoSale
+	public function sale()
 	{
 		$newSaleRow = new PhotoSale([
 			'photo_id' => $this->id

@@ -5,12 +5,12 @@ use Behat\Gherkin\Node\TableNode;
 class LaminationContext extends AbstractContext
 {
 	/**
+	 * @Given that there is a sizes:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a sizes:
 	 */
-	public function create(TableNode $table): void
+	public function create(TableNode $table)
 	{
 		$rows = $table->getColumnsHash();
 		$userId = $this->data['user']['id'];
@@ -46,11 +46,11 @@ class LaminationContext extends AbstractContext
 	}
 
 	/**
-	 * @throws Exception
-	 *
 	 * @When i want get lamination sizes
+	 *
+	 * @throws Exception
 	 */
-	public function get(): void
+	public function get()
 	{
 		$response = $this->request('lamination/size', 'GET');
 

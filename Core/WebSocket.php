@@ -14,11 +14,10 @@ class WebSocket
 
 	/**
 	 * WebSocket constructor.
-	 *
 	 * @param string $address
 	 * @throws ServerError
 	 */
-	public function __construct(string $address = 'tcp://websocket:1337')
+	public function __construct($address = 'tcp://websocket:1337')
 	{
 		$this->stream = stream_socket_client($address);
 
@@ -28,10 +27,10 @@ class WebSocket
 	}
 
 	/**
-	 * @param int[] $from
-	 * @param mixed[] $data
+	 * @param $from
+	 * @param $data
 	 */
-	public function send(array $from, array $data): void
+	public function send($from, $data)
 	{
 		fwrite($this->stream, json_encode([
 			'from' => $from,

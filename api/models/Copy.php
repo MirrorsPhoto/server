@@ -22,19 +22,20 @@ class Copy extends Model
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $format;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
@@ -42,7 +43,10 @@ class Copy extends Model
 		$this->hasMany('id', 'CopySale', 'copy_id', ['alias' => 'CopySale']);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -61,8 +65,9 @@ class Copy extends Model
 	/**
 	 * @throws ServerError
 	 * @throws Unauthorized
+	 * @return float
 	 */
-	public function getPrice(): float
+	public function getPrice()
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -77,8 +82,9 @@ class Copy extends Model
 
 	/**
 	 * @throws ServerError
+	 * @return CopySale
 	 */
-	public function sale(): CopySale
+	public function sale()
 	{
 		$newSaleRow = new CopySale([
 			'copy_id' => $this->id

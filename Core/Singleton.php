@@ -4,12 +4,16 @@ namespace Core;
 
 trait Singleton
 {
+
 	/**
 	 * @var self
 	 */
 	protected static $objInstance;
 
-	public static function getInstance(): self
+	/**
+	 * @return self
+	 */
+	public static function getInstance()
 	{
 		if (is_null(self::$objInstance)) {
 			self::$objInstance = new static();
@@ -18,15 +22,18 @@ trait Singleton
 		return self::$objInstance;
 	}
 
-	public static function refreshInstance(): self
+	/**
+	 * @return self
+	 */
+	public static function refreshInstance()
 	{
 		self::$objInstance = new self();
 
 		return self::$objInstance;
 	}
 
-	public function __wakeup(): void
+	public function __wakeup()
 	{
-		trigger_error('Unserializing ' . self::class . ' is not allowed.', E_USER_ERROR);
+		trigger_error('Unserializing ' . __CLASS__ . ' is not allowed.', E_USER_ERROR);
 	}
 }

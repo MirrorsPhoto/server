@@ -16,33 +16,32 @@ class PhotoSale extends Model
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $photo_id;
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
 	 * @var int
-	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $user_id;
 
 	/**
 	 * @var string
-	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime;
 
-	public function initialize(): void
+	/**
+	 * @return void
+	 */
+	public function initialize()
 	{
 		parent::initialize();
 
@@ -50,7 +49,10 @@ class PhotoSale extends Model
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
 	}
 
-	public function validation(): bool
+	/**
+	 * @return boolean
+	 */
+	public function validation()
 	{
 		$validator = new Validation();
 
@@ -95,8 +97,9 @@ class PhotoSale extends Model
 
 	/**
 	 * @throws Unauthorized
+	 * @return void
 	 */
-	public function beforeSave(): void
+	public function beforeSave()
 	{
 		$user = Security::getUser();
 
