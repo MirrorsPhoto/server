@@ -25,7 +25,7 @@ abstract class Model extends Phalcon\Mvc\Model
 
 	public function initialize(): void
 	{
-		$this->setSchema("public");
+		$this->setSchema('public');
 	}
 
 	public function getSource(): string

@@ -267,7 +267,7 @@ abstract class AbstractContext extends Assert implements Context
 	public function createDepartment(string $name): void
 	{
 		if (!isset($this->data['city_id'])) {
-			throw new InvalidArgumentException("city_id is not set");
+			throw new InvalidArgumentException('city_id is not set');
 		}
 
 		$cityId = $this->data['city_id'];
@@ -291,11 +291,11 @@ abstract class AbstractContext extends Assert implements Context
 	public function addUserToDepartment(string $name): void
 	{
 		if (!isset($this->data['departments'][$name])) {
-			throw new InvalidArgumentException("department_id is not set");
+			throw new InvalidArgumentException('department_id is not set');
 		}
 
 		if (!isset($this->data['user'])) {
-			throw new InvalidArgumentException("user is not set");
+			throw new InvalidArgumentException('user is not set');
 		}
 
 		$departmentId = $this->data['departments'][$name];

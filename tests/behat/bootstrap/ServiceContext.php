@@ -41,7 +41,7 @@ class ServiceContext extends AbstractContext
 
 			if (isset($row['price'])) {
 				if (!isset($this->data['departments'][$row['department']])) {
-					throw new InvalidArgumentException("department_id is not set");
+					throw new InvalidArgumentException('department_id is not set');
 				}
 
 				$departmentId = $this->data['departments'][$row['department']];

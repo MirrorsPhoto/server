@@ -11,7 +11,7 @@ class ServiceMigration extends AbstractMigration
 		$service = $this->table('service');
 
 		$service
-			->addColumn("name", 'text', ['comment' => 'Название услуги'])
+			->addColumn('name', 'text', ['comment' => 'Название услуги'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата создания услуги',
 				'default' => 'CURRENT_TIMESTAMP',

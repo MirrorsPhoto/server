@@ -115,13 +115,13 @@ class Department extends Model
 
 		$data = [];
 
-		$timeZone = new DateTimeZone("Europe/Moscow");
+		$timeZone = new DateTimeZone('Europe/Moscow');
 		$datetime = [
-			'today' => new DateTime("now", $timeZone),
-			'yesterday' => new DateTime("previous day", $timeZone),
-			'week' => new DateTime("previous weeks", $timeZone),
-			'month' => new DateTime("previous month", $timeZone),
-			'year' => new DateTime("previous year", $timeZone),
+			'today' => new DateTime('now', $timeZone),
+			'yesterday' => new DateTime('previous day', $timeZone),
+			'week' => new DateTime('previous weeks', $timeZone),
+			'month' => new DateTime('previous month', $timeZone),
+			'year' => new DateTime('previous year', $timeZone),
 		];
 
 		$types = [
@@ -138,7 +138,7 @@ class Department extends Model
 		/** @var DateTime $time */
 		foreach ($datetime as $moment => $time) {
 			foreach ($types as $type) {
-				$query['cash'][$moment][] = "SELECT "
+				$query['cash'][$moment][] = 'SELECT '
 						. "'{$type}' as type, "
 						. "SUM({$type}_price_history.price) as summ "
 					. "FROM {$type}_sale "
@@ -146,10 +146,10 @@ class Department extends Model
 						. "{$type}_sale.{$type}_id = {$type}_price_history.{$type}_id "
 						. "AND {$type}_sale.datetime >= {$type}_price_history.datetime_from "
 						. "AND ({$type}_sale.datetime < {$type}_price_history.datetime_to "
-						. "OR "
+						. 'OR '
 							. "{$type}_price_history.datetime_to IS NULL) "
 							. "AND {$type}_sale.department_id = {$type}_price_history.department_id "
-					. "WHERE "
+					. 'WHERE '
 						. "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
 						. "AND date_trunc('second', {$type}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
 						. "AND {$type}_sale.department_id = $department_id"
@@ -157,11 +157,11 @@ class Department extends Model
 			}
 			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
 
-			$query['client'][$moment] = "SELECT "
+			$query['client'][$moment] = 'SELECT '
 						. "'{$moment}' as moment, "
-						. "COUNT(*) as count "
-					. "FROM \"check\" "
-					. "WHERE "
+						. 'COUNT(*) as count '
+					. 'FROM "check" '
+					. 'WHERE '
 						. "datetime::date = '{$time->format('Y-m-d')}' "
 						. "AND datetime <= '{$time->format('Y-m-d H:i:s')}' "
 						. "AND department_id = $department_id"

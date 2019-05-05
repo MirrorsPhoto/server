@@ -14,7 +14,7 @@ class PhotoContext extends AbstractContext
 	public function create(TableNode $table): void
 	{
 		if (!isset($this->data['user']['id'])) {
-			throw new InvalidArgumentException("user_id is not set");
+			throw new InvalidArgumentException('user_id is not set');
 		}
 
 		$photos = $table->getColumnsHash();
@@ -23,7 +23,7 @@ class PhotoContext extends AbstractContext
 
 		foreach ($photos as $photo) {
 			if (!isset($this->data['departments'][$photo['department']])) {
-				throw new InvalidArgumentException("department_id is not set");
+				throw new InvalidArgumentException('department_id is not set');
 			}
 
 			$photoSizeKey = $photo['width'] . 'x' . $photo['height'];
