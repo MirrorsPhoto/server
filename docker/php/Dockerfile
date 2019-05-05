@@ -1,10 +1,10 @@
 FROM php:7.3-fpm-alpine
 
 #Install custom dependencies
-RUN apk --no-cache add nano mc bash gcc libtool autoconf g++ make pcre-dev re2c file
+RUN apk add nano mc bash gcc libtool autoconf g++ make pcre-dev re2c file
 
 # Install dependencies
-RUN apk --no-cache add postgresql-dev
+RUN apk add postgresql-dev
 
 # Build and install PHP extensions
 RUN docker-php-ext-install -j$(nproc) pdo && \
