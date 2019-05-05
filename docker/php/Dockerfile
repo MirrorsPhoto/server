@@ -1,5 +1,8 @@
 FROM php:7.3-fpm-alpine
 
+RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.9/main > /etc/apk/repositories; \
+	echo http://mirror.yandex.ru/mirrors/alpine/v3.9/community >> /etc/apk/repositories
+
 #Update
 RUN apk update && apk upgrade
 
