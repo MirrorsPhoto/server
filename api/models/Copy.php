@@ -81,11 +81,12 @@ class Copy extends Model
 	public function sale(): CopySale
 	{
 		$newSaleRow = new CopySale([
-			'copy_id' => $this->id
+			'copy_id' => $this->id,
 		]);
 
 		$newSaleRow->save();
 
 		return $newSaleRow;
 	}
+
 }

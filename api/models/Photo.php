@@ -108,11 +108,12 @@ class Photo extends Model
 	public function sale(): PhotoSale
 	{
 		$newSaleRow = new PhotoSale([
-			'photo_id' => $this->id
+			'photo_id' => $this->id,
 		]);
 
 		$newSaleRow->save();
 
 		return $newSaleRow;
 	}
+
 }

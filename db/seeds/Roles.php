@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Roles extends AbstractSeed
 {
+
 	/**
 	 * @return string[]
 	 */
@@ -14,9 +15,10 @@ class Roles extends AbstractSeed
 			->insert([
 				['name' => 'Администратор'],
 				['name' => 'Оператор'],
-				['name' => 'Пользователь']
+				['name' => 'Пользователь'],
 			])
 			->save()
 		;
 	}
+
 }

@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Cities extends AbstractSeed
 {
+
 	public function run(): void
 	{
 		$this
@@ -12,4 +13,5 @@ class Cities extends AbstractSeed
 			->save()
 		;
 	}
+
 }

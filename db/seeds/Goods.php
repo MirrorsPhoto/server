@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Goods extends AbstractSeed
 {
+
 	/**
 	 * @return string[]
 	 */
@@ -11,7 +12,7 @@ class Goods extends AbstractSeed
 	{
 		return [
 			'Departments',
-			'Users'
+			'Users',
 		];
 	}
 
@@ -23,12 +24,12 @@ class Goods extends AbstractSeed
 				[
 					'name' => 'Тестовый товар',
 					'description' => 'Тестовое описание',
-					'bar_code' => '1234567890123'
+					'bar_code' => '1234567890123',
 				],
 				[
 					'name' => 'Тестовый товар без штриф-кода',
-					'description'   => 'Тестовое описание'
-				]
+					'description'   => 'Тестовое описание',
+				],
 			])
 			->save()
 		;
@@ -40,14 +41,14 @@ class Goods extends AbstractSeed
 					'good_id' => 1,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 500
+					'price' => 500,
 				],
 				[
 					'good_id'   => 2,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 400
-				]
+					'price' => 400,
+				],
 			])
 			->save()
 		;
@@ -59,7 +60,7 @@ class Goods extends AbstractSeed
 				'good_id' => 1,
 				'department_id' => 1,
 				'user_id' => 1,
-				'price' => 420
+				'price' => 420,
 			];
 		}
 
@@ -69,4 +70,5 @@ class Goods extends AbstractSeed
 			->save()
 		;
 	}
+
 }

@@ -20,14 +20,14 @@ $loader->registerDirs([
 	'api/validations',
 	'Core/helpers',
 	'Core/UserCenter',
-	'Core/'
+	'Core/',
 ]);
 $loader->registerNamespaces([
 	'Core\UserCenter' => 'Core/UserCenter',
 	'Core\Plugin' => 'Core/Plugin',
 	'Core\Enum' => 'Core/Enum',
 	'Core' => 'Core',
-	'Validator' => 'api/validations'
+	'Validator' => 'api/validations',
 ]);
 $loader->register();
 
@@ -96,7 +96,7 @@ try {
 
 		$result = [
 			'status' => 'OK',
-			'response' => $dispatcher->getReturnedValue()
+			'response' => $dispatcher->getReturnedValue(),
 		];
 	} catch (Exception $e) {
 		$statusCode = $e->getCode() ? $e->getCode() : 500;
@@ -105,7 +105,7 @@ try {
 
 		$result = [
 			'status' => 'ERROR',
-			'message' => is_array($e->getMessage()) ? $e->getMessage() : [$e->getMessage()]
+			'message' => is_array($e->getMessage()) ? $e->getMessage() : [$e->getMessage()],
 		];
 	}
 

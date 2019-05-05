@@ -12,7 +12,7 @@ return [
 			'name' => $_ENV['DATABASE_NAME'],
 			'user' => $_ENV['DATABASE_USERNAME'],
 			'pass' => $_ENV['DATABASE_PASSWORD'],
-			'port' => $_ENV['DATABASE_PORT']
-		]
-	]
+			'port' => $_ENV['DATABASE_PORT'],
+		],
+	],
 ];

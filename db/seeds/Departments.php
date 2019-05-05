@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Departments extends AbstractSeed
 {
+
 	/**
 	 * @return string[]
 	 */
@@ -11,7 +12,7 @@ class Departments extends AbstractSeed
 	{
 		return [
 			'Cities',
-			'Users'
+			'Users',
 		];
 	}
 
@@ -23,8 +24,8 @@ class Departments extends AbstractSeed
 				[
 					'city_id' => 1,
 					'name' => 'Амвросиевка',
-					'address' => 'Фрунзе 16'
-				]
+					'address' => 'Фрунзе 16',
+				],
 			])
 			->save()
 		;
@@ -34,18 +35,19 @@ class Departments extends AbstractSeed
 			->insert([
 				[
 					'department_id' => 1,
-					'user_id' => 1
+					'user_id' => 1,
 				],
 				[
 					'department_id' => 1,
-					'user_id' => 2
+					'user_id' => 2,
 				],
 				[
 					'department_id' => 1,
-					'user_id' => 3
-				]
+					'user_id' => 3,
+				],
 			])
 			->save()
 		;
 	}
+
 }

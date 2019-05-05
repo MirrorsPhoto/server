@@ -5,6 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class RefactoringLamination extends AbstractMigration
 {
+
 	public function change(): void
 	{
 		$lamination = $this->table('lamination_size');
@@ -33,4 +34,5 @@ class RefactoringLamination extends AbstractMigration
 			->update()
 		;
 	}
+
 }

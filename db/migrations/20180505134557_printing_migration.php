@@ -5,6 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class PrintingMigration extends AbstractMigration
 {
+
 	public function change(): void
 	{
 			$printing = $this->table('printing');
@@ -16,7 +17,7 @@ class PrintingMigration extends AbstractMigration
 				->addColumn('ext', 'boolean', ['comment' => 'TRUE если фотобумага', 'default' => false])
 				->addColumn('datetime_create', 'timestamp', [
 					'comment' => 'Дата создания',
-					'default' => 'CURRENT_TIMESTAMP'
+					'default' => 'CURRENT_TIMESTAMP',
 				])
 				->addIndex(['name', 'color', 'photo', 'ext', 'datetime_create'])
 				->create()
@@ -31,11 +32,11 @@ class PrintingMigration extends AbstractMigration
 				->addColumn('price', 'float', ['comment' => 'Цена распечатки'])
 				->addColumn('datetime_from', 'timestamp', [
 					'comment' => 'С какой даты действительна цена',
-					'default' => 'CURRENT_TIMESTAMP'
+					'default' => 'CURRENT_TIMESTAMP',
 				])
 				->addColumn('datetime_to', 'timestamp', [
 					'comment' => 'По какую дату действительна цена',
-					'null' => true
+					'null' => true,
 				])
 				->addIndex(['printing_id', 'department_id', 'user_id', 'price', 'datetime_to'])
 				->addForeignKey('printing_id', 'printing', 'id', ['delete' => 'RESTRICT'])
@@ -56,4 +57,5 @@ class PrintingMigration extends AbstractMigration
 				->create()
 			;
 	}
+
 }

@@ -9,6 +9,7 @@ class AccessDenied extends CoreException
 
 	public function __construct()
 	{
-		parent::__construct("Access denied", 403);
+		parent::__construct('Access denied', 403);
 	}
+
 }

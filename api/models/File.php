@@ -93,4 +93,5 @@ class File extends Model
 
 		return "$domain/{$this->path}";
 	}
+
 }

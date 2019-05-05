@@ -5,6 +5,7 @@ use Firebase\JWT\JWT;
 
 class AuthContext extends AbstractContext
 {
+
 	/**
 	 * @Then token must contain valid JWT
 	 */
@@ -22,9 +23,9 @@ class AuthContext extends AbstractContext
 	}
 
 	/**
-	 * @param TableNode $table
-	 *
 	 * @Then JWT token payload must contain:
+	 *
+	 * @param TableNode $table
 	 */
 	public function checkJwtPayload(TableNode $table): void
 	{
@@ -36,4 +37,5 @@ class AuthContext extends AbstractContext
 			self::assertEquals($this->data['user'][$key], $payload->{$key});
 		}
 	}
+
 }

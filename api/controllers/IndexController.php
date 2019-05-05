@@ -15,4 +15,5 @@ class IndexController extends Controller
 	{
 		throw new NotFound();
 	}
+
 }

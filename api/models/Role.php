@@ -6,6 +6,7 @@ use Phalcon\Validation\Validator\PresenceOf;
 
 class Role extends Model
 {
+
 	const ADMIN = 1;
 	const STAFF = 2;
 	const USER  = 3;
@@ -64,4 +65,5 @@ class Role extends Model
 
 		return $phrase;
 	}
+
 }

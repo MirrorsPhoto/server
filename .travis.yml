@@ -13,11 +13,11 @@ install:
   - docker-compose up -d --build
   - docker exec -it mirrors_php_1 composer install
   - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
-  - docker exec -it mirrors_tests_1 composer install
+  - docker exec -it mirrors_tests_1 bash -c 'cd /code/tests; composer install;'
 
 script:
-  - docker exec -it mirrors_tests_1 vendor/bin/behat --config=behat/behat.yml
-  - docker exec -it mirrors_tests_1 vendor/bin/phpcs /code
+  - docker exec -it mirrors_tests_1 tests/vendor/bin/behat --config=tests/behat/behat.yml
+  - docker exec -it mirrors_tests_1 tests/vendor/bin/phpcs /code
 
 after_script:
   - docker-compose stop

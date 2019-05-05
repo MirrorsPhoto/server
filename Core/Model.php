@@ -14,6 +14,7 @@ use Phalcon\Mvc\Model\Resultset\Simple;
  */
 abstract class Model extends Phalcon\Mvc\Model
 {
+
 	/**
 	 * @var int
 	 *
@@ -24,7 +25,7 @@ abstract class Model extends Phalcon\Mvc\Model
 
 	public function initialize(): void
 	{
-		$this->setSchema("public");
+		$this->setSchema('public');
 	}
 
 	public function getSource(): string
@@ -55,4 +56,5 @@ abstract class Model extends Phalcon\Mvc\Model
 
 		throw new ServerError($messages);
 	}
+
 }

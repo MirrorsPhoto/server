@@ -4,11 +4,12 @@ use Behat\Gherkin\Node\TableNode;
 
 class CopyContext extends AbstractContext
 {
+
 	/**
+	 * @Given that there is a copies:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a copies:
 	 */
 	public function create(TableNode $table): void
 	{
@@ -22,7 +23,7 @@ class CopyContext extends AbstractContext
 				$id = $this->data['copy']['formats'][$format];
 			} else {
 				$id = $this->insertDb('copy', [
-					'format' => $format
+					'format' => $format,
 				]);
 
 				$this->data['copy']['formats'][$format] = $id;
@@ -30,7 +31,7 @@ class CopyContext extends AbstractContext
 
 			if (isset($row['price'])) {
 				if (!isset($this->data['departments'][$row['department']])) {
-					throw new InvalidArgumentException("department_id is not set");
+					throw new InvalidArgumentException('department_id is not set');
 				}
 
 				$departmentId = $this->data['departments'][$row['department']];
@@ -39,17 +40,17 @@ class CopyContext extends AbstractContext
 					'department_id' => $departmentId,
 					'user_id' => $userId,
 					'copy_id' => $id,
-					'price' => $row['price']
+					'price' => $row['price'],
 				]);
 			}
 		}
 	}
 
 	/**
+	 * @When i want get copy price format :format
+	 *
 	 * @param string $format
 	 * @throws Exception
-	 *
-	 * @When i want get copy price format :format
 	 */
 	public function get(string $format): void
 	{
@@ -59,4 +60,5 @@ class CopyContext extends AbstractContext
 
 		$this->data['response'] = $response;
 	}
+
 }

@@ -4,6 +4,7 @@ use Behat\Gherkin\Node\TableNode;
 
 class ServiceContext extends AbstractContext
 {
+
 	/**
 	 * @When i want get service list
 	 */
@@ -15,10 +16,10 @@ class ServiceContext extends AbstractContext
 	}
 
 	/**
+	 * @Given that there is a services:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a services:
 	 */
 	public function create(TableNode $table): void
 	{
@@ -32,7 +33,7 @@ class ServiceContext extends AbstractContext
 				$id = $this->data['service'][$name];
 			} else {
 				$id = $this->insertDb('service', [
-					'name' => $name
+					'name' => $name,
 				]);
 
 				$this->data['service'][$name] = $id;
@@ -40,7 +41,7 @@ class ServiceContext extends AbstractContext
 
 			if (isset($row['price'])) {
 				if (!isset($this->data['departments'][$row['department']])) {
-					throw new InvalidArgumentException("department_id is not set");
+					throw new InvalidArgumentException('department_id is not set');
 				}
 
 				$departmentId = $this->data['departments'][$row['department']];
@@ -49,9 +50,10 @@ class ServiceContext extends AbstractContext
 					'department_id' => $departmentId,
 					'user_id' => $userId,
 					'service_id' => $id,
-					'price' => $row['price']
+					'price' => $row['price'],
 				]);
 			}
 		}
 	}
+
 }

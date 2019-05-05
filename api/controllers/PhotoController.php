@@ -25,7 +25,7 @@ class PhotoController extends Controller
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
 				'width',
-				'height'
+				'height',
 			]);
 
 			$array['width'] = (float) $array['width'];
@@ -47,4 +47,5 @@ class PhotoController extends Controller
 
 		return $result;
 	}
+
 }

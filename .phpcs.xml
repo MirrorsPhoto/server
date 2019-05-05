@@ -62,9 +62,6 @@
 	<rule ref="Generic.PHP.LowerCaseConstant"/>
 	<rule ref="Generic.PHP.LowerCaseType"/>
 
-	<!-- Имя класса и его родителя с интерфейсом должны находиться на одной строке. { находится на след строке -->
-	<rule ref="PSR2.Classes.ClassDeclaration"/>
-
 	<!-- Имена свойств не должны иметь префикса с подчеркиванием для указания видимости -->
 	<rule ref="PSR2.Classes.PropertyDeclaration"/>
 
@@ -200,7 +197,7 @@
 		</properties>
 	</rule>
 
-	<config name="installed_paths" value="vendor/slevomat/coding-standard"/>
+	<config name="installed_paths" value="tests/vendor/slevomat/coding-standard"/>
 
 	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
 		<properties>
@@ -236,11 +233,9 @@
 
 	<rule ref="SlevomatCodingStandard.Variables.UselessVariable"/>
 
-<!--	<rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>-->
+	<rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
 
 	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
-
-<!--	<rule ref="SlevomatCodingStandard.ControlStructures.NewWithParentheses"/>-->
 
 	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>
 
@@ -254,11 +249,16 @@
 
 	<rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
 
-<!--	<rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces"/>-->
+	<rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces"/>
 
 	<rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
 		<properties>
 			<property name="annotationsGroups" type="array">
+				<element value="
+				@Given,
+				@When,
+				@Then,
+			"/>
 				<element value="
 				@Get,
 				@Post,
@@ -274,4 +274,6 @@
 			</property>
 		</properties>
 	</rule>
+
+	<rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
 </ruleset>

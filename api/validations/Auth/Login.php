@@ -7,6 +7,7 @@ use Validation;
 
 class Login extends Validation
 {
+
 	public function initialize(): void
 	{
 		$this->add(
@@ -27,4 +28,5 @@ class Login extends Validation
 			)
 		);
 	}
+
 }

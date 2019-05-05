@@ -12,7 +12,7 @@ class Debug
 	{
 		$objDump = new Dump();
 
-		echo "<pre>";
+		echo '<pre>';
 		echo $objDump->variable($obj);
 
 		debug_print_backtrace();
@@ -25,9 +25,10 @@ class Debug
 	 */
 	public static function dumpDie($var): void
 	{
-		echo "<pre>";
+		echo '<pre>';
 		var_dump($var);
 		debug_print_backtrace();
 		die();
 	}
+
 }

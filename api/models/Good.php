@@ -165,7 +165,7 @@ class Good extends Model
 		}
 
 		$rowSale = new GoodSale([
-			'good_id' => $this->id
+			'good_id' => $this->id,
 		]);
 
 		return $rowSale->save();
@@ -179,9 +179,10 @@ class Good extends Model
 	{
 		$rowReceipt = new GoodReceipt([
 			'good_id' => $this->id,
-			'price' => $price
+			'price' => $price,
 		]);
 
 		return $rowReceipt->save();
 	}
+
 }

@@ -31,7 +31,7 @@ class GoodController extends Controller
 		$newGood = new Good([
 			'name' => $name,
 			'description' => $description,
-			'bar_code' => $bar_code
+			'bar_code' => $bar_code,
 		]);
 
 		$newGood->save();
@@ -133,4 +133,5 @@ class GoodController extends Controller
 
 		return 'good.receipt.success';
 	}
+
 }

@@ -15,6 +15,7 @@ use User;
 
 class Security extends Plugin
 {
+
 	/**
 	 * @var Memory
 	 */
@@ -26,13 +27,13 @@ class Security extends Plugin
 	private $publicResources = [
 		'index' =>
 			[
-				'notFound'
+				'notFound',
 			],
 		'auth' =>
 			[
 				'login',
-				'check'
-			]
+				'check',
+			],
 	];
 
 	/**
@@ -133,7 +134,7 @@ class Security extends Plugin
 
 		/** @var User $user */
 		$user = User::findFirst([
-			"token = '$token'"
+			"token = '$token'",
 		]);
 
 		if (!$user) {
@@ -158,4 +159,5 @@ class Security extends Plugin
 
 		return true;
 	}
+
 }

@@ -25,7 +25,7 @@ class ServiceController extends Controller
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
 				'id',
-				'name'
+				'name',
 			]);
 
 			$price = $row->price;
@@ -44,4 +44,5 @@ class ServiceController extends Controller
 
 		return $result;
 	}
+
 }

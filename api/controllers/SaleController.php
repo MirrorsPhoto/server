@@ -73,7 +73,7 @@ class SaleController extends Controller
 		}
 
 		$newCheck = new Check([
-			'data' => json_encode($items)
+			'data' => json_encode($items),
 		]);
 
 		$newCheck->save();
@@ -82,4 +82,5 @@ class SaleController extends Controller
 
 		return true;
 	}
+
 }
