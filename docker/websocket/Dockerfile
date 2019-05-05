@@ -1,4 +1,4 @@
-FROM php:7.1-cli-alpine
+FROM php:7.3-cli-alpine
 
 # Build and install PHP extensions
 RUN docker-php-ext-install -j$(nproc) pcntl
