@@ -5,6 +5,7 @@ use Phalcon\Validation\Message\Group;
 
 abstract class Validation extends Phalcon\Validation
 {
+
 	/**
 	 * @param mixed $data
 	 * @param mixed $entity
@@ -41,4 +42,5 @@ abstract class Validation extends Phalcon\Validation
 
 		throw new BadRequest($errorMessage);
 	}
+
 }

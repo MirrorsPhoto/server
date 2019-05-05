@@ -24,7 +24,7 @@ class PrintingController extends Controller
 				'name',
 				'color',
 				'photo',
-				'ext'
+				'ext',
 			]);
 
 			$array['price'] = $row->price;
@@ -34,4 +34,5 @@ class PrintingController extends Controller
 
 		return $result;
 	}
+
 }

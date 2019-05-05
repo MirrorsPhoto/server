@@ -106,7 +106,7 @@ class User extends Model
 			'Department',
 			'id',
 			[
-				'alias' => 'Departments'
+				'alias' => 'Departments',
 			]
 		);
 	}
@@ -135,4 +135,5 @@ class User extends Model
 	{
 		return $this->getDepartments('datetime_to IS NULL');
 	}
+
 }

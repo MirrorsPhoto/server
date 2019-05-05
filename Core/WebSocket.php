@@ -35,9 +35,10 @@ class WebSocket
 	{
 		fwrite($this->stream, json_encode([
 			'from' => $from,
-			'data' => $data
+			'data' => $data,
 		]));
 
 		fclose($this->stream);
 	}
+
 }

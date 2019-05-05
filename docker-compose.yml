@@ -61,7 +61,7 @@ services:
 
   tests:
     build: ./docker/tests
-    working_dir: /code/tests
+    working_dir: /code
     tty: true
     volumes:
       - ./:/code

@@ -17,6 +17,7 @@ use Phalcon\Mvc\Dispatcher;
  */
 class PreFlightListener extends Plugin
 {
+
 	// @codingStandardsIgnoreLine SlevomatCodingStandard.Variables.UnusedVariable
 	public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher): void
 	{
@@ -68,4 +69,5 @@ class PreFlightListener extends Plugin
 	{
 		return $request->getHeader('Origin') ? $request->getHeader('Origin') : '*';
 	}
+
 }

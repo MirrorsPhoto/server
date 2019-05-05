@@ -4,6 +4,7 @@ use Phalcon\Config\Adapter\Ini;
 
 class Router extends Phalcon\Mvc\Router\Annotations
 {
+
 	public function __construct(bool $defaultRoutes = false)
 	{
 		parent::__construct($defaultRoutes);
@@ -48,4 +49,5 @@ class Router extends Phalcon\Mvc\Router\Annotations
 			]
 		);
 	}
+
 }

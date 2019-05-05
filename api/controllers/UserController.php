@@ -35,4 +35,5 @@ class UserController extends Controller
 
 		return "Профиль успешно изменён";
 	}
+
 }

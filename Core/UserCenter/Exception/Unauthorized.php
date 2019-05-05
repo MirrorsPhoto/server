@@ -11,4 +11,5 @@ class Unauthorized extends CoreException
 	{
 		parent::__construct($message, 401);
 	}
+
 }

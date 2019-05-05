@@ -48,7 +48,7 @@ class PhotoSize extends Model
 			'width',
 			new PresenceOf(
 				[
-					'message' => 'Ширина обязательна'
+					'message' => 'Ширина обязательна',
 				]
 			)
 		);
@@ -57,7 +57,7 @@ class PhotoSize extends Model
 			'height',
 			new PresenceOf(
 				[
-					'message' => 'Высота обязательна'
+					'message' => 'Высота обязательна',
 				]
 			)
 		);
@@ -103,10 +103,11 @@ class PhotoSize extends Model
 			$result[] = [
 				'id' => $photo->id,
 				'count' => $photo->count,
-				'price' => $price
+				'price' => $price,
 			];
 		}
 
 		return $result;
 	}
+
 }

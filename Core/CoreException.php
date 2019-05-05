@@ -1,6 +1,7 @@
 <?php
 abstract class CoreException extends Exception
 {
+
 	public function __construct(string $message = "", int $code = 0)
 	{
 		parent::__construct();
@@ -8,4 +9,5 @@ abstract class CoreException extends Exception
 		$this->message = $message;
 		$this->code = $code;
 	}
+
 }

@@ -5,6 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class RefactoringCopy extends AbstractMigration
 {
+
 	public function change(): void
 	{
 		$copy = $this->table('copy');
@@ -43,4 +44,5 @@ class RefactoringCopy extends AbstractMigration
 
 		$copySale->changeColumn('copy_id', 'integer', ['comment' => 'Id формата ксерокопии']);
 	}
+
 }

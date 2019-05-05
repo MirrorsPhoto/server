@@ -49,7 +49,7 @@ class Service extends Model
 			'name',
 			new PresenceOf(
 				[
-					'message' => 'Название обязательно'
+					'message' => 'Название обязательно',
 				]
 			)
 		);
@@ -82,4 +82,5 @@ class Service extends Model
 
 		return $newSaleRow;
 	}
+
 }

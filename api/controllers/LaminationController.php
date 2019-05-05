@@ -25,7 +25,7 @@ class LaminationController extends Controller
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
 				'id',
-				'format'
+				'format',
 			]);
 
 			$price = $row->price;
@@ -44,4 +44,5 @@ class LaminationController extends Controller
 
 		return $result;
 	}
+
 }

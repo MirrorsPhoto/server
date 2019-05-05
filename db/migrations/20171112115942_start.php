@@ -54,7 +54,7 @@ class Start extends AbstractMigration
 			->addIndex([
 				'name',
 				'address',
-				'city_id'
+				'city_id',
 			])
 		;
 
@@ -70,11 +70,11 @@ class Start extends AbstractMigration
 			->addColumn('user_id', 'integer', ['comment' => 'Id пользователя'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'Дата устройства',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', [
 				'comment' => 'Дата увольнения',
-				'null' => true
+				'null' => true,
 			])
 		;
 
@@ -83,7 +83,7 @@ class Start extends AbstractMigration
 				'department_id',
 				'user_id',
 				'datetime_from',
-				'datetime_to'
+				'datetime_to',
 			])
 		;
 
@@ -115,7 +115,7 @@ class Start extends AbstractMigration
 			->addColumn('path', 'text', ['comment' => 'Путь к файлу (fox.png)'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата добавления файла',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -131,28 +131,28 @@ class Start extends AbstractMigration
 		$table
 			->addColumn('avatar_id', 'integer', [
 				'comment' => 'Id файла с изображение',
-				'null' => true
+				'null' => true,
 			])
 			->addColumn('role_id', 'integer', [
 				'comment' => 'Id роли пользователя',
-				'default' => 3
+				'default' => 3,
 			])
 			->addColumn('username', 'text', ['comment' => 'Логин пользователя'])
 			->addColumn('first_name', 'text', ['comment' => 'Имя пользователя'])
 			->addColumn('middle_name', 'text', [
 				'comment' => 'Отчество пользователя',
-				'null' => true
+				'null' => true,
 			])
 			->addColumn('last_name', 'text', ['comment' => 'Фамилия пользователя'])
 			->addColumn('email', 'text', ['comment' => 'Email пользователя'])
 			->addColumn('password', 'text', ['comment' => 'Пароль пользователя'])
 			->addColumn('token', 'text', [
 				'comment' => 'Ключ доступа',
-				'null' => true
+				'null' => true,
 			])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата создания пользователя',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -161,7 +161,7 @@ class Start extends AbstractMigration
 				[
 					'username',
 					'email',
-					'token'
+					'token',
 				],
 				['unique' => true]
 			)
@@ -169,7 +169,7 @@ class Start extends AbstractMigration
 				'avatar_id',
 				'role_id',
 				'password',
-				'datetime_create'
+				'datetime_create',
 			])
 		;
 
@@ -189,12 +189,12 @@ class Start extends AbstractMigration
 			->addColumn('name', 'text', ['comment' => 'Название товара'])
 			->addColumn('description', 'text', [
 				'comment' => 'Описание товара',
-				'null' => true
+				'null' => true,
 			])
 			->addColumn('bar_code', 'text', ['comment' => 'Штрих-код товара'])
 			->addColumn('datetime_сreate', 'timestamp', [
 				'comment' => 'Дата создания',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -202,7 +202,7 @@ class Start extends AbstractMigration
 			->addIndex(
 				[
 					'bar_code',
-					'name'
+					'name',
 				],
 				['unique' => true]
 			)
@@ -219,7 +219,7 @@ class Start extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена по который получали этот товар'])
 			->addColumn('datetime', 'timestamp', [
 				'comment' => 'Дата получения',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -229,7 +229,7 @@ class Start extends AbstractMigration
 				'department_id',
 				'user_id',
 				'price',
-				'datetime'
+				'datetime',
 			])
 		;
 
@@ -249,7 +249,7 @@ class Start extends AbstractMigration
 			->addColumn('user_id', 'integer', ['comment' => 'Id пользователя который продавал товар'])
 			->addColumn('datetime', 'timestamp', [
 				'comment' => 'Дата продажи',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -258,7 +258,7 @@ class Start extends AbstractMigration
 				'good_id',
 				'department_id',
 				'user_id',
-				'datetime'
+				'datetime',
 			])
 		;
 
@@ -279,7 +279,7 @@ class Start extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена по который будем продавать'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'С какой даты действительна цена',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', ['comment' => 'По какую дату действительна цена', 'null' => true])
 		;
@@ -330,7 +330,7 @@ class Start extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена по который будем продавать'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'С какой даты действительна цена',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', ['comment' => 'По какую дату действительна цена', 'null' => true])
 		;
@@ -374,7 +374,7 @@ class Start extends AbstractMigration
 			->addColumn('format', 'text', ['comment' => 'Название формата (А4)'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата создания',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -393,11 +393,11 @@ class Start extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена по который будем продавать'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'С какой даты действительна цена',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', [
 				'comment' => 'По какую дату действительна цена',
-				'null' => true
+				'null' => true,
 			])
 		;
 
@@ -444,7 +444,7 @@ class Start extends AbstractMigration
 			->addColumn('height', 'float', ['comment' => 'Высота фотографии'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата создания',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -464,11 +464,11 @@ class Start extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена по который будем продавать такую фотографию'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'С какой даты действительна цена',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', [
 				'comment' => 'По какую дату действительна цена',
-				'null' => true
+				'null' => true,
 			])
 		;
 
@@ -506,4 +506,5 @@ class Start extends AbstractMigration
 
 		$table->create();
 	}
+
 }

@@ -24,4 +24,5 @@ class CopyController extends Controller
 
 		return $row->price;
 	}
+
 }

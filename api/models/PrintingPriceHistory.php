@@ -135,4 +135,5 @@ class PrintingPriceHistory extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
+
 }

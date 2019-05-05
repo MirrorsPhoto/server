@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Services extends AbstractSeed
 {
+
 	/**
 	 * @return string[]
 	 */
@@ -11,7 +12,7 @@ class Services extends AbstractSeed
 	{
 		return [
 			'Departments',
-			'Users'
+			'Users',
 		];
 	}
 
@@ -25,7 +26,7 @@ class Services extends AbstractSeed
 				['name' => 'Запись на USB накопитель'],
 				['name' => 'Запись на диск'],
 				['name' => 'Интернет'],
-				['name' => 'Реставрация']
+				['name' => 'Реставрация'],
 			])
 			->save()
 		;
@@ -37,40 +38,41 @@ class Services extends AbstractSeed
 					'service_id' => 1,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 40
+					'price' => 40,
 				],
 				[
 					'service_id' => 2,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 30
+					'price' => 30,
 				],
 				[
 					'service_id' => 3,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 30
+					'price' => 30,
 				],
 				[
 					'service_id' => 4,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 50
+					'price' => 50,
 				],
 				[
 					'service_id' => 5,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 30
+					'price' => 30,
 				],
 				[
 					'service_id' => 6,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 100
-				]
+					'price' => 100,
+				],
 			])
 			->save()
 		;
 	}
+
 }

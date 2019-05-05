@@ -90,4 +90,5 @@ class DepartmentPersonnelHistory extends Model
 
 		return $this->validate($validator);
 	}
+
 }

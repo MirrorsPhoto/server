@@ -54,7 +54,7 @@ class Department extends Model
 			'User',
 			'id',
 			[
-				'alias' => 'Users'
+				'alias' => 'Users',
 			]
 		);
 	}
@@ -121,7 +121,7 @@ class Department extends Model
 			'yesterday' => new DateTime("previous day", $timeZone),
 			'week' => new DateTime("previous weeks", $timeZone),
 			'month' => new DateTime("previous month", $timeZone),
-			'year' => new DateTime("previous year", $timeZone)
+			'year' => new DateTime("previous year", $timeZone),
 		];
 
 		$types = [
@@ -130,7 +130,7 @@ class Department extends Model
 			'copy',
 			'lamination',
 			'printing',
-			'service'
+			'service',
 		];
 
 		$query = [];
@@ -201,4 +201,5 @@ class Department extends Model
 
 		$socket->send($arrUserIds, $data);
 	}
+
 }

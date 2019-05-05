@@ -4,6 +4,7 @@ namespace Core;
 
 trait Singleton
 {
+
 	/**
 	 * @var self
 	 */
@@ -29,4 +30,5 @@ trait Singleton
 	{
 		trigger_error('Unserializing ' . self::class . ' is not allowed.', E_USER_ERROR);
 	}
+
 }

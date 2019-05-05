@@ -70,7 +70,7 @@ class Printing extends Model
 			'name',
 			new PresenceOf(
 				[
-					'message' => 'Название обязательно'
+					'message' => 'Название обязательно',
 				]
 			)
 		);
@@ -108,4 +108,5 @@ class Printing extends Model
 
 		return $newSaleRow;
 	}
+
 }

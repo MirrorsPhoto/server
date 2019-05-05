@@ -11,4 +11,5 @@ class AccessDenied extends CoreException
 	{
 		parent::__construct("Access denied", 403);
 	}
+
 }

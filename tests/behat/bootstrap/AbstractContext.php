@@ -11,26 +11,27 @@ use PHPUnit\Framework\Assert;
 
 abstract class AbstractContext extends Assert implements Context
 {
+
 	/**
 	 * @var mixed[]
 	 */
 	private $roles = [
 		'admin' => [
 			'name' => 'Администратор',
-			'value' => 1
+			'value' => 1,
 		],
 		'staff' => [
 			'name' => 'Оператор',
-			'value' => 2
+			'value' => 2,
 		],
 		'user' => [
 			'name' => 'Пользователь',
-			'value' => 3
+			'value' => 3,
 		],
 		'guest' => [
 			'name' => 'Гость',
-			'value' => 4
-		]
+			'value' => 4,
+		],
 	];
 
 	/**
@@ -80,7 +81,7 @@ abstract class AbstractContext extends Assert implements Context
 		$this->faker = Factory::create('ru_RU');
 
 		$this->client = new Client([
-			'base_uri' => 'http://api.' . $_ENV['DOMAIN']
+			'base_uri' => 'http://api.' . $_ENV['DOMAIN'],
 		]);
 	}
 
@@ -93,9 +94,9 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @param TableNode $table
-	 *
 	 * @Then resp having error message:
+	 *
+	 * @param TableNode $table
 	 */
 	public function checkErrorMessage(TableNode $table): void
 	{
@@ -113,9 +114,9 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
-	 * @param int $code
-	 *
 	 * @Then the resp status code should be :code
+	 *
+	 * @param int $code
 	 */
 	public function checkResponseCode(int $code): void
 	{
@@ -135,10 +136,10 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
+	 * @Then the :name header should be :value
+	 *
 	 * @param string $name
 	 * @param string $value
-	 *
-	 * @Then the :name header should be :value
 	 */
 	public function checkResponseHeader(string $name, string $value): void
 	{
@@ -151,10 +152,10 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
+	 * @Given that there is a :role role
+	 *
 	 * @param string $role
 	 * @throws Exception
-	 *
-	 * @Given that there is a :role role
 	 */
 	public function createRole(string $role): void
 	{
@@ -166,18 +167,18 @@ abstract class AbstractContext extends Assert implements Context
 
 		$id = $this->insertDb('role', [
 			'id' => $role['value'],
-			'name' => $role['name']
+			'name' => $role['name'],
 		]);
 
 		$this->data['role_id'] = $id;
 	}
 
 	/**
+	 * @Given that there is a registered user :username with :password password
+	 *
 	 * @param string $username
 	 * @param string $password
 	 * @throws Exception
-	 *
-	 * @Given that there is a registered user :username with :password password
 	 */
 	public function registerUser(string $username, string $password): void
 	{
@@ -207,21 +208,21 @@ abstract class AbstractContext extends Assert implements Context
 			'email' => $email,
 			'role_id' => $roleId,
 			'role_phrase' => $this->getRolePhrase($roleId),
-			'avatar' => null
+			'avatar' => null,
 		];
 	}
 
 	/**
+	 * @When i am login as :username with :password password
+	 *
 	 * @param string $username
 	 * @param string $password
-	 *
-	 * @When i am login as :username with :password password
 	 */
 	public function loginUser(string $username, string $password): void
 	{
 		$credentials = [
 			'login' => $username,
-			'password' => $password
+			'password' => $password,
 		];
 
 		$response = $this->request('login', 'POST', $credentials);
@@ -243,25 +244,25 @@ abstract class AbstractContext extends Assert implements Context
 	}
 
 	/**
+	 * @Given that there is exist city :city
+	 *
 	 * @param string $city
 	 * @throws Exception
-	 *
-	 * @Given that there is exist city :city
 	 */
 	public function createCity(string $city): void
 	{
 		$id = $this->insertDb('city', [
-			'name' => $city
+			'name' => $city,
 		]);
 
 		$this->data['city_id'] = $id;
 	}
 
 	/**
+	 * @Given in this city exist department :name
+	 *
 	 * @param string $name
 	 * @throws Exception
-	 *
-	 * @Given in this city exist department :name
 	 */
 	public function createDepartment(string $name): void
 	{
@@ -275,17 +276,17 @@ abstract class AbstractContext extends Assert implements Context
 		$id = $this->insertDb('department', [
 			'city_id' => $cityId,
 			'name' => $name,
-			'address' => $address
+			'address' => $address,
 		]);
 
 		$this->data['departments'][$name] = $id;
 	}
 
 	/**
+	 * @Given i work in :name department
+	 *
 	 * @param string $name
 	 * @throws Exception
-	 *
-	 * @Given i work in :name department
 	 */
 	public function addUserToDepartment(string $name): void
 	{
@@ -302,16 +303,16 @@ abstract class AbstractContext extends Assert implements Context
 
 		$this->insertDb('department_personnel_history', [
 			'department_id' => $departmentId,
-			'user_id' => $userId
+			'user_id' => $userId,
 		]);
 
 		$this->data['user']['department'] = $name;
 	}
 
 	/**
-	 * @param PyStringNode $text
-	 *
 	 * @Then resp must contain correct data
+	 *
+	 * @param PyStringNode $text
 	 */
 	public function checkResponse(PyStringNode $text): void
 	{
@@ -350,7 +351,7 @@ abstract class AbstractContext extends Assert implements Context
 	protected function request(string $path, string $method = 'GET', array $body = [], array $headers = []): array
 	{
 		$defaultHeaders = [
-			'Content-Type' => 'application/json'
+			'Content-Type' => 'application/json',
 		];
 
 		if (!empty($this->token)) {
@@ -361,13 +362,13 @@ abstract class AbstractContext extends Assert implements Context
 		$response = $this->client->request($method, $path, [
 			'headers' => $headers + $defaultHeaders,
 			'json' => $body,
-			'http_errors' => false
+			'http_errors' => false,
 		]);
 
 		return [
 			'headers' => $response->getHeaders(),
 			'status' => $response->getStatusCode(),
-			'body' => json_decode($response->getBody()->getContents(), true)
+			'body' => json_decode($response->getBody()->getContents(), true),
 		];
 	}
 
@@ -464,4 +465,5 @@ abstract class AbstractContext extends Assert implements Context
 
 		return $result;
 	}
+
 }

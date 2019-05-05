@@ -40,4 +40,5 @@ class City extends Model
 
 		return $this->validate($validator);
 	}
+
 }

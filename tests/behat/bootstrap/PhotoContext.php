@@ -4,11 +4,12 @@ use Behat\Gherkin\Node\TableNode;
 
 class PhotoContext extends AbstractContext
 {
+
 	/**
+	 * @Given that there is a sizes:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a sizes:
 	 */
 	public function create(TableNode $table): void
 	{
@@ -31,7 +32,7 @@ class PhotoContext extends AbstractContext
 			if (!isset($temp[$photoSizeKey])) {
 				$photoSizeId = $this->insertDb('photo_size', [
 					'width' => $photo['width'],
-					'height' => $photo['height']
+					'height' => $photo['height'],
 				]);
 
 				$temp[$photoSizeKey] = $photoSizeId;
@@ -41,14 +42,14 @@ class PhotoContext extends AbstractContext
 
 			$photoId = $this->insertDb('photo', [
 				'photo_size_id' => $photoSizeId,
-				'count' => $photo['count']
+				'count' => $photo['count'],
 			]);
 
 			$this->insertDb('photo_price_history', [
 				'photo_id' => $photoId,
 				'department_id' => $departmentId,
 				'user_id' => $userId,
-				'price' => $photo['price']
+				'price' => $photo['price'],
 			]);
 		}
 
@@ -64,4 +65,5 @@ class PhotoContext extends AbstractContext
 
 		$this->data['response'] = $response;
 	}
+
 }

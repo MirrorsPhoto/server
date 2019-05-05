@@ -4,11 +4,12 @@ use Behat\Gherkin\Node\TableNode;
 
 class LaminationContext extends AbstractContext
 {
+
 	/**
+	 * @Given that there is a sizes:
+	 *
 	 * @param TableNode $table
 	 * @throws Exception
-	 *
-	 * @Given that there is a sizes:
 	 */
 	public function create(TableNode $table): void
 	{
@@ -22,7 +23,7 @@ class LaminationContext extends AbstractContext
 				$id = $this->data['lamination']['formats'][$format];
 			} else {
 				$id = $this->insertDb('lamination', [
-					'format' => $format
+					'format' => $format,
 				]);
 
 				$this->data['lamination']['formats'][$format] = $id;
@@ -39,16 +40,16 @@ class LaminationContext extends AbstractContext
 					'department_id' => $departmentId,
 					'user_id' => $userId,
 					'lamination_id' => $id,
-					'price' => $row['price']
+					'price' => $row['price'],
 				]);
 			}
 		}
 	}
 
 	/**
-	 * @throws Exception
-	 *
 	 * @When i want get lamination sizes
+	 *
+	 * @throws Exception
 	 */
 	public function get(): void
 	{
@@ -56,4 +57,5 @@ class LaminationContext extends AbstractContext
 
 		$this->data['response'] = $response;
 	}
+
 }

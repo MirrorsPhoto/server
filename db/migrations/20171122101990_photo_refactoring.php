@@ -3,6 +3,7 @@ use Phinx\Migration\AbstractMigration;
 
 class PhotoRefactoring extends AbstractMigration
 {
+
 	public function change(): void
 	{
 		$table = $this->table('photo');
@@ -12,7 +13,7 @@ class PhotoRefactoring extends AbstractMigration
 			->addColumn('count', 'integer', ['comment' => 'Количество штук'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата добавления этого варианта размер-кол-во',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 		;
 
@@ -31,7 +32,7 @@ class PhotoRefactoring extends AbstractMigration
 		foreach ($rows as $row) {
 			$table->insert([
 				'photo_size_id' => $row['photo_size_id'],
-				'count' => $row['count']
+				'count' => $row['count'],
 			]);
 		}
 
@@ -69,4 +70,5 @@ class PhotoRefactoring extends AbstractMigration
 			->update()
 		;
 	}
+
 }

@@ -11,4 +11,5 @@ class NotFound extends CoreException
 	{
 		parent::__construct($message, $code);
 	}
+
 }

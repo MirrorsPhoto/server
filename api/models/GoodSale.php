@@ -59,7 +59,7 @@ class GoodSale extends Model
 			new PresenceOf(
 				[
 					'message' => 'Id товара обязателен',
-					'cancelOnFail' => true
+					'cancelOnFail' => true,
 				]
 			)
 		);
@@ -78,7 +78,7 @@ class GoodSale extends Model
 			new PresenceOf(
 				[
 					'message' => 'Id пользователя обязателен',
-					'cancelOnFail' => true
+					'cancelOnFail' => true,
 				]
 			)
 		);
@@ -105,4 +105,5 @@ class GoodSale extends Model
 		$this->user_id = $user->id;
 		$this->department_id = $user->department_id;
 	}
+
 }

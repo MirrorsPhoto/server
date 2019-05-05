@@ -47,7 +47,7 @@ class Lamination extends Model
 			'format',
 			new PresenceOf(
 				[
-					'message' => 'Формат обязательн'
+					'message' => 'Формат обязательн',
 				]
 			)
 		);
@@ -80,4 +80,5 @@ class Lamination extends Model
 
 		return $newSaleRow;
 	}
+
 }

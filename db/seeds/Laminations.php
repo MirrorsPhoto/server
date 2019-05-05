@@ -4,6 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Laminations extends AbstractSeed
 {
+
 	/**
 	 * @return string[]
 	 */
@@ -11,7 +12,7 @@ class Laminations extends AbstractSeed
 	{
 		return [
 			'Departments',
-			'Users'
+			'Users',
 		];
 	}
 
@@ -21,11 +22,11 @@ class Laminations extends AbstractSeed
 			->table('lamination')
 			->insert([
 				[
-					'format' => 'A4'
+					'format' => 'A4',
 				],
 				[
-					'format' => 'A5'
-				]
+					'format' => 'A5',
+				],
 			])
 			->save()
 		;
@@ -37,16 +38,17 @@ class Laminations extends AbstractSeed
 					'lamination_id' => 1,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 30
+					'price' => 30,
 				],
 				[
 					'lamination_id' => 2,
 					'department_id' => 1,
 					'user_id' => 1,
-					'price' => 20
-				]
+					'price' => 20,
+				],
 			])
 			->save()
 		;
 	}
+
 }

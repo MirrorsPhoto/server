@@ -5,6 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class ServiceMigration extends AbstractMigration
 {
+
 	public function change(): void
 	{
 		$service = $this->table('service');
@@ -13,7 +14,7 @@ class ServiceMigration extends AbstractMigration
 			->addColumn("name", 'text', ['comment' => 'Название услуги'])
 			->addColumn('datetime_create', 'timestamp', [
 				'comment' => 'Дата создания услуги',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addIndex('datetime_create')
 			->addIndex('name', ['unique' => true])
@@ -29,7 +30,7 @@ class ServiceMigration extends AbstractMigration
 			->addColumn('price', 'float', ['comment' => 'Цена услуги'])
 			->addColumn('datetime_from', 'timestamp', [
 				'comment' => 'С какой даты действительна цена',
-				'default' => 'CURRENT_TIMESTAMP'
+				'default' => 'CURRENT_TIMESTAMP',
 			])
 			->addColumn('datetime_to', 'timestamp', ['comment' => 'По какую дату действительна цена', 'null' => true])
 			->addIndex(['service_id', 'department_id', 'user_id', 'price', 'datetime_to'])
@@ -52,4 +53,5 @@ class ServiceMigration extends AbstractMigration
 			->create()
 		;
 	}
+
 }

@@ -8,6 +8,7 @@ use Validation;
 
 class Receipt extends Validation
 {
+
 	public function initialize(): void
 	{
 		$this->add(
@@ -15,7 +16,7 @@ class Receipt extends Validation
 			new PresenceOf(
 				[
 					'message' => 'Код товара обязателен',
-					'cancelOnFail' => true
+					'cancelOnFail' => true,
 				]
 			)
 		);
@@ -34,7 +35,7 @@ class Receipt extends Validation
 			new PresenceOf(
 				[
 					'message' => 'Код товара обязателен',
-					'cancelOnFail' => true
+					'cancelOnFail' => true,
 				]
 			)
 		);
@@ -48,4 +49,5 @@ class Receipt extends Validation
 			)
 		);
 	}
+
 }
