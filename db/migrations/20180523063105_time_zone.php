@@ -5,7 +5,7 @@ use Phinx\Migration\AbstractMigration;
 
 class TimeZone extends AbstractMigration
 {
-	public function change()
+	public function change(): void
 	{
 			$this->execute("set timezone TO 'Europe/Moscow';");
 

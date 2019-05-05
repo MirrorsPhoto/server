@@ -5,12 +5,12 @@ use Behat\Gherkin\Node\TableNode;
 class CopyContext extends AbstractContext
 {
 	/**
-	 * @Given that there is a copies:
-	 *
 	 * @param TableNode $table
 	 * @throws Exception
+	 *
+	 * @Given that there is a copies:
 	 */
-	public function create(TableNode $table)
+	public function create(TableNode $table): void
 	{
 		$rows = $table->getColumnsHash();
 		$userId = $this->data['user']['id'];
@@ -46,12 +46,12 @@ class CopyContext extends AbstractContext
 	}
 
 	/**
-	 * @When i want get copy price format :format
-	 *
 	 * @param string $format
 	 * @throws Exception
+	 *
+	 * @When i want get copy price format :format
 	 */
-	public function get(string $format)
+	public function get(string $format): void
 	{
 		$formatId = $this->data['copy']['formats'][$format] ?? 569;
 

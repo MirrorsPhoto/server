@@ -11,7 +11,6 @@ use Phalcon\Mvc\Model\Resultset\Simple;
 /**
  * @method static self findFirstByBarCode(int $barCode)
  * @method GoodPriceHistory getGoodPriceHistory(string $string)
- *
  * @property float price
  */
 class Good extends Model
@@ -24,26 +23,26 @@ class Good extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=true)
 	 */
 	public $description;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=true)
 	 */
 	public $bar_code;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -52,10 +51,7 @@ class Good extends Model
 		$this->hasMany('id', 'GoodSale', 'good_id', ['alias' => 'Sales']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -74,9 +70,8 @@ class Good extends Model
 	/**
 	 * @throws ServerError
 	 * @throws Unauthorized
-	 * @return float
 	 */
-	public function getPrice()
+	public function getPrice(): float
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -92,11 +87,12 @@ class Good extends Model
 	/**
 	 * Возвращает товары в наличии или один определённый товар
 	 *
-	 * @param $id integer id товара
+	 * @param int $id
 	 * @throws Unauthorized
+	 *
 	 * @return Simple
 	 */
-	public static function getAvaible($id = null)
+	public static function getAvaible(int $id = 0): Simple
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -137,10 +133,10 @@ class Good extends Model
 
 	/**
 	 * Функция проверки наличия товара
+	 *
 	 * @throws Unauthorized
-	 * @return bool
 	 */
-	public function isAvailable()
+	public function isAvailable(): bool
 	{
 		$available = self::getAvaible($this->id);
 
@@ -151,20 +147,18 @@ class Good extends Model
 	 * Сколько единиц данного товара в наличии
 	 *
 	 * @throws Unauthorized
-	 * @return integer
 	 */
-	public function getAvaibleCount()
+	public function getAvaibleCount(): int
 	{
 		return (self::getAvaible($this->id))->getFirst()->total | 0;
 	}
 
 	/**
-	 * @return bool
 	 * @throws ServerError
 	 * @throws Unauthorized
 	 * @throws BadRequest
 	 */
-	public function sale()
+	public function sale(): bool
 	{
 		if (!$this->isAvailable()) {
 			throw new BadRequest("Нельзя записать продажу товара {$this->name}, т.к. его не в наличии");
@@ -179,10 +173,9 @@ class Good extends Model
 
 	/**
 	 * @param float $price
-	 * @return bool
 	 * @throws ServerError
 	 */
-	public function receipt($price)
+	public function receipt(float $price): bool
 	{
 		$rowReceipt = new GoodReceipt([
 			'good_id' => $this->id,

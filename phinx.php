@@ -1,24 +1,4 @@
 <?php
-
-use Phalcon\Loader;
-
-(new Loader())
-	->registerDirs([
-		'api/controllers/',
-		'api/models/',
-		'api/validations',
-		'Core/helpers',
-		'Core/UserCenter',
-		'Core/'
-	])
-	->registerNamespaces([
-		'Core\UserCenter' => 'Core/UserCenter',
-		'Core\Plugin' => 'Core/Plugin',
-		'Core\Enum' => 'Core/Enum',
-		'Core' => 'Core',
-		'Validator' => 'api/validations'
-	])->register();
-
 return [
 	'paths' => [
 		'migrations' => 'db/migrations',

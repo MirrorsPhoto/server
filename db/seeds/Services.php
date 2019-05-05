@@ -4,7 +4,10 @@ use Phinx\Seed\AbstractSeed;
 
 class Services extends AbstractSeed
 {
-	public function getDependencies()
+	/**
+	 * @return string[]
+	 */
+	public function getDependencies(): array
 	{
 		return [
 			'Departments',
@@ -12,7 +15,7 @@ class Services extends AbstractSeed
 		];
 	}
 
-	public function run()
+	public function run(): void
 	{
 		$this
 			->table('service')

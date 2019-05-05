@@ -7,7 +7,7 @@ class ServiceContext extends AbstractContext
 	/**
 	 * @When i want get service list
 	 */
-	public function get()
+	public function get(): void
 	{
 		$response = $this->request('service');
 
@@ -15,12 +15,12 @@ class ServiceContext extends AbstractContext
 	}
 
 	/**
-	 * @Given that there is a services:
-	 *
 	 * @param TableNode $table
 	 * @throws Exception
+	 *
+	 * @Given that there is a services:
 	 */
-	public function create(TableNode $table)
+	public function create(TableNode $table): void
 	{
 		$rows = $table->getColumnsHash();
 		$userId = $this->data['user']['id'];

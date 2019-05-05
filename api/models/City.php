@@ -13,24 +13,19 @@ class City extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $name;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
 		$this->hasMany('id', 'Department', 'city_id', ['alias' => 'Departments']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 

@@ -1,15 +1,15 @@
 <?php
 
 use Core\Exception\BadRequest;
+use Phalcon\Validation\Message\Group;
 
 abstract class Validation extends Phalcon\Validation
 {
-
 	/**
-	 * @param null $data
-	 * @param null $entity
+	 * @param mixed $data
+	 * @param mixed $entity
 	 */
-	public function validate($data = null, $entity = null)
+	public function validate($data = null, $entity = null): void
 	{
 		$post = $this->request->getPost();
 		$get = $this->request->getQuery();
@@ -19,12 +19,13 @@ abstract class Validation extends Phalcon\Validation
 	}
 
 	/**
-	 * @param $data
-	 * @param $entity
-	 * @param $messages
+	 * @param mixed $data
+	 * @param mixed $entity
+	 * @param Group $messages
 	 * @throws BadRequest
 	 */
-	public function afterValidation($data, $entity, $messages)
+	// @codingStandardsIgnoreLine SlevomatCodingStandard.Variables.UnusedVariable
+	public function afterValidation($data, $entity, Group $messages): void
 	{
 		$totalCountMessages = $messages->count();
 

@@ -4,7 +4,7 @@ use Phinx\Seed\AbstractSeed;
 
 class Cities extends AbstractSeed
 {
-	public function run()
+	public function run(): void
 	{
 		$this
 			->table('city')

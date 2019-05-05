@@ -8,11 +8,7 @@ use Validation;
 
 class Receipt extends Validation
 {
-
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		$this->add(
 			'bar_code',

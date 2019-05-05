@@ -4,8 +4,7 @@ use Phalcon\Config\Adapter\Ini;
 
 class Router extends Phalcon\Mvc\Router\Annotations
 {
-
-	public function __construct($defaultRoutes = null)
+	public function __construct(bool $defaultRoutes = false)
 	{
 		parent::__construct($defaultRoutes);
 
@@ -15,7 +14,7 @@ class Router extends Phalcon\Mvc\Router\Annotations
 		$this->removeExtraSlashes(true);
 	}
 
-	private function setResources()
+	private function setResources(): void
 	{
 		$arrControllers = array_diff(scandir(__DIR__ . '/../api/controllers'), ['..', '.']);
 
@@ -28,7 +27,7 @@ class Router extends Phalcon\Mvc\Router\Annotations
 		}
 	}
 
-	private function setRoutes()
+	private function setRoutes(): void
 	{
 		$routes = new Ini(__DIR__ . '/../api/config/route.ini');
 
@@ -46,14 +45,6 @@ class Router extends Phalcon\Mvc\Router\Annotations
 			[
 				'controller' => 'index',
 				'action'     => 'notFound',
-			]
-		);
-
-		$this->add(
-			'/',
-			[
-				'controller' => 'index',
-				'action'     => 'index',
 			]
 		);
 	}

@@ -3,13 +3,12 @@
 namespace Core\Exception;
 
 use CoreException;
-use Throwable;
 
 class NotFound extends CoreException
 {
 
-	public function __construct($message = "Not Found", $code = 404, Throwable $previous = null)
+	public function __construct(string $message = "Not Found", int $code = 404)
 	{
-		parent::__construct($message, $code, $previous);
+		parent::__construct($message, $code);
 	}
 }

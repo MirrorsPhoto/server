@@ -15,39 +15,40 @@ class GoodReceipt extends Model
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=32, nullable=false)
 	 */
 	public $good_id;
 
 	/**
 	 * @var int
+	 *
 	 * @Column(type="integer", length=11, nullable=false)
 	 */
 	public $department_id;
 
 	/**
-	 *
 	 * @var integer
+	 *
 	 * @Column(type="integer", length=32, nullable=false)
 	 */
 	public $user_id;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $price;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime;
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -55,10 +56,7 @@ class GoodReceipt extends Model
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
 	}
 
-	/**
-	 * @return boolean
-	 */
-	public function validation()
+	public function validation(): bool
 	{
 		$validator = new Validation();
 
@@ -94,9 +92,8 @@ class GoodReceipt extends Model
 
 	/**
 	 * @throws Unauthorized
-	 * @return void
 	 */
-	public function beforeSave()
+	public function beforeSave(): void
 	{
 		$user = Security::getUser();
 

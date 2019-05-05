@@ -17,9 +17,8 @@ class SaleController extends Controller
 	 * @throws BadRequest
 	 * @throws ServerError
 	 * @throws Unauthorized
-	 * @return bool
 	 */
-	public function batchAction()
+	public function batchAction(): bool
 	{
 		$items = $this->getPost('items');
 

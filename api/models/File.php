@@ -16,12 +16,14 @@ class File extends Model
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $path;
 
 	/**
 	 * @var string
+	 *
 	 * @Column(type="string", nullable=false)
 	 */
 	public $datetime_create;
@@ -29,15 +31,14 @@ class File extends Model
 	/**
 	 * @param \Phalcon\Http\Request\File $file
 	 * @throws ServerError
-	 * @return self
 	 */
-	public static function factory(Phalcon\Http\Request\File $file)
+	public static function factory(Phalcon\Http\Request\File $file): self
 	{
 		$fileName = hash_file('md5', $file->getTempName()) . ".{$file->getExtension()}";
 
 		$config = ConfigIni::getInstance();
 
-		$dir = $config->static->dir;
+		$dir = $config->static->dir; //@todo
 
 		$path = "{$fileName[0]}{$fileName[1]}/{$fileName[2]}{$fileName[3]}";
 
@@ -74,10 +75,7 @@ class File extends Model
 		return $obj;
 	}
 
-	/**
-	 * @return void
-	 */
-	public function initialize()
+	public function initialize(): void
 	{
 		parent::initialize();
 
@@ -86,14 +84,12 @@ class File extends Model
 
 	/**
 	 * Возвращает полный путь к файлу (http://static.jonkofee.ru/fox.png)
-	 *
-	 * @return string
 	 */
-	public function getFullPath()
+	public function getFullPath(): string
 	{
 		$config = ConfigIni::getInstance();
 
-		$domain = $config->static->url;
+		$domain = $config->static->url; //@todo
 
 		return "$domain/{$this->path}";
 	}

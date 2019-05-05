@@ -18,9 +18,8 @@ class GoodController extends Controller
 	 * @Post('/add')
 	 *
 	 * @throws ServerError
-	 * @return void
 	 */
-	public function addAction()
+	public function addAction(): void
 	{
 		$validator = new Add();
 		$validator->validate();
@@ -44,9 +43,8 @@ class GoodController extends Controller
 	 * @Get('/search')
 	 *
 	 * @throws BadRequest
-	 * @return Simple
 	 */
-	public function searchAction()
+	public function searchAction(): Simple
 	{
 		$validator = new Search();
 		$validator->validate();
@@ -68,9 +66,10 @@ class GoodController extends Controller
 	 * @param int $barCode
 	 * @throws Unauthorized
 	 * @throws BadRequest
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
-	public function getInfoByBarCodeAction($barCode)
+	public function getInfoByBarCodeAction(int $barCode): array
 	{
 		$good = Good::findFirstByBarCode($barCode);
 		if (!$good) {
@@ -91,9 +90,10 @@ class GoodController extends Controller
 	 * @param int $id
 	 * @throws Unauthorized
 	 * @throws BadRequest
-	 * @return array
+	 *
+	 * @return mixed[]
 	 */
-	public function getInfoByIdAction($id)
+	public function getInfoByIdAction(int $id): array
 	{
 		$good = Good::findFirst($id);
 
@@ -114,9 +114,8 @@ class GoodController extends Controller
 	 *
 	 * @throws ServerError
 	 * @throws BadRequest
-	 * @return string
 	 */
-	public function receiptAction()
+	public function receiptAction(): string
 	{
 		$validator = new Receipt();
 		$validator->validate();
