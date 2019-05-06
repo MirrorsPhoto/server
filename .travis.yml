@@ -6,6 +6,11 @@ git:
 services:
   - docker
 
+cache:
+  directories:
+    - src/vendor
+    - tests/vendor
+
 before_install:
   - cp .env.dist .env
 
