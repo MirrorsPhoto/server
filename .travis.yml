@@ -16,6 +16,7 @@ before_install:
 
 install:
   - docker-compose up -d --build
+  - while sudo lsof -Pi :${DATABASE_PORT_EXTERNAL} -sTCP:LISTEN -t; do sleep 1; done #wait database
   - docker exec -it mirrors_php_1 composer install
   - docker exec -it mirrors_php_1 vendor/bin/phinx migrate
   - docker exec -it mirrors_tests_1 bash -c 'cd /code/tests; composer install;'
