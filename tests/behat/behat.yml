@@ -20,3 +20,6 @@ default:
     sale:
       paths: [ '%paths.base%/features/sale.feature' ]
       contexts: [ SaleContext ]
+    other:
+      paths: [ '%paths.base%/features/other.feature' ]
+      contexts: [ OtherContext ]
