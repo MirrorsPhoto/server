@@ -16,7 +16,6 @@ services:
       - $NGINX_PORT_EXTERNAL:80
       - 80
     volumes:
-      - ./:/code
       - ./docker/nginx/conf:/etc/nginx/conf.d
     links:
       - php
@@ -33,8 +32,7 @@ services:
     build: ./docker/php
     working_dir: /code
     volumes:
-      - ./:/code
-      - /code/tests
+      - ./src:/code
     links:
       - postgresql
       - websocket
@@ -52,7 +50,7 @@ services:
     build: ./docker/websocket
     working_dir: /code
     volumes:
-      - ./:/code
+      - ./src:/code
     ports:
       - $WEBSOCKET_PORT_EXTERNAL:8000
       - 1337

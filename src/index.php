@@ -15,9 +15,9 @@ require 'vendor/autoload.php';
 
 $loader = new Loader();
 $loader->registerDirs([
-	'api/controllers/',
-	'api/models/',
-	'api/validations',
+	'controllers/',
+	'models/',
+	'validations',
 	'Core/helpers',
 	'Core/UserCenter',
 	'Core/',
@@ -27,7 +27,7 @@ $loader->registerNamespaces([
 	'Core\Plugin' => 'Core/Plugin',
 	'Core\Enum' => 'Core/Enum',
 	'Core' => 'Core',
-	'Validator' => 'api/validations',
+	'Validator' => 'validations',
 ]);
 $loader->register();
 

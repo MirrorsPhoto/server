@@ -17,7 +17,7 @@ class Router extends Phalcon\Mvc\Router\Annotations
 
 	private function setResources(): void
 	{
-		$arrControllers = array_diff(scandir(__DIR__ . '/../api/controllers'), ['..', '.']);
+		$arrControllers = array_diff(scandir(__DIR__ . '/../controllers'), ['..', '.']);
 
 		foreach ($arrControllers as $controller) {
 			$name = str_replace('Controller.php', '', $controller);
@@ -30,7 +30,7 @@ class Router extends Phalcon\Mvc\Router\Annotations
 
 	private function setRoutes(): void
 	{
-		$routes = new Ini(__DIR__ . '/../api/config/route.ini');
+		$routes = new Ini(__DIR__ . '/../config/route.ini');
 
 		foreach ($routes->toArray() as $pattern => $paths) {
 			$pattern = "/$pattern";
