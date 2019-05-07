@@ -22,7 +22,7 @@ class Copies extends AbstractSeed
 			->table('copy')
 			->insert([
 				'id' => 1,
-				'format' => 'A4'
+				'format' => 'A4',
 			])
 			->save()
 		;
