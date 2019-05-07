@@ -22,6 +22,7 @@ class Departments extends AbstractSeed
 			->table('department')
 			->insert([
 				[
+					'id' => 1,
 					'city_id' => 1,
 					'name' => 'Амвросиевка',
 					'address' => 'Фрунзе 16',

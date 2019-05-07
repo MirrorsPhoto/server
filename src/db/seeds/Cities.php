@@ -9,7 +9,10 @@ class Cities extends AbstractSeed
 	{
 		$this
 			->table('city')
-			->insert([['name' => 'Амвросиевка']])
+			->insert([[
+				'id' => 1,
+				'name' => 'Амвросиевка',
+			]])
 			->save()
 		;
 	}

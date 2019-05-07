@@ -20,7 +20,10 @@ class Copies extends AbstractSeed
 	{
 		$this
 			->table('copy')
-			->insert(['format' => 'A4'])
+			->insert([
+				'id' => 1,
+				'format' => 'A4',
+			])
 			->save()
 		;
 

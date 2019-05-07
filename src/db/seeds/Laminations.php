@@ -22,9 +22,11 @@ class Laminations extends AbstractSeed
 			->table('lamination')
 			->insert([
 				[
+					'id' => 1,
 					'format' => 'A4',
 				],
 				[
+					'id' => 2,
 					'format' => 'A5',
 				],
 			])

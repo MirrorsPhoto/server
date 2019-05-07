@@ -5,17 +5,23 @@ use Phinx\Seed\AbstractSeed;
 class Roles extends AbstractSeed
 {
 
-	/**
-	 * @return string[]
-	 */
 	public function run(): void
 	{
 		$this
 			->table('role')
 			->insert([
-				['name' => 'Администратор'],
-				['name' => 'Оператор'],
-				['name' => 'Пользователь'],
+				[
+					'id' => 1,
+					'name' => 'Администратор',
+				],
+				[
+					'id' => 2,
+					'name' => 'Оператор',
+				],
+				[
+					'id' => 3,
+					'name' => 'Пользователь',
+				],
 			])
 			->save()
 		;
