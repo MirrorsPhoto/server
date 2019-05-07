@@ -22,9 +22,11 @@ class Printings extends AbstractSeed
 			->table('printing')
 			->insert([
 				[
+					'id' => 1,
 					'name' => 'A4',
 				],
 				[
+					'id' => 2,
 					'name' => 'A4',
 					'color' => 'true',
 				],

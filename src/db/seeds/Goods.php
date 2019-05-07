@@ -22,11 +22,13 @@ class Goods extends AbstractSeed
 			->table('good')
 			->insert([
 				[
+					'id' => 1,
 					'name' => 'Тестовый товар',
 					'description' => 'Тестовое описание',
 					'bar_code' => '1234567890123',
 				],
 				[
+					'id' => 2,
 					'name' => 'Тестовый товар без штриф-кода',
 					'description'   => 'Тестовое описание',
 				],
