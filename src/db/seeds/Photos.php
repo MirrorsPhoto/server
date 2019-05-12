@@ -56,6 +56,11 @@ class Photos extends AbstractSeed
 					'width' => 10,
 					'height' => 15,
 				],
+				[
+					'id' => 8,
+					'width' => 3.5,
+					'height' => 3.5,
+				],
 			])
 			->save()
 		;
@@ -107,6 +112,21 @@ class Photos extends AbstractSeed
 					'id' => 9,
 					'photo_size_id' => 7,
 					'count' => 1,
+				],
+				[
+					'id' => 10,
+					'photo_size_id' => 8,
+					'count' => 2,
+				],
+				[
+					'id' => 11,
+					'photo_size_id' => 8,
+					'count' => 4,
+				],
+				[
+					'id' => 12,
+					'photo_size_id' => 8,
+					'count' => 8,
 				],
 			])
 			->save()
@@ -168,6 +188,24 @@ class Photos extends AbstractSeed
 					'department_id' => 1,
 					'user_id' => 1,
 					'price' => 120,
+				],
+				[
+					'photo_id' => 10,
+					'department_id' => 1,
+					'user_id' => 1,
+					'price' => 60,
+				],
+				[
+					'photo_id' => 11,
+					'department_id' => 1,
+					'user_id' => 1,
+					'price' => 120,
+				],
+				[
+					'photo_id' => 12,
+					'department_id' => 1,
+					'user_id' => 1,
+					'price' => 240,
 				],
 			])
 			->save()
