@@ -163,7 +163,7 @@ class Department extends Model
 					. 'FROM "check" '
 					. 'WHERE '
 						. "datetime::date = '{$time->format('Y-m-d')}' "
-						. "AND datetime <= '{$time->format('Y-m-d H:i:s')}' "
+						. "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
 						. "AND department_id = $department_id"
 			;
 		}
