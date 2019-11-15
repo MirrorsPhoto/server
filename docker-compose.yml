@@ -10,7 +10,7 @@ services:
       - $DATABASE_PORT_EXTERNAL:$DATABASE_PORT_INTERNAL
 
   web:
-    build: ./docker/nginx
+    image: jonkofee/nginx
     working_dir: /code
     ports:
       - $NGINX_PORT_EXTERNAL:$NGINX_PORT_INTERNAL
