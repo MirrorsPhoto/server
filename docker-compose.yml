@@ -17,6 +17,7 @@ services:
       - $NGINX_PORT_INTERNAL
     volumes:
       - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./static:/code/static
     links:
       - php
       - websocket
@@ -47,6 +48,7 @@ services:
       - DATABASE_NAME=$DATABASE_NAME
       - DATABASE_PORT=$DATABASE_PORT_INTERNAL
       - JWT_KEY=$JWT_KEY
+      - DOMAIN=$DOMAIN
 
   websocket:
     build: ./docker/websocket
