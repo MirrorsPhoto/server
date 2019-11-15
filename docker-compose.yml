@@ -15,6 +15,7 @@ services:
     ports:
       - $NGINX_PORT_EXTERNAL:$NGINX_PORT_INTERNAL
       - $NGINX_PORT_INTERNAL
+      - "443:443"
     volumes:
       - ./docker/nginx/conf:/etc/nginx/conf.d
       - ./static:/code/static
