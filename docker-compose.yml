@@ -18,7 +18,7 @@ services:
     volumes:
       - ./docker/nginx/conf:/etc/nginx/conf.d
       - ./static:/code/static
-      - /etc/letsencrypt/live:/etc/letsencrypt/live
+      - /etc/letsencrypt/live:/code/cert
     links:
       - php
       - websocket
