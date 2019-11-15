@@ -192,6 +192,8 @@ class Department extends Model
 			$data['cash'][$res['momemt']] = (int) $res['sum'];
 		}
 
+		$data['cash']['today']['total'] = array_sum($data['cash']['today']);
+
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
 			$data['client'][$res['moment']] = (int) $res['count'];
