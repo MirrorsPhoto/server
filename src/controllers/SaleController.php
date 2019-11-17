@@ -88,7 +88,14 @@ class SaleController extends Controller
      */
     public function getTodayAction(): array
     {
-        return (Security::getUser())->getCurrentDepartments()->getLast()->getSummary();
+        /** @var Department $department */
+        $department = (Security::getUser())->getCurrentDepartments()->getLast();
+        $data = $department->getSummary();
+
+        return [
+            'cash' => $data['cash']['today']['total'],
+            'client' => $data['client']['today'],
+        ];
     }
 
 }
