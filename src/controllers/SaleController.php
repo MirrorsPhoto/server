@@ -51,6 +51,11 @@ class SaleController extends Controller
 			}
 
 			$id = $item->id;
+
+			if (empty($id) && $item->type === 'copy') {
+                $id = 1;
+            }
+
 			$copies = $item->copies;
 
 			if ($copies <= 0) {
