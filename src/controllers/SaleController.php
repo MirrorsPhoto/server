@@ -83,4 +83,12 @@ class SaleController extends Controller
 		return true;
 	}
 
+    /**
+     * @Get('/today')
+     */
+    public function getTodayAction(): array
+    {
+        return (Security::getUser())->getCurrentDepartments()->getLast()->getSummary();
+    }
+
 }
