@@ -44,7 +44,7 @@ class GoodController extends Controller
 	 *
 	 * @throws BadRequest
 	 */
-	public function searchAction(): Good
+	public function searchAction(): Simple
 	{
 		$validator = new Search();
 		$validator->validate();
