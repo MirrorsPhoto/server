@@ -40,7 +40,7 @@ class GoodController extends Controller
 	}
 
 	/**
-	 * @Get('/search[a-zA-Z0-9\-\?=?\&]+')
+	 * @Get('/search[a-zA-Z0-9\-\?=?\&\%]+')
 	 *
 	 * @throws BadRequest
 	 */
