@@ -57,7 +57,7 @@ class GoodController extends Controller
 			throw new BadRequest('Ничего не найдено');
 		}
 
-		return $goods[0];
+		return $goods;
 	}
 
 	/**
