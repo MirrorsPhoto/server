@@ -36,7 +36,7 @@ class GoodController extends Controller
 
 		$newGood->save();
 
-		return $newGood->refresh();
+		$newGood->refresh();
 	}
 
 	/**
