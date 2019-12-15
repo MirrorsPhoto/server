@@ -7,6 +7,9 @@ use Phalcon\Validation\Validator\Email as EmailValidator;
 
 /**
  * Class UserAppleAuth
+ *
+ * @method User getUser()
+ * @method static self findFirstBySub($sub)
  */
 class UserAppleAuth extends Model
 {

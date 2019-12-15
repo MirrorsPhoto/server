@@ -77,7 +77,7 @@ class AuthController extends Controller
 		}
 
 		return [
-			'token' => $appleAuth->User->generateToken(),
+			'token' => $appleAuth->getUser()->generateToken(),
 		];
 	}
 

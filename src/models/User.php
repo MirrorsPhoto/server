@@ -14,6 +14,7 @@ use Phalcon\Validation\Validator\Email as EmailValidator;
  * @method static self findFirstByUsername(string $login)
  * @method Role getRole()
  * @method File getAvatar()
+ * @method UserAppleAuth getAppleAuth()
  */
 class User extends Model
 {
@@ -110,6 +111,7 @@ class User extends Model
 				'alias' => 'Departments',
 			]
 		);
+		$this->hasOne('id', '\UserAppleAuth', 'user_id', ['alias' => 'AppleAuth']);
 	}
 
 	public function validation(): bool
@@ -153,7 +155,8 @@ class User extends Model
 			'email' => $this->email,
 			'role_id' => $this->getRole()->id,
 			'role_phrase' => $this->getRole()->getPhrase(),
-			'avatar' => $this->getAvatar() ? $this->getAvatar()->fullPath : null,
+			'avatar' => $this->getAvatar()->fullPath ?? null,
+			'apple_sub' => $this->getAppleAuth()->sub ?? null
 		]);
 
 		$this->token = $token;
