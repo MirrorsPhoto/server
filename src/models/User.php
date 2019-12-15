@@ -1,5 +1,6 @@
 <?php
 
+use Core\Exception\ServerError;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Email as EmailValidator;
@@ -134,6 +135,34 @@ class User extends Model
 	public function getCurrentDepartments(): Simple
 	{
 		return $this->getDepartments('datetime_to IS NULL');
+	}
+
+	/**
+	 * @throws ServerError
+	 */
+	public function generateToken(): string
+	{
+		$jwt = JWT::getInstance();
+
+		$token = $jwt->encode([
+			'id' => $this->id,
+			'username' => $this->username,
+			'first_name' => $this->first_name,
+			'middle_name' => $this->middle_name,
+			'last_name' => $this->last_name,
+			'email' => $this->email,
+			'role_id' => $this->getRole()->id,
+			'role_phrase' => $this->getRole()->getPhrase(),
+			'avatar' => $this->getAvatar() ? $this->getAvatar()->fullPath : null,
+		]);
+
+		$this->token = $token;
+
+		if (!$this->update()) {
+			throw new ServerError();
+		}
+
+		return $token;
 	}
 
 }

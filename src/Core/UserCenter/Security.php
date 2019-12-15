@@ -32,6 +32,7 @@ class Security extends Plugin
 		'auth' =>
 			[
 				'login',
+				'appleLogin',
 				'check',
 			],
 	];

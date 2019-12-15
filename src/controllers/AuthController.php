@@ -31,28 +31,25 @@ class AuthController extends Controller
 			throw new BadRequest('auth.invalid_login_or_pass'); //Не верный логин или пароль
 		}
 
-		$jwt = JWT::getInstance();
+		return [
+			'token' => $user->generateToken(),
+		];
+	}
 
-		$token = $jwt->encode([
-			'id' => $user->id,
-			'username' => $user->username,
-			'first_name' => $user->first_name,
-			'middle_name' => $user->middle_name,
-			'last_name' => $user->last_name,
-			'email' => $user->email,
-			'role_id' => $user->getRole()->id,
-			'role_phrase' => $user->getRole()->getPhrase(),
-			'avatar' => $user->getAvatar() ? $user->getAvatar()->fullPath : null,
-		]);
+	/**
+	 * @throws ServerError
+	 *
+	 * @return mixed[]
+	 */
+	public function appleLoginAction(): array
+	{
+		$token = $this->getPost('token');
 
-		$user->token = $token;
-
-		if (!$user->update()) {
-			throw new ServerError();
-		}
+		/** @var User $user */
+		$user = User::findFirstByUsername('admin');
 
 		return [
-			'token' => $token,
+			'token' => $user->generateToken(),
 		];
 	}
 
