@@ -82,6 +82,45 @@ class AuthController extends Controller
 	}
 
 	/**
+	 * @throws BadRequest
+	 * @throws Base64DecodeException
+	 * @throws JWKConverterException
+	 * @throws ServerError
+	 */
+	public function appleSubscribeAction(): bool
+	{
+		$token = $this->getPost('token');
+
+		if (empty($token)) {
+			throw new BadRequest('Token field is required');
+		}
+		$key = Curl::getInstance()->get('https://appleid.apple.com/auth/keys')->keys[0];
+
+		$jwkConverter = new JWKConverter();
+
+		$jwt = JWT::decode($token, $jwkConverter->toPEM((array) $key), [$key->alg]);
+
+		if ($jwt->iss !== 'https://appleid.apple.com') {
+			throw new BadRequest('Invalid token');
+		}
+
+		if ($jwt->aud !== $_ENV['APPLE_CLIENT_ID']) {
+			throw new BadRequest('Invalid token');
+		}
+
+		$user = \Core\UserCenter\Security::getUser();
+
+		$appleAuth = new UserAppleAuth([
+			'user_id' => $user->id,
+			'sub' => $jwt->sub,
+		]);
+
+		$appleAuth->save();
+
+		return true;
+	}
+
+	/**
 	 * @Get('/check')
 	 */
 	public function checkAction(): bool
