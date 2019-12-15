@@ -31,6 +31,6 @@ class JWT extends \Firebase\JWT\JWT
 
 	public static function decode($jwt, $key = null, array $allowed_algs = []): object
 	{
-		return parent::decode($jwt, self::$key, ['HS256']);
+		return parent::decode($jwt, $key ?? self::$key, $allowed_algs ?? ['HS256']);
 	}
 }

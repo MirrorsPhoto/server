@@ -1,5 +1,9 @@
 <?php
 
+use CoderCat\JWKToPEM\Exception\Base64DecodeException;
+use CoderCat\JWKToPEM\Exception\JWKConverterException;
+use CoderCat\JWKToPEM\JWKConverter;
+use Core\Curl;
 use Core\Exception\BadRequest;
 use Core\Exception\ServerError;
 use Validator\Auth\Login;
@@ -37,17 +41,43 @@ class AuthController extends Controller
 	}
 
 	/**
-	 * @throws ServerError
-	 *
 	 * @return mixed[]
+	 *
+	 * @throws BadRequest
+	 * @throws ServerError
+	 * @throws Base64DecodeException
+	 * @throws JWKConverterException
 	 */
 	public function appleLoginAction(): array
 	{
-		/** @var User $user */
-		$user = User::findFirstByUsername('admin');
+		$token = $this->getPost('token');
+
+		if (empty($token)) {
+			throw new BadRequest('Token field is required');
+		}
+
+		$key = Curl::getInstance()->get('https://appleid.apple.com/auth/keys')->keys[0];
+
+		$jwkConverter = new JWKConverter();
+
+		$jwt = JWT::decode($token, $jwkConverter->toPEM((array) $key), [$key->alg]);
+
+		if ($jwt->iss !== 'https://appleid.apple.com') {
+			throw new BadRequest('Invalid token');
+		}
+
+		if ($jwt->aud !== $_ENV['APPLE_CLIENT_ID']) {
+			throw new BadRequest('Invalid token');
+		}
+
+		$appleAuth = UserAppleAuth::findFirstBySub($jwt->sub);
+
+		if (empty($appleAuth)) {
+			throw new BadRequest('You are not signuped');
+		}
 
 		return [
-			'token' => $user->generateToken(),
+			'token' => $appleAuth->User->generateToken(),
 		];
 	}
 

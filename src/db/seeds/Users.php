@@ -50,6 +50,18 @@ class Users extends AbstractSeed
 			])
 			->save()
 		;
+
+		$this
+			->table('user_apple_auth')
+			->insert([
+				[
+					'id' => 1,
+					'user_id' => 3,
+					'sub' => '001825.0c0388ac7e714db1bd6be49ccda5896e.1142',
+				],
+			])
+			->save()
+		;
 	}
 
 }
