@@ -108,110 +108,111 @@ class Department extends Model
 	 */
 	public function notifyPersonnels(): void
 	{
-        $userRows = $this->getCurrentPersonnel();
-        $arrUserIds = array_column($userRows->toArray(), 'id');
-        $data = $this->getSummary();
+		$userRows = $this->getCurrentPersonnel();
+		$arrUserIds = array_column($userRows->toArray(), 'id');
+		$data = $this->getSummary();
 
-	    $socket = WebSocket::getInstance();
+		$socket = WebSocket::getInstance();
 
 		$socket->send($arrUserIds, $data);
 	}
 
-    /**
-     * @return array
-     * @throws Unauthorized
-     */
-    public function getSummary(): array
-    {
-        $department_id = Security::getUser()->department_id;
+	/**
+	 * @throws Unauthorized
+	 *
+	 * @return mixed[]
+	 */
+	public function getSummary(): array
+	{
+		$department_id = Security::getUser()->department_id;
 
-        $data = [];
+		$data = [];
 
-        $timeZone = new DateTimeZone('Europe/Moscow');
-        $datetime = [
-            'today' => new DateTime('now', $timeZone),
-            'yesterday' => new DateTime('previous day', $timeZone),
-            'week' => new DateTime('previous weeks', $timeZone),
-            'month' => new DateTime('previous month', $timeZone),
-            'year' => new DateTime('previous year', $timeZone),
-        ];
+		$timeZone = new DateTimeZone('Europe/Moscow');
+		$datetime = [
+			'today' => new DateTime('now', $timeZone),
+			'yesterday' => new DateTime('previous day', $timeZone),
+			'week' => new DateTime('previous weeks', $timeZone),
+			'month' => new DateTime('previous month', $timeZone),
+			'year' => new DateTime('previous year', $timeZone),
+		];
 
-        $types = [
-            'photo',
-            'good',
-            'copy',
-            'lamination',
-            'printing',
-            'service',
-        ];
+		$types = [
+			'photo',
+			'good',
+			'copy',
+			'lamination',
+			'printing',
+			'service',
+		];
 
-        $query = [];
+		$query = [];
 
-        /** @var DateTime $time */
-        foreach ($datetime as $moment => $time) {
-            foreach ($types as $type) {
-                $query['cash'][$moment][] = 'SELECT '
-                    . "'{$type}' as type, "
-                    . "SUM({$type}_price_history.price) as summ "
-                    . "FROM {$type}_sale "
-                    . "JOIN {$type}_price_history ON "
-                    . "{$type}_sale.{$type}_id = {$type}_price_history.{$type}_id "
-                    . "AND {$type}_sale.datetime >= {$type}_price_history.datetime_from "
-                    . "AND ({$type}_sale.datetime < {$type}_price_history.datetime_to "
-                    . 'OR '
-                    . "{$type}_price_history.datetime_to IS NULL) "
-                    . "AND {$type}_sale.department_id = {$type}_price_history.department_id "
-                    . 'WHERE '
-                    . "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
-                    . "AND date_trunc('second', {$type}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
-                    . "AND {$type}_sale.department_id = $department_id"
-                ;
-            }
-            $query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
+		/** @var DateTime $time */
+		foreach ($datetime as $moment => $time) {
+			foreach ($types as $type) {
+				$query['cash'][$moment][] = 'SELECT '
+					. "'{$type}' as type, "
+					. "SUM({$type}_price_history.price) as summ "
+					. "FROM {$type}_sale "
+					. "JOIN {$type}_price_history ON "
+					. "{$type}_sale.{$type}_id = {$type}_price_history.{$type}_id "
+					. "AND {$type}_sale.datetime >= {$type}_price_history.datetime_from "
+					. "AND ({$type}_sale.datetime < {$type}_price_history.datetime_to "
+					. 'OR '
+					. "{$type}_price_history.datetime_to IS NULL) "
+					. "AND {$type}_sale.department_id = {$type}_price_history.department_id "
+					. 'WHERE '
+					. "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
+					. "AND date_trunc('second', {$type}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
+					. "AND {$type}_sale.department_id = $department_id"
+				;
+			}
+			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
 
-            $query['client'][$moment] = 'SELECT '
-                . "'{$moment}' as moment, "
-                . 'COUNT(*) as count '
-                . 'FROM "check" '
-                . 'WHERE '
-                . "datetime::date = '{$time->format('Y-m-d')}' "
-                . "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
-                . "AND department_id = $department_id"
-            ;
-        }
+			$query['client'][$moment] = 'SELECT '
+				. "'{$moment}' as moment, "
+				. 'COUNT(*) as count '
+				. 'FROM "check" '
+				. 'WHERE '
+				. "datetime::date = '{$time->format('Y-m-d')}' "
+				. "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
+				. "AND department_id = $department_id"
+			;
+		}
 
-        $query['client'] = implode(' UNION ALL ', $query['client']);
+		$query['client'] = implode(' UNION ALL ', $query['client']);
 
-        $result = $this->getDI()->getShared('db')->query($query['cash']['today']);
+		$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
-        foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-            $data['cash']['today'][$res['type']] = (int) $res['summ'];
-        }
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
+			$data['cash']['today'][$res['type']] = (int) $res['summ'];
+		}
 
-        unset($query['cash']['today']);
+		unset($query['cash']['today']);
 
-        $agoSql = [];
+		$agoSql = [];
 
-        foreach ($query['cash'] as $moment => $sql) {
-            $agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
-        }
+		foreach ($query['cash'] as $moment => $sql) {
+			$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
+		}
 
-        $agoSql = implode(' UNION ALL ', $agoSql);
+		$agoSql = implode(' UNION ALL ', $agoSql);
 
-        $result = $this->getDI()->getShared('db')->query($agoSql);
+		$result = $this->getDI()->getShared('db')->query($agoSql);
 
-        foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-            $data['cash'][$res['momemt']] = (int) $res['sum'];
-        }
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
+			$data['cash'][$res['momemt']] = (int) $res['sum'];
+		}
 
-        $data['cash']['today']['total'] = array_sum($data['cash']['today']);
+		$data['cash']['today']['total'] = array_sum($data['cash']['today']);
 
-        $result = $this->getDI()->getShared('db')->query($query['client']);
-        foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-            $data['client'][$res['moment']] = (int) $res['count'];
-        }
+		$result = $this->getDI()->getShared('db')->query($query['client']);
+		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
+			$data['client'][$res['moment']] = (int) $res['count'];
+		}
 
-        return $data;
-    }
+		return $data;
+	}
 
 }

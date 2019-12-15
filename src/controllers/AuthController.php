@@ -43,8 +43,6 @@ class AuthController extends Controller
 	 */
 	public function appleLoginAction(): array
 	{
-		$token = $this->getPost('token');
-
 		/** @var User $user */
 		$user = User::findFirstByUsername('admin');
 

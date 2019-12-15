@@ -53,8 +53,8 @@ class SaleController extends Controller
 			$id = $item->id;
 
 			if (empty($id) && $item->type === 'copy') {
-                $id = 1;
-            }
+				$id = 1;
+			}
 
 			$copies = $item->copies;
 
@@ -88,19 +88,21 @@ class SaleController extends Controller
 		return true;
 	}
 
-    /**
-     * @Get('/today')
-     */
-    public function getTodayAction(): array
-    {
-        /** @var Department $department */
-        $department = (Security::getUser())->getCurrentDepartments()->getLast();
-        $data = $department->getSummary();
+	/**
+	 * @Get('/today')
+	 *
+	 * @return mixed[]
+	 */
+	public function getTodayAction(): array
+	{
+		/** @var Department $department */
+		$department = (Security::getUser())->getCurrentDepartments()->getLast();
+		$data = $department->getSummary();
 
-        return [
-            'cash' => $data['cash']['today']['total'],
-            'client' => $data['client']['today'],
-        ];
-    }
+		return [
+			'cash' => $data['cash']['today']['total'],
+			'client' => $data['client']['today'],
+		];
+	}
 
 }
