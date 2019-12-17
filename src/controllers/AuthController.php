@@ -82,12 +82,14 @@ class AuthController extends Controller
 	}
 
 	/**
+	 * @return string[]
+	 *
 	 * @throws BadRequest
 	 * @throws Base64DecodeException
 	 * @throws JWKConverterException
 	 * @throws ServerError
 	 */
-	public function appleSubscribeAction(): bool
+	public function appleSubscribeAction(): array
 	{
 		$token = $this->getPost('token');
 
@@ -117,7 +119,9 @@ class AuthController extends Controller
 
 		$appleAuth->save();
 
-		return true;
+		return [
+			'token' => $appleAuth->getUser()->generateToken(),
+		];
 	}
 
 	/**
