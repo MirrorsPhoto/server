@@ -41,12 +41,12 @@ class AuthController extends Controller
 	}
 
 	/**
-	 * @return mixed[]
-	 *
 	 * @throws BadRequest
 	 * @throws ServerError
 	 * @throws Base64DecodeException
 	 * @throws JWKConverterException
+	 *
+	 * @return string[]
 	 */
 	public function appleLoginAction(): array
 	{
@@ -82,12 +82,12 @@ class AuthController extends Controller
 	}
 
 	/**
-	 * @return string[]
-	 *
 	 * @throws BadRequest
 	 * @throws Base64DecodeException
 	 * @throws JWKConverterException
 	 * @throws ServerError
+	 *
+	 * @return string[]
 	 */
 	public function appleSubscribeAction(): array
 	{

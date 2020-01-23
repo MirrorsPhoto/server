@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1560e3b93e84278e0d334ea3ab5c78aa",
+    "content-hash": "edc055813de12ac809f57f0dcf86e0d4",
     "packages": [
         {
             "name": "codercat/jwk-to-pem",
@@ -48,6 +48,44 @@
             ],
             "description": "Convert JWK to PEM format.",
             "time": "2019-06-07T06:06:16+00:00"
+        },
+        {
+            "name": "duccio/apns-php",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/immobiliare/ApnsPHP.git",
+                "reference": "43e706e82236da2ece6e4932f63268298e5a7e83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/immobiliare/ApnsPHP/zipball/43e706e82236da2ece6e4932f63268298e5a7e83",
+                "reference": "43e706e82236da2ece6e4932f63268298e5a7e83",
+                "shasum": ""
+            },
+            "require": {
+                "lib-openssl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ApnsPHP/Autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Apple Push Notification & Feedback Provider",
+            "homepage": "https://github.com/immobiliare/ApnsPHP",
+            "keywords": [
+                "apns",
+                "apple",
+                "notification",
+                "push"
+            ],
+            "time": "2016-02-07T21:17:51+00:00"
         },
         {
             "name": "firebase/php-jwt",

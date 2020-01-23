@@ -50,7 +50,7 @@ class PrintingSale extends Model
 		$this->belongsTo('user_id', '\User', 'id', ['alias' => 'User']);
 	}
 
-	public function validation(): bool§
+	public function validation(): bool
 	{
 		$validator = new Validation();
 

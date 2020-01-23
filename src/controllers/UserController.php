@@ -36,4 +36,37 @@ class UserController extends Controller
 		return 'Профиль успешно изменён';
 	}
 
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 */
+	public function notificationDeviceSubscribeAction(): bool
+	{
+		$user = Security::getUser();
+
+		$token = $this->getPost('token');
+
+		$device = new UserNotificationDevice([
+			'user_id' => $user->id,
+			'device_token' => $token,
+		]);
+
+		$device->save();
+
+		return true;
+	}
+
+	public function notificationDeviceUnsubscribeAction(): bool
+	{
+		$token = $this->getPost('token');
+
+		$device = UserNotificationDevice::findFirstByDeviceToken($token);
+
+		if ($device) {
+			$device->delete();
+		}
+
+		return true;
+	}
+
 }

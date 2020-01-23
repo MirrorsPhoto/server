@@ -4,6 +4,7 @@
         "workerman/workerman": "^3.5",
         "robmorgan/phinx": "^0.9.1",
         "php-curl-class/php-curl-class": "^8.6",
-        "codercat/jwk-to-pem": "^0.0.3"
+        "codercat/jwk-to-pem": "^0.0.3",
+        "duccio/apns-php": "^1.0"
     }
 }
