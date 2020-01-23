@@ -1,5 +1,6 @@
 <?php
 
+use Core\APN;
 use Core\Plugin\PreFlightListener;
 use Core\Request;
 use Core\UserCenter\Security;
@@ -30,6 +31,8 @@ $loader->registerNamespaces([
 	'Validator' => 'validations',
 ]);
 $loader->register();
+
+$apn = new APN();
 
 $di = new FactoryDefault();
 

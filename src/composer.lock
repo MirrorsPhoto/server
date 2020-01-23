@@ -4,8 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "edc055813de12ac809f57f0dcf86e0d4",
+    "content-hash": "2293dd6382f7da595fc68eaf95e805d7",
     "packages": [
+        {
+            "name": "apple/apn-push",
+            "version": "v3.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ZhukV/AppleApnPush.git",
+                "reference": "7dabdd507273e182d69dc6ab6fca8901aca2cc69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ZhukV/AppleApnPush/zipball/7dabdd507273e182d69dc6ab6fca8901aca2cc69",
+                "reference": "7dabdd507273e182d69dc6ab6fca8901aca2cc69",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "escapestudios/symfony2-coding-standard": "~3.0.0",
+                "phpmetrics/phpmetrics": "^2.0",
+                "phpunit/phpunit": "^8.0",
+                "web-token/jwt-key-mgmt": "~1.0",
+                "web-token/jwt-signature": "~1.0"
+            },
+            "suggest": {
+                "spomky-labs/jose": "Allow using JSON Web Token for authenticating in Provider (do not work with PHP 7.2). ",
+                "web-token/jwt-key-mgmt": "Allow using JSON Web Token for authenticating in Provider.",
+                "web-token/jwt-signature": "Allow using JSON Web Token for authenticating in Provider."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Apple\\ApnPush\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Zhuk",
+                    "email": "zhuk2205@gmail.com"
+                }
+            ],
+            "description": "Push notifications to Apple devices",
+            "homepage": "https://github.com/ZhukV/AppleApnPush",
+            "keywords": [
+                "apn",
+                "apple",
+                "notifications",
+                "push"
+            ],
+            "time": "2019-11-21T08:02:07+00:00"
+        },
         {
             "name": "codercat/jwk-to-pem",
             "version": "0.0.3",
@@ -48,44 +105,6 @@
             ],
             "description": "Convert JWK to PEM format.",
             "time": "2019-06-07T06:06:16+00:00"
-        },
-        {
-            "name": "duccio/apns-php",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/immobiliare/ApnsPHP.git",
-                "reference": "43e706e82236da2ece6e4932f63268298e5a7e83"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/immobiliare/ApnsPHP/zipball/43e706e82236da2ece6e4932f63268298e5a7e83",
-                "reference": "43e706e82236da2ece6e4932f63268298e5a7e83",
-                "shasum": ""
-            },
-            "require": {
-                "lib-openssl": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "ApnsPHP/Autoload.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Apple Push Notification & Feedback Provider",
-            "homepage": "https://github.com/immobiliare/ApnsPHP",
-            "keywords": [
-                "apns",
-                "apple",
-                "notification",
-                "push"
-            ],
-            "time": "2016-02-07T21:17:51+00:00"
         },
         {
             "name": "firebase/php-jwt",
