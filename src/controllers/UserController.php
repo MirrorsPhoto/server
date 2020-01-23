@@ -1,5 +1,6 @@
 <?php
 
+use Core\Exception\BadRequest;
 use Core\Exception\ServerError;
 use Core\UserCenter\Exception\Unauthorized;
 use Core\UserCenter\Security;
@@ -39,12 +40,24 @@ class UserController extends Controller
 	/**
 	 * @throws ServerError
 	 * @throws Unauthorized
+	 * @throws BadRequest
 	 */
 	public function notificationDeviceSubscribeAction(): bool
 	{
 		$user = Security::getUser();
 
 		$token = $this->getPost('token');
+
+		$data = [
+			'user_id' => $user->id,
+			'device_token' => $token,
+		];
+
+		$device = UserNotificationDevice::find($data);
+
+		if (!$device->count()) {
+			throw new BadRequest('Это устройство уже зарегистрировано');
+		}
 
 		$device = new UserNotificationDevice([
 			'user_id' => $user->id,
