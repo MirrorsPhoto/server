@@ -55,7 +55,7 @@ class UserController extends Controller
 
 		$device = UserNotificationDevice::find($data);
 
-		if (!$device->count()) {
+		if ($device->count()) {
 			throw new BadRequest('Это устройство уже зарегистрировано');
 		}
 
