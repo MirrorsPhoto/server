@@ -1,10 +1,5 @@
 <?php
 
-use Core\Exception\ServerError;
-use Phalcon\Mvc\Model\Resultset\Simple;
-use Phalcon\Validation;
-use Phalcon\Validation\Validator\Email as EmailValidator;
-
 /**
  * Class UserAppleAuth
  *

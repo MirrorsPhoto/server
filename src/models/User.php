@@ -156,7 +156,7 @@ class User extends Model
 			'role_id' => $this->getRole()->id,
 			'role_phrase' => $this->getRole()->getPhrase(),
 			'avatar' => $this->getAvatar()->fullPath ?: null,
-			'apple_sub' => $this->getAppleAuth()->sub ?: null
+			'apple_sub' => $this->getAppleAuth()->sub ?: null,
 		]);
 
 		$this->token = $token;

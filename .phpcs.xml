@@ -237,8 +237,6 @@
 
 	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
 
-	<rule ref="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>
-
 	<rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
 
 	<rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>

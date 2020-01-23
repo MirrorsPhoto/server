@@ -5,7 +5,8 @@ use Phinx\Migration\AbstractMigration;
 
 class AppleAuth extends AbstractMigration
 {
-	public function change()
+
+	public function change(): void
 	{
 		$table = $this->table('user_apple_auth');
 
@@ -17,4 +18,5 @@ class AppleAuth extends AbstractMigration
 			->create()
 		;
 	}
+
 }
