@@ -124,7 +124,7 @@ class Department extends Model
 	 */
 	public function getSummary(): array
 	{
-		$department_id = Security::getUser()->department_id;
+		$department_id = $this->id;
 
 		$data = [];
 

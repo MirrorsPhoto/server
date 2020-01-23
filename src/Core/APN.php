@@ -34,7 +34,7 @@ class APN
 
 	public function __construct()
 	{
-		$certificate = new Certificate(__DIR__ . '/../' . 'server_certificates_bundle_sandbox.pem', '');
+		$certificate = new Certificate(__DIR__ . '/../' . 'apns-prod-cert.pem', $_ENV['APN_CERT_PHRASE']);
 		$authenticator = new CertificateAuthenticator($certificate);
 		$builder = new Http20Builder($authenticator);
 
@@ -62,9 +62,9 @@ class APN
 			->withPriority(Priority::immediately())
 			->withPushType(PushType::alert());
 
-		$receiver = new Receiver(new DeviceToken($receiver), 'com.mirrors.ios');
+		$receiver = new Receiver(new DeviceToken($receiver), $_ENV['APPLE_CLIENT_ID']);
 
-		$this->sender->send($receiver, $notification, true);
+		$this->sender->send($receiver, $notification);
 	}
 
 }

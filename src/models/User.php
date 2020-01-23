@@ -112,6 +112,7 @@ class User extends Model
 			]
 		);
 		$this->hasOne('id', '\UserAppleAuth', 'user_id', ['alias' => 'AppleAuth']);
+		$this->hasMany('id', '\UserNotificationDevice', 'user_id', ['alias' => 'NotificationDevices']);
 	}
 
 	public function validation(): bool
