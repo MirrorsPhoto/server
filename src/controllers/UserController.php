@@ -53,7 +53,10 @@ class UserController extends Controller
 			'device_token' => $token,
 		];
 
-		$device = UserNotificationDevice::find($data);
+		$device = UserNotificationDevice::find([
+			'conditions' => 'user_id = :user_id: AND device_token = :device_token:',
+			'bind' => $data,
+		]);
 
 		if ($device->count()) {
 			throw new BadRequest('Это устройство уже зарегистрировано');
@@ -71,11 +74,19 @@ class UserController extends Controller
 
 	public function notificationDeviceUnsubscribeAction(): bool
 	{
+		$user = Security::getUser();
+
 		$token = $this->getPost('token');
 
-		$device = UserNotificationDevice::findFirstByDeviceToken($token);
+		$device = UserNotificationDevice::find([
+			'conditions' => 'user_id = :user_id: AND device_token = :device_token:',
+			'bind' => [
+				'user_id' => $user->id,
+				'device_token' => $token,
+			],
+		]);
 
-		if ($device) {
+		if ($device->count()) {
 			$device->delete();
 		}
 
