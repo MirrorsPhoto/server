@@ -48,20 +48,24 @@ class APN
 		$this->protocol->closeConnection();
 	}
 
-	public function send(string $receiver, $title, $body, $data = [], int $badge = null): void
+	public function send(string $receiver, $title, $body, $data = [], string $category = null, int $badge = null): void
 	{
 		if (is_array($title) && is_array($body)){
 			$alert = new Alert();
 
-			$alert->withLocalizedTitle(new Localized($title['key'], $title['args'] ?: []));
-			$alert->withBodyLocalized(new Localized($body['key'], $body['args'] ?: []));
+			$alert = $alert->withLocalizedTitle(new Localized($title['key'], $title['args'] ?: []));
+			$alert = $alert->withBodyLocalized(new Localized($body['key'], $body['args'] ?: []));
 		} else {
 			$alert = new Alert($body, $title);
 		}
 
 		$aps = new Aps($alert);
+		$aps = $aps->withSound('default');
 		if (!is_null($badge)) {
-			$aps->withBadge($badge);
+			$aps = $aps->withBadge($badge);
+		}
+		if (!is_null($category)) {
+			$aps = $aps->withCategory($category);
 		}
 
 		$payload = new Payload($aps, $data);

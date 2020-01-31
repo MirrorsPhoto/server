@@ -67,7 +67,10 @@ class DailyReportTask extends Task
 					(string) $info['client']['today'],
 					(string) $info['cash']['today']['total'] . '₽',
 				]
-			], $info);
+			], [
+				'data' => json_encode($info),
+				'time' => (string) time(),
+			], 'todayReport');
 		} catch (SendNotificationException $e) {
 			return;
 		}
