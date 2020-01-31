@@ -6,6 +6,7 @@ use Apple\ApnPush\Certificate\Certificate;
 use Apple\ApnPush\Model\Alert;
 use Apple\ApnPush\Model\Aps;
 use Apple\ApnPush\Model\DeviceToken;
+use Apple\ApnPush\Model\Localized;
 use Apple\ApnPush\Model\Notification;
 use Apple\ApnPush\Model\Payload;
 use Apple\ApnPush\Model\Priority;
@@ -47,16 +48,23 @@ class APN
 		$this->protocol->closeConnection();
 	}
 
-	public function send(string $receiver, string $title, string $body, int $badge = null): void
+	public function send(string $receiver, $title, $body, $data = [], int $badge = null): void
 	{
-		$alert = new Alert($body, $title);
+		if (is_array($title) && is_array($body)){
+			$alert = new Alert();
+
+			$alert->withLocalizedTitle(new Localized($title['key'], $title['args'] ?: []));
+			$alert->withBodyLocalized(new Localized($body['key'], $body['args'] ?: []));
+		} else {
+			$alert = new Alert($body, $title);
+		}
 
 		$aps = new Aps($alert);
 		if (!is_null($badge)) {
 			$aps->withBadge($badge);
 		}
 
-		$payload = new Payload($aps);
+		$payload = new Payload($aps, $data);
 
 		$notification = (new Notification($payload))
 			->withPriority(Priority::immediately())

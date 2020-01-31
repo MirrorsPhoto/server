@@ -59,7 +59,15 @@ class DailyReportTask extends Task
 		;
 
 		try {
-			$this->apn->send($device->device_token, 'Дневной отчёт', $body);
+			$this->apn->send($device->device_token, [
+				'key' => 'Today report title',
+			], [
+				'key' => 'Today report body',
+				'args' => [
+					(string) $info['client']['today'],
+					(string) $info['cash']['today']['total'] . '₽',
+				]
+			], $info);
 		} catch (SendNotificationException $e) {
 			return;
 		}
