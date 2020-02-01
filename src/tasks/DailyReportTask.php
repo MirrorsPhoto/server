@@ -53,11 +53,6 @@ class DailyReportTask extends Task
 
 	private function sendToDevice(UserNotificationDevice $device, array $info)
 	{
-		$body =
-			'Было ' . $info['client']['today'] . ' человек' . PHP_EOL .
-			'На сумму ' . $info['cash']['today']['total'] . '₽'
-		;
-
 		try {
 			$this->apn->send($device->device_token, [
 				'key' => 'Today report title',
