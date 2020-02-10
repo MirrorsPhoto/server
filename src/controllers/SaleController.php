@@ -99,10 +99,7 @@ class SaleController extends Controller
 		$department = (Security::getUser())->getCurrentDepartments()->getLast();
 		$data = $department->getSummary();
 
-		return [
-			'cash' => $data['cash']['today']['total'],
-			'client' => $data['client']['today'],
-		];
+		return $data;
 	}
 
 }
