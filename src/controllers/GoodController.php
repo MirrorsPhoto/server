@@ -15,6 +15,30 @@ class GoodController extends Controller
 {
 
 	/**
+	 * @Get('/')
+	 */
+	public function getAction(): array
+	{
+		$rows = Good::find();
+		$result = [];
+
+		/** @var Good $row */
+		foreach ($rows as $row) {
+			$data = $row->toArray([
+				'id',
+				'name',
+				'description'
+			]);
+
+			$data['price'] = $row->price;
+
+			$result[] = $data;
+		}
+
+		return $result;
+	}
+
+	/**
 	 * @Post('/add')
 	 *
 	 * @throws ServerError
