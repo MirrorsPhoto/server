@@ -43,7 +43,7 @@ class GoodController extends Controller
 	 *
 	 * @throws ServerError
 	 */
-	public function addAction(): void
+	public function addAction(): array
 	{
 		$validator = new Add();
 		$validator->validate();
@@ -74,6 +74,16 @@ class GoodController extends Controller
 		]);
 
 		$goodPrice->save();
+
+		$data = $newGood->toArray([
+			'id',
+			'name',
+			'description'
+		]);
+
+		$data['price'] = $newGood->price;
+
+		return $data;
 	}
 
 	/**
