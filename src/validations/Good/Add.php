@@ -18,6 +18,14 @@ class Add extends Validation
 				]
 			)
 		);
+		$this->add(
+			'price',
+			new PresenceOf(
+				[
+					'message' => 'Цена товара обязателено',
+				]
+			)
+		);
 	}
 
 }

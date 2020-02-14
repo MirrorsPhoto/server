@@ -48,9 +48,13 @@ class GoodController extends Controller
 		$validator = new Add();
 		$validator->validate();
 
+		$user = Security::getUser();
+		$department = $user->getCurrentDepartments()->getLast();
+
 		$name = $this->getPost('name');
 		$description = $this->getPost('description');
 		$bar_code = $this->getPost('bar_code');
+		$price = $this->getPost('price');
 
 		$newGood = new Good([
 			'name' => $name,
@@ -61,6 +65,15 @@ class GoodController extends Controller
 		$newGood->save();
 
 		$newGood->refresh();
+
+		$goodPrice = new GoodPriceHistory([
+			'good_id' => $newGood->id,
+			'department_id' => $department->id,
+			'user_id' => $user->id,
+			'price' => $price,
+		]);
+
+		$goodPrice->save();
 	}
 
 	/**
