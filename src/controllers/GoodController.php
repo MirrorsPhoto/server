@@ -184,7 +184,7 @@ class GoodController extends Controller
 	}
 
 	/**
-	 * @GET('/{id:[0-9]+}/delete')
+	 * @Get('/{id:[0-9]+}/delete')
 	 *
 	 * @param int $id
 	 * @throws BadRequest
