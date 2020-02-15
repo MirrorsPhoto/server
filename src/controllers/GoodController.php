@@ -200,6 +200,8 @@ class GoodController extends Controller
 
 		$good->is_delete = true;
 
+		$good->save();
+
 		return true;
 	}
 
