@@ -19,9 +19,7 @@ class GoodController extends Controller
 	 */
 	public function getAction(): array
 	{
-		$rows = Good::find([
-			'is_delete' => false,
-		]);
+		$rows = Good::find('is_delete = false');
 		$result = [];
 
 		/** @var Good $row */
