@@ -42,6 +42,13 @@ class Good extends Model
 	 */
 	public $bar_code;
 
+	/**
+	 * @var string
+	 *
+	 * @Column(type="boolean", nullable=false)
+	 */
+	public $is_delete;
+
 	public function initialize(): void
 	{
 		parent::initialize();
@@ -160,6 +167,10 @@ class Good extends Model
 	 */
 	public function sale(): bool
 	{
+		if ($this->is_delete) {
+			throw new BadRequest("Нельзя записать продажу удалённого товара {$this->name}");
+		}
+
 		if (!$this->isAvailable()) {
 			throw new BadRequest("Нельзя записать продажу товара {$this->name}, т.к. его не в наличии");
 		}
@@ -174,9 +185,14 @@ class Good extends Model
 	/**
 	 * @param float $price
 	 * @throws ServerError
+	 * @throws BadRequest
 	 */
 	public function receipt(float $price): bool
 	{
+		if ($this->is_delete) {
+			throw new BadRequest("Нельзя записать приход удалённого товара {$this->name}");
+		}
+
 		$rowReceipt = new GoodReceipt([
 			'good_id' => $this->id,
 			'price' => $price,

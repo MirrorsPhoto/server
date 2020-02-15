@@ -19,7 +19,9 @@ class GoodController extends Controller
 	 */
 	public function getAction(): array
 	{
-		$rows = Good::find();
+		$rows = Good::find([
+			'is_delete' => false,
+		]);
 		$result = [];
 
 		/** @var Good $row */
@@ -48,7 +50,7 @@ class GoodController extends Controller
 		$validator = new Add();
 		$validator->validate();
 
-		$user = Security::getUser();
+		$user = \Core\UserCenter\Security::getUser();
 		$department = $user->getCurrentDepartments()->getLast();
 
 		$name = $this->getPost('name');
@@ -83,7 +85,7 @@ class GoodController extends Controller
 
 		$data['price'] = $newGood->price;
 
-		return $data;
+		return [$data];
 	}
 
 	/**
@@ -98,7 +100,7 @@ class GoodController extends Controller
 
 		$query = $this->getQuery('query');
 
-		$goods = Good::find("LOWER(name) LIKE LOWER('%$query%')");
+		$goods = Good::find("LOWER(name) LIKE LOWER('%$query%') AND is_delete = false");
 
 		if (!$goods->count()) {
 			throw new BadRequest('Ничего не найдено');
@@ -179,6 +181,26 @@ class GoodController extends Controller
 		$good->receipt($price);
 
 		return 'good.receipt.success';
+	}
+
+	/**
+	 * @GET('/{id:[0-9]+}/delete')
+	 *
+	 * @param int $id
+	 * @throws BadRequest
+	 */
+	public function deleteAction(int $id): bool
+	{
+		/** @var Good $good */
+		$good = Good::findFirst($id);
+
+		if (!$good) {
+			throw new BadRequest('Такой товар отсутствует');
+		}
+
+		$good->is_delete = true;
+
+		return true;
 	}
 
 }
