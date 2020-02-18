@@ -72,9 +72,7 @@ class Security extends Plugin
 		foreach ($roles as $role) {
 			$this->acl->addRole(new Role((string) $role->id, $role->name));
 
-			if ($role->id === \Role::ADMIN) {
-				$this->acl->allow((string) \Role::ADMIN, '*', '*');
-			}
+			$this->acl->allow((string) \Role::ADMIN, '*', '*'); //@todo для всех ролей разрешаем всё. в будущем нужно разбить на уровни доступа
 		}
 
 		$this->acl->addRole(new Role((string) \Role::GUEST, 'Гость'));
