@@ -12,6 +12,7 @@ class Users extends AbstractSeed
 	{
 		return [
 			'Roles',
+			'Types',
 		];
 	}
 
@@ -34,7 +35,7 @@ class Users extends AbstractSeed
 					'username' => 'dimchenko_alina',
 					'first_name' => 'Алина',
 					'last_name' => 'Дымченко',
-					'role_id' => 1,
+					'role_id' => 2,
 					'password' => '$2y$10$hYV7js7YRrJ/56Kfk7LEN.UMbTG.WQb1wxt7gYYdXxiZIg7car3bG',
 					'email' => 'dimchenko_alina@icloud.com',
 				],
@@ -56,8 +57,25 @@ class Users extends AbstractSeed
 			->insert([
 				[
 					'id' => 1,
-					'user_id' => 3,
+					'user_id' => 2,
 					'sub' => '001825.0c0388ac7e714db1bd6be49ccda5896e.1142',
+				],
+			])
+			->save()
+		;
+
+		$this
+			->table('user_type')
+			->insert([
+			[
+				'id' => 1,
+				'user_id' => 2,
+				'type_id' => 3,
+			],
+				[
+					'id' => 2,
+					'user_id' => 2,
+					'type_id' => 4,
 				],
 			])
 			->save()

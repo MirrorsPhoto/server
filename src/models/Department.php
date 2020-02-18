@@ -137,35 +137,31 @@ class Department extends Model
 			'year' => new DateTime('previous year', $timeZone),
 		];
 
-		$types = [
-			'photo',
-			'good',
-			'copy',
-			'lamination',
-			'printing',
-			'service',
-		];
+		/** @var Type[] $types */
+		$types = Type::find();
 
 		$query = [];
 
 		/** @var DateTime $time */
 		foreach ($datetime as $moment => $time) {
 			foreach ($types as $type) {
+				$typeName = $type->name;
+
 				$query['cash'][$moment][] = 'SELECT '
-					. "'{$type}' as type, "
-					. "SUM({$type}_price_history.price) as summ "
-					. "FROM {$type}_sale "
-					. "JOIN {$type}_price_history ON "
-					. "{$type}_sale.{$type}_id = {$type}_price_history.{$type}_id "
-					. "AND {$type}_sale.datetime >= {$type}_price_history.datetime_from "
-					. "AND ({$type}_sale.datetime < {$type}_price_history.datetime_to "
+					. "'{$typeName}' as type, "
+					. "SUM({$typeName}_price_history.price) as summ "
+					. "FROM {$typeName}_sale "
+					. "JOIN {$typeName}_price_history ON "
+					. "{$typeName}_sale.{$typeName}_id = {$typeName}_price_history.{$typeName}_id "
+					. "AND {$typeName}_sale.datetime >= {$typeName}_price_history.datetime_from "
+					. "AND ({$typeName}_sale.datetime < {$typeName}_price_history.datetime_to "
 					. 'OR '
-					. "{$type}_price_history.datetime_to IS NULL) "
-					. "AND {$type}_sale.department_id = {$type}_price_history.department_id "
+					. "{$typeName}_price_history.datetime_to IS NULL) "
+					. "AND {$typeName}_sale.department_id = {$typeName}_price_history.department_id "
 					. 'WHERE '
-					. "{$type}_sale.datetime::date = '{$time->format('Y-m-d')}' "
-					. "AND date_trunc('second', {$type}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
-					. "AND {$type}_sale.department_id = $department_id"
+					. "{$typeName}_sale.datetime::date = '{$time->format('Y-m-d')}' "
+					. "AND date_trunc('second', {$typeName}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
+					. "AND {$typeName}_sale.department_id = $department_id"
 				;
 			}
 			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
