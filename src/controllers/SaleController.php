@@ -20,13 +20,20 @@ class SaleController extends Controller
 	 */
 	public function batchAction(): bool
 	{
+		$user = Security::getUser();
+		$allowedType = array_column($user->Type->toArray(), 'name');
 		$items = $this->getPost('items');
 
 		if (empty($items)) {
 			throw new BadRequest('sale.invalid_items');
 		}
 
-		foreach ($items as $item) {
+		foreach ($items as $index => $item) {
+			if (!in_array($item->type, $allowedType)) {
+				unset($items[$index]);
+				continue;
+			}
+
 			switch ($item->type) {
 				case 'photo':
 					$manager = 'Photo';
@@ -77,13 +84,15 @@ class SaleController extends Controller
 			}
 		}
 
-		$newCheck = new Check([
-			'data' => json_encode($items),
-		]);
+		if (!empty($items)) {
+			$newCheck = new Check([
+				'data' => json_encode($items),
+			]);
 
-		$newCheck->save();
+			$newCheck->save();
 
-		(Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
+			(Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
+		}
 
 		return true;
 	}
