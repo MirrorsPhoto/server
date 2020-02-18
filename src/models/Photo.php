@@ -103,12 +103,15 @@ class Photo extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return PhotoSale
 	 * @throws ServerError
 	 */
-	public function sale(): PhotoSale
+	public function sale(int $count): PhotoSale
 	{
 		$newSaleRow = new PhotoSale([
 			'photo_id' => $this->id,
+			'count' => $count,
 		]);
 
 		$newSaleRow->save();

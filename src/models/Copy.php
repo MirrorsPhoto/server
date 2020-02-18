@@ -76,12 +76,15 @@ class Copy extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return CopySale
 	 * @throws ServerError
 	 */
-	public function sale(): CopySale
+	public function sale(int $count): CopySale
 	{
 		$newSaleRow = new CopySale([
 			'copy_id' => $this->id,
+			'count' => $count,
 		]);
 
 		$newSaleRow->save();

@@ -161,11 +161,13 @@ class Good extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return bool
+	 * @throws BadRequest
 	 * @throws ServerError
 	 * @throws Unauthorized
-	 * @throws BadRequest
 	 */
-	public function sale(): bool
+	public function sale(int $count): bool
 	{
 		if ($this->is_delete) {
 			throw new BadRequest("Нельзя записать продажу удалённого товара {$this->name}");
@@ -177,6 +179,8 @@ class Good extends Model
 
 		$rowSale = new GoodSale([
 			'good_id' => $this->id,
+			'count' => $count,
+
 		]);
 
 		return $rowSale->save();

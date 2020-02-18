@@ -147,9 +147,8 @@ class Department extends Model
 			foreach ($types as $type) {
 				$typeName = $type->name;
 
-				$query['cash'][$moment][] = 'SELECT '
-					. "'{$typeName}' as type, "
-					. "SUM({$typeName}_price_history.price) as summ "
+				$query['cash'][$moment][] = "SELECT '{$typeName}' as type, COALESCE(SUM(summ), 0) as summ from (SELECT "
+					. "{$typeName}_price_history.price * {$typeName}_sale.count as summ "
 					. "FROM {$typeName}_sale "
 					. "JOIN {$typeName}_price_history ON "
 					. "{$typeName}_sale.{$typeName}_id = {$typeName}_price_history.{$typeName}_id "
@@ -161,7 +160,7 @@ class Department extends Model
 					. 'WHERE '
 					. "{$typeName}_sale.datetime::date = '{$time->format('Y-m-d')}' "
 					. "AND date_trunc('second', {$typeName}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
-					. "AND {$typeName}_sale.department_id = $department_id"
+					. "AND {$typeName}_sale.department_id = $department_id) as a"
 				;
 			}
 			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);

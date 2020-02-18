@@ -96,12 +96,15 @@ class Printing extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return PrintingSale
 	 * @throws ServerError
 	 */
-	public function sale(): PrintingSale
+	public function sale(int $count): PrintingSale
 	{
 		$newSaleRow = new PrintingSale([
 			'printing_id' => $this->id,
+			'count' => $count,
 		]);
 
 		$newSaleRow->save();

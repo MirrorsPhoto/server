@@ -70,12 +70,15 @@ class Service extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return ServiceSale
 	 * @throws ServerError
 	 */
-	public function sale(): ServiceSale
+	public function sale(int $count): ServiceSale
 	{
 		$newSaleRow = new ServiceSale([
 			'service_id' => $this->id,
+			'count' => $count,
 		]);
 
 		$newSaleRow->save();

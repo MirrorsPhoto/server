@@ -72,9 +72,7 @@ class SaleController extends Controller
 				throw new BadRequest('sale.wrong_id');
 			}
 
-			for ($i = 1; $i <= $copies; $i++) {
-				$row->sale();
-			}
+			$row->sale($copies);
 		}
 
 		$newCheck = new Check([

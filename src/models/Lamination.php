@@ -68,12 +68,15 @@ class Lamination extends Model
 	}
 
 	/**
+	 * @param int $count
+	 * @return LaminationSale
 	 * @throws ServerError
 	 */
-	public function sale(): LaminationSale
+	public function sale(int $count): LaminationSale
 	{
 		$newSaleRow = new LaminationSale([
 			'lamination_id' => $this->id,
+			'count' => $count,
 		]);
 
 		$newSaleRow->save();
