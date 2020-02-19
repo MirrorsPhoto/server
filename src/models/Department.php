@@ -174,14 +174,31 @@ class Department extends Model
 				$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
 			}
 
-			$query['client'][$moment] = 'SELECT '
+			$typesForQuery = array_map(function ($item) {
+				return "'$item'";
+			}, array_column($types->toArray(), 'name'));
+
+			$implodedTypes = !empty($typesForQuery) ? implode(', ', $typesForQuery) : "''";
+
+			$query['client'][$moment] = 'SELECT'
 				. "'{$moment}' as moment, "
-				. 'COUNT(*) as count '
+				. 'COUNT(*) '
+				. 'FROM '
+				. '(SELECT '
+				. 'id '
+				. 'FROM '
+				. '(SELECT '
+				. '*, '
+				. 'json_array_elements(data::json) as "data_json" '
 				. 'FROM "check" '
 				. 'WHERE '
 				. "datetime::date = '{$time->format('Y-m-d')}' "
 				. "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
-				. "AND department_id = $department_id"
+				. "AND department_id = $department_id) "
+				. "as a "
+				. "WHERE data_json->>'type' IN ($implodedTypes) "
+				. "GROUP BY id) "
+				. "as b"
 			;
 		}
 
