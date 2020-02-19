@@ -20,17 +20,14 @@ $ws_worker->onWorkerStart = function () use (&$users): void {
 	$inner_tcp_worker->onMessage = function ($connection, $data) use (&$users): void {
 		$data = json_decode($data);
 
-		//Обходим все id пользователей, которым нужно отправить сообщение
-		foreach ($data->from as $fromId) {
-			//Если такой пользователь не подключен - далее
-			if (!isset($users[$fromId])) {
-				continue;
-			}
+		//Если такой пользователь не подключен - далее
+		if (!isset($users[$data->to])) {
+			return;
+		}
 
-			//Обходим все соединения пользователя и отправляем и сообщение
-			foreach ($users[$fromId] as $connect) {
-				$connect->send(json_encode($data->data));
-			}
+		//Обходим все соединения пользователя и отправляем и сообщение
+		foreach ($users[$data->to] as $connect) {
+			$connect->send(json_encode($data->data));
 		}
 	};
 

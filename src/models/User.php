@@ -15,7 +15,7 @@ use Phalcon\Validation\Validator\Email as EmailValidator;
  * @method Role getRole()
  * @method File getAvatar()
  * @method UserAppleAuth getAppleAuth()
- * @method Type getTypes()
+ * @method Type[] getTypes()
  */
 class User extends Model
 {
@@ -119,7 +119,10 @@ class User extends Model
 			'UserType',
 			'user_id', 'type_id',
 			'Type',
-			'id'
+			'id',
+			[
+				'alias' => 'Types',
+			]
 		);
 	}
 
@@ -166,7 +169,7 @@ class User extends Model
 			'role_phrase' => $this->getRole()->getPhrase(),
 			'avatar' => $this->getAvatar()->fullPath ?: null,
 			'apple_sub' => $this->getAppleAuth()->sub ?: null,
-			'allowed_types' => array_column($this->Type->toArray(), 'name')
+			'allowed_types' => array_column($this->getTypes()->toArray(), 'name')
 		]);
 
 		$this->token = $token;

@@ -108,21 +108,23 @@ class Department extends Model
 	 */
 	public function notifyPersonnels(): void
 	{
-		$userRows = $this->getCurrentPersonnel();
-		$arrUserIds = array_column($userRows->toArray(), 'id');
-		$data = $this->getSummary();
-
+		$users = $this->getCurrentPersonnel();
 		$socket = WebSocket::getInstance();
 
-		$socket->send($arrUserIds, $data);
+		/** @var User $user */
+		foreach ($users as $user) {
+			$summary = $this->getSummary($user);
+
+			$socket->send($user->id, $summary);
+		}
 	}
 
 	/**
-	 * @throws Unauthorized
-	 *
+	 * @param User $user
+	 * @throws Exception
 	 * @return mixed[]
 	 */
-	public function getSummary(): array
+	public function getSummary(User $user): array
 	{
 		$department_id = $this->id;
 
@@ -138,9 +140,12 @@ class Department extends Model
 		];
 
 		/** @var Type[] $types */
-		$types = Type::find();
+		$types = $user->getTypes();
 
-		$query = [];
+		$query = [
+			'cash' => [],
+			'client' => [],
+		];
 
 		/** @var DateTime $time */
 		foreach ($datetime as $moment => $time) {
@@ -164,7 +169,10 @@ class Department extends Model
 					. "AND {$typeName}_sale.department_id = $department_id"
 				;
 			}
-			$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
+
+			if (!empty($query['cash'])) {
+				$query['cash'][$moment] = implode(' UNION ALL ', $query['cash'][$moment]);
+			}
 
 			$query['client'][$moment] = 'SELECT '
 				. "'{$moment}' as moment, "
@@ -179,29 +187,39 @@ class Department extends Model
 
 		$query['client'] = implode(' UNION ALL ', $query['client']);
 
-		$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
+		if (!empty($query['cash'])) {
+			$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
-		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['cash']['today'][$res['type']] = (int) $res['summ'];
+			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
+				$data['cash']['today'][$res['type']] = (int) $res['summ'];
+			}
+
+			unset($query['cash']['today']);
+
+			$agoSql = [];
+
+			foreach ($query['cash'] as $moment => $sql) {
+				$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
+			}
+
+			$agoSql = implode(' UNION ALL ', $agoSql);
+
+			$result = $this->getDI()->getShared('db')->query($agoSql);
+
+			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
+				$data['cash'][$res['momemt']] = (int) $res['sum'];
+			}
+
+			$data['cash']['today']['total'] = array_sum($data['cash']['today']);
+		} else {
+			foreach ($datetime as $moment => $time) {
+				$data['cash'][$moment] = 0;
+			}
+
+			$data['cash']['today'] = [
+				'total' => 0
+			];
 		}
-
-		unset($query['cash']['today']);
-
-		$agoSql = [];
-
-		foreach ($query['cash'] as $moment => $sql) {
-			$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
-		}
-
-		$agoSql = implode(' UNION ALL ', $agoSql);
-
-		$result = $this->getDI()->getShared('db')->query($agoSql);
-
-		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['cash'][$res['momemt']] = (int) $res['sum'];
-		}
-
-		$data['cash']['today']['total'] = array_sum($data['cash']['today']);
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {

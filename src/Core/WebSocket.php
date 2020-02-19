@@ -27,18 +27,21 @@ class WebSocket
 		}
 	}
 
+	public function __destruct()
+	{
+		fclose($this->stream);
+	}
+
 	/**
-	 * @param int[] $from
+	 * @param int $to
 	 * @param mixed[] $data
 	 */
-	public function send(array $from, array $data): void
+	public function send(int $to, array $data): void
 	{
 		fwrite($this->stream, json_encode([
-			'from' => $from,
+			'to' => $to,
 			'data' => $data,
 		]));
-
-		fclose($this->stream);
 	}
 
 }

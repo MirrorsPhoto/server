@@ -91,7 +91,9 @@ class SaleController extends Controller
 
 			$newCheck->save();
 
-			(Security::getUser())->getCurrentDepartments()->getLast()->notifyPersonnels();
+			/** @var Department $department */
+			$department = $user->getCurrentDepartments()->getLast();
+			$department->notifyPersonnels();
 		}
 
 		return true;
@@ -104,9 +106,11 @@ class SaleController extends Controller
 	 */
 	public function getTodayAction(): array
 	{
+		/** @var User $user */
+		$user = Security::getUser();
 		/** @var Department $department */
-		$department = (Security::getUser())->getCurrentDepartments()->getLast();
-		$data = $department->getSummary();
+		$department = $user->getCurrentDepartments()->getLast();
+		$data = $department->getSummary($user);
 
 		return $data;
 	}

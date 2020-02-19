@@ -16,6 +16,7 @@ class SocketController extends Controller
 	 */
 	public function updateAction(): string
 	{
+		/** @var Department $department */
 		$department = Security::getUser()->getCurrentDepartments()->getLast();
 
 		$department->notifyPersonnels();

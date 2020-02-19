@@ -35,7 +35,6 @@ class DailyReportTask extends Task
 	private function notifyPersonnel(Department $department)
 	{
 		$users = $department->getCurrentPersonnel();
-		$info = $department->getSummary();
 
 		/** @var User $user */
 		foreach ($users as $user) {
@@ -44,6 +43,7 @@ class DailyReportTask extends Task
 			}
 
 			$devices = $user->NotificationDevices;
+			$info = $department->getSummary($user);
 
 			foreach ($devices as $device) {
 				$this->sendToDevice($device, $info);
