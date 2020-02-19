@@ -15,7 +15,6 @@ use Phalcon\Validation\Validator\Email as EmailValidator;
  * @method Role getRole()
  * @method File getAvatar()
  * @method UserAppleAuth getAppleAuth()
- * @method Type[] getTypes()
  */
 class User extends Model
 {
@@ -179,6 +178,15 @@ class User extends Model
 		}
 
 		return $token;
+	}
+
+	public function getTypes()
+	{
+		if ($this->role_id == Role::ADMIN) {
+			return Type::find();
+		}
+
+		return $this->Types;
 	}
 
 }
