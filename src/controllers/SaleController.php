@@ -21,7 +21,7 @@ class SaleController extends Controller
 	public function batchAction(): bool
 	{
 		$user = Security::getUser();
-		$allowedType = array_column($user->Type->toArray(), 'name');
+		$allowedType = array_column($user->getTypes()->toArray(), 'name');
 		$items = $this->getPost('items');
 
 		if (empty($items)) {
