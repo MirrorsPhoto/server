@@ -182,11 +182,16 @@ class User extends Model
 
 	public function getTypes()
 	{
-		if ($this->role_id == Role::ADMIN) {
+		if ($this->isAdmin()) {
 			return Type::find();
 		}
 
 		return $this->Types;
+	}
+
+	public function isAdmin(): bool
+	{
+		return $this->role_id === Role::ADMIN;
 	}
 
 }

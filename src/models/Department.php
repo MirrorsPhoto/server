@@ -166,7 +166,8 @@ class Department extends Model
 					. 'WHERE '
 					. "{$typeName}_sale.datetime::date = '{$time->format('Y-m-d')}' "
 					. "AND date_trunc('second', {$typeName}_sale.datetime) <= '{$time->format('Y-m-d H:i:s.u')}' "
-					. "AND {$typeName}_sale.department_id = $department_id"
+					. "AND {$typeName}_sale.department_id = $department_id "
+					. (!$user->isAdmin() ? " AND {$typeName}_sale.user_id = {$user->id}" : '')
 				;
 			}
 
@@ -194,6 +195,7 @@ class Department extends Model
 				. 'WHERE '
 				. "datetime::date = '{$time->format('Y-m-d')}' "
 				. "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
+				. (!$user->isAdmin() ? "AND user_id = {$user->id} " : '')
 				. "AND department_id = $department_id) "
 				. "as a "
 				. "WHERE data_json->>'type' IN ($implodedTypes) "
