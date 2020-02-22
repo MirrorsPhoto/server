@@ -27,7 +27,8 @@ class GoodController extends Controller
 			$data = $row->toArray([
 				'id',
 				'name',
-				'description'
+				'description',
+				'bar_code',
 			]);
 
 			$data['price'] = $row->price;
