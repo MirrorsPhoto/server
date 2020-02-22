@@ -31,7 +31,7 @@ class GoodController extends Controller
 			]);
 
 			$data['price'] = $row->price;
-			$arrGood['available'] = $row->getAvaibleCount();
+			$data['available'] = $row->getAvaibleCount();
 
 			$result[] = $data;
 		}
