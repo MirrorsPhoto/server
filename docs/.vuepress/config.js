@@ -35,6 +35,7 @@ module.exports = {
 					'/ru/copy/',
 					'/ru/lamination/',
 					'/ru/service/',
+					'/ru/document/',
 					'/ru/printing/',
 					'/ru/sale/',
 					'/ru/socket/'
