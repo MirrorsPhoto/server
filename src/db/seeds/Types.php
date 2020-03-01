@@ -34,6 +34,10 @@ class Types extends AbstractSeed
 					'id' => 6,
 					'name' => 'service',
 				],
+				[
+					'id' => 7,
+					'name' => 'document',
+				],
 			])
 			->save()
 		;

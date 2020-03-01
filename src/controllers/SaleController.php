@@ -53,6 +53,9 @@ class SaleController extends Controller
 				case 'printing':
 					$manager = 'Printing';
 					break;
+				case 'document':
+					$manager = 'Document';
+					break;
 				default:
 					throw new BadRequest('sale.unknown_type');
 			}
