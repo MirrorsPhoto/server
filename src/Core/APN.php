@@ -35,7 +35,7 @@ class APN
 
 	public function __construct()
 	{
-		$certificate = new Certificate(__DIR__ . '/../' . 'apns-prod-cert.pem', $_ENV['APN_CERT_PHRASE']);
+		$certificate = new Certificate(__DIR__ . '/../apns-prod-cert.pem', $_ENV['APN_CERT_PHRASE']);
 		$authenticator = new CertificateAuthenticator($certificate);
 		$builder = new Http20Builder($authenticator);
 
@@ -43,14 +43,19 @@ class APN
 		$this->sender = new Sender($this->protocol);
 	}
 
-	public function close()
+	public function close(): void
 	{
 		$this->protocol->closeConnection();
 	}
 
-	public function send(string $receiver, $title, $body, $data = [], string $category = null, int $badge = null): void
+	/**
+	 * @param mixed[]|string $title
+	 * @param mixed[]|string $body
+	 * @param mixed[] $data
+	 */
+	public function send(string $receiver, $title, $body, array $data = [], ?string $category = null, ?int $badge = null): void
 	{
-		if (is_array($title) && is_array($body)){
+		if (is_array($title) && is_array($body)) {
 			$alert = new Alert();
 
 			$alert = $alert->withLocalizedTitle(new Localized($title['key'], $title['args'] ?: []));

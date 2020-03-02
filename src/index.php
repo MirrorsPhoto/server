@@ -32,7 +32,7 @@ $loader->registerNamespaces([
 ]);
 $loader->register();
 
-$apn = new APN();
+new APN();
 
 $di = new FactoryDefault();
 

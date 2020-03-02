@@ -5,7 +5,8 @@ use Phinx\Migration\AbstractMigration;
 
 class Types extends AbstractMigration
 {
-	public function change()
+
+	public function change(): void
 	{
 		$table = $this->table('type');
 
@@ -39,4 +40,5 @@ class Types extends AbstractMigration
 
 		$table->create();
 	}
+
 }

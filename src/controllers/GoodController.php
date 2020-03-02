@@ -16,6 +16,8 @@ class GoodController extends Controller
 
 	/**
 	 * @Get('/')
+	 *
+	 * @return mixed[]
 	 */
 	public function getAction(): array
 	{
@@ -44,6 +46,8 @@ class GoodController extends Controller
 	 * @Post('/add')
 	 *
 	 * @throws ServerError
+	 *
+	 * @return mixed[]
 	 */
 	public function addAction(): array
 	{
@@ -80,7 +84,7 @@ class GoodController extends Controller
 		$data = $newGood->toArray([
 			'id',
 			'name',
-			'description'
+			'description',
 		]);
 
 		$data['price'] = $newGood->price;

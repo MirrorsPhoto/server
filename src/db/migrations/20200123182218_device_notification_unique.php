@@ -5,7 +5,7 @@ use Phinx\Migration\AbstractMigration;
 class DeviceNotificationUnique extends AbstractMigration
 {
 
-	public function change()
+	public function change(): void
 	{
 		$table = $this->table('user_notification_device');
 

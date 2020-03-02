@@ -1,7 +1,6 @@
 <?php
 
 use Core\UserCenter\Exception\Unauthorized;
-use Core\UserCenter\Security;
 use Phalcon\Db;
 use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Validation;
@@ -122,6 +121,7 @@ class Department extends Model
 	/**
 	 * @param User $user
 	 * @throws Exception
+	 *
 	 * @return mixed[]
 	 */
 	public function getSummary(User $user): array
@@ -197,10 +197,10 @@ class Department extends Model
 				. "AND date_trunc('second', datetime) <= '{$time->format('Y-m-d H:i:s')}' "
 				. (!$user->isAdmin() ? "AND user_id = {$user->id} " : '')
 				. "AND department_id = $department_id) "
-				. "as a "
+				. 'as a '
 				. "WHERE data_json->>'type' IN ($implodedTypes) "
-				. "GROUP BY id) "
-				. "as b"
+				. 'GROUP BY id) '
+				. 'as b'
 			;
 		}
 
@@ -231,12 +231,12 @@ class Department extends Model
 
 			$data['cash']['today']['total'] = array_sum($data['cash']['today']);
 		} else {
-			foreach ($datetime as $moment => $time) {
+			foreach (array_keys($datetime) as $moment) {
 				$data['cash'][$moment] = 0;
 			}
 
 			$data['cash']['today'] = [
-				'total' => 0
+				'total' => 0,
 			];
 		}
 

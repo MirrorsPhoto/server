@@ -6,6 +6,7 @@ use Phalcon\Cli\Task;
 
 class DailyReportTask extends Task
 {
+
 	const REPORT_TIME = '17:00';
 
 	/**
@@ -18,7 +19,7 @@ class DailyReportTask extends Task
 	 */
 	private $currentTime;
 
-	public function mainAction()
+	public function mainAction(): void
 	{
 		$currentTime = new DateTime('now', new DateTimeZone('Europe/Moscow'));
 		$this->currentTime = $currentTime->format('H:i');
@@ -32,13 +33,13 @@ class DailyReportTask extends Task
 		}
 	}
 
-	private function notifyPersonnel(Department $department)
+	private function notifyPersonnel(Department $department): void
 	{
 		$users = $department->getCurrentPersonnel();
 
 		/** @var User $user */
 		foreach ($users as $user) {
-			if ($this->currentTime != self::REPORT_TIME) {
+			if ($this->currentTime !== self::REPORT_TIME) {
 				continue;
 			}
 
@@ -51,7 +52,11 @@ class DailyReportTask extends Task
 		}
 	}
 
-	private function sendToDevice(UserNotificationDevice $device, array $info)
+	/**
+	 * @param UserNotificationDevice $device
+	 * @param mixed[] $info
+	 */
+	private function sendToDevice(UserNotificationDevice $device, array $info): void
 	{
 		try {
 			$this->apn->send($device->device_token, [
@@ -61,7 +66,7 @@ class DailyReportTask extends Task
 				'args' => [
 					(string) $info['client']['today'],
 					(string) $info['cash']['today']['total'] . '₽',
-				]
+				],
 			], [
 				'data' => json_encode($info),
 				'time' => (string) time(),
@@ -70,4 +75,5 @@ class DailyReportTask extends Task
 			return;
 		}
 	}
+
 }

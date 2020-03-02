@@ -113,9 +113,8 @@ class SaleController extends Controller
 		$user = Security::getUser();
 		/** @var Department $department */
 		$department = $user->getCurrentDepartments()->getLast();
-		$data = $department->getSummary($user);
 
-		return $data;
+		return $department->getSummary($user);
 	}
 
 }

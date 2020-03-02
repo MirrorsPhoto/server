@@ -116,7 +116,8 @@ class User extends Model
 		$this->hasManyToMany(
 			'id',
 			'UserType',
-			'user_id', 'type_id',
+			'user_id',
+			'type_id',
 			'Type',
 			'id',
 			[
@@ -168,7 +169,7 @@ class User extends Model
 			'role_phrase' => $this->getRole()->getPhrase(),
 			'avatar' => $this->getAvatar()->fullPath ?: null,
 			'apple_sub' => $this->getAppleAuth()->sub ?: null,
-			'allowed_types' => array_column($this->getTypes()->toArray(), 'name')
+			'allowed_types' => array_column($this->getTypes()->toArray(), 'name'),
 		]);
 
 		$this->token = $token;
@@ -180,7 +181,7 @@ class User extends Model
 		return $token;
 	}
 
-	public function getTypes()
+	public function getTypes(): Simple
 	{
 		if ($this->isAdmin()) {
 			return Type::find();
