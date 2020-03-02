@@ -6,7 +6,7 @@ on:
     - 'docs/**'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +28,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BUILD_SCRIPT: ""
         BUILD_DIR: ./docs/.vuepress/dist/
+        TARGET_BRANCH: "gh-pages"
