@@ -21,7 +21,7 @@ jobs:
         run: docker-compose up -d --build
 
       - name: Install dependencies
-        run: docker exec -it mirrors_tests_1 bash -c 'cd /code/tests; composer install;'
+        run: docker exec -it mirrors_tests_1 composer install
 
       - name: Test
-        run: docker exec -it mirrors_tests_1 tests/vendor/bin/phpcs /code
+        run: docker exec -it mirrors_tests_1 vendor/bin/phpcs /code

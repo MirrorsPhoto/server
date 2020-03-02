@@ -70,7 +70,7 @@ services:
 
   tests:
     build: ./docker/tests
-    working_dir: /code
+    working_dir: /code/tests
     tty: true
     volumes:
       - ./:/code
