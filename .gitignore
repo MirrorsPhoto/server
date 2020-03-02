@@ -14,3 +14,5 @@ docs/\.vuepress/dist/
 \.env
 
 db/data/
+
+docs/node_modules/
