@@ -11,21 +11,21 @@ docker-compose up -d
 ```
 ### Установка зависимостей
 ```bash
-docker exec -it mirrors_php_1 composer install
+docker-compose exec php composer install
 ```
 ### Миграции
 ```bash
-docker exec -it mirrors_php_1 vendor/bin/phinx migrate
+docker-compose exec php vendor/bin/phinx migrate
 ```
 ### Сиды
 ```bash
-docker exec -it mirrors_php_1 vendor/bin/phinx seed:run
+docker-compose exec php vendor/bin/phinx seed:run
 ```
 
 ## Тесты
 ```bash
-docker exec -it mirrors_tests_1 bash -c 'cd /code/tests; composer install;'
-docker exec -it mirrors_tests_1 tests/vendor/bin/behat --config=tests/behat/behat.yml
-docker exec -it mirrors_tests_1 tests/vendor/bin/phpcs /code
+docker-compose exec tests bash -c 'cd /code/tests; composer install;'
+docker-compose exec tests tests/vendor/bin/behat --config=tests/behat/behat.yml
+docker-compose exec tests tests/vendor/bin/phpcs /code
 
 ```
