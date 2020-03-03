@@ -21,7 +21,7 @@ class DocumentController extends Controller
 
 		$result = [];
 
-		/** @var Service $row */
+		/** @var Document $row */
 		foreach ($rowSet as $row) {
 			$array = $row->toArray([
 				'id',
@@ -39,7 +39,7 @@ class DocumentController extends Controller
 		}
 
 		if (!$result) {
-			throw new ServerError('service.empty');
+			throw new ServerError('document.empty');
 		}
 
 		return $result;
