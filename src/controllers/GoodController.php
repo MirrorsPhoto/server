@@ -88,6 +88,7 @@ class GoodController extends Controller
 		]);
 
 		$data['price'] = $newGood->price;
+		$data['available'] = $newGood->getAvaibleCount();
 
 		return [$data];
 	}
