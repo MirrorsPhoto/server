@@ -22,15 +22,6 @@ class Receipt extends Validation
 		);
 
 		$this->add(
-			'bar_code',
-			new Numericality(
-				[
-					'message' => 'Код товара должен быть числовым значением',
-				]
-			)
-		);
-
-		$this->add(
 			'price',
 			new PresenceOf(
 				[

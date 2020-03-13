@@ -58,8 +58,8 @@ class GoodController extends Controller
 		$department = $user->getCurrentDepartments()->getLast();
 
 		$name = $this->getPost('name');
-		$description = $this->getPost('description');
-		$bar_code = $this->getPost('bar_code');
+		$description = $this->getPost('description') ?: null;
+		$bar_code = $this->getPost('bar_code') ?: null;
 		$price = $this->getPost('price');
 
 		$newGood = new Good([
