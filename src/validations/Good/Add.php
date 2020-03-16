@@ -32,7 +32,7 @@ class Add extends Validation
 			'price',
 			new Numericality(
 				[
-					'message' => 'Код товара должен быть числовым значением',
+					'message' => 'Цена должена быть числовым значением',
 				]
 			)
 		);

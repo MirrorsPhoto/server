@@ -75,21 +75,19 @@ class Good extends Model
 	}
 
 	/**
-	 * @return GoodPriceHistory
-	 * @throws ServerError
 	 * @throws Unauthorized
 	 */
-	private function getCurrentPriceRow(): GoodPriceHistory
+	private function getCurrentPriceRow(): ?GoodPriceHistory
 	{
 		$department_id = Security::getUser()->department_id;
 
-		$row = $this->getGoodPriceHistory("datetime_to IS NULL AND department_id = $department_id")->getLast();
+		$row = $this->getGoodPriceHistory("datetime_to IS NULL AND department_id = $department_id");
 
-		if (!$row) {
-			throw new ServerError("Для товара {$this->name} не задана цена");
+		if (!$row->count()) {
+			return null;
 		}
 
-		return $row;
+		return $row->getLast();
 	}
 
 	/**
@@ -98,7 +96,13 @@ class Good extends Model
 	 */
 	public function getPrice(): float
 	{
-		return (float) $this->getCurrentPriceRow()->price;
+		$row = $this->getCurrentPriceRow();
+
+		if (!$row) {
+			throw new ServerError("Для товара {$this->name} не задана цена");
+		}
+
+		return (float) $row->price;
 	}
 
 	/**
@@ -222,12 +226,16 @@ class Good extends Model
 		$user = \Core\UserCenter\Security::getUser();
 		$department = $user->getCurrentDepartments()->getLast();
 
-		if ($this->price == $price) {
+		$currentPriceRow = $this->getCurrentPriceRow();
+		if (!is_null($currentPriceRow) && $this->price == $price) {
 			return true;
 		}
 
-		$currentPriceRow = $this->getCurrentPriceRow();
-		$currentPriceRow->datetime_to = date('Y-m-d H:i:s');
+		if ($currentPriceRow) {
+			$currentPriceRow->datetime_to = 'now()';
+
+			$currentPriceRow->save();
+		}
 
 		$newPriceRow = new GoodPriceHistory([
 			'good_id' => $this->id,

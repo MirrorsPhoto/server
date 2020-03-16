@@ -40,7 +40,7 @@ abstract class Validation extends Phalcon\Validation
 			$errorMessage[] = $message->getMessage();
 		}
 
-		throw new BadRequest($errorMessage[0]);
+		throw new BadRequest($errorMessage);
 	}
 
 }
