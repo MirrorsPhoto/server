@@ -75,10 +75,11 @@ class Good extends Model
 	}
 
 	/**
+	 * @return GoodPriceHistory
 	 * @throws ServerError
 	 * @throws Unauthorized
 	 */
-	public function getPrice(): float
+	private function getCurrentPriceRow(): GoodPriceHistory
 	{
 		$department_id = Security::getUser()->department_id;
 
@@ -88,7 +89,16 @@ class Good extends Model
 			throw new ServerError("Для товара {$this->name} не задана цена");
 		}
 
-		return (float) $row->price;
+		return $row;
+	}
+
+	/**
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 */
+	public function getPrice(): float
+	{
+		return (float) $this->getCurrentPriceRow()->price;
 	}
 
 	/**
@@ -199,6 +209,36 @@ class Good extends Model
 		]);
 
 		return $rowReceipt->save();
+	}
+
+	/**
+	 * @param float $price
+	 * @return bool
+	 * @throws ServerError
+	 * @throws Unauthorized
+	 */
+	public function updatePrice(float $price): bool
+	{
+		$user = \Core\UserCenter\Security::getUser();
+		$department = $user->getCurrentDepartments()->getLast();
+
+		if ($this->price == $price) {
+			return true;
+		}
+
+		$currentPriceRow = $this->getCurrentPriceRow();
+		$currentPriceRow->datetime_to = date('Y-m-d H:i:s');
+
+		$newPriceRow = new GoodPriceHistory([
+			'good_id' => $this->id,
+			'department_id' => $department->id,
+			'user_id' => $user->id,
+			'price' => $price,
+		]);
+
+		$newPriceRow->save();
+
+		return true;
 	}
 
 }

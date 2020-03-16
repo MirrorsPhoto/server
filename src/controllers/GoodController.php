@@ -43,7 +43,7 @@ class GoodController extends Controller
 	}
 
 	/**
-	 * @Post('/add')
+	 * @Post('/')
 	 *
 	 * @throws ServerError
 	 *
@@ -72,14 +72,7 @@ class GoodController extends Controller
 
 		$newGood->refresh();
 
-		$goodPrice = new GoodPriceHistory([
-			'good_id' => $newGood->id,
-			'department_id' => $department->id,
-			'user_id' => $user->id,
-			'price' => $price,
-		]);
-
-		$goodPrice->save();
+		$newGood->updatePrice($price);
 
 		$data = $newGood->toArray([
 			'id',
@@ -142,7 +135,6 @@ class GoodController extends Controller
 	 * @Get('/{id:[0-9]+}')
 	 *
 	 * @param int $id
-	 * @throws Unauthorized
 	 * @throws BadRequest
 	 *
 	 * @return mixed[]
@@ -154,6 +146,47 @@ class GoodController extends Controller
 		if (!$good) {
 			throw new BadRequest('Такой товар отсутствует');
 		}
+
+		$arrGood = $good->toArray();
+
+		$arrGood['price'] = $good->price;
+		$arrGood['available'] = $good->getAvaibleCount();
+
+		return $arrGood;
+	}
+
+	/**
+	 * @Post('/{id:[0-9]+}')
+	 *
+	 * @param int $id
+	 * @throws BadRequest
+	 *
+	 * @return mixed[]
+	 */
+	public function getEditAction(int $id): array
+	{
+		/** @var Good $good */
+		$good = Good::findFirst($id);
+
+		if (!$good) {
+			throw new BadRequest('Такой товар отсутствует');
+		}
+
+		$validator = new Add();
+		$validator->validate();
+
+		$name = $this->getPost('name');
+		$description = $this->getPost('description') ?: null;
+		$bar_code = $this->getPost('bar_code') ?: null;
+		$price = $this->getPost('price');
+
+		$good->name = $name;
+		$good->description = $description;
+		$good->bar_code = $bar_code;
+
+		$good->updatePrice($price);
+
+		$good->save();
 
 		$arrGood = $good->toArray();
 
