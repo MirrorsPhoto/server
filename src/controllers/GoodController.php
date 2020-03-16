@@ -193,7 +193,7 @@ class GoodController extends Controller
 		$arrGood['price'] = $good->price;
 		$arrGood['available'] = $good->getAvaibleCount();
 
-		return $arrGood;
+		return [$arrGood];
 	}
 
 	/**
