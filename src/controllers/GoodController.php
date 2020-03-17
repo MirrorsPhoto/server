@@ -78,6 +78,7 @@ class GoodController extends Controller
 			'id',
 			'name',
 			'description',
+			'bar_code',
 		]);
 
 		$data['price'] = $newGood->price;
