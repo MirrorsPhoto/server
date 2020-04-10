@@ -6,6 +6,7 @@ use CoderCat\JWKToPEM\JWKConverter;
 use Core\Curl;
 use Core\Exception\BadRequest;
 use Core\Exception\ServerError;
+use Firebase\JWT\SignatureInvalidException;
 use Validator\Auth\Login;
 
 /**
@@ -56,11 +57,25 @@ class AuthController extends Controller
 			throw new BadRequest('Token field is required');
 		}
 
-		$key = Curl::getInstance()->get('https://appleid.apple.com/auth/keys')->keys[0];
-
 		$jwkConverter = new JWKConverter();
+		$keys = Curl::getInstance()->get('https://appleid.apple.com/auth/keys')->keys;
+		$jwt = null;
 
-		$jwt = JWT::decode($token, $jwkConverter->toPEM((array) $key), [$key->alg]);
+		foreach ($keys as $key) {
+			try {
+				$jwt = JWT::decode($token, $jwkConverter->toPEM((array) $key), [$key->alg]);
+
+				if ($jwt) {
+					break;
+				}
+			} catch (SignatureInvalidException $e) {
+				continue;
+			}
+		}
+
+		if (is_null($jwt)) {
+			throw new BadRequest('Invalid token');
+		}
 
 		if ($jwt->iss !== 'https://appleid.apple.com') {
 			throw new BadRequest('Invalid token');
