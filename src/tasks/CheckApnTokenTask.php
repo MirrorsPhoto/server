@@ -1,10 +1,8 @@
 <?php
 
-use Apple\ApnPush\Exception\SendNotification\SendNotificationException;
-use Core\APN;
 use Phalcon\Cli\Task;
 
-class CheckAPNTokenTask extends Task
+class CheckApnTokenTask extends Task
 {
 
 	public function mainAction(): void
@@ -20,7 +18,6 @@ class CheckAPNTokenTask extends Task
 
 		foreach ($apps as $app) {
 			$deviceToken = $app['deviceToken'];
-
 			$device = UserNotificationDevice::findFirstByDeviceToken($deviceToken);
 
 			$device->delete();
