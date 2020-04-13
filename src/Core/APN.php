@@ -79,7 +79,7 @@ class APN
 			->withPriority(Priority::immediately())
 			->withPushType(PushType::alert());
 
-		$receiver = new Receiver(new DeviceToken($receiver), $_ENV['APPLE_CLIENT_ID']);
+		$receiver = new Receiver(new DeviceToken($receiver), $_ENV['APPLE_IOS_CLIENT_ID']);
 
 		$this->sender->send($receiver, $notification);
 	}

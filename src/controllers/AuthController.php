@@ -81,7 +81,7 @@ class AuthController extends Controller
 			throw new BadRequest('Invalid token');
 		}
 
-		if ($jwt->aud !== $_ENV['APPLE_CLIENT_ID']) {
+		if ($jwt->aud !== $_ENV['APPLE_IOS_CLIENT_ID'] && $jwt->aud !== $_ENV['APPLE_WATCHOS_CLIENT_ID']) {
 			throw new BadRequest('Invalid token');
 		}
 
@@ -121,7 +121,7 @@ class AuthController extends Controller
 			throw new BadRequest('Invalid token');
 		}
 
-		if ($jwt->aud !== $_ENV['APPLE_CLIENT_ID']) {
+		if ($jwt->aud !== $_ENV['APPLE_IOS_CLIENT_ID'] && $jwt->aud !== $_ENV['APPLE_WATCHOS_CLIENT_ID']) {
 			throw new BadRequest('Invalid token');
 		}
 
