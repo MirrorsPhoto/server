@@ -137,6 +137,9 @@ class Department extends Model
 
 		$data = [];
 
+		$additionalTestCash = 1000;
+		$additionalTestClient = 60;
+
 		$timeZone = new DateTimeZone('Europe/Moscow');
 		$datetime = [
 			'today' => new DateTime('now', $timeZone),
@@ -217,12 +220,13 @@ class Department extends Model
 			$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
 			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-				$amount = (int) $res['summ'];
+				$amount = $res['summ'];
 				if ($this->is_test) {
-					$amount += 1000;
+					$amount += $additionalTestCash;
+					$additionalTestCash *= 1.5;
 				}
 
-				$data['cash']['today'][$res['type']] = $amount;
+				$data['cash']['today'][$res['type']] = (int) $amount;
 			}
 
 			unset($query['cash']['today']);
@@ -238,12 +242,12 @@ class Department extends Model
 			$result = $this->getDI()->getShared('db')->query($agoSql);
 
 			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-				$amount = (int) $res['sum'];
+				$amount = $res['sum'];
 				if ($this->is_test) {
 					$amount += 1000;
 				}
 
-				$data['cash'][$res['moment']] = $amount;
+				$data['cash'][$res['moment']] = (int) $amount;
 			}
 		} else {
 			foreach (array_keys($datetime) as $moment) {
@@ -258,12 +262,13 @@ class Department extends Model
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$count = (int) $res['count'];
+			$count = $res['count'];
 			if ($this->is_test) {
-				$count += 1000;
+				$count += $additionalTestClient;
+				$additionalTestClient += 1.5;
 			}
 
-			$data['client'][$res['moment']] = $count;
+			$data['client'][$res['moment']] = (int) $count;
 		}
 
 		return $data;
