@@ -40,6 +40,13 @@ class Department extends Model
 	 */
 	public $address;
 
+	/**
+	 * @var bool
+	 *
+	 * @Column(type="bool", nullable=false)
+	 */
+	public $is_test;
+
 	public function initialize(): void
 	{
 		parent::initialize();
@@ -210,7 +217,12 @@ class Department extends Model
 			$result = $this->getDI()->getShared('db')->query($query['cash']['today']);
 
 			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-				$data['cash']['today'][$res['type']] = (int) $res['summ'];
+				$amount = (int) $res['summ'];
+				if ($this->is_test) {
+					$amount += 1000;
+				}
+
+				$data['cash']['today'][$res['type']] = $amount;
 			}
 
 			unset($query['cash']['today']);
@@ -218,7 +230,7 @@ class Department extends Model
 			$agoSql = [];
 
 			foreach ($query['cash'] as $moment => $sql) {
-				$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as momemt, SUM(summ) FROM {$moment})";
+				$agoSql[] = "(WITH {$moment} AS ({$sql}) SELECT '{$moment}' as moment, SUM(summ) FROM {$moment})";
 			}
 
 			$agoSql = implode(' UNION ALL ', $agoSql);
@@ -226,10 +238,13 @@ class Department extends Model
 			$result = $this->getDI()->getShared('db')->query($agoSql);
 
 			foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-				$data['cash'][$res['momemt']] = (int) $res['sum'];
-			}
+				$amount = (int) $res['sum'];
+				if ($this->is_test) {
+					$amount += 1000;
+				}
 
-			$data['cash']['today']['total'] = array_sum($data['cash']['today']);
+				$data['cash'][$res['moment']] = $amount;
+			}
 		} else {
 			foreach (array_keys($datetime) as $moment) {
 				$data['cash'][$moment] = 0;
@@ -239,10 +254,16 @@ class Department extends Model
 				'total' => 0,
 			];
 		}
+		$data['cash']['today']['total'] = array_sum($data['cash']['today']);
 
 		$result = $this->getDI()->getShared('db')->query($query['client']);
 		foreach ($result->fetchAll(Db::FETCH_ASSOC) as $res) {
-			$data['client'][$res['moment']] = (int) $res['count'];
+			$count = (int) $res['count'];
+			if ($this->is_test) {
+				$count += 1000;
+			}
+
+			$data['client'][$res['moment']] = $count;
 		}
 
 		return $data;
